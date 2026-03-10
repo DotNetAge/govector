@@ -6,9 +6,9 @@ import "math"
 type Distance string
 
 const (
-	Cosine  Distance = "Cosine"
-	Euclid  Distance = "Euclid"
-	Dot     Distance = "Dot"
+	Cosine Distance = "Cosine"
+	Euclid Distance = "Euclid"
+	Dot    Distance = "Dot"
 )
 
 // CalculateDistance computes the similarity/distance based on the metric

@@ -38,13 +38,13 @@ func NewCollection(name string, vectorLen int, metric Distance, store *Storage, 
 		if err := store.EnsureCollection(name); err != nil {
 			return nil, fmt.Errorf("failed to ensure storage collection %s: %w", name, err)
 		}
-		
+
 		// Load existing points into memory index
 		loadedPoints, err := store.LoadCollection(name)
 		if err != nil {
 			return nil, fmt.Errorf("failed to load points for %s: %w", name, err)
 		}
-		
+
 		// Validate and prep array for Upsert
 		var batch []PointStruct
 		for _, p := range loadedPoints {
@@ -53,7 +53,7 @@ func NewCollection(name string, vectorLen int, metric Distance, store *Storage, 
 			}
 			batch = append(batch, *p)
 		}
-		
+
 		if len(batch) > 0 {
 			if err := col.index.Upsert(batch); err != nil {
 				return nil, fmt.Errorf("failed to load initial points into index: %w", err)
@@ -105,4 +105,36 @@ func (c *Collection) Count() int {
 	c.mu.RLock()
 	defer c.mu.RUnlock()
 	return c.index.Count()
+}
+
+// Delete removes points either by explicit IDs or by a filter match.
+func (c *Collection) Delete(points []string, filter *Filter) (int, error) {
+	c.mu.Lock()
+	defer c.mu.Unlock()
+
+	var deletedIDs []string
+
+	if len(points) > 0 {
+		for _, id := range points {
+			if err := c.index.Delete(id); err == nil {
+				deletedIDs = append(deletedIDs, id)
+			}
+		}
+	} else if filter != nil {
+		var err error
+		deletedIDs, err = c.index.DeleteByFilter(filter)
+		if err != nil {
+			return 0, fmt.Errorf("failed to delete by filter: %w", err)
+		}
+	} else {
+		return 0, fmt.Errorf("must provide points or filter")
+	}
+
+	if len(deletedIDs) > 0 && c.storage != nil {
+		if err := c.storage.DeletePoints(c.Name, deletedIDs); err != nil {
+			return len(deletedIDs), fmt.Errorf("deleted from memory but failed to persist: %w", err)
+		}
+	}
+
+	return len(deletedIDs), nil
 }

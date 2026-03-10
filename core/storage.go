@@ -59,7 +59,7 @@ func (s *Storage) UpsertPoints(colName string, points []PointStruct) error {
 // LoadCollection loads all points for a collection from disk into memory
 func (s *Storage) LoadCollection(colName string) (map[string]*PointStruct, error) {
 	points := make(map[string]*PointStruct)
-	
+
 	err := s.db.View(func(tx *bbolt.Tx) error {
 		b := tx.Bucket([]byte(colName))
 		if b == nil {
@@ -76,9 +76,26 @@ func (s *Storage) LoadCollection(colName string) (map[string]*PointStruct, error
 			return nil
 		})
 	})
-	
+
 	if err != nil {
 		return nil, fmt.Errorf("failed to load points from bbolt: %w", err)
 	}
 	return points, nil
+}
+
+// DeletePoints deletes a batch of points from disk
+func (s *Storage) DeletePoints(colName string, ids []string) error {
+	return s.db.Update(func(tx *bbolt.Tx) error {
+		b := tx.Bucket([]byte(colName))
+		if b == nil {
+			return nil // Bucket doesn't exist, nothing to delete
+		}
+
+		for _, id := range ids {
+			if err := b.Delete([]byte(id)); err != nil {
+				return fmt.Errorf("failed to delete point %s from bbolt: %w", id, err)
+			}
+		}
+		return nil
+	})
 }

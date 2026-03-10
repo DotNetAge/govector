@@ -42,7 +42,7 @@ func main() {
 	if err != nil {
 		log.Fatalf("Failed to create/load collection: %v", err)
 	}
-	
+
 	indexType := "Flat"
 	if *useHNSW {
 		indexType = "HNSW"
@@ -86,6 +86,6 @@ func main() {
 			log.Printf("Graceful shutdown did not complete in time: %v", err)
 		}
 	}
-	
+
 	fmt.Println("Server gracefully stopped.")
 }

@@ -5,8 +5,8 @@ type Payload map[string]interface{}
 
 // PointStruct represents a vector data point compatible with Qdrant
 type PointStruct struct {
-	ID      string    `json:"id"`     // UUID or uint64 (using string for now)
-	Vector  []float32 `json:"vector"` // The actual embeddings
+	ID      string    `json:"id"`                // UUID or uint64 (using string for now)
+	Vector  []float32 `json:"vector"`            // The actual embeddings
 	Payload Payload   `json:"payload,omitempty"` // Metadata for filtering
 }
 
@@ -20,8 +20,8 @@ type ScoredPoint struct {
 
 // Qdrant Filtering Model (Simplified for MVP)
 type Filter struct {
-	Must     []Condition `json:"must,omitempty"`
-	MustNot  []Condition `json:"must_not,omitempty"`
+	Must    []Condition `json:"must,omitempty"`
+	MustNot []Condition `json:"must_not,omitempty"`
 }
 
 type Condition struct {

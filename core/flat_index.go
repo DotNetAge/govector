@@ -67,7 +67,7 @@ func (f *FlatIndex) Search(query []float32, filter *Filter, topK int) ([]ScoredP
 func (f *FlatIndex) Delete(id string) error {
 	f.mu.Lock()
 	defer f.mu.Unlock()
-	
+
 	if _, exists := f.points[id]; exists {
 		delete(f.points, id)
 		return nil
@@ -79,4 +79,18 @@ func (f *FlatIndex) Count() int {
 	f.mu.RLock()
 	defer f.mu.RUnlock()
 	return len(f.points)
+}
+
+func (f *FlatIndex) DeleteByFilter(filter *Filter) ([]string, error) {
+	f.mu.Lock()
+	defer f.mu.Unlock()
+
+	var deleted []string
+	for id, point := range f.points {
+		if MatchFilter(point.Payload, filter) {
+			delete(f.points, id)
+			deleted = append(deleted, id)
+		}
+	}
+	return deleted, nil
 }

@@ -33,7 +33,7 @@ func runBenchmark(name string, dim int, useHNSW bool, numPoints, numQueries int)
 
 	fmt.Printf("Generating %d random vectors (Dim: %d)...\n", numPoints, dim)
 	pointsData := generateRandomVectors(numPoints, dim)
-	
+
 	// Prepare struct points
 	var points []core.PointStruct
 	for i, vec := range pointsData {
@@ -68,7 +68,7 @@ func runBenchmark(name string, dim int, useHNSW bool, numPoints, numQueries int)
 		}
 	}
 	searchDuration := time.Since(startSearch)
-	
+
 	// Metrics Calculation
 	qps := float64(numQueries) / searchDuration.Seconds()
 	avgLatencyMs := float64(searchDuration.Microseconds()) / float64(numQueries) / 1000.0

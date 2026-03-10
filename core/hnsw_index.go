@@ -19,7 +19,7 @@ type HNSWIndex struct {
 // NewHNSWIndex creates a new HNSW index engine
 func NewHNSWIndex(metric Distance) *HNSWIndex {
 	g := hnsw.NewGraph[string]()
-	
+
 	// Configure Distance Function based on our definitions
 	switch metric {
 	case Euclid:
@@ -49,7 +49,7 @@ func NewHNSWIndex(metric Distance) *HNSWIndex {
 	}
 
 	// Tweak params for better recall
-	g.EfSearch = 64        // higher = slower search, better recall
+	g.EfSearch = 64 // higher = slower search, better recall
 
 	return &HNSWIndex{
 		graph:  g,
@@ -68,7 +68,7 @@ func (h *HNSWIndex) Upsert(points []PointStruct) error {
 		h.points[p.ID] = p
 		nodes = append(nodes, hnsw.MakeNode(p.ID, p.Vector))
 	}
-	
+
 	// Batch add to graph
 	h.graph.Add(nodes...)
 	return nil
@@ -105,7 +105,7 @@ func (h *HNSWIndex) Search(query []float32, filter *Filter, topK int) ([]ScoredP
 			continue
 		}
 
-		// Calculate precise Score based on our metric definition 
+		// Calculate precise Score based on our metric definition
 		// (hnsw returns nodes, we recalculate original score format)
 		score := CalculateDistance(h.metric, query, point.Vector)
 
@@ -126,7 +126,7 @@ func (h *HNSWIndex) Search(query []float32, filter *Filter, topK int) ([]ScoredP
 func (h *HNSWIndex) Delete(id string) error {
 	h.mu.Lock()
 	defer h.mu.Unlock()
-	
+
 	if h.graph.Delete(id) {
 		delete(h.points, id)
 		return nil
@@ -138,4 +138,20 @@ func (h *HNSWIndex) Count() int {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
 	return len(h.points)
+}
+
+func (h *HNSWIndex) DeleteByFilter(filter *Filter) ([]string, error) {
+	h.mu.Lock()
+	defer h.mu.Unlock()
+
+	var deleted []string
+	for id, point := range h.points {
+		if MatchFilter(point.Payload, filter) {
+			if h.graph.Delete(id) {
+				delete(h.points, id)
+				deleted = append(deleted, id)
+			}
+		}
+	}
+	return deleted, nil
 }

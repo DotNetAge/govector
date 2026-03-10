@@ -43,7 +43,7 @@ func main() {
 	// 4. Perform a rich query using Go structs directly
 	fmt.Println("\nSearching for an admin closest to [1.0, 0.0, 0.0]...")
 	query := []float32{1.0, 0.0, 0.0}
-	
+
 	filter := &core.Filter{
 		Must: []core.Condition{
 			{Key: "role", Match: core.MatchValue{Value: "admin"}},

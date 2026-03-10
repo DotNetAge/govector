@@ -39,6 +39,7 @@ func (s *Server) Start() error {
 	// Endpoints
 	mux.HandleFunc("PUT /collections/{name}/points", s.handleUpsert)
 	mux.HandleFunc("POST /collections/{name}/points/search", s.handleSearch)
+	mux.HandleFunc("POST /collections/{name}/points/delete", s.handleDelete)
 
 	s.httpServer = &http.Server{
 		Addr:    s.addr,
@@ -57,7 +58,6 @@ func (s *Server) Stop(ctx context.Context) error {
 	}
 	return nil
 }
-
 
 // handleUpsert processes PUT /collections/{name}/points
 func (s *Server) handleUpsert(w http.ResponseWriter, r *http.Request) {
@@ -107,7 +107,7 @@ func (s *Server) handleSearch(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Invalid JSON payload", http.StatusBadRequest)
 		return
 	}
-	
+
 	if req.Limit <= 0 {
 		req.Limit = 10 // default
 	}
@@ -122,5 +122,40 @@ func (s *Server) handleSearch(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(map[string]interface{}{
 		"status": "ok",
 		"result": results,
+	})
+}
+
+// handleDelete processes POST /collections/{name}/points/delete
+func (s *Server) handleDelete(w http.ResponseWriter, r *http.Request) {
+	colName := r.PathValue("name")
+	col, exists := s.collections[colName]
+	if !exists {
+		http.Error(w, fmt.Sprintf("Collection %s not found", colName), http.StatusNotFound)
+		return
+	}
+
+	var req struct {
+		Points []string     `json:"points,omitempty"`
+		Filter *core.Filter `json:"filter,omitempty"`
+	}
+
+	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
+		http.Error(w, "Invalid JSON payload", http.StatusBadRequest)
+		return
+	}
+
+	deletedCount, err := col.Delete(req.Points, req.Filter)
+	if err != nil {
+		http.Error(w, fmt.Sprintf("Delete failed: %v", err), http.StatusInternalServerError)
+		return
+	}
+
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(map[string]interface{}{
+		"status": "ok",
+		"result": map[string]interface{}{
+			"operation": "completed",
+			"deleted":   deletedCount,
+		},
 	})
 }
