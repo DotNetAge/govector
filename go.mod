@@ -1,4 +1,4 @@
-module govector
+module github.com/DotNetAge/govector
 
 go 1.25.1
 

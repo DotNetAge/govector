@@ -5,7 +5,7 @@ import (
 	"math/rand"
 	"time"
 
-	"govector/core"
+	"github.com/DotNetAge/govector/core"
 )
 
 // generateRandomVectors creates n vectors of given dimension

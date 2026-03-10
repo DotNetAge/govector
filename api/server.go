@@ -7,7 +7,7 @@ import (
 	"log"
 	"net/http"
 
-	"govector/core"
+	"github.com/DotNetAge/govector/core"
 )
 
 // Server handles Qdrant-compatible HTTP requests

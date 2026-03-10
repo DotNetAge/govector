@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 
-	"govector/core" // This is how users will import your library
+	"github.com/DotNetAge/govector/core" // This is how users will import your library
 )
 
 func main() {

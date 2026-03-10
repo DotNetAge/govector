@@ -77,7 +77,7 @@ package main
 
 import (
         "fmt"
-        "govector/core"
+        "github.com/DotNetAge/govector/core"
 )
 
 func main() {

@@ -11,8 +11,8 @@ import (
 	"syscall"
 	"time"
 
-	"govector/api"
-	"govector/core"
+	"github.com/DotNetAge/govector/api"
+	"github.com/DotNetAge/govector/core"
 )
 
 func main() {
