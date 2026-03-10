@@ -1,10 +1,15 @@
-# 🎯 GoVector
+<div align="center">
+  <h1>🎯 GoVector</h1>
+  <p><b>The Lightweight, Embeddable Vector Database in Pure Go. (Think SQLite for Vectors)</b></p>
 
-**The Lightweight, Embeddable Vector Database in Pure Go. (Think SQLite for Vectors)**
+  [![Go Reference](https://pkg.go.dev/badge/github.com/DotNetAge/govector.svg)](https://pkg.go.dev/github.com/DotNetAge/govector)
+  [![Go Version](https://img.shields.io/github/go-mod/go-version/DotNetAge/govector)](https://golang.org/)
+  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-[![Go Reference](https://pkg.go.dev/badge/github.com/DotNetAge/govector.svg)](https://pkg.go.dev/github.com/DotNetAge/govector)
-[![Go Version](https://img.shields.io/github/go-mod/go-version/DotNetAge/govector)](https://golang.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+  <p>
+    <a href="README.md">English</a> | <a href="README_zh.md">简体中文</a>
+  </p>
+</div>
 
 In the era of Local AI, desktop applications, and edge computing, you don't always need a heavy, distributed vector cluster like Milvus or Qdrant. 
 
@@ -49,17 +54,17 @@ By default, the brew service runs on `http://localhost:18080` with HNSW enabled.
 We ran a pure-memory benchmark comparing the `Flat` (brute-force linear scan) index against our optimized `HNSW` (Graph) index.
 
 **Parameters:** 
-- Dataset: 10,000 vectors
-- Dimensions: 128
-- Query count: 1,000 queries
-- Hardware: standard local desktop
+- **Dataset:** 10,000 vectors
+- **Dimensions:** 128
+- **Query count:** 1,000 queries
+- **Hardware:** Standard local desktop
 
 | Index Strategy               | Build Time         | Search Latency       | Throughput     |
 | :--------------------------- | :----------------- | :------------------- | :------------- |
 | **Flat Index** (Linear Scan) | **0 ms** (Instant) | 4.267 ms / query     | 234 QPS        |
 | **HNSW Index** (Graph ANN)   | 1,688 ms           | **0.058 ms / query** | **17,150 QPS** |
 
-*Result: HNSW provides an astonishing **~73x speedup** in query throughput, effortlessly delivering over 17,000 queries per second while maintaining high accuracy!*
+> *Result: HNSW provides an astonishing **~73x speedup** in query throughput, effortlessly delivering over 17,000 queries per second while maintaining high accuracy!*
 
 ---
 
@@ -71,43 +76,43 @@ Perfect for local RAG (Retrieval-Augmented Generation) applications, desktop app
 package main
 
 import (
-	"fmt"
-	"govector/core"
+        "fmt"
+        "govector/core"
 )
 
 func main() {
-	// 1. Initialize local storage (creates a single .db file)
-	store, _ := core.NewStorage("my_local_vectors.db")
-	defer store.Close()
+        // 1. Initialize local storage (creates a single .db file)
+        store, _ := core.NewStorage("my_local_vectors.db")
+        defer store.Close()
 
-	// 2. Create a Collection (Name, Dimension, Distance Metric, Storage, UseHNSW)
-	col, _ := core.NewCollection("documents", 3, core.Cosine, store, true)
+        // 2. Create a Collection (Name, Dimension, Distance Metric, Storage, UseHNSW)
+        col, _ := core.NewCollection("documents", 3, core.Cosine, store, true)
 
-	// 3. Upsert Data with Metadata (Payload)
-	col.Upsert([]core.PointStruct{
-		{
-			ID:      "doc_1",
-			Vector:  []float32{0.9, 0.1, 0.0},
-			Payload: core.Payload{"category": "tech", "author": "Alice"},
-		},
-		{
-			ID:      "doc_2",
-			Vector:  []float32{0.1, 0.9, 0.0},
-			Payload: core.Payload{"category": "art", "author": "Bob"},
-		},
-	})
+        // 3. Upsert Data with Metadata (Payload)
+        col.Upsert([]core.PointStruct{
+                {
+                        ID:      "doc_1",
+                        Vector:  []float32{0.9, 0.1, 0.0},
+                        Payload: core.Payload{"category": "tech", "author": "Alice"},
+                },
+                {
+                        ID:      "doc_2",
+                        Vector:  []float32{0.1, 0.9, 0.0},
+                        Payload: core.Payload{"category": "art", "author": "Bob"},
+                },
+        })
 
-	// 4. Search with Metadata Filtering
-	query := []float32{1.0, 0.0, 0.0}
-	filter := &core.Filter{
-		Must: []core.Condition{
-			{Key: "category", Match: core.MatchValue{Value: "tech"}},
-		},
-	}
+        // 4. Search with Metadata Filtering
+        query := []float32{1.0, 0.0, 0.0}
+        filter := &core.Filter{
+                Must: []core.Condition{
+                        {Key: "category", Match: core.MatchValue{Value: "tech"}},
+                },
+        }
 
-	results, _ := col.Search(query, filter, 1) // Top 1
-	
-	fmt.Printf("Best Match: %s (Score: %f)\n", results[0].ID, results[0].Score)
+        results, _ := col.Search(query, filter, 1) // Top 1
+
+        fmt.Printf("Best Match: %s (Score: %f)\n", results[0].ID, results[0].Score)
 }
 ```
 
@@ -150,6 +155,28 @@ curl -X POST http://localhost:18080/collections/test_collection/points/search \
 -d '{
   "vector": [0.8, 0.2, 0.0],
   "limit": 1,
+  "filter": {
+    "must": [
+      { "key": "category", "match": { "value": "fruit" } }
+    ]
+  }
+}'
+```
+
+### 4. Delete Vectors
+
+```bash
+# Delete by ID
+curl -X POST http://localhost:18080/collections/test_collection/points/delete \
+-H "Content-Type: application/json" \
+-d '{
+  "points": ["1", "2"]
+}'
+
+# Delete by Filter
+curl -X POST http://localhost:18080/collections/test_collection/points/delete \
+-H "Content-Type: application/json" \
+-d '{
   "filter": {
     "must": [
       { "key": "category", "match": { "value": "fruit" } }
