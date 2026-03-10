@@ -2,8 +2,8 @@
 
 **The Lightweight, Embeddable Vector Database in Pure Go. (Think SQLite for Vectors)**
 
-[![Go Reference](https://pkg.go.dev/badge/github.com/yourusername/govector.svg)](https://pkg.go.dev/github.com/yourusername/govector)
-[![Go Version](https://img.shields.io/github/go-mod/go-version/yourusername/govector)](https://golang.org/)
+[![Go Reference](https://pkg.go.dev/badge/github.com/DotNetAge/govector.svg)](https://pkg.go.dev/github.com/DotNetAge/govector)
+[![Go Version](https://img.shields.io/github/go-mod/go-version/DotNetAge/govector)](https://golang.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 In the era of Local AI, desktop applications, and edge computing, you don't always need a heavy, distributed vector cluster like Milvus or Qdrant. 
@@ -28,13 +28,13 @@ In the era of Local AI, desktop applications, and edge computing, you don't alwa
 
 ### Option A: Use as a Go Library
 ```bash
-go get github.com/yourusername/govector/core
+go get github.com/DotNetAge/govector/core
 ```
 
 ### Option B: Install via Homebrew (Mac/Linux Daemon)
 If you want to run GoVector as a background microservice:
 ```bash
-brew tap yourusername/govector
+brew tap DotNetAge/govector
 brew install govector
 
 # Start the background daemon service (starts on boot!)
@@ -54,10 +54,10 @@ We ran a pure-memory benchmark comparing the `Flat` (brute-force linear scan) in
 - Query count: 1,000 queries
 - Hardware: standard local desktop
 
-| Index Strategy | Build Time | Search Latency | Throughput |
-| :--- | :--- | :--- | :--- |
-| **Flat Index** (Linear Scan) | **0 ms** (Instant) | 4.267 ms / query | 234 QPS |
-| **HNSW Index** (Graph ANN) | 1,688 ms | **0.058 ms / query** | **17,150 QPS** |
+| Index Strategy               | Build Time         | Search Latency       | Throughput     |
+| :--------------------------- | :----------------- | :------------------- | :------------- |
+| **Flat Index** (Linear Scan) | **0 ms** (Instant) | 4.267 ms / query     | 234 QPS        |
+| **HNSW Index** (Graph ANN)   | 1,688 ms           | **0.058 ms / query** | **17,150 QPS** |
 
 *Result: HNSW provides an astonishing **~73x speedup** in query throughput, effortlessly delivering over 17,000 queries per second while maintaining high accuracy!*
 
