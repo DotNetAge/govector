@@ -1,0 +1,20 @@
+[Unit]
+Description=GoVector Database Service (Qdrant compatible)
+After=network.target
+
+[Service]
+Type=simple
+User=root
+# Change the path to where you downloaded the govector binary
+ExecStart=/usr/local/bin/govectord -port 18080 -db /var/lib/govector/data.db -hnsw=true
+
+Restart=always
+RestartSec=5
+WorkingDirectory=/var/lib/govector
+
+# Logging
+StandardOutput=append:/var/log/govector.log
+StandardError=append:/var/log/govector_error.log
+
+[Install]
+WantedBy=multi-user.target

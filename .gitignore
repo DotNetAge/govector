@@ -1,0 +1,56 @@
+# Binaries
+gorag-server
+gorag
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary
+*.test
+
+# Output files
+*.out
+
+# Go coverage file
+coverage.out
+coverage.html
+
+# Makefile
+Makefile.bak
+
+# Dependency directories
+vendor/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Data
+data/
+
+# Plugins
+plugins/*.so
+
+# Environment
+.env
+.env.local
+.docs
+.claude
+*.log
+*.db
+.docs
+bin
+dist
