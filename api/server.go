@@ -1,3 +1,5 @@
+// Package api provides a Qdrant-compatible HTTP API server for GoVector.
+// It exposes REST endpoints for managing vector collections and performing similarity search.
 package api
 
 import (
@@ -10,7 +12,8 @@ import (
 	"github.com/DotNetAge/govector/core"
 )
 
-// Server handles Qdrant-compatible HTTP requests
+// Server handles Qdrant-compatible HTTP requests for vector operations.
+// It manages collections and provides endpoints for upsert, search, and delete operations.
 type Server struct {
 	addr        string
 	collections map[string]*core.Collection
@@ -18,7 +21,8 @@ type Server struct {
 	httpServer  *http.Server  // Needed for graceful shutdown
 }
 
-// NewServer initializes the API server
+// NewServer initializes the API server with the given address and storage backend.
+// The storage parameter can be nil for in-memory-only operation.
 func NewServer(addr string, store *core.Storage) *Server {
 	return &Server{
 		addr:        addr,
@@ -27,12 +31,18 @@ func NewServer(addr string, store *core.Storage) *Server {
 	}
 }
 
-// AddCollection manually mounts a collection (normally done via API, simplifying for now)
+// AddCollection manually mounts a collection to the server.
+// This is typically used during server initialization before Start is called.
 func (s *Server) AddCollection(col *core.Collection) {
 	s.collections[col.Name] = col
 }
 
-// Start boots the HTTP server
+// Start boots the HTTP server and begins listening for requests.
+// This method blocks until the server is stopped or encounters an error.
+// Endpoints:
+//   - PUT /collections/{name}/points - Upsert points
+//   - POST /collections/{name}/points/search - Search vectors
+//   - POST /collections/{name}/points/delete - Delete points
 func (s *Server) Start() error {
 	mux := http.NewServeMux()
 
@@ -50,7 +60,8 @@ func (s *Server) Start() error {
 	return s.httpServer.ListenAndServe()
 }
 
-// Stop gracefully shuts down the server without interrupting active connections
+// Stop gracefully shuts down the server without interrupting active connections.
+// It uses the provided context to determine how long to wait for connections to close.
 func (s *Server) Stop(ctx context.Context) error {
 	if s.httpServer != nil {
 		log.Println("Shutting down HTTP server...")
@@ -59,7 +70,9 @@ func (s *Server) Stop(ctx context.Context) error {
 	return nil
 }
 
-// handleUpsert processes PUT /collections/{name}/points
+// handleUpsert processes PUT /collections/{name}/points requests.
+// It accepts a JSON body with a "points" array and upserts them into the specified collection.
+// Returns 404 if the collection doesn't exist, 400 for invalid JSON, or 500 for internal errors.
 func (s *Server) handleUpsert(w http.ResponseWriter, r *http.Request) {
 	colName := r.PathValue("name")
 	col, exists := s.collections[colName]
@@ -88,7 +101,10 @@ func (s *Server) handleUpsert(w http.ResponseWriter, r *http.Request) {
 	})
 }
 
-// handleSearch processes POST /collections/{name}/points/search
+// handleSearch processes POST /collections/{name}/points/search requests.
+// It accepts a JSON body with "vector", optional "filter", and "limit" fields.
+// Returns the topK most similar vectors matching the query and filter criteria.
+// Returns 404 if the collection doesn't exist, 400 for invalid JSON, or 500 for internal errors.
 func (s *Server) handleSearch(w http.ResponseWriter, r *http.Request) {
 	colName := r.PathValue("name")
 	col, exists := s.collections[colName]
@@ -125,7 +141,10 @@ func (s *Server) handleSearch(w http.ResponseWriter, r *http.Request) {
 	})
 }
 
-// handleDelete processes POST /collections/{name}/points/delete
+// handleDelete processes POST /collections/{name}/points/delete requests.
+// It accepts a JSON body with either "points" (array of IDs) or "filter" to delete by.
+// Returns the count of deleted points in the response.
+// Returns 404 if the collection doesn't exist, 400 for invalid JSON, or 500 for internal errors.
 func (s *Server) handleDelete(w http.ResponseWriter, r *http.Request) {
 	colName := r.PathValue("name")
 	col, exists := s.collections[colName]

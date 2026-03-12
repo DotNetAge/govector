@@ -8,7 +8,9 @@ import (
 	"github.com/coder/hnsw"
 )
 
-// HNSWIndex wraps the coder/hnsw graph to provide a production-ready vector index
+// HNSWIndex wraps the coder/hnsw graph to provide an approximate nearest neighbor search.
+// It uses Hierarchical Navigable Small World graphs for efficient similarity search
+// with sub-linear complexity, making it suitable for large datasets.
 type HNSWIndex struct {
 	graph  *hnsw.Graph[string]
 	points map[string]*PointStruct // Fast Metadata / Payload lookup
@@ -16,7 +18,9 @@ type HNSWIndex struct {
 	mu     sync.RWMutex
 }
 
-// NewHNSWIndex creates a new HNSW index engine
+// NewHNSWIndex creates a new HNSW index engine with the specified distance metric.
+// It configures the underlying HNSW graph with appropriate distance functions
+// for Cosine, Euclidean, or Dot product metrics.
 func NewHNSWIndex(metric Distance) *HNSWIndex {
 	g := hnsw.NewGraph[string]()
 
@@ -58,6 +62,8 @@ func NewHNSWIndex(metric Distance) *HNSWIndex {
 	}
 }
 
+// Upsert adds or updates points in the HNSW graph.
+// Points are added to both the HNSW graph for search and a local map for payload lookup.
 func (h *HNSWIndex) Upsert(points []PointStruct) error {
 	h.mu.Lock()
 	defer h.mu.Unlock()
@@ -74,6 +80,9 @@ func (h *HNSWIndex) Upsert(points []PointStruct) error {
 	return nil
 }
 
+// Search performs an approximate nearest neighbor search using the HNSW algorithm.
+// It uses a post-filtering strategy: over-fetches results to account for filtered points,
+// then applies the payload filter and returns the topK matches.
 func (h *HNSWIndex) Search(query []float32, filter *Filter, topK int) ([]ScoredPoint, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
@@ -123,6 +132,8 @@ func (h *HNSWIndex) Search(query []float32, filter *Filter, topK int) ([]ScoredP
 	return results, nil
 }
 
+// Delete removes a point from both the HNSW graph and the local points map.
+// Returns an error if the point does not exist in the graph.
 func (h *HNSWIndex) Delete(id string) error {
 	h.mu.Lock()
 	defer h.mu.Unlock()
@@ -134,12 +145,15 @@ func (h *HNSWIndex) Delete(id string) error {
 	return fmt.Errorf("point %s not found", id)
 }
 
+// Count returns the number of vectors currently stored in the index.
 func (h *HNSWIndex) Count() int {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
 	return len(h.points)
 }
 
+// DeleteByFilter removes all points that match the given filter from both
+// the HNSW graph and the local points map. Returns the IDs of deleted points.
 func (h *HNSWIndex) DeleteByFilter(filter *Filter) ([]string, error) {
 	h.mu.Lock()
 	defer h.mu.Unlock()

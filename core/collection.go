@@ -5,19 +5,23 @@ import (
 	"sync"
 )
 
-// Collection represents a single logical group of vectors (like a table in SQL)
+// Collection represents a single logical group of vectors, similar to a table in SQL databases.
+// It provides thread-safe operations for inserting, searching, and deleting vectors.
+// Each collection has a fixed vector dimension and uses a specific distance metric.
 type Collection struct {
-	Name      string
-	VectorLen int
-	Metric    Distance
+	Name      string      // Unique name of the collection
+	VectorLen int         // Dimension of vectors in this collection
+	Metric    Distance    // Distance metric used for similarity search
 
 	mu      sync.RWMutex
 	index   VectorIndex // Transparent index engine (Flat or HNSW)
 	storage *Storage    // Embedded Persistence
 }
 
-// NewCollection initializes a new vector collection, optionally loading from storage
-// If useHNSW is true, it uses the optimized graph search, otherwise flat memory search.
+// NewCollection initializes a new vector collection, optionally loading from storage.
+// If useHNSW is true, it uses the optimized HNSW graph search; otherwise uses flat memory search.
+// When storage is provided, existing points are automatically loaded into memory.
+// Returns an error if the collection cannot be created or if loaded points have invalid dimensions.
 func NewCollection(name string, vectorLen int, metric Distance, store *Storage, useHNSW bool) (*Collection, error) {
 	var index VectorIndex
 	if useHNSW {
@@ -64,7 +68,9 @@ func NewCollection(name string, vectorLen int, metric Distance, store *Storage, 
 	return col, nil
 }
 
-// Upsert adds or updates points in the collection (Memory + Disk)
+// Upsert adds or updates points in the collection.
+// Points are first persisted to disk (if storage is configured), then updated in the memory index.
+// Returns an error if any point has an invalid vector length or if persistence fails.
 func (c *Collection) Upsert(points []PointStruct) error {
 	c.mu.Lock()
 	defer c.mu.Unlock()
@@ -88,7 +94,9 @@ func (c *Collection) Upsert(points []PointStruct) error {
 	return c.index.Upsert(points)
 }
 
-// Search delegates search to the underlying VectorIndex (Flat or HNSW)
+// Search performs a similarity search using the underlying VectorIndex.
+// It finds the topK nearest neighbors to the query vector, optionally filtered by payload.
+// Returns an error if the query vector dimension doesn't match the collection.
 func (c *Collection) Search(queryVector []float32, filter *Filter, topK int) ([]ScoredPoint, error) {
 	if len(queryVector) != c.VectorLen {
 		return nil, fmt.Errorf("query vector length mismatch: expected %d, got %d", c.VectorLen, len(queryVector))
@@ -100,7 +108,7 @@ func (c *Collection) Search(queryVector []float32, filter *Filter, topK int) ([]
 	return c.index.Search(queryVector, filter, topK)
 }
 
-// Count returns the number of points in the collection
+// Count returns the number of points currently stored in the collection.
 func (c *Collection) Count() int {
 	c.mu.RLock()
 	defer c.mu.RUnlock()
@@ -108,6 +116,10 @@ func (c *Collection) Count() int {
 }
 
 // Delete removes points either by explicit IDs or by a filter match.
+// If points slice is provided, those specific points are deleted.
+// If filter is provided, all points matching the filter are deleted.
+// Returns the number of points deleted and any error encountered.
+// Returns an error if neither points nor filter is provided.
 func (c *Collection) Delete(points []string, filter *Filter) (int, error) {
 	c.mu.Lock()
 	defer c.mu.Unlock()

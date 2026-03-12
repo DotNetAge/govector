@@ -8,12 +8,15 @@ import (
 	"go.etcd.io/bbolt"
 )
 
-// Storage handles local persistence using BoltDB (bbolt)
+// Storage handles local persistence using BoltDB (bbolt).
+// It provides durable storage for vector collections and their points.
 type Storage struct {
 	db *bbolt.DB
 }
 
-// NewStorage initializes a new BoltDB storage engine
+// NewStorage initializes a new BoltDB storage engine at the specified path.
+// The database file will be created if it doesn't exist.
+// Returns an error if the database cannot be opened.
 func NewStorage(dbPath string) (*Storage, error) {
 	db, err := bbolt.Open(dbPath, 0600, nil)
 	if err != nil {
@@ -22,12 +25,14 @@ func NewStorage(dbPath string) (*Storage, error) {
 	return &Storage{db: db}, nil
 }
 
-// Close gracefully closes the DB
+// Close gracefully closes the database connection.
+// It is important to call this when done to ensure all data is flushed to disk.
 func (s *Storage) Close() error {
 	return s.db.Close()
 }
 
-// EnsureCollection creates a bucket for the collection if it doesn't exist
+// EnsureCollection creates a bucket for the collection if it doesn't already exist.
+// Each collection is stored as a separate bucket in BoltDB.
 func (s *Storage) EnsureCollection(colName string) error {
 	return s.db.Update(func(tx *bbolt.Tx) error {
 		_, err := tx.CreateBucketIfNotExists([]byte(colName))
@@ -35,7 +40,9 @@ func (s *Storage) EnsureCollection(colName string) error {
 	})
 }
 
-// UpsertPoints saves or updates a batch of points to disk
+// UpsertPoints saves or updates a batch of points to disk.
+// Points are serialized as JSON and stored with their ID as the key.
+// Returns an error if the collection doesn't exist or if serialization fails.
 func (s *Storage) UpsertPoints(colName string, points []PointStruct) error {
 	return s.db.Update(func(tx *bbolt.Tx) error {
 		b := tx.Bucket([]byte(colName))
@@ -56,7 +63,9 @@ func (s *Storage) UpsertPoints(colName string, points []PointStruct) error {
 	})
 }
 
-// LoadCollection loads all points for a collection from disk into memory
+// LoadCollection loads all points for a collection from disk into memory.
+// Returns a map of point IDs to PointStruct pointers.
+// If the collection doesn't exist, returns an empty map without error.
 func (s *Storage) LoadCollection(colName string) (map[string]*PointStruct, error) {
 	points := make(map[string]*PointStruct)
 
@@ -83,7 +92,9 @@ func (s *Storage) LoadCollection(colName string) (map[string]*PointStruct, error
 	return points, nil
 }
 
-// DeletePoints deletes a batch of points from disk
+// DeletePoints deletes a batch of points from disk by their IDs.
+// If a point ID doesn't exist, it is silently skipped.
+// Returns an error if the collection doesn't exist.
 func (s *Storage) DeletePoints(colName string, ids []string) error {
 	return s.db.Update(func(tx *bbolt.Tx) error {
 		b := tx.Bucket([]byte(colName))
