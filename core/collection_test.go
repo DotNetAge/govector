@@ -1,6 +1,7 @@
 package core
 
 import (
+	"fmt"
 	"os"
 	"testing"
 )
@@ -30,6 +31,13 @@ func TestCollection(t *testing.T) {
 			t.Errorf("Expected count 3, got %d", col.Count())
 		}
 
+		// Verify Version is set
+		for _, p := range points {
+			if p.Version == 0 {
+				t.Errorf("Expected version to be set for point %s", p.ID)
+			}
+		}
+
 		// Test Search
 		query := []float32{1.0, 0.0, 0.0}
 		results, err := col.Search(query, nil, 2)
@@ -43,6 +51,31 @@ func TestCollection(t *testing.T) {
 
 		if results[0].ID != "1" {
 			t.Errorf("Expected first result to be ID 1, got %s", results[0].ID)
+		}
+
+		// Test Delete by Filter
+		filter := &Filter{
+			Must: []Condition{
+				{Key: "color", Type: MatchTypeExact, Match: MatchValue{Value: "red"}},
+			},
+		}
+		// Add a point with payload
+		pointWithPayload := PointStruct{
+			ID:      "4",
+			Vector:  []float32{1.0, 1.0, 1.0},
+			Payload: Payload{"color": "red"},
+		}
+		err = col.Upsert([]PointStruct{pointWithPayload})
+		if err != nil {
+			t.Fatalf("Failed to upsert point with payload: %v", err)
+		}
+
+		deletedByFilter, err := col.Delete(nil, filter)
+		if err != nil {
+			t.Fatalf("Failed to delete by filter: %v", err)
+		}
+		if deletedByFilter != 1 {
+			t.Errorf("Expected to delete 1 point by filter, got %d", deletedByFilter)
 		}
 
 		// Test Delete by IDs
@@ -156,4 +189,103 @@ func TestCollection(t *testing.T) {
 			}
 		})
 	})
+}
+
+func TestCollectionHNSWParams(t *testing.T) {
+	tempFile, _ := os.CreateTemp("", "collection-hnsw-test")
+	tempPath := tempFile.Name()
+	tempFile.Close()
+	defer os.Remove(tempPath)
+
+	storage, _ := NewStorage(tempPath)
+	defer storage.Close()
+
+	params := HNSWParams{
+		M:              16,
+		EfConstruction: 200,
+	}
+
+	col, err := NewCollectionWithParams("hnsw-col", 3, Cosine, storage, true, params)
+	if err != nil {
+		t.Fatalf("Failed to create collection: %v", err)
+	}
+
+	points := []PointStruct{
+		{ID: "1", Vector: []float32{1.0, 0.0, 0.0}},
+		{ID: "2", Vector: []float32{0.0, 1.0, 0.0}},
+	}
+	col.Upsert(points)
+
+	// Reload collection from storage
+	col2, err := NewCollectionWithParams("hnsw-col", 3, Cosine, storage, true, params)
+	if err != nil {
+		t.Fatalf("Failed to reload collection: %v", err)
+	}
+
+	if col2.Count() != 2 {
+		t.Errorf("Expected count 2 after reload, got %d", col2.Count())
+	}
+}
+
+func TestCollectionLoadError(t *testing.T) {
+	tempFile, _ := os.CreateTemp("", "collection-load-error-test")
+	tempPath := tempFile.Name()
+	tempFile.Close()
+	defer os.Remove(tempPath)
+
+	storage, _ := NewStorage(tempPath)
+	defer storage.Close()
+
+	colName := "error-col"
+	storage.EnsureCollection(colName)
+
+	// Manually insert a point with wrong dimension into storage
+	points := []PointStruct{
+		{ID: "1", Vector: []float32{1.0, 2.0}}, // Dimension 2
+	}
+	storage.UpsertPoints(colName, points)
+
+	// Try to create a collection with dimension 3, it should fail during loading
+	_, err := NewCollection(colName, 3, Cosine, storage, false)
+	if err == nil {
+		t.Error("Expected error when loading point with wrong dimension")
+	}
+}
+
+func TestCollectionUpsertFailure(t *testing.T) {
+	tempFile, _ := os.CreateTemp("", "collection-upsert-fail-test")
+	tempPath := tempFile.Name()
+	tempFile.Close()
+	defer os.Remove(tempPath)
+
+	storage, _ := NewStorage(tempPath)
+	defer storage.Close()
+
+	col := &Collection{
+		Name:      "fail-col",
+		VectorLen: 3,
+		Metric:    Cosine,
+		storage:   storage,
+		index: &MockIndex{
+			upsertFunc: func(ps []PointStruct) error {
+				return fmt.Errorf("mock upsert failure")
+			},
+		},
+	}
+	storage.EnsureCollection(col.Name)
+
+	points := []PointStruct{
+		{ID: "1", Vector: []float32{1.0, 0.0, 0.0}},
+	}
+
+	err := col.Upsert(points)
+	if err == nil {
+		t.Error("Expected error from mock upsert failure")
+	}
+
+	// Verify point was removed from storage (best effort rollback)
+	loaded, _ := storage.LoadCollection(col.Name)
+	if _, exists := loaded["1"]; exists {
+		t.Error("Point 1 should have been rolled back from storage")
+	}
 }

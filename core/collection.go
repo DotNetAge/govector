@@ -3,15 +3,16 @@ package core
 import (
 	"fmt"
 	"sync"
+	"time"
 )
 
 // Collection represents a single logical group of vectors, similar to a table in SQL databases.
 // It provides thread-safe operations for inserting, searching, and deleting vectors.
 // Each collection has a fixed vector dimension and uses a specific distance metric.
 type Collection struct {
-	Name      string      // Unique name of the collection
-	VectorLen int         // Dimension of vectors in this collection
-	Metric    Distance    // Distance metric used for similarity search
+	Name      string   // Unique name of the collection
+	VectorLen int      // Dimension of vectors in this collection
+	Metric    Distance // Distance metric used for similarity search
 
 	mu      sync.RWMutex
 	index   VectorIndex // Transparent index engine (Flat or HNSW)
@@ -23,9 +24,18 @@ type Collection struct {
 // When storage is provided, existing points are automatically loaded into memory.
 // Returns an error if the collection cannot be created or if loaded points have invalid dimensions.
 func NewCollection(name string, vectorLen int, metric Distance, store *Storage, useHNSW bool) (*Collection, error) {
+	return NewCollectionWithParams(name, vectorLen, metric, store, useHNSW, DefaultHNSWParams())
+}
+
+// NewCollectionWithParams initializes a new vector collection with custom HNSW parameters.
+// If useHNSW is true, it uses the optimized HNSW graph search with the provided parameters;
+// otherwise uses flat memory search.
+// When storage is provided, existing points are automatically loaded into memory.
+// Returns an error if the collection cannot be created or if loaded points have invalid dimensions.
+func NewCollectionWithParams(name string, vectorLen int, metric Distance, store *Storage, useHNSW bool, hnswParams HNSWParams) (*Collection, error) {
 	var index VectorIndex
 	if useHNSW {
-		index = NewHNSWIndex(metric)
+		index = NewHNSWIndexWithParams(metric, hnswParams)
 	} else {
 		index = NewFlatIndex(metric)
 	}
@@ -41,6 +51,18 @@ func NewCollection(name string, vectorLen int, metric Distance, store *Storage, 
 	if store != nil {
 		if err := store.EnsureCollection(name); err != nil {
 			return nil, fmt.Errorf("failed to ensure storage collection %s: %w", name, err)
+		}
+
+		// Save collection metadata
+		meta := CollectionMeta{
+			Name:       name,
+			VectorLen:  vectorLen,
+			Metric:     metric,
+			UseHNSW:    useHNSW,
+			HNSWParams: hnswParams,
+		}
+		if err := store.SaveCollectionMeta(name, meta); err != nil {
+			return nil, fmt.Errorf("failed to save metadata for %s: %w", name, err)
 		}
 
 		// Load existing points into memory index
@@ -71,16 +93,19 @@ func NewCollection(name string, vectorLen int, metric Distance, store *Storage, 
 // Upsert adds or updates points in the collection.
 // Points are first persisted to disk (if storage is configured), then updated in the memory index.
 // Returns an error if any point has an invalid vector length or if persistence fails.
+// Ensures data consistency between storage and memory index.
 func (c *Collection) Upsert(points []PointStruct) error {
 	c.mu.Lock()
 	defer c.mu.Unlock()
 
-	// 1. Validate
+	// 1. Validate and Version
+	version := uint64(time.Now().UnixNano())
 	for i := range points {
 		p := &points[i]
 		if len(p.Vector) != c.VectorLen {
 			return fmt.Errorf("point %s has invalid vector length %d, expected %d", p.ID, len(p.Vector), c.VectorLen)
 		}
+		p.Version = version
 	}
 
 	// 2. Persist to Disk First
@@ -91,7 +116,20 @@ func (c *Collection) Upsert(points []PointStruct) error {
 	}
 
 	// 3. Update Memory Index Engine
-	return c.index.Upsert(points)
+	if err := c.index.Upsert(points); err != nil {
+		// If memory index update fails, try to remove the points from storage
+		// This is a best-effort recovery to maintain consistency
+		if c.storage != nil {
+			ids := make([]string, len(points))
+			for i, p := range points {
+				ids[i] = p.ID
+			}
+			_ = c.storage.DeletePoints(c.Name, ids) // Ignore error, best effort
+		}
+		return fmt.Errorf("failed to update memory index: %w", err)
+	}
+
+	return nil
 }
 
 // Search performs a similarity search using the underlying VectorIndex.
@@ -120,33 +158,40 @@ func (c *Collection) Count() int {
 // If filter is provided, all points matching the filter are deleted.
 // Returns the number of points deleted and any error encountered.
 // Returns an error if neither points nor filter is provided.
+// Ensures data consistency between storage and memory index.
 func (c *Collection) Delete(points []string, filter *Filter) (int, error) {
 	c.mu.Lock()
 	defer c.mu.Unlock()
 
-	var deletedIDs []string
+	// First, determine which IDs to delete
+	var targetIDs []string
 
 	if len(points) > 0 {
-		for _, id := range points {
-			if err := c.index.Delete(id); err == nil {
-				deletedIDs = append(deletedIDs, id)
-			}
-		}
+		targetIDs = points
 	} else if filter != nil {
-		var err error
-		deletedIDs, err = c.index.DeleteByFilter(filter)
-		if err != nil {
-			return 0, fmt.Errorf("failed to delete by filter: %w", err)
-		}
+		targetIDs = c.index.GetIDsByFilter(filter)
 	} else {
 		return 0, fmt.Errorf("must provide points or filter")
 	}
 
-	if len(deletedIDs) > 0 && c.storage != nil {
-		if err := c.storage.DeletePoints(c.Name, deletedIDs); err != nil {
-			return len(deletedIDs), fmt.Errorf("deleted from memory but failed to persist: %w", err)
+	if len(targetIDs) == 0 {
+		return 0, nil
+	}
+
+	// 1. Delete from storage first (if configured)
+	if c.storage != nil {
+		if err := c.storage.DeletePoints(c.Name, targetIDs); err != nil {
+			return 0, fmt.Errorf("failed to delete from storage: %w", err)
 		}
 	}
 
-	return len(deletedIDs), nil
+	// 2. Delete from memory index
+	successCount := 0
+	for _, id := range targetIDs {
+		if err := c.index.Delete(id); err == nil {
+			successCount++
+		}
+	}
+
+	return successCount, nil
 }

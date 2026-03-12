@@ -93,6 +93,20 @@ func (f *FlatIndex) Count() int {
 	return len(f.points)
 }
 
+// GetIDsByFilter returns all point IDs that match the given filter.
+func (f *FlatIndex) GetIDsByFilter(filter *Filter) []string {
+	f.mu.RLock()
+	defer f.mu.RUnlock()
+
+	var ids []string
+	for id, point := range f.points {
+		if MatchFilter(point.Payload, filter) {
+			ids = append(ids, id)
+		}
+	}
+	return ids
+}
+
 // DeleteByFilter removes all points that match the given filter and returns their IDs.
 func (f *FlatIndex) DeleteByFilter(filter *Filter) ([]string, error) {
 	f.mu.Lock()

@@ -8,6 +8,36 @@ import (
 	"github.com/coder/hnsw"
 )
 
+// HNSWParams contains configurable parameters for HNSW index
+// See https://github.com/coder/hnsw for more details on these parameters
+type HNSWParams struct {
+	// M is the maximum number of connections per node
+	// Default: 16
+	M int
+
+	// EfConstruction is the size of the dynamic candidate list during construction
+	// Default: 200
+	EfConstruction int
+
+	// EfSearch is the size of the dynamic candidate list during search
+	// Default: 64
+	EfSearch int
+
+	// K is the number of nearest neighbors to return
+	// Default: 10
+	K int
+}
+
+// DefaultHNSWParams returns default HNSW parameters
+func DefaultHNSWParams() HNSWParams {
+	return HNSWParams{
+		M:              16,
+		EfConstruction: 200,
+		EfSearch:       64,
+		K:              10,
+	}
+}
+
 // HNSWIndex wraps the coder/hnsw graph to provide an approximate nearest neighbor search.
 // It uses Hierarchical Navigable Small World graphs for efficient similarity search
 // with sub-linear complexity, making it suitable for large datasets.
@@ -15,6 +45,7 @@ type HNSWIndex struct {
 	graph  *hnsw.Graph[string]
 	points map[string]*PointStruct // Fast Metadata / Payload lookup
 	metric Distance
+	params HNSWParams
 	mu     sync.RWMutex
 }
 
@@ -22,6 +53,12 @@ type HNSWIndex struct {
 // It configures the underlying HNSW graph with appropriate distance functions
 // for Cosine, Euclidean, or Dot product metrics.
 func NewHNSWIndex(metric Distance) *HNSWIndex {
+	return NewHNSWIndexWithParams(metric, DefaultHNSWParams())
+}
+
+// NewHNSWIndexWithParams creates a new HNSW index engine with custom parameters.
+// It allows fine-tuning of HNSW parameters for specific use cases.
+func NewHNSWIndexWithParams(metric Distance, params HNSWParams) *HNSWIndex {
 	g := hnsw.NewGraph[string]()
 
 	// Configure Distance Function based on our definitions
@@ -52,13 +89,19 @@ func NewHNSWIndex(metric Distance) *HNSWIndex {
 		g.Distance = hnsw.CosineDistance
 	}
 
-	// Tweak params for better recall
-	g.EfSearch = 64 // higher = slower search, better recall
+	// Set HNSW parameters
+	if params.M > 0 {
+		g.M = params.M
+	}
+	if params.EfSearch > 0 {
+		g.EfSearch = params.EfSearch
+	}
 
 	return &HNSWIndex{
 		graph:  g,
 		points: make(map[string]*PointStruct),
 		metric: metric,
+		params: params,
 	}
 }
 
@@ -150,6 +193,20 @@ func (h *HNSWIndex) Count() int {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
 	return len(h.points)
+}
+
+// GetIDsByFilter returns all point IDs that match the given filter.
+func (h *HNSWIndex) GetIDsByFilter(filter *Filter) []string {
+	h.mu.RLock()
+	defer h.mu.RUnlock()
+
+	var ids []string
+	for id, point := range h.points {
+		if MatchFilter(point.Payload, filter) {
+			ids = append(ids, id)
+		}
+	}
+	return ids
 }
 
 // DeleteByFilter removes all points that match the given filter from both

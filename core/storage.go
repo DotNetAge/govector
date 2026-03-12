@@ -5,35 +5,136 @@ import (
 	"fmt"
 	"log"
 
+	pb "github.com/DotNetAge/govector/core/proto"
 	"go.etcd.io/bbolt"
+	"google.golang.org/protobuf/proto"
 )
 
 // Storage handles local persistence using BoltDB (bbolt).
 // It provides durable storage for vector collections and their points.
 type Storage struct {
-	db *bbolt.DB
+	db        *bbolt.DB
+	closed    bool
+	quantizer Quantizer
+	useQuant  bool
+}
+
+func toProtoPoint(p *PointStruct) *pb.PointStruct {
+	pbPoint := &pb.PointStruct{
+		Id:     p.ID,
+		Vector: p.Vector,
+	}
+
+	if p.Payload != nil {
+		pbPoint.Payload = make(map[string]*pb.Value)
+		for k, v := range p.Payload {
+			pbVal := &pb.Value{}
+			switch val := v.(type) {
+			case string:
+				pbVal.Value = &pb.Value_StringValue{StringValue: val}
+			case int:
+				pbVal.Value = &pb.Value_IntValue{IntValue: int64(val)}
+			case int64:
+				pbVal.Value = &pb.Value_IntValue{IntValue: val}
+			case float32:
+				pbVal.Value = &pb.Value_DoubleValue{DoubleValue: float64(val)}
+			case float64:
+				pbVal.Value = &pb.Value_DoubleValue{DoubleValue: val}
+			case bool:
+				pbVal.Value = &pb.Value_BoolValue{BoolValue: val}
+			case []byte:
+				pbVal.Value = &pb.Value_BytesValue{BytesValue: val}
+			default:
+				// Skip unsupported types for now or handle them
+				continue
+			}
+			pbPoint.Payload[k] = pbVal
+		}
+	}
+
+	return pbPoint
+}
+
+func fromProtoPoint(pbPoint *pb.PointStruct) *PointStruct {
+	p := &PointStruct{
+		ID:     pbPoint.Id,
+		Vector: pbPoint.Vector,
+	}
+
+	if pbPoint.Payload != nil {
+		p.Payload = make(Payload)
+		for k, v := range pbPoint.Payload {
+			if v.Value == nil {
+				continue
+			}
+			switch val := v.Value.(type) {
+			case *pb.Value_StringValue:
+				p.Payload[k] = val.StringValue
+			case *pb.Value_IntValue:
+				p.Payload[k] = val.IntValue
+			case *pb.Value_DoubleValue:
+				p.Payload[k] = val.DoubleValue
+			case *pb.Value_BoolValue:
+				p.Payload[k] = val.BoolValue
+			case *pb.Value_BytesValue:
+				p.Payload[k] = val.BytesValue
+			}
+		}
+	}
+
+	return p
 }
 
 // NewStorage initializes a new BoltDB storage engine at the specified path.
 // The database file will be created if it doesn't exist.
 // Returns an error if the database cannot be opened.
 func NewStorage(dbPath string) (*Storage, error) {
+	return NewStorageWithQuantization(dbPath, false, nil)
+}
+
+// NewStorageWithQuantization initializes a new BoltDB storage engine with optional vector quantization.
+// If useQuant is true, vectors will be compressed using the provided quantizer.
+// Returns an error if the database cannot be opened.
+func NewStorageWithQuantization(dbPath string, useQuant bool, quantizer Quantizer) (*Storage, error) {
 	db, err := bbolt.Open(dbPath, 0600, nil)
 	if err != nil {
 		return nil, fmt.Errorf("failed to open bbolt database: %w", err)
 	}
-	return &Storage{db: db}, nil
+
+	if useQuant && quantizer == nil {
+		quantizer = NewSQ8Quantizer()
+	}
+
+	return &Storage{
+		db:        db,
+		closed:    false,
+		quantizer: quantizer,
+		useQuant:  useQuant,
+	}, nil
 }
 
 // Close gracefully closes the database connection.
 // It is important to call this when done to ensure all data is flushed to disk.
+// This method is idempotent and can be called multiple times.
 func (s *Storage) Close() error {
-	return s.db.Close()
+	if s.closed {
+		return nil
+	}
+
+	err := s.db.Close()
+	if err == nil {
+		s.closed = true
+	}
+	return err
 }
 
 // EnsureCollection creates a bucket for the collection if it doesn't already exist.
 // Each collection is stored as a separate bucket in BoltDB.
 func (s *Storage) EnsureCollection(colName string) error {
+	if s.closed {
+		return fmt.Errorf("storage is closed")
+	}
+
 	return s.db.Update(func(tx *bbolt.Tx) error {
 		_, err := tx.CreateBucketIfNotExists([]byte(colName))
 		return err
@@ -41,17 +142,39 @@ func (s *Storage) EnsureCollection(colName string) error {
 }
 
 // UpsertPoints saves or updates a batch of points to disk.
-// Points are serialized as JSON and stored with their ID as the key.
+// Points are serialized as Protocol Buffers and stored with their ID as the key.
+// If quantization is enabled, vectors are compressed before storage.
 // Returns an error if the collection doesn't exist or if serialization fails.
 func (s *Storage) UpsertPoints(colName string, points []PointStruct) error {
+	if s.closed {
+		return fmt.Errorf("storage is closed")
+	}
+
 	return s.db.Update(func(tx *bbolt.Tx) error {
 		b := tx.Bucket([]byte(colName))
 		if b == nil {
 			return fmt.Errorf("collection bucket %s not found", colName)
 		}
 
-		for _, p := range points {
-			data, err := json.Marshal(p)
+		for i := range points {
+			p := &points[i]
+
+			// Quantize vector if enabled
+			if s.useQuant && s.quantizer != nil {
+				// Create a copy to avoid modifying the original
+				quantizedPoint := *p
+				quantizedPoint.Vector = nil // Clear vector for storage
+
+				// Store quantized vector in payload
+				if quantizedPoint.Payload == nil {
+					quantizedPoint.Payload = make(Payload)
+				}
+				quantizedPoint.Payload["__quantized_vector"] = s.quantizer.Quantize(p.Vector)
+
+				p = &quantizedPoint
+			}
+
+			data, err := proto.Marshal(toProtoPoint(p))
 			if err != nil {
 				return fmt.Errorf("failed to marshal point %s: %w", p.ID, err)
 			}
@@ -65,8 +188,13 @@ func (s *Storage) UpsertPoints(colName string, points []PointStruct) error {
 
 // LoadCollection loads all points for a collection from disk into memory.
 // Returns a map of point IDs to PointStruct pointers.
+// If quantization is enabled, compressed vectors are decompressed during loading.
 // If the collection doesn't exist, returns an empty map without error.
 func (s *Storage) LoadCollection(colName string) (map[string]*PointStruct, error) {
+	if s.closed {
+		return nil, fmt.Errorf("storage is closed")
+	}
+
 	points := make(map[string]*PointStruct)
 
 	err := s.db.View(func(tx *bbolt.Tx) error {
@@ -77,11 +205,25 @@ func (s *Storage) LoadCollection(colName string) (map[string]*PointStruct, error
 		}
 
 		return b.ForEach(func(k, v []byte) error {
-			var p PointStruct
-			if err := json.Unmarshal(v, &p); err != nil {
+			var pbPoint pb.PointStruct
+			if err := proto.Unmarshal(v, &pbPoint); err != nil {
 				return err
 			}
-			points[string(k)] = &p
+
+			p := fromProtoPoint(&pbPoint)
+
+			// Dequantize vector if enabled and quantized vector exists
+			if s.useQuant && s.quantizer != nil {
+				if quantizedData, ok := p.Payload["__quantized_vector"]; ok {
+					if data, ok := quantizedData.([]byte); ok {
+						p.Vector = s.quantizer.Dequantize(data)
+						// Remove quantized vector from payload to save memory
+						delete(p.Payload, "__quantized_vector")
+					}
+				}
+			}
+
+			points[string(k)] = p
 			return nil
 		})
 	})
@@ -92,10 +234,115 @@ func (s *Storage) LoadCollection(colName string) (map[string]*PointStruct, error
 	return points, nil
 }
 
+// ListCollections returns all collection names (bucket names) in the storage.
+// It excludes the internal metadata bucket.
+func (s *Storage) ListCollections() ([]string, error) {
+	if s.closed {
+		return nil, fmt.Errorf("storage is closed")
+	}
+
+	var collections []string
+	err := s.db.View(func(tx *bbolt.Tx) error {
+		return tx.ForEach(func(name []byte, b *bbolt.Bucket) error {
+			colName := string(name)
+			if colName != "__collections_meta__" {
+				collections = append(collections, colName)
+			}
+			return nil
+		})
+	})
+
+	if err != nil {
+		return nil, fmt.Errorf("failed to list collections: %w", err)
+	}
+	return collections, nil
+}
+
+// SaveCollectionMeta persists collection metadata to a special bucket.
+func (s *Storage) SaveCollectionMeta(name string, meta CollectionMeta) error {
+	if s.closed {
+		return fmt.Errorf("storage is closed")
+	}
+
+	return s.db.Update(func(tx *bbolt.Tx) error {
+		b, err := tx.CreateBucketIfNotExists([]byte("__collections_meta__"))
+		if err != nil {
+			return err
+		}
+
+		data, err := json.Marshal(meta)
+		if err != nil {
+			return err
+		}
+
+		return b.Put([]byte(name), data)
+	})
+}
+
+// LoadCollectionMeta retrieves collection metadata from the special bucket.
+func (s *Storage) LoadCollectionMeta(name string) (*CollectionMeta, error) {
+	if s.closed {
+		return nil, fmt.Errorf("storage is closed")
+	}
+
+	var meta CollectionMeta
+	err := s.db.View(func(tx *bbolt.Tx) error {
+		b := tx.Bucket([]byte("__collections_meta__"))
+		if b == nil {
+			return fmt.Errorf("metadata bucket not found")
+		}
+
+		data := b.Get([]byte(name))
+		if data == nil {
+			return fmt.Errorf("metadata for collection %s not found", name)
+		}
+
+		return json.Unmarshal(data, &meta)
+	})
+
+	if err != nil {
+		return nil, err
+	}
+	return &meta, nil
+}
+
+// ListCollectionMetas returns all collection metadata stored in the database.
+func (s *Storage) ListCollectionMetas() ([]CollectionMeta, error) {
+	if s.closed {
+		return nil, fmt.Errorf("storage is closed")
+	}
+
+	var metas []CollectionMeta
+	err := s.db.View(func(tx *bbolt.Tx) error {
+		b := tx.Bucket([]byte("__collections_meta__"))
+		if b == nil {
+			return nil // No metadata stored yet
+		}
+
+		return b.ForEach(func(k, v []byte) error {
+			var meta CollectionMeta
+			if err := json.Unmarshal(v, &meta); err != nil {
+				return err
+			}
+			metas = append(metas, meta)
+			return nil
+		})
+	})
+
+	if err != nil {
+		return nil, fmt.Errorf("failed to list collection metas: %w", err)
+	}
+	return metas, nil
+}
+
 // DeletePoints deletes a batch of points from disk by their IDs.
 // If a point ID doesn't exist, it is silently skipped.
 // Returns an error if the collection doesn't exist.
 func (s *Storage) DeletePoints(colName string, ids []string) error {
+	if s.closed {
+		return fmt.Errorf("storage is closed")
+	}
+
 	return s.db.Update(func(tx *bbolt.Tx) error {
 		b := tx.Bucket([]byte(colName))
 		if b == nil {

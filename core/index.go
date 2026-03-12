@@ -20,6 +20,9 @@ type VectorIndex interface {
 	// Count returns the number of vectors currently stored in the index.
 	Count() int
 
+	// GetIDsByFilter returns all point IDs that match the given filter.
+	GetIDsByFilter(filter *Filter) []string
+
 	// DeleteByFilter removes all points that match the given filter and returns their IDs.
 	DeleteByFilter(filter *Filter) ([]string, error)
 }
