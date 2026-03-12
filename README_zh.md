@@ -23,7 +23,7 @@
 
 GoVector 已通过全面审计，并被评定为**“工业级优秀”**的嵌入式向量数据库。它在保持极致轻量的同时，凭借 92% 以上的测试覆盖率和亚毫秒级的搜索延迟，达到了行业领先的可靠性水平。
 
-![GoVector Status Report](assets/govector-report.png)
+![GoVector Status Report](assets/govector-report-zh.png)
 
 ---
 
