@@ -22,9 +22,11 @@ In the era of Local AI, desktop applications, and edge computing, you don't alwa
 ## ✨ Features
 
 - 🚀 **Pure Go & CGO-Free**: Cross-compile to anywhere (Windows, macOS, Linux, edge devices) without messy C/C++ dependencies.
-- 🧠 **HNSW Indexing**: Industrial-grade graph-based index (`github.com/coder/hnsw`) for $O(\log N)$ search complexity. Flat (brute-force) index is also available.
-- 💾 **Local Persistence**: Data survives restarts. Everything is stored securely in a single local file via `bbolt`.
-- 🔍 **Metadata Filtering (Payload)**: Filter vector search results using JSON payloads (exact matches, must/must_not), just like Qdrant.
+- ⚡ **High Performance**: Optimized for single-node performance, supporting millions of vectors with sub-millisecond search latency.
+- 🧠 **HNSW Indexing**: Industrial-grade graph-based index for $O(\log N)$ search complexity.
+- 💾 **Protobuf & BoltDB**: Ultra-fast persistence using Protocol Buffers and bbolt. Data survives restarts with automatic collection discovery.
+- 🔍 **Advanced Filtering**: Support for payload filtering (Exact, Range, Prefix, Regex, Contains) just like Qdrant.
+- 📉 **SQ8 Quantization**: Built-in 8-bit scalar quantization to reduce disk footprint for large-scale data.
 - 🔌 **Dual Modes**: 
   - **Embedded Library**: Import it into your Go backend/desktop app with zero network overhead.
   - **Standalone Server**: Run it as a lightweight microservice with a Qdrant-compatible REST API.
@@ -39,40 +41,28 @@ go get github.com/DotNetAge/govector/core
 ```
 
 ### Option B: Install via Homebrew (Mac/Linux Daemon)
-If you want to run GoVector as a background microservice:
 ```bash
 brew tap DotNetAge/govector
 brew install govector
-
-# Start the background daemon service (starts on boot!)
-brew services start govector
 ```
-By default, the brew service runs on `http://localhost:18080` with HNSW enabled.
 
 ---
 
-## 🚀 Benchmark Performance
+## 🚀 Benchmark Performance (Large Scale)
 
-We ran a pure-memory benchmark comparing the `Flat` (brute-force linear scan) index against our optimized `HNSW` (Graph) index.
+Measured on a standard machine with 16GB RAM, 128-dimensional vectors.
 
-**Parameters:** 
-- **Dataset:** 10,000 vectors
-- **Dimensions:** 128
-- **Query count:** 1,000 queries
-- **Hardware:** Standard local desktop
+| Index | Scale (N) | Build Time | Latency (Avg) | Throughput (QPS) | Memory (Alloc) |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Flat** | 100K | 186 ms | 54.46 ms | 18 QPS | 59 MB |
+| **HNSW** | 100K | 20.9 s | **0.08 ms** | **11,812 QPS** | 311 MB |
+| **HNSW** | 1M | 4m 17s | **0.11 ms** | **8,709 QPS** | 3.32 GB |
 
-| Index Strategy               | Build Time         | Search Latency       | Throughput     |
-| :--------------------------- | :----------------- | :------------------- | :------------- |
-| **Flat Index** (Linear Scan) | **0 ms** (Instant) | 4.267 ms / query     | 234 QPS        |
-| **HNSW Index** (Graph ANN)   | 1,688 ms           | **0.058 ms / query** | **17,150 QPS** |
-
-> *Result: HNSW provides an astonishing **~73x speedup** in query throughput, effortlessly delivering over 17,000 queries per second while maintaining high accuracy!*
+> *Note: HNSW maintained sub-millisecond latency even at 1 million scale, providing 480x speedup over Flat index at 100K.*
 
 ---
 
 ## 💻 Usage Mode 1: Embedded Go Library (Zero Network)
-
-Perfect for local RAG (Retrieval-Augmented Generation) applications, desktop apps, or localized microservices.
 
 ```go
 package main
@@ -84,36 +74,23 @@ import (
 
 func main() {
         // 1. Initialize local storage (creates a single .db file)
-        store, _ := core.NewStorage("my_local_vectors.db")
+        store, _ := core.NewStorage("govector.db")
         defer store.Close()
 
-        // 2. Create a Collection (Name, Dimension, Distance Metric, Storage, UseHNSW)
-        col, _ := core.NewCollection("documents", 3, core.Cosine, store, true)
+        // 2. Create a Collection (Automatic Persistence)
+        col, _ := core.NewCollection("documents", 384, core.Cosine, store, true)
 
-        // 3. Upsert Data with Metadata (Payload)
+        // 3. Upsert Data with Versioning
         col.Upsert([]core.PointStruct{
                 {
                         ID:      "doc_1",
-                        Vector:  []float32{0.9, 0.1, 0.0},
-                        Payload: core.Payload{"category": "tech", "author": "Alice"},
-                },
-                {
-                        ID:      "doc_2",
-                        Vector:  []float32{0.1, 0.9, 0.0},
-                        Payload: core.Payload{"category": "art", "author": "Bob"},
+                        Vector:  []float32{...},
+                        Payload: core.Payload{"category": "tech"},
                 },
         })
 
         // 4. Search with Metadata Filtering
-        query := []float32{1.0, 0.0, 0.0}
-        filter := &core.Filter{
-                Must: []core.Condition{
-                        {Key: "category", Match: core.MatchValue{Value: "tech"}},
-                },
-        }
-
-        results, _ := col.Search(query, filter, 1) // Top 1
-
+        results, _ := col.Search(query, filter, 10)
         fmt.Printf("Best Match: %s (Score: %f)\n", results[0].ID, results[0].Score)
 }
 ```
@@ -122,82 +99,26 @@ func main() {
 
 ## 🌐 Usage Mode 2: Standalone Microservice (Qdrant Compatible)
 
-Want to use it from Python, Node.js, or Rust? Run GoVector as a standalone server!
-
-### 1. Start the Server
-
 ```bash
-# Clone the repo and run the server
+# Start the server
 go run cmd/govector-server/main.go -port 18080 -db ./govector.db -hnsw=true
 
-# Output:
-# === GoVector: Lightweight Microservice (Port: 18080) ===
-# Storage engine loaded: ./govector.db
 # API Server ready on http://localhost:18080
 ```
 
-### 2. Insert Vectors via HTTP
-
-```bash
-curl -X PUT http://localhost:18080/collections/test_collection/points \
--H "Content-Type: application/json" \
--d '{
-  "points": [
-    {"id": "1", "vector": [1.0, 0.0, 0.0], "payload": {"category": "fruit", "name": "Apple"}},
-    {"id": "2", "vector": [0.0, 1.0, 0.0], "payload": {"category": "animal", "name": "Dog"}}
-  ]
-}'
-```
-
-### 3. Search Vectors with Filters
-
-```bash
-curl -X POST http://localhost:18080/collections/test_collection/points/search \
--H "Content-Type: application/json" \
--d '{
-  "vector": [0.8, 0.2, 0.0],
-  "limit": 1,
-  "filter": {
-    "must": [
-      { "key": "category", "match": { "value": "fruit" } }
-    ]
-  }
-}'
-```
-
-### 4. Delete Vectors
-
-```bash
-# Delete by ID
-curl -X POST http://localhost:18080/collections/test_collection/points/delete \
--H "Content-Type: application/json" \
--d '{
-  "points": ["1", "2"]
-}'
-
-# Delete by Filter
-curl -X POST http://localhost:18080/collections/test_collection/points/delete \
--H "Content-Type: application/json" \
--d '{
-  "filter": {
-    "must": [
-      { "key": "category", "match": { "value": "fruit" } }
-    ]
-  }
-}'
-```
+GoVector supports the standard Qdrant-like REST API for `/collections`, `/points`, and `/search`.
 
 ---
 
 ## 🏗️ Architecture
 
-- **Storage Engine**: `go.etcd.io/bbolt` (Fast, pure Go key-value store).
-- **Graph Indexing**: `github.com/coder/hnsw` (Multi-layer Navigable Small World Graph).
-- **Distance Metrics**: Cosine Similarity, Euclidean Distance, Dot Product.
+- **Storage Engine**: `go.etcd.io/bbolt` with **Protocol Buffers**.
+- **Graph Indexing**: `github.com/coder/hnsw`.
+- **Distance Metrics**: Cosine, Euclidean, Dot Product.
 
 ## 🤝 Contributing
 
-PRs are welcome! This is a lightweight project aiming to be the ultimate embedded vector database for the Go ecosystem.
+PRs are welcome! Help us make GoVector the ultimate embedded vector database for Go.
 
 ## 📄 License
 

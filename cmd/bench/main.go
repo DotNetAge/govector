@@ -3,26 +3,44 @@ package main
 import (
 	"fmt"
 	"math/rand"
+	"runtime"
 	"time"
 
 	"github.com/DotNetAge/govector/core"
 )
 
-// generateRandomVectors creates n vectors of given dimension
-func generateRandomVectors(n, dim int) [][]float32 {
-	vectors := make([][]float32, n)
-	for i := 0; i < n; i++ {
-		vec := make([]float32, dim)
-		for j := 0; j < dim; j++ {
-			vec[j] = rand.Float32()
-		}
-		vectors[i] = vec
+// generateRandomVector creates a single vector of given dimension
+func generateRandomVector(dim int) []float32 {
+	vec := make([]float32, dim)
+	for j := 0; j < dim; j++ {
+		vec[j] = rand.Float32()
 	}
-	return vectors
+	return vec
+}
+
+func formatBytes(b uint64) string {
+	const unit = 1024
+	if b < unit {
+		return fmt.Sprintf("%d B", b)
+	}
+	div, exp := uint64(unit), 0
+	for n := b / unit; n >= unit; n /= unit {
+		div *= unit
+		exp++
+	}
+	return fmt.Sprintf("%.2f %cB", float64(b)/float64(div), "KMGTPE"[exp])
+}
+
+func printMemUsage() {
+	var m runtime.MemStats
+	runtime.ReadMemStats(&m)
+	fmt.Printf("   Alloc = %v | TotalAlloc = %v | Sys = %v | NumGC = %v\n",
+		formatBytes(m.Alloc), formatBytes(m.TotalAlloc), formatBytes(m.Sys), m.NumGC)
 }
 
 func runBenchmark(name string, dim int, useHNSW bool, numPoints, numQueries int) {
-	fmt.Printf("--- Benchmark: %s ---\n", name)
+	fmt.Printf("\n=== Benchmark: %s (N=%d, Dim=%d) ===\n", name, numPoints, dim)
+	printMemUsage()
 
 	// Create a collection strictly in memory (store = nil) to test pure indexing performance
 	col, err := core.NewCollection("bench_col", dim, core.Cosine, nil, useHNSW)
@@ -31,37 +49,47 @@ func runBenchmark(name string, dim int, useHNSW bool, numPoints, numQueries int)
 		return
 	}
 
-	fmt.Printf("Generating %d random vectors (Dim: %d)...\n", numPoints, dim)
-	pointsData := generateRandomVectors(numPoints, dim)
-
-	// Prepare struct points
-	var points []core.PointStruct
-	for i, vec := range pointsData {
-		points = append(points, core.PointStruct{
-			ID:     fmt.Sprintf("pt_%d", i),
-			Vector: vec,
-			// No payload to test pure distance calculation and indexing
-		})
+	// 1. Benchmark Upsert (Indexing in batches to save memory during generation)
+	batchSize := 10000
+	if numPoints < batchSize {
+		batchSize = numPoints
 	}
 
-	// 1. Benchmark Upsert (Indexing)
 	startBuild := time.Now()
-	err = col.Upsert(points)
-	if err != nil {
-		fmt.Printf("Error upserting: %v\n", err)
-		return
+	for i := 0; i < numPoints; i += batchSize {
+		currentBatchSize := batchSize
+		if i+batchSize > numPoints {
+			currentBatchSize = numPoints - i
+		}
+
+		batch := make([]core.PointStruct, currentBatchSize)
+		for j := 0; j < currentBatchSize; j++ {
+			batch[j] = core.PointStruct{
+				ID:     fmt.Sprintf("pt_%d", i+j),
+				Vector: generateRandomVector(dim),
+			}
+		}
+
+		err = col.Upsert(batch)
+		if err != nil {
+			fmt.Printf("Error upserting at %d: %v\n", i, err)
+			return
+		}
+
+		if (i+currentBatchSize)%(batchSize*10) == 0 || i+currentBatchSize == numPoints {
+			fmt.Printf("   Progress: %d/%d (%.1f%%)\n", i+currentBatchSize, numPoints, float64(i+currentBatchSize)/float64(numPoints)*100)
+		}
 	}
 	buildDuration := time.Since(startBuild)
-	buildMs := buildDuration.Milliseconds()
 
-	// Generate Query Vectors
-	fmt.Printf("Generating %d random queries...\n", numQueries)
-	queries := generateRandomVectors(numQueries, dim)
+	printMemUsage()
 
 	// 2. Benchmark Search
+	fmt.Printf("   Running %d random queries (TopK=10)...\n", numQueries)
 	startSearch := time.Now()
-	for _, q := range queries {
-		_, err := col.Search(q, nil, 10) // Top 10
+	for i := 0; i < numQueries; i++ {
+		q := generateRandomVector(dim)
+		_, err := col.Search(q, nil, 10)
 		if err != nil {
 			fmt.Printf("Error searching: %v\n", err)
 			return
@@ -73,26 +101,41 @@ func runBenchmark(name string, dim int, useHNSW bool, numPoints, numQueries int)
 	qps := float64(numQueries) / searchDuration.Seconds()
 	avgLatencyMs := float64(searchDuration.Microseconds()) / float64(numQueries) / 1000.0
 
-	fmt.Printf("✅ Index Build Time:   %d ms\n", buildMs)
+	fmt.Printf("✅ Index Build Time:   %v (Avg: %.3f ms/point)\n", buildDuration, float64(buildDuration.Milliseconds())/float64(numPoints))
 	fmt.Printf("✅ Search Avg Latency: %.3f ms/query\n", avgLatencyMs)
-	fmt.Printf("✅ Search QPS:         %.0f queries/sec\n\n", qps)
+	fmt.Printf("✅ Search QPS:         %.0f queries/sec\n", qps)
 }
 
 func main() {
 	// Initialize random seed
-	rand.Seed(42)
+	rand.Seed(time.Now().UnixNano())
 
-	fmt.Println("🚀 Starting GoVector Benchmark Suite...")
-	fmt.Println("Dataset: 10,000 points | Dim: 128 | Queries: 1,000 | TopK: 10")
-	fmt.Println("===============================================================")
+	fmt.Println("🚀 Starting GoVector Large Scale Benchmark Suite...")
+	fmt.Println("Metric: Cosine Similarity | TopK: 10")
 
 	dim := 128
-	numPoints := 10000
-	numQueries := 1000
+	numQueries := 100
 
-	// Run Flat (Brute-Force) Benchmark
-	runBenchmark("Flat Index (Linear Scan)", dim, false, numPoints, numQueries)
+	// Scale levels
+	scales := []struct {
+		Name  string
+		Count int
+	}{
+		{"10K (Baseline)", 10000},
+		{"100K (Small)", 100000},
+		{"1M (Medium)", 1000000},
+		// {"10M (Large)", 10000000},
+	}
 
-	// Run HNSW Benchmark
-	runBenchmark("HNSW Index (Graph ANN)", dim, true, numPoints, numQueries)
+	for _, s := range scales {
+		// For very large scales, we only run HNSW because Flat is O(N)
+		if s.Count <= 100000 {
+			runBenchmark("Flat Index - "+s.Name, dim, false, s.Count, numQueries)
+		}
+
+		runBenchmark("HNSW Index - "+s.Name, dim, true, s.Count, numQueries)
+
+		// Force GC after each major scale
+		runtime.GC()
+	}
 }
