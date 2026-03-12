@@ -19,6 +19,10 @@ PLATFORMS=(
     "darwin/arm64"
 )
 
+# 用于存储 SHA256 信息的临时文件
+CHECKSUM_FILE="$OUTPUT_DIR/checksums.txt"
+touch "$CHECKSUM_FILE"
+
 for PLATFORM in "${PLATFORMS[@]}"; do
     # 分割 OS 和 ARCH
     GOOS=${PLATFORM%/*}
@@ -48,11 +52,23 @@ for PLATFORM in "${PLATFORMS[@]}"; do
 
     # 打包压缩
     pushd $OUTPUT_DIR > /dev/null
+    FILE_NAME=""
     if [ "$GOOS" = "windows" ]; then
-        zip -r -q "${ARCHIVE_DIR}.zip" "$ARCHIVE_DIR"
+        FILE_NAME="${ARCHIVE_DIR}.zip"
+        zip -r -q "$FILE_NAME" "$ARCHIVE_DIR"
     else
-        tar -czf "${ARCHIVE_DIR}.tar.gz" "$ARCHIVE_DIR"
+        FILE_NAME="${ARCHIVE_DIR}.tar.gz"
+        tar -czf "$FILE_NAME" "$ARCHIVE_DIR"
     fi
+    
+    # 计算校验和并存入临时文件
+    if command -v shasum >/dev/null 2>&1; then
+        SHA=$(shasum -a 256 "$FILE_NAME" | cut -d' ' -f1)
+    else
+        SHA=$(sha256sum "$FILE_NAME" | cut -d' ' -f1)
+    fi
+    echo "$GOOS|$GOARCH|$FILE_NAME|$SHA" >> checksums.txt
+    
     # 清理临时目录
     rm -rf "$ARCHIVE_DIR"
     popd > /dev/null
@@ -60,5 +76,17 @@ for PLATFORM in "${PLATFORMS[@]}"; do
     echo "✅ 成功打包: $ARCHIVE_DIR"
 done
 
+echo ""
 echo "🎉 所有平台编译完成！发布文件位于 $OUTPUT_DIR/ 目录："
+echo "--------------------------------------------------------------------------------------------------------------------------------"
+printf "| %-10s | %-10s | %-40s | %-64s |\n" "OS" "ARCH" "FILENAME" "SHA256 CHECKSUM"
+echo "--------------------------------------------------------------------------------------------------------------------------------"
+
+while IFS='|' read -r os arch file sha; do
+    printf "| %-10s | %-10s | %-40s | %-64s |\n" "$os" "$arch" "$file" "$sha"
+done < "$CHECKSUM_FILE"
+
+echo "--------------------------------------------------------------------------------------------------------------------------------"
+rm "$CHECKSUM_FILE"
+
 ls -lh $OUTPUT_DIR
