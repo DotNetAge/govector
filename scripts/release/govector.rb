@@ -7,19 +7,19 @@ class Govector < Formula
   if OS.mac? && Hardware::CPU.arm?
     url "https://github.com/DotNetAge/govector/releases/download/v0.1.3/govector_v0.1.3_darwin_arm64.tar.gz"
     # To get the SHA256: run `shasum -a 256 govector_v0.1.3_darwin_arm64.tar.gz`
-    sha256 "bad56fcd25813f73305b687afa3870bbb832b1f313fc21e250aabea6744ae8fe"
+    sha256 "76e91e5c9581eeff87ef959a21bce5f4f8cd196bfd477c703732bc4ac5c3862d"
   end
   
   # MacOS AMD64 (Intel)
   if OS.mac? && Hardware::CPU.intel?
     url "https://github.com/DotNetAge/govector/releases/download/v0.1.3/govector_v0.1.3_darwin_amd64.tar.gz"
-    sha256 "2f243d093b6b6163eeef9d61c725946e72a681e544ace00b623488646c601950"
+    sha256 "2f2ff257b0d86d0b0225d55438f695a4c807ff631ac73848ee4a7271fdcf7458"
   end
 
   # Linux
   if OS.linux? && Hardware::CPU.intel?
     url "https://github.com/DotNetAge/govector/releases/download/v0.1.3/govector_v0.1.3_linux_amd64.tar.gz"
-    sha256 "7e874a12346d0a88ad6a0a713be14c3a7c0c6fd0447e15d1a4e38b58032444fc"
+    sha256 "7a1dca7ec3082b461c07b0b2eb5b42cef02d973ca8a0e1df1b25bcd0efdf0d73"
   end
 
   def install

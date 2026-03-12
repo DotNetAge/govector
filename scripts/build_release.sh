@@ -1,10 +1,11 @@
 #!/bin/bash
 
-# build_release.sh - 自动编译所有平台的 Release 压缩包
+# build_release.sh - 自动编译所有平台的 Release 压缩包并更新 Homebrew Formula
 
-VERSION=${1:-"v0.1.0"}
+VERSION=${1:-"v0.1.3"}
 APP_NAME="govector"
 OUTPUT_DIR="dist"
+BREW_FORMULA="scripts/release/govector.rb"
 
 echo "🚀 开始构建 GoVector $VERSION 发布包..."
 
@@ -75,6 +76,43 @@ for PLATFORM in "${PLATFORMS[@]}"; do
 
     echo "✅ 成功打包: $ARCHIVE_DIR"
 done
+
+# 更新 Homebrew Formula
+if [ -f "$BREW_FORMULA" ]; then
+    echo "📝 正在更新 Homebrew Formula: $BREW_FORMULA ..."
+    
+    # 获取各个平台的 SHA
+    SHA_DARWIN_ARM64=$(grep "darwin|arm64" "$CHECKSUM_FILE" | cut -d'|' -f4)
+    SHA_DARWIN_AMD64=$(grep "darwin|amd64" "$CHECKSUM_FILE" | cut -d'|' -f4)
+    SHA_LINUX_AMD64=$(grep "linux|amd64" "$CHECKSUM_FILE" | cut -d'|' -f4)
+
+    # 使用 sed 更新版本号和校验和
+    # 注意：这里假设了 Formula 的结构，使用 MacOS 的 sed 语法兼容性处理
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        sed -i '' "s/version \".*\"/version \"${VERSION/v/}\"/" "$BREW_FORMULA"
+        sed -i '' "s|/download/v.*/|/download/${VERSION}/|g" "$BREW_FORMULA"
+        sed -i '' "s/govector_v.*_darwin_arm64.tar.gz/govector_${VERSION}_darwin_arm64.tar.gz/g" "$BREW_FORMULA"
+        sed -i '' "s/govector_v.*_darwin_amd64.tar.gz/govector_${VERSION}_darwin_amd64.tar.gz/g" "$BREW_FORMULA"
+        sed -i '' "s/govector_v.*_linux_amd64.tar.gz/govector_${VERSION}_linux_amd64.tar.gz/g" "$BREW_FORMULA"
+        
+        # 定向更新特定平台的 SHA
+        # 这里通过行号定位可能更稳妥，或者利用上下文
+        perl -i -pe "BEGIN{undef $/;} s/(if OS.mac\? && Hardware::CPU.arm\?.*?sha256 \").*?(\")/\${1}${SHA_DARWIN_ARM64}\${2}/s" "$BREW_FORMULA"
+        perl -i -pe "BEGIN{undef $/;} s/(if OS.mac\? && Hardware::CPU.intel\?.*?sha256 \").*?(\")/\${1}${SHA_DARWIN_AMD64}\${2}/s" "$BREW_FORMULA"
+        perl -i -pe "BEGIN{undef $/;} s/(if OS.linux\? && Hardware::CPU.intel\?.*?sha256 \").*?(\")/\${1}${SHA_LINUX_AMD64}\${2}/s" "$BREW_FORMULA"
+    else
+        sed -i "s/version \".*\"/version \"${VERSION/v/}\"/" "$BREW_FORMULA"
+        sed -i "s|/download/v.*/|/download/${VERSION}/|g" "$BREW_FORMULA"
+        sed -i "s/govector_v.*_darwin_arm64.tar.gz/govector_${VERSION}_darwin_arm64.tar.gz/g" "$BREW_FORMULA"
+        sed -i "s/govector_v.*_darwin_amd64.tar.gz/govector_${VERSION}_darwin_amd64.tar.gz/g" "$BREW_FORMULA"
+        sed -i "s/govector_v.*_linux_amd64.tar.gz/govector_${VERSION}_linux_amd64.tar.gz/g" "$BREW_FORMULA"
+        
+        perl -i -pe "BEGIN{undef $/;} s/(if OS.mac\? && Hardware::CPU.arm\?.*?sha256 \").*?(\")/\${1}${SHA_DARWIN_ARM64}\${2}/s" "$BREW_FORMULA"
+        perl -i -pe "BEGIN{undef $/;} s/(if OS.mac\? && Hardware::CPU.intel\?.*?sha256 \").*?(\")/\${1}${SHA_DARWIN_AMD64}\${2}/s" "$BREW_FORMULA"
+        perl -i -pe "BEGIN{undef $/;} s/(if OS.linux\? && Hardware::CPU.intel\?.*?sha256 \").*?(\")/\${1}${SHA_LINUX_AMD64}\${2}/s" "$BREW_FORMULA"
+    fi
+    echo "✅ Homebrew Formula 已同步更新！"
+fi
 
 echo ""
 echo "🎉 所有平台编译完成！发布文件位于 $OUTPUT_DIR/ 目录："
