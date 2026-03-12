@@ -2,25 +2,35 @@ name: Go
 on:
   push: { branches: [ "main" ] }
   pull_request: { branches: [ "main" ] }
-
+  
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
     strategy:
       matrix:
-        go-version: [ '1.20', '1.21.x' ]
+        go-version: [ "1.20", "1.21.13" ]  # 精确版本更可靠
     steps:
       - uses: actions/checkout@v5
-      - name: Setup Go
-        uses: actions/setup-go@v5
-        with:
-          go-version: ${{ matrix.go-version }}
+
+      - name: Install Go
+        run: |
+          VER=${{ matrix.go-version }}
+          # 如果 matrix 使用 x 语法（如 1.21.x），需映射到具体版本或改为精确版本
+          echo "Installing Go $VER"
+          GO_TAR="go${VER}.linux-amd64.tar.gz"
+          curl -fsSL "https://go.dev/dl/${GO_TAR}" -o "$GO_TAR"
+          sudo rm -rf /usr/local/go
+          sudo tar -C /usr/local -xzf "$GO_TAR"
+          echo "/usr/local/go/bin" >> $GITHUB_PATH
+      - name: Verify Go
+        run: go version
+
       - name: Install dependencies
         run: go get ./...
+
       - name: Test with Go
         run: go test -json > TestResults-${{ matrix.go-version }}.json
+
       - name: Upload Go test results
         uses: actions/upload-artifact@v4
         with:
