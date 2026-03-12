@@ -18,7 +18,7 @@ jobs:
 
       # 使用官方 Go 安装动作，已兼容 Node.js 24
       - name: Set up Go
-        uses: actions/setup-go@v5
+        uses: actions/setup-go@v6.3.0
         with:
           go-version: ${{ matrix.go-version }}
           cache: true  # 自动缓存 Go 模块，加速后续运行
