@@ -7,7 +7,7 @@
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
   [![Go Report Card](https://goreportcard.com/badge/github.com/DotNetAge/govector)](https://goreportcard.com/report/github.com/DotNetAge/govector)
   [![codecov](https://codecov.io/gh/DotNetAge/govector/graph/badge.svg?token=placeholder)](https://codecov.io/gh/DotNetAge/govector)
-
+  [![Docs](https://img.shields.io/badge/docs-govector.rayainfo.cn-4cae4f.svg)](https://govector.rayainfo.cn)
   <p>
     <a href="README.md">English</a> | <a href="README_zh.md">简体中文</a>
   </p>
@@ -80,6 +80,8 @@ govector
 ```
 *(Provides a beautiful, green-themed environment with a `/?` help menu, auto-creation of DBs/collections, and graceful `serve` interruption).*
 
+![TUI](assets/cli.png)
+
 Or use **Direct Commands**:
 ```bash
 # General Syntax
@@ -110,11 +112,11 @@ govector rm mydata.db -c documents
 
 Measured on a standard machine with 16GB RAM, 128-dimensional vectors.
 
-| Index | Scale (N) | Build Time | Latency (Avg) | Throughput (QPS) | Memory (Alloc) |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **Flat** | 100K | 186 ms | 54.46 ms | 18 QPS | 59 MB |
-| **HNSW** | 100K | 20.9 s | **0.08 ms** | **11,812 QPS** | 311 MB |
-| **HNSW** | 1M | 4m 17s | **0.11 ms** | **8,709 QPS** | 3.32 GB |
+| Index    | Scale (N) | Build Time | Latency (Avg) | Throughput (QPS) | Memory (Alloc) |
+| :------- | :-------- | :--------- | :------------ | :--------------- | :------------- |
+| **Flat** | 100K      | 186 ms     | 54.46 ms      | 18 QPS           | 59 MB          |
+| **HNSW** | 100K      | 20.9 s     | **0.08 ms**   | **11,812 QPS**   | 311 MB         |
+| **HNSW** | 1M        | 4m 17s     | **0.11 ms**   | **8,709 QPS**    | 3.32 GB        |
 
 > *Note: HNSW maintained sub-millisecond latency even at 1 million scale, providing 480x speedup over Flat index at 100K.*
 

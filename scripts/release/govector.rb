@@ -1,25 +1,25 @@
 class Govector < Formula
   desc "Lightweight, embeddable vector database in pure Go (Qdrant compatible)"
   homepage "https://github.com/DotNetAge/govector"
-  version "0.1.3"
+  version "0.1.4"
 
   # MacOS ARM64 (M1/M2/M3)
   if OS.mac? && Hardware::CPU.arm?
-    url "https://github.com/DotNetAge/govector/releases/download/v0.1.3/govector_v0.1.3_darwin_arm64.tar.gz"
-    # To get the SHA256: run `shasum -a 256 govector_v0.1.3_darwin_arm64.tar.gz`
-    sha256 "76e91e5c9581eeff87ef959a21bce5f4f8cd196bfd477c703732bc4ac5c3862d"
+    url "https://github.com/DotNetAge/govector/releases/download/v0.1.4/govector_v0.1.4_darwin_arm64.tar.gz"
+    # To get the SHA256: run `shasum -a 256 govector_v0.1.4_darwin_arm64.tar.gz`
+    sha256 "bbdfb934b9cd7eaa21c9a64131ea08fb14db06d719fe1e350145ca189c1766d3"
   end
   
   # MacOS AMD64 (Intel)
   if OS.mac? && Hardware::CPU.intel?
-    url "https://github.com/DotNetAge/govector/releases/download/v0.1.3/govector_v0.1.3_darwin_amd64.tar.gz"
-    sha256 "2f2ff257b0d86d0b0225d55438f695a4c807ff631ac73848ee4a7271fdcf7458"
+    url "https://github.com/DotNetAge/govector/releases/download/v0.1.4/govector_v0.1.4_darwin_amd64.tar.gz"
+    sha256 "759d28c9ad3a2c0ccf05ff0d97b0f6d0978da7884c1a9330ee871a3b18e34cfa"
   end
 
   # Linux
   if OS.linux? && Hardware::CPU.intel?
-    url "https://github.com/DotNetAge/govector/releases/download/v0.1.3/govector_v0.1.3_linux_amd64.tar.gz"
-    sha256 "7a1dca7ec3082b461c07b0b2eb5b42cef02d973ca8a0e1df1b25bcd0efdf0d73"
+    url "https://github.com/DotNetAge/govector/releases/download/v0.1.4/govector_v0.1.4_linux_amd64.tar.gz"
+    sha256 "6d3acf1d61dded99576b0ee0fcb0722f8c114a0b380fdf32aef03704d2db781b"
   end
 
   def install

@@ -7,7 +7,7 @@
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
   [![Go Report Card](https://goreportcard.com/badge/github.com/DotNetAge/govector)](https://goreportcard.com/report/github.com/DotNetAge/govector)
   [![codecov](https://codecov.io/gh/DotNetAge/govector/graph/badge.svg?token=placeholder)](https://codecov.io/gh/DotNetAge/govector)
-
+  [![文档](https://img.shields.io/badge/docs-govector.rayainfo.cn-4cae4f.svg)](https://govector.rayainfo.cn)
   <p>
     <a href="README.md">English</a> | <a href="README_zh.md">简体中文</a>
   </p>
@@ -80,6 +80,8 @@ govector
 ```
 *(提供美观的绿色主题环境、`/?` 帮助菜单、自动创建数据库/集合功能，以及优雅的 `serve` 启停支持)。*
 
+![TUI](assets/cli.png)
+
 或者使用 **直接命令**:
 ```bash
 # 基本语法
@@ -110,11 +112,11 @@ govector rm mydata.db -c documents
 
 在标准 16GB 内存机器上测试，向量维度为 128 维。
 
-| 索引类型 | 数据规模 (N) | 构建耗时 | 搜索平均延迟 | 吞吐量 (QPS) | 内存占用 (Alloc) |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **Flat** | 10万 | 186 ms | 54.46 ms | 18 QPS | 59 MB |
-| **HNSW** | 10万 | 20.9 s | **0.08 ms** | **11,812 QPS** | 311 MB |
-| **HNSW** | 100万 | 4m 17s | **0.11 ms** | **8,709 QPS** | 3.32 GB |
+| 索引类型 | 数据规模 (N) | 构建耗时 | 搜索平均延迟 | 吞吐量 (QPS)   | 内存占用 (Alloc) |
+| :------- | :----------- | :------- | :----------- | :------------- | :--------------- |
+| **Flat** | 10万         | 186 ms   | 54.46 ms     | 18 QPS         | 59 MB            |
+| **HNSW** | 10万         | 20.9 s   | **0.08 ms**  | **11,812 QPS** | 311 MB           |
+| **HNSW** | 100万        | 4m 17s   | **0.11 ms**  | **8,709 QPS**  | 3.32 GB          |
 
 > *注：HNSW 在百万级规模下依然保持了亚毫秒级的延迟。在 10万 规模下，HNSW 相比暴力搜索实现了约 480 倍的加速。*
 

@@ -54,3 +54,4 @@ plugins/*.so
 .docs
 bin
 dist
+.qoder
