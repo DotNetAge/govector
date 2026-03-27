@@ -7,18 +7,20 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="GoVector Vector Database" name="description"/>
 <meta content="Ray" name="author"/>
-<link href="../../../" hreflang="en" rel="alternate"/>
-<link href="../../../../zh/" hreflang="zh" rel="alternate"/>
-<link href="../../../assets/images/favicon.png" rel="icon"/>
+<link href="../04-basic-concepts/" rel="prev"/>
+<link href="../06-learning-path/" rel="next"/>
+<link href="./" hreflang="en" rel="alternate"/>
+<link href="../../zh/vectordb/05-applications/" hreflang="zh" rel="alternate"/>
+<link href="../../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.7.6" name="generator"/>
 <title>Typical Application Scenarios - GoVector Documentation</title>
-<link href="../../../assets/stylesheets/main.484c7ddc.min.css" rel="stylesheet"/>
-<link href="../../../assets/stylesheets/palette.ab4e12ef.min.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/main.484c7ddc.min.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/palette.ab4e12ef.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
 <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" rel="stylesheet"/>
-<script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
 </head>
 <body data-md-color-accent="green" data-md-color-primary="green" data-md-color-scheme="default" dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
@@ -33,7 +35,7 @@
 </div>
 <header class="md-header" data-md-component="header">
 <nav aria-label="Header" class="md-header__inner md-grid">
-<a aria-label="GoVector Documentation" class="md-header__button md-logo" data-md-component="logo" href="../../.." title="GoVector Documentation">
+<a aria-label="GoVector Documentation" class="md-header__button md-logo" data-md-component="logo" href="../.." title="GoVector Documentation">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
 </a>
 <label class="md-header__button md-icon" for="__drawer">
@@ -63,12 +65,12 @@
 <div class="md-select__inner">
 <ul class="md-select__list">
 <li class="md-select__item">
-<a class="md-select__link" href="../../../" hreflang="en">
+<a class="md-select__link" href="./" hreflang="en">
               English
             </a>
 </li>
 <li class="md-select__item">
-<a class="md-select__link" href="../../../../zh/" hreflang="zh">
+<a class="md-select__link" href="../../zh/vectordb/05-applications/" hreflang="zh">
               中文
             </a>
 </li>
@@ -124,7 +126,7 @@
 <div class="md-grid">
 <ul class="md-tabs__list">
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../../index.md">
+<a class="md-tabs__link" href="../..">
         
   
   
@@ -135,7 +137,7 @@
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../../quick-start.md">
+<a class="md-tabs__link" href="../../quick-start/">
           
   
   
@@ -144,7 +146,7 @@
         </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../../arch/architecture-design.md">
+<a class="md-tabs__link" href="../../arch/architecture-design/">
           
   
   
@@ -153,7 +155,7 @@
         </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../../api-references/api-reference.md">
+<a class="md-tabs__link" href="../../api-references/api-reference/">
           
   
   
@@ -162,7 +164,7 @@
         </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../../deployment/deployment-operations.md">
+<a class="md-tabs__link" href="../../deployment/deployment-operations/">
           
   
   
@@ -171,7 +173,7 @@
         </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../../trouble-removal/troubleshooting.md">
+<a class="md-tabs__link" href="../../trouble-removal/troubleshooting/">
           
   
   
@@ -179,8 +181,8 @@
 
         </a>
 </li>
-<li class="md-tabs__item">
-<a class="md-tabs__link" href="../../../vectordb/01-introduction.md">
+<li class="md-tabs__item md-tabs__item--active">
+<a class="md-tabs__link" href="../01-introduction/">
           
   
   
@@ -198,7 +200,7 @@
 <div class="md-sidebar__inner">
 <nav aria-label="Navigation" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
 <label class="md-nav__title" for="__drawer">
-<a aria-label="GoVector Documentation" class="md-nav__button md-logo" data-md-component="logo" href="../../.." title="GoVector Documentation">
+<a aria-label="GoVector Documentation" class="md-nav__button md-logo" data-md-component="logo" href="../.." title="GoVector Documentation">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
 </a>
     GoVector Documentation
@@ -215,7 +217,7 @@
 </div>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../index.md">
+<a class="md-nav__link" href="../..">
 <span class="md-ellipsis">
     
   
@@ -250,11 +252,11 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../quick-start.md">
+<a class="md-nav__link" href="../../quick-start/">
 <span class="md-ellipsis">
     
   
-    None
+    Quick Start
   
 
     
@@ -262,11 +264,11 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../usage/cli-guide.md">
+<a class="md-nav__link" href="../../usage/cli-guide/">
 <span class="md-ellipsis">
     
   
-    None
+    CLI Usage Guide
   
 
     
@@ -274,11 +276,11 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../development-guide.md">
+<a class="md-nav__link" href="../../development-guide/">
 <span class="md-ellipsis">
     
   
-    None
+    Development Guide
   
 
     
@@ -286,11 +288,11 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../project-overview.md">
+<a class="md-nav__link" href="../../project-overview/">
 <span class="md-ellipsis">
     
   
-    None
+    Project Overview
   
 
     
@@ -298,11 +300,11 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../data-model.md">
+<a class="md-nav__link" href="../../data-model/">
 <span class="md-ellipsis">
     
   
-    None
+    Data Model
   
 
     
@@ -359,11 +361,11 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../arch/architecture-design.md">
+<a class="md-nav__link" href="../../arch/architecture-design/">
 <span class="md-ellipsis">
     
   
-    None
+    Architecture Design
   
 
     
@@ -371,11 +373,11 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../arch/architecture-overview.md">
+<a class="md-nav__link" href="../../arch/architecture-overview/">
 <span class="md-ellipsis">
     
   
-    None
+    Architecture Overview
   
 
     
@@ -383,11 +385,11 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../arch/component-interactions.md">
+<a class="md-nav__link" href="../../arch/component-interactions/">
 <span class="md-ellipsis">
     
   
-    None
+    Component Interactions
   
 
     
@@ -395,11 +397,11 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../arch/data-flow-analysis.md">
+<a class="md-nav__link" href="../../arch/data-flow-analysis/">
 <span class="md-ellipsis">
     
   
-    None
+    Data Flow Analysis
   
 
     
@@ -407,11 +409,11 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../arch/design-patterns.md">
+<a class="md-nav__link" href="../../arch/design-patterns/">
 <span class="md-ellipsis">
     
   
-    None
+    Design Patterns Application
   
 
     
@@ -445,11 +447,11 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../core/core-modules.md">
+<a class="md-nav__link" href="../../core/core-modules/">
 <span class="md-ellipsis">
     
   
-    None
+    Core Modules
   
 
     
@@ -457,11 +459,11 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../core/collection-management.md">
+<a class="md-nav__link" href="../../core/collection-management/">
 <span class="md-ellipsis">
     
   
-    None
+    Collection Management
   
 
     
@@ -469,11 +471,11 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../core/flat-index.md">
+<a class="md-nav__link" href="../../core/flat-index/">
 <span class="md-ellipsis">
     
   
-    None
+    Flat Index
   
 
     
@@ -481,11 +483,11 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../core/hnsw-index.md">
+<a class="md-nav__link" href="../../core/hnsw-index/">
 <span class="md-ellipsis">
     
   
-    None
+    HNSW Index
   
 
     
@@ -493,11 +495,11 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../core/quantization.md">
+<a class="md-nav__link" href="../../core/quantization/">
 <span class="md-ellipsis">
     
   
-    None
+    Quantization
   
 
     
@@ -505,11 +507,11 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../core/storage-engine.md">
+<a class="md-nav__link" href="../../core/storage-engine/">
 <span class="md-ellipsis">
     
   
-    None
+    Storage Engine
   
 
     
@@ -517,11 +519,11 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../core/data-model-system.md">
+<a class="md-nav__link" href="../../core/data-model-system/">
 <span class="md-ellipsis">
     
   
-    None
+    Data Model System
   
 
     
@@ -555,11 +557,11 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../usage/usage-patterns.md">
+<a class="md-nav__link" href="../../usage/usage-patterns/">
 <span class="md-ellipsis">
     
   
-    None
+    Usage Patterns
   
 
     
@@ -567,11 +569,11 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../usage/embedded-mode.md">
+<a class="md-nav__link" href="../../usage/embedded-mode/">
 <span class="md-ellipsis">
     
   
-    None
+    Embedded Mode
   
 
     
@@ -579,11 +581,11 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../usage/microservice-mode.md">
+<a class="md-nav__link" href="../../usage/microservice-mode/">
 <span class="md-ellipsis">
     
   
-    None
+    Microservice Mode
   
 
     
@@ -591,11 +593,11 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../usage/performance-optimization.md">
+<a class="md-nav__link" href="../../usage/performance-optimization/">
 <span class="md-ellipsis">
     
   
-    None
+    Performance Optimization
   
 
     
@@ -632,11 +634,11 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../api-references/api-reference.md">
+<a class="md-nav__link" href="../../api-references/api-reference/">
 <span class="md-ellipsis">
     
   
-    None
+    API Reference
   
 
     
@@ -644,11 +646,11 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../api-references/data-models.md">
+<a class="md-nav__link" href="../../api-references/data-models/">
 <span class="md-ellipsis">
     
   
-    None
+    Data Models
   
 
     
@@ -656,11 +658,11 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../api-references/point-operations-api.md">
+<a class="md-nav__link" href="../../api-references/point-operations-api/">
 <span class="md-ellipsis">
     
   
-    None
+    Point Operations API
   
 
     
@@ -668,11 +670,11 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../api-references/collection-management-api.md">
+<a class="md-nav__link" href="../../api-references/collection-management-api/">
 <span class="md-ellipsis">
     
   
-    None
+    Collection Management API
   
 
     
@@ -680,11 +682,11 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../api-references/error-handling.md">
+<a class="md-nav__link" href="../../api-references/error-handling/">
 <span class="md-ellipsis">
     
   
-    None
+    Error Handling
   
 
     
@@ -718,11 +720,11 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../deployment/deployment-operations.md">
+<a class="md-nav__link" href="../../deployment/deployment-operations/">
 <span class="md-ellipsis">
     
   
-    None
+    Deployment Operations
   
 
     
@@ -730,11 +732,11 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../deployment/production-deployment.md">
+<a class="md-nav__link" href="../../deployment/production-deployment/">
 <span class="md-ellipsis">
     
   
-    None
+    Production Deployment
   
 
     
@@ -742,11 +744,11 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../deployment/monitoring-alerts.md">
+<a class="md-nav__link" href="../../deployment/monitoring-alerts/">
 <span class="md-ellipsis">
     
   
-    None
+    Monitoring and Alerting
   
 
     
@@ -754,11 +756,11 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../deployment/backup-recovery.md">
+<a class="md-nav__link" href="../../deployment/backup-recovery/">
 <span class="md-ellipsis">
     
   
-    None
+    Backup and Recovery
   
 
     
@@ -766,11 +768,11 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../deployment/upgrades-migration.md">
+<a class="md-nav__link" href="../../deployment/upgrades-migration/">
 <span class="md-ellipsis">
     
   
-    None
+    Upgrade and Migration
   
 
     
@@ -804,11 +806,11 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../trouble-removal/troubleshooting.md">
+<a class="md-nav__link" href="../../trouble-removal/troubleshooting/">
 <span class="md-ellipsis">
     
   
-    None
+    Troubleshooting
   
 
     
@@ -816,11 +818,11 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../trouble-removal/installation-issues.md">
+<a class="md-nav__link" href="../../trouble-removal/installation-issues/">
 <span class="md-ellipsis">
     
   
-    None
+    Installation Issues
   
 
     
@@ -828,11 +830,11 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../trouble-removal/performance-issues.md">
+<a class="md-nav__link" href="../../trouble-removal/performance-issues/">
 <span class="md-ellipsis">
     
   
-    None
+    Performance Issues
   
 
     
@@ -840,11 +842,11 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../trouble-removal/data-consistency-issues.md">
+<a class="md-nav__link" href="../../trouble-removal/data-consistency-issues/">
 <span class="md-ellipsis">
     
   
-    None
+    Data Consistency Issues
   
 
     
@@ -852,11 +854,11 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../trouble-removal/debugging-tools.md">
+<a class="md-nav__link" href="../../trouble-removal/debugging-tools/">
 <span class="md-ellipsis">
     
   
-    None
+    Debugging Tools and Techniques
   
 
     
@@ -864,11 +866,11 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../trouble-removal/configuration-issues.md">
+<a class="md-nav__link" href="../../trouble-removal/configuration-issues/">
 <span class="md-ellipsis">
     
   
-    None
+    Configuration Issues
   
 
     
@@ -878,9 +880,9 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" id="__nav_7" type="checkbox"/>
-<label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_7" type="checkbox"/>
+<label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
 <span class="md-ellipsis">
     
   
@@ -891,7 +893,7 @@
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-expanded="false" aria-labelledby="__nav_7_label" class="md-nav" data-md-level="1">
+<nav aria-expanded="true" aria-labelledby="__nav_7_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_7">
 <span class="md-nav__icon md-icon"></span>
             
@@ -902,11 +904,11 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../vectordb/01-introduction.md">
+<a class="md-nav__link" href="../01-introduction/">
 <span class="md-ellipsis">
     
   
-    None
+    Introduction
   
 
     
@@ -914,11 +916,11 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../vectordb/02-history.md">
+<a class="md-nav__link" href="../02-history/">
 <span class="md-ellipsis">
     
   
-    None
+    Development History
   
 
     
@@ -926,11 +928,11 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../vectordb/03-core-principles.md">
+<a class="md-nav__link" href="../03-core-principles/">
 <span class="md-ellipsis">
     
   
-    None
+    Core Principles
   
 
     
@@ -938,35 +940,295 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../vectordb/04-basic-concepts.md">
+<a class="md-nav__link" href="../04-basic-concepts/">
 <span class="md-ellipsis">
     
   
-    None
+    Basic Concepts
   
 
     
   </span>
 </a>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../../vectordb/05-applications.md">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
 <span class="md-ellipsis">
     
   
-    None
+    Typical Application Scenarios
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+<span class="md-ellipsis">
+    
+  
+    Typical Application Scenarios
   
 
     
   </span>
 </a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#51-application-scenarios-overview">
+<span class="md-ellipsis">
+      
+        5.1 Application Scenarios Overview
+      
+    </span>
+</a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../../vectordb/06-learning-path.md">
+<a class="md-nav__link" href="#52-rag-retrieval-augmented-generation">
+<span class="md-ellipsis">
+      
+        5.2 RAG (Retrieval-Augmented Generation)
+      
+    </span>
+</a>
+<nav aria-label="5.2 RAG (Retrieval-Augmented Generation)" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#what-is-rag">
+<span class="md-ellipsis">
+      
+        What is RAG
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#rag-system-architecture">
+<span class="md-ellipsis">
+      
+        RAG System Architecture
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#rag-workflow-detailed-explanation">
+<span class="md-ellipsis">
+      
+        RAG Workflow Detailed Explanation
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#rag-query-flow-sequence-diagram">
+<span class="md-ellipsis">
+      
+        RAG Query Flow Sequence Diagram
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#document-chunking-strategies">
+<span class="md-ellipsis">
+      
+        Document Chunking Strategies
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#53-recommendation-systems">
+<span class="md-ellipsis">
+      
+        5.3 Recommendation Systems
+      
+    </span>
+</a>
+<nav aria-label="5.3 Recommendation Systems" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#vector-representation-in-recommendation-systems">
+<span class="md-ellipsis">
+      
+        Vector Representation in Recommendation Systems
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#recommendation-system-architecture">
+<span class="md-ellipsis">
+      
+        Recommendation System Architecture
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#recommendation-system-code-example">
+<span class="md-ellipsis">
+      
+        Recommendation System Code Example
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#54-semantic-search">
+<span class="md-ellipsis">
+      
+        5.4 Semantic Search
+      
+    </span>
+</a>
+<nav aria-label="5.4 Semantic Search" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#semantic-search-vs-keyword-search">
+<span class="md-ellipsis">
+      
+        Semantic Search vs Keyword Search
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#semantic-search-code-example">
+<span class="md-ellipsis">
+      
+        Semantic Search Code Example
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#multi-language-search">
+<span class="md-ellipsis">
+      
+        Multi-Language Search
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#55-multi-modal-retrieval">
+<span class="md-ellipsis">
+      
+        5.5 Multi-Modal Retrieval
+      
+    </span>
+</a>
+<nav aria-label="5.5 Multi-Modal Retrieval" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#what-is-multi-modal-retrieval">
+<span class="md-ellipsis">
+      
+        What is Multi-Modal Retrieval
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#multi-modal-retrieval-code-example">
+<span class="md-ellipsis">
+      
+        Multi-Modal Retrieval Code Example
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#56-anomaly-detection">
+<span class="md-ellipsis">
+      
+        5.6 Anomaly Detection
+      
+    </span>
+</a>
+<nav aria-label="5.6 Anomaly Detection" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#vector-databases-in-anomaly-detection">
+<span class="md-ellipsis">
+      
+        Vector Databases in Anomaly Detection
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#anomaly-detection-code-example">
+<span class="md-ellipsis">
+      
+        Anomaly Detection Code Example
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#57-ai-agent-memory-storage">
+<span class="md-ellipsis">
+      
+        5.7 AI Agent Memory Storage
+      
+    </span>
+</a>
+<nav aria-label="5.7 AI Agent Memory Storage" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#agent-system-architecture">
+<span class="md-ellipsis">
+      
+        Agent System Architecture
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#agent-memory-system-code-example">
+<span class="md-ellipsis">
+      
+        Agent Memory System Code Example
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../06-learning-path/">
 <span class="md-ellipsis">
     
   
-    None
+    Learning
   
 
     
@@ -1750,9 +2012,9 @@
 <div class="md-dialog" data-md-component="dialog">
 <div class="md-dialog__inner md-typeset"></div>
 </div>
-<script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.sections", "search.suggest", "search.highlight", "content.code.highlight", "content.code.copy", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
-<script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
-<script src="../../../javascripts/mathjax.js"></script>
+<script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.sections", "search.suggest", "search.highlight", "content.code.highlight", "content.code.copy", "content.code.annotate", "i18n.languages"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+<script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+<script src="../../javascripts/mathjax.js"></script>
 <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
 <script type="module">import mermaid from "https://unpkg.com/mermaid@10.4.0/dist/mermaid.esm.min.mjs";
 window.mermaidConfig = {default: {

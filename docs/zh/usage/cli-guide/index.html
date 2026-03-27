@@ -1,24 +1,28 @@
 
 <!doctype html>
-<html lang="en" class="no-js">
+<html lang="zh" class="no-js">
   <head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="GoVector Vector Database">
+        <meta name="description" content="GoVector 轻量化高性能的嵌入式向量数据库">
       
       
         <meta name="author" content="Ray">
       
       
       
+        <link rel="prev" href="../../quick-start/">
+      
+      
+        <link rel="next" href="../../development-guide/">
       
       
         
-          <link rel="alternate" href="../../../" hreflang="en">
+          <link rel="alternate" href="../../../usage/cli-guide/" hreflang="en">
         
-          <link rel="alternate" href="../../../" hreflang="zh">
+          <link rel="alternate" href="./" hreflang="zh">
         
       
       
@@ -27,7 +31,7 @@
     
     
       
-        <title>CLI使用指南 - GoVector Documentation</title>
+        <title>CLI使用指南 - GoVector 开发文档</title>
       
     
     
@@ -79,7 +83,7 @@
       
         
         <a href="#cli" class="md-skip">
-          Skip to content
+          跳转至
         </a>
       
     </div>
@@ -91,8 +95,8 @@
       
 
 <header class="md-header" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="GoVector Documentation" class="md-header__button md-logo" aria-label="GoVector Documentation" data-md-component="logo">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../" title="GoVector 开发文档" class="md-header__button md-logo" aria-label="GoVector 开发文档" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -106,7 +110,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            GoVector Documentation
+            GoVector 开发文档
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -126,20 +130,20 @@
       <div class="md-header__option">
   <div class="md-select">
     
-    <button class="md-header__button md-icon" aria-label="Select language">
+    <button class="md-header__button md-icon" aria-label="选择当前语言">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
     </button>
     <div class="md-select__inner">
       <ul class="md-select__list">
         
           <li class="md-select__item">
-            <a href="../../../" hreflang="en" class="md-select__link">
+            <a href="../../../usage/cli-guide/" hreflang="en" class="md-select__link">
               English
             </a>
           </li>
         
           <li class="md-select__item">
-            <a href="../../../" hreflang="zh" class="md-select__link">
+            <a href="./" hreflang="zh" class="md-select__link">
               中文
             </a>
           </li>
@@ -160,16 +164,16 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
       </label>
-      <nav class="md-search__options" aria-label="Search">
+      <nav class="md-search__options" aria-label="查找">
         
-        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
           
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
@@ -182,7 +186,7 @@
       <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
-            Initializing search
+            正在初始化搜索引擎
           </div>
           <ol class="md-search-result__list" role="presentation"></ol>
         </div>
@@ -194,7 +198,7 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/DotNetAge/govector" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/DotNetAge/govector" title="前往仓库" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
@@ -215,7 +219,7 @@
         
           
             
-<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
   <div class="md-grid">
     <ul class="md-tabs__list">
       
@@ -225,13 +229,13 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../index.md" class="md-tabs__link">
+      <a href="../../" class="md-tabs__link">
         
   
   
     
   
-  Home
+  首页
 
       </a>
     </li>
@@ -242,11 +246,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../../quick-start.md" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../quick-start/" class="md-tabs__link">
           
   
   
@@ -273,11 +279,11 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../arch/architecture-design.md" class="md-tabs__link">
+        <a href="../../arch/architecture-design/" class="md-tabs__link">
           
   
   
-  Development Guide
+  开发指南
 
         </a>
       </li>
@@ -296,11 +302,11 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../api-references/api-reference.md" class="md-tabs__link">
+        <a href="../../api-references/api-reference/" class="md-tabs__link">
           
   
   
-  API Reference
+  API 参考
 
         </a>
       </li>
@@ -316,11 +322,11 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../deployment/deployment-operations.md" class="md-tabs__link">
+        <a href="../../deployment/deployment-operations/" class="md-tabs__link">
           
   
   
-  Deployment
+  部署运维
 
         </a>
       </li>
@@ -336,11 +342,11 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../trouble-removal/troubleshooting.md" class="md-tabs__link">
+        <a href="../../trouble-removal/troubleshooting/" class="md-tabs__link">
           
   
   
-  Troubleshooting
+  故障排除
 
         </a>
       </li>
@@ -356,11 +362,11 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../vectordb/01-introduction.md" class="md-tabs__link">
+        <a href="../../vectordb/01-introduction/" class="md-tabs__link">
           
   
   
-  Theory Learning
+  理论学习
 
         </a>
       </li>
@@ -388,19 +394,19 @@
   
 
 
-<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="GoVector Documentation" class="md-nav__button md-logo" aria-label="GoVector Documentation" data-md-component="logo">
+    <a href="../../" title="GoVector 开发文档" class="md-nav__button md-logo" aria-label="GoVector 开发文档" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    GoVector Documentation
+    GoVector 开发文档
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/DotNetAge/govector" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/DotNetAge/govector" title="前往仓库" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
@@ -420,14 +426,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../index.md" class="md-nav__link">
+      <a href="../../" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Home
+    首页
   
 
     
@@ -444,26 +450,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   
@@ -481,7 +492,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -499,14 +510,888 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../quick-start.md" class="md-nav__link">
+      <a href="../../quick-start/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    None
+    快速开始
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI使用指南
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI使用指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 工具概述与核心功能说明
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 工具概述与核心功能说明">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 工具简介
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 核心功能特性
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 与嵌入式模式的区别
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 安装与环境配置步骤
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 安装与环境配置步骤">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 安装方式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 安装方式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#homebrew" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方式一：Homebrew 安装（推荐）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方式二：下载预编译包
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方式三：从源码编译
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 环境要求
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 验证安装
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 基础命令语法结构
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 基础命令语法结构">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 命令行语法概述
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 可用命令列表
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-tui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 交互式 TUI 模式
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 常用命令参数详解
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 常用命令参数详解">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-upsert" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 upsert 命令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 search 命令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-count" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 count 命令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-delete" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 delete 命令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-ls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 ls 命令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46-rm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.6 rm 命令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#47-serve" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.7 serve 命令
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 各功能模块的具体使用示例
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 各功能模块的具体使用示例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 基础向量操作
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.1 基础向量操作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        示例 1：启动服务
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        示例 2：插入向量数据
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        示例 3：执行相似性搜索
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        示例 4：统计向量数量
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        示例 5：删除向量
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        示例 6：查看所有集合
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-tui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 交互式 TUI 模式示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-http-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 服务模式与 HTTP API
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 高级操作技巧与最佳实践
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. 高级操作技巧与最佳实践">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 批量操作优化
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-hnsw" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 使用 HNSW 索引提升搜索性能
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 量化压缩减少存储
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4 守护进程部署
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.5 交互模式中使用历史命令
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 常见问题解决方案及错误代码说明
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. 常见问题解决方案及错误代码说明">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 常见错误及解决方案
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 向量维度不匹配问题
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3 内存不足问题
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#74" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.4 端口占用问题
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. 命令输出结果解释
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. 命令输出结果解释">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 search 命令输出格式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-count" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 count 命令输出格式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-upsert" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3 upsert 命令输出格式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#84-delete" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4 delete 命令输出格式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#85-ls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.5 ls 命令输出格式
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. 配置文件说明及自定义配置方法
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. 配置文件说明及自定义配置方法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.1 环境变量配置
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.2 配置文件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#93" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.3 服务启动参数
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. 版本信息与更新日志
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. 版本信息与更新日志">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#101" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.1 版本信息查看
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#102" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.2 更新日志
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10.2 更新日志">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#v013" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v0.1.3（最新版本）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#v012" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v0.1.2
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#v011" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v0.1.1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#v010" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v0.1.0
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        附录 A：快速参考卡片
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bapi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        附录 B：API 端点参考
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    开发指南
   
 
     
@@ -527,14 +1412,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../usage/cli-guide.md" class="md-nav__link">
+      <a href="../../project-overview/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    None
+    项目概述
   
 
     
@@ -555,70 +1440,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../development-guide.md" class="md-nav__link">
+      <a href="../../data-model/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    None
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../project-overview.md" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    None
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../data-model.md" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    None
+    数据模型
   
 
     
@@ -669,7 +1498,7 @@
   <span class="md-ellipsis">
     
   
-    Development Guide
+    开发指南
   
 
     
@@ -685,7 +1514,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Development Guide
+    开发指南
   
 
           </label>
@@ -721,7 +1550,7 @@
   <span class="md-ellipsis">
     
   
-    Architecture Design
+    架构设计
   
 
     
@@ -737,7 +1566,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Architecture Design
+    架构设计
   
 
           </label>
@@ -750,14 +1579,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../arch/architecture-design.md" class="md-nav__link">
+      <a href="../../arch/architecture-design/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    None
+    架构设计
   
 
     
@@ -778,14 +1607,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../arch/architecture-overview.md" class="md-nav__link">
+      <a href="../../arch/architecture-overview/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    None
+    整体架构概览
   
 
     
@@ -806,14 +1635,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../arch/component-interactions.md" class="md-nav__link">
+      <a href="../../arch/component-interactions/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    None
+    组件交互关系
   
 
     
@@ -834,14 +1663,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../arch/data-flow-analysis.md" class="md-nav__link">
+      <a href="../../arch/data-flow-analysis/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    None
+    数据流分析
   
 
     
@@ -862,14 +1691,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../arch/design-patterns.md" class="md-nav__link">
+      <a href="../../arch/design-patterns/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    None
+    设计模式应用
   
 
     
@@ -921,7 +1750,7 @@
   <span class="md-ellipsis">
     
   
-    Core Modules
+    核心模块
   
 
     
@@ -937,7 +1766,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Core Modules
+    核心模块
   
 
           </label>
@@ -950,14 +1779,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../core/core-modules.md" class="md-nav__link">
+      <a href="../../core/core-modules/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    None
+    核心模块
   
 
     
@@ -978,14 +1807,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../core/collection-management.md" class="md-nav__link">
+      <a href="../../core/collection-management/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    None
+    Collection 集合管理
   
 
     
@@ -1006,14 +1835,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../core/flat-index.md" class="md-nav__link">
+      <a href="../../core/flat-index/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    None
+    FlatIndex 扁平索引
   
 
     
@@ -1034,14 +1863,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../core/hnsw-index.md" class="md-nav__link">
+      <a href="../../core/hnsw-index/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    None
+    HNSWIndex 图索引
   
 
     
@@ -1062,14 +1891,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../core/quantization.md" class="md-nav__link">
+      <a href="../../core/quantization/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    None
+    Quantization 量化系统
   
 
     
@@ -1090,14 +1919,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../core/storage-engine.md" class="md-nav__link">
+      <a href="../../core/storage-engine/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    None
+    Storage 存储引擎
   
 
     
@@ -1118,14 +1947,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../core/data-model-system.md" class="md-nav__link">
+      <a href="../../core/data-model-system/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    None
+    数据模型系统
   
 
     
@@ -1177,7 +2006,7 @@
   <span class="md-ellipsis">
     
   
-    Usage Patterns
+    使用模式
   
 
     
@@ -1193,7 +2022,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Usage Patterns
+    使用模式
   
 
           </label>
@@ -1206,14 +2035,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../usage/usage-patterns.md" class="md-nav__link">
+      <a href="../usage-patterns/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    None
+    使用模式
   
 
     
@@ -1234,14 +2063,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../usage/embedded-mode.md" class="md-nav__link">
+      <a href="../embedded-mode/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    None
+    嵌入式模式
   
 
     
@@ -1262,14 +2091,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../usage/microservice-mode.md" class="md-nav__link">
+      <a href="../microservice-mode/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    None
+    微服务模式
   
 
     
@@ -1290,14 +2119,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../usage/performance-optimization.md" class="md-nav__link">
+      <a href="../performance-optimization/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    None
+    性能优化
   
 
     
@@ -1356,7 +2185,7 @@
   <span class="md-ellipsis">
     
   
-    API Reference
+    API 参考
   
 
     
@@ -1372,7 +2201,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    API Reference
+    API 参考
   
 
           </label>
@@ -1385,14 +2214,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../api-references/api-reference.md" class="md-nav__link">
+      <a href="../../api-references/api-reference/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    None
+    API 参考
   
 
     
@@ -1413,14 +2242,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../api-references/data-models.md" class="md-nav__link">
+      <a href="../../api-references/data-models/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    None
+    数据模型
   
 
     
@@ -1441,14 +2270,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../api-references/point-operations-api.md" class="md-nav__link">
+      <a href="../../api-references/point-operations-api/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    None
+    点操作 API
   
 
     
@@ -1469,14 +2298,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../api-references/collection-management-api.md" class="md-nav__link">
+      <a href="../../api-references/collection-management-api/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    None
+    集合管理 API
   
 
     
@@ -1497,14 +2326,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../api-references/error-handling.md" class="md-nav__link">
+      <a href="../../api-references/error-handling/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    None
+    错误处理
   
 
     
@@ -1555,7 +2384,7 @@
   <span class="md-ellipsis">
     
   
-    Deployment
+    部署运维
   
 
     
@@ -1571,7 +2400,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Deployment
+    部署运维
   
 
           </label>
@@ -1584,14 +2413,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../deployment/deployment-operations.md" class="md-nav__link">
+      <a href="../../deployment/deployment-operations/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    None
+    部署运维
   
 
     
@@ -1612,14 +2441,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../deployment/production-deployment.md" class="md-nav__link">
+      <a href="../../deployment/production-deployment/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    None
+    生产环境部署
   
 
     
@@ -1640,14 +2469,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../deployment/monitoring-alerts.md" class="md-nav__link">
+      <a href="../../deployment/monitoring-alerts/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    None
+    监控告警
   
 
     
@@ -1668,14 +2497,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../deployment/backup-recovery.md" class="md-nav__link">
+      <a href="../../deployment/backup-recovery/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    None
+    备份恢复
   
 
     
@@ -1696,14 +2525,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../deployment/upgrades-migration.md" class="md-nav__link">
+      <a href="../../deployment/upgrades-migration/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    None
+    升级迁移
   
 
     
@@ -1754,7 +2583,7 @@
   <span class="md-ellipsis">
     
   
-    Troubleshooting
+    故障排除
   
 
     
@@ -1770,7 +2599,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Troubleshooting
+    故障排除
   
 
           </label>
@@ -1783,14 +2612,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../trouble-removal/troubleshooting.md" class="md-nav__link">
+      <a href="../../trouble-removal/troubleshooting/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    None
+    故障排除
   
 
     
@@ -1811,14 +2640,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../trouble-removal/installation-issues.md" class="md-nav__link">
+      <a href="../../trouble-removal/installation-issues/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    None
+    安装问题
   
 
     
@@ -1839,14 +2668,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../trouble-removal/performance-issues.md" class="md-nav__link">
+      <a href="../../trouble-removal/performance-issues/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    None
+    性能问题
   
 
     
@@ -1867,14 +2696,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../trouble-removal/data-consistency-issues.md" class="md-nav__link">
+      <a href="../../trouble-removal/data-consistency-issues/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    None
+    数据一致性问题
   
 
     
@@ -1895,14 +2724,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../trouble-removal/debugging-tools.md" class="md-nav__link">
+      <a href="../../trouble-removal/debugging-tools/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    None
+    调试工具和技巧
   
 
     
@@ -1923,14 +2752,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../trouble-removal/configuration-issues.md" class="md-nav__link">
+      <a href="../../trouble-removal/configuration-issues/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    None
+    配置问题
   
 
     
@@ -1981,7 +2810,7 @@
   <span class="md-ellipsis">
     
   
-    Theory Learning
+    理论学习
   
 
     
@@ -1997,7 +2826,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Theory Learning
+    理论学习
   
 
           </label>
@@ -2010,14 +2839,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../vectordb/01-introduction.md" class="md-nav__link">
+      <a href="../../vectordb/01-introduction/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    None
+    第1章：引言 - 向量数据库定义与价值
   
 
     
@@ -2038,14 +2867,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../vectordb/02-history.md" class="md-nav__link">
+      <a href="../../vectordb/02-history/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    None
+    第2章：发展历程 - 关键技术节点与演进
   
 
     
@@ -2066,14 +2895,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../vectordb/03-core-principles.md" class="md-nav__link">
+      <a href="../../vectordb/03-core-principles/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    None
+    第3章：核心原理 - 向量表示、距离计算与索引结构
   
 
     
@@ -2094,14 +2923,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../vectordb/04-basic-concepts.md" class="md-nav__link">
+      <a href="../../vectordb/04-basic-concepts/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    None
+    第4章：基础概念解析 - 嵌入、维度、相似度度量
   
 
     
@@ -2122,14 +2951,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../vectordb/05-applications.md" class="md-nav__link">
+      <a href="../../vectordb/05-applications/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    None
+    第5章：典型应用场景 - AI检索、推荐系统、语义搜索
   
 
     
@@ -2150,14 +2979,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../vectordb/06-learning-path.md" class="md-nav__link">
+      <a href="../../vectordb/06-learning-path/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    None
+    第6章：学习路径与资源推荐
   
 
     
@@ -2191,7 +3020,7 @@
                   <div class="md-sidebar__inner">
                     
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+<nav class="md-nav md-nav--secondary" aria-label="目录">
   
   
   
@@ -2200,7 +3029,7 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      Table of contents
+      目录
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
@@ -3922,7 +4751,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.sections", "search.suggest", "search.highlight", "content.code.highlight", "content.code.copy", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.sections", "search.suggest", "search.highlight", "content.code.highlight", "content.code.copy", "content.code.annotate", "i18n.languages"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
       <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
