@@ -30,29 +30,78 @@ GoVector 已通过全面审计，并被评定为**“工业级优秀”**的嵌�
 ## ✨ 核心特性
 
 - 🚀 **纯 Go & 无 CGO**: 无需处理繁杂的 C/C++ 依赖，可轻松交叉编译至任何平台（Windows、macOS、Linux、边缘设备）。
+- 🛠️ **统一 CLI 工具与丰富 TUI**: 一个 `govector` 二进制文件覆盖所有操作（`serve`, `upsert`, `search`, `ls`, `rm`）。自带美观的绿色主题交互式终端用户界面（TUI）。
 - ⚡ **高性能**: 针对单机性能深度优化，支持千万级向量，搜索延迟低至亚毫秒级。
-- 🧠 **HNSW 索引**: 采用工业级图索引技术，搜索复杂度仅为 $O(\log N)$。
+- 🧠 **HNSW 索引**: 采用工业级图索引技术，搜索复杂度仅为 $O(\log N)$。写入时默认开启并支持自动创建。
 - 💾 **Protobuf & BoltDB**: 使用 Protocol Buffers 与 bbolt 实现极速持久化。支持重启后数据自动发现与加载。
 - 🔍 **高级元数据过滤**: 支持与 Qdrant 类似的 Payload 过滤（精确匹配、范围、前缀、正则、包含）。
 - 📉 **SQ8 量化**: 内置 8-bit 标量量化技术，显著降低大规模数据集的磁盘占用。
-- 🛡️ **可靠性**: 核心逻辑拥有超过 **92% 的测试覆盖率**，支持纳秒级版本控制与存储优先的一致性保障。
+- 🛡️ **可靠性**: 核心逻辑拥有超过 **92% 的测试覆盖率**，支持纳秒级版本控制、存储优先的一致性保障，以及安全的集合管理机制（如保护 "default" 默认集合防误删）。
 - 🔌 **双模式运行**: 
   - **嵌入式库**: 零网络开销，直接导入到你的 Go 后端或桌面应用中。
-  - **独立服务器**: 作为一个轻量级微服务运行，提供兼容 Qdrant 的 REST API。
+  - **独立服务器 / CLI**: 作为一个轻量级微服务运行（提供兼容 Qdrant 的 REST API），或直接通过 CLI 管理数据。
 
 ---
 
-## 📦 安装指南
+## 📦 安装与快速开始
 
-### 选项 A: 作为 Go 依赖库使用
+### 选项 A: 通过 Homebrew 安装 (Mac/Linux)
+最简单的安装并将其作为后台服务运行的方式：
+```bash
+brew tap DotNetAge/govector
+brew install govector
+
+# 启动后台服务 (即启动 REST API 服务器)
+brew services start govector
+```
+
+### 选项 B: 源码编译
+```bash
+git clone https://github.com/DotNetAge/govector.git
+cd govector
+make build
+# 编译后的二进制文件位于 ./bin/govector
+```
+
+### 选项 C: 作为 Go 依赖库使用
 ```bash
 go get github.com/DotNetAge/govector/core
 ```
 
-### 选项 B: 通过 Homebrew 安装 (Mac/Linux 守护进程)
+---
+
+## 🛠️ 命令行与 TUI 使用指南
+
+GoVector 内置了强大的命令行工具 (CLI) 和交互式终端用户界面 (TUI)。
+
+无参数运行二进制文件即可进入 **交互式 TUI**:
 ```bash
-brew tap DotNetAge/govector
-brew install govector
+govector
+```
+*(提供美观的绿色主题环境、`/?` 帮助菜单、自动创建数据库/集合功能，以及优雅的 `serve` 启停支持)。*
+
+或者使用 **直接命令**:
+```bash
+# 基本语法
+govector <command> [dbfile] [options]
+
+# 启动兼容 Qdrant 的 REST API 服务器
+govector serve mydata.db -port 18080
+
+# 插入数据 (如果数据库或集合不存在将自动创建，并默认启用 HNSW)
+govector upsert mydata.db -c documents -j '{"id":"1", "vector":[0.1, 0.2], "payload":{"tag":"A"}}'
+
+# 搜索数据 (自带存在性检查)
+govector search mydata.db -c documents -v 0.1,0.2 -l 5
+
+# 列出所有集合
+govector ls mydata.db
+
+# 统计集合中的数据点数量
+govector count mydata.db -c documents
+
+# 删除集合 (自带安全检查，防止误删 "default" 默认集合)
+govector rm mydata.db -c documents
 ```
 
 ---
@@ -110,7 +159,7 @@ func main() {
 
 ```bash
 # 运行服务器
-go run cmd/govector-server/main.go -port 18080 -db ./govector.db -hnsw=true
+govector serve ./govector.db -port 18080
 
 # API Server ready on http://localhost:18080
 ```

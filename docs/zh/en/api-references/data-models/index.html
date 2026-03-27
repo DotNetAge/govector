@@ -1,0 +1,1601 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="zh">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="GoVector 向量数据库" name="description"/>
+<meta content="goRAG Team" name="author"/>
+<link href="../../../" hreflang="en" rel="alternate"/>
+<link href="../../../" hreflang="zh" rel="alternate"/>
+<link href="../../../assets/images/favicon.png" rel="icon"/>
+<meta content="mkdocs-1.6.1, mkdocs-material-9.7.6" name="generator"/>
+<title>Data Models - GoVector 开发文档</title>
+<link href="../../../assets/stylesheets/main.484c7ddc.min.css" rel="stylesheet"/>
+<link href="../../../assets/stylesheets/palette.ab4e12ef.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+</head>
+<body data-md-color-accent="green" data-md-color-primary="green" data-md-color-scheme="default" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#data-models">
+          跳转至
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header" data-md-component="header">
+<nav aria-label="页眉" class="md-header__inner md-grid">
+<a aria-label="GoVector 开发文档" class="md-header__button md-logo" data-md-component="logo" href="../../.." title="GoVector 开发文档">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            GoVector 开发文档
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              Data Models
+            
+          </span>
+</div>
+</div>
+</div>
+<div class="md-header__option">
+<div class="md-select">
+<button aria-label="选择当前语言" class="md-header__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"></path></svg>
+</button>
+<div class="md-select__inner">
+<ul class="md-select__list">
+<li class="md-select__item">
+<a class="md-select__link" href="../../../" hreflang="en">
+              English
+            </a>
+</li>
+<li class="md-select__item">
+<a class="md-select__link" href="../../../" hreflang="zh">
+              中文
+            </a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="搜索" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="搜索" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+</label>
+<nav aria-label="查找" class="md-search__options">
+<button aria-label="清空当前内容" class="md-search__icon md-icon" tabindex="-1" title="清空当前内容" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+</button>
+</nav>
+<div class="md-search__suggest" data-md-component="search-suggest"></div>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="" tabindex="0">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+<ol class="md-search-result__list" role="presentation"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/DotNetAge/govector" title="前往仓库">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+</div>
+<div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<nav aria-label="标签" class="md-tabs" data-md-component="tabs">
+<div class="md-grid">
+<ul class="md-tabs__list">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../index.md">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../quick-start.md">
+          
+  
+  
+  GoVector
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../arch/architecture-design.md">
+          
+  
+  
+  开发指南
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../api-references/api-reference.md">
+          
+  
+  
+  API 参考
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../deployment/deployment-operations.md">
+          
+  
+  
+  部署运维
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../trouble-removal/troubleshooting.md">
+          
+  
+  
+  故障排除
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../vectordb/01-introduction.md">
+          
+  
+  
+  理论学习
+
+        </a>
+</li>
+</ul>
+</div>
+</nav>
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="导航栏" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="GoVector 开发文档" class="md-nav__button md-logo" data-md-component="logo" href="../../.." title="GoVector 开发文档">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+</a>
+    GoVector 开发文档
+  </label>
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/DotNetAge/govector" title="前往仓库">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+</div>
+<div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../index.md">
+<span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    GoVector
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    GoVector
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../quick-start.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../usage/cli-guide.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../development-guide.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../project-overview.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../data-model.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    开发指南
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    开发指南
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    架构设计
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_3_1">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    架构设计
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../arch/architecture-design.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../arch/architecture-overview.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../arch/component-interactions.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../arch/data-flow-analysis.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../arch/design-patterns.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    核心模块
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_2_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_3_2">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    核心模块
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../core/core-modules.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../core/collection-management.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../core/flat-index.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../core/hnsw-index.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../core/quantization.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../core/storage-engine.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../core/data-model-system.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    使用模式
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_3_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_3_3">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    使用模式
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../usage/usage-patterns.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../usage/embedded-mode.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../usage/microservice-mode.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../usage/performance-optimization.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    API 参考
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    API 参考
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../api-references/api-reference.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../api-references/data-models.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../api-references/point-operations-api.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../api-references/collection-management-api.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../api-references/error-handling.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_5" type="checkbox"/>
+<label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    部署运维
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_5_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_5">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    部署运维
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../deployment/deployment-operations.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../deployment/production-deployment.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../deployment/monitoring-alerts.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../deployment/backup-recovery.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../deployment/upgrades-migration.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_6" type="checkbox"/>
+<label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    故障排除
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_6_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_6">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    故障排除
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../trouble-removal/troubleshooting.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../trouble-removal/installation-issues.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../trouble-removal/performance-issues.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../trouble-removal/data-consistency-issues.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../trouble-removal/debugging-tools.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../trouble-removal/configuration-issues.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_7" type="checkbox"/>
+<label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    理论学习
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_7_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_7">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    理论学习
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../vectordb/01-introduction.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../vectordb/02-history.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../vectordb/03-core-principles.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../vectordb/04-basic-concepts.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../vectordb/05-applications.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../vectordb/06-learning-path.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#project-structure-and-data-model-overview">
+<span class="md-ellipsis">
+      
+        Project Structure and Data Model Overview
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#core-data-structures-overview">
+<span class="md-ellipsis">
+      
+        Core Data Structures Overview
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#architecture-and-data-flow-overview">
+<span class="md-ellipsis">
+      
+        Architecture and Data Flow Overview
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#detailed-data-model-analysis">
+<span class="md-ellipsis">
+      
+        Detailed Data Model Analysis
+      
+    </span>
+</a>
+<nav aria-label="Detailed Data Model Analysis" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#payload-metadata">
+<span class="md-ellipsis">
+      
+        Payload (Metadata)
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pointstruct-vector-point">
+<span class="md-ellipsis">
+      
+        PointStruct (Vector Point)
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#scoredpoint-scored-result">
+<span class="md-ellipsis">
+      
+        ScoredPoint (Scored Result)
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#filter">
+<span class="md-ellipsis">
+      
+        Filter
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#condition">
+<span class="md-ellipsis">
+      
+        Condition
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#matchvalue">
+<span class="md-ellipsis">
+      
+        MatchValue
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#rangevalue">
+<span class="md-ellipsis">
+      
+        RangeValue
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#collectionmeta-collection-metadata">
+<span class="md-ellipsis">
+      
+        CollectionMeta (Collection Metadata)
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#protocol-buffers-and-json-mapping">
+<span class="md-ellipsis">
+      
+        Protocol Buffers and JSON Mapping
+      
+    </span>
+</a>
+<nav aria-label="Protocol Buffers and JSON Mapping" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#protobuf-message-definition-and-field-mapping">
+<span class="md-ellipsis">
+      
+        Protobuf Message Definition and Field Mapping
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#json-mapping-rules">
+<span class="md-ellipsis">
+      
+        JSON Mapping Rules
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#go-struct-and-protobuf-conversion">
+<span class="md-ellipsis">
+      
+        Go Struct and Protobuf Conversion
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#vector-storage-and-serialization-mechanism">
+<span class="md-ellipsis">
+      
+        Vector Storage and Serialization Mechanism
+      
+    </span>
+</a>
+<nav aria-label="Vector Storage and Serialization Mechanism" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#storage-engine-and-container">
+<span class="md-ellipsis">
+      
+        Storage Engine and Container
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#serialization-and-deserialization">
+<span class="md-ellipsis">
+      
+        Serialization and Deserialization
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#version-control-and-consistency">
+<span class="md-ellipsis">
+      
+        Version Control and Consistency
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#data-model-relationship-diagram-and-conversion-rules">
+<span class="md-ellipsis">
+      
+        Data Model Relationship Diagram and Conversion Rules
+      
+    </span>
+</a>
+<nav aria-label="Data Model Relationship Diagram and Conversion Rules" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#conversion-rules">
+<span class="md-ellipsis">
+      
+        Conversion Rules
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#performance-considerations-and-optimization-suggestions">
+<span class="md-ellipsis">
+      
+        Performance Considerations and Optimization Suggestions
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#troubleshooting-guide">
+<span class="md-ellipsis">
+      
+        Troubleshooting Guide
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#conclusion">
+<span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#appendix-data-examples">
+<span class="md-ellipsis">
+      
+        Appendix: Data Examples
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<h1 id="data-models">Data Models<a class="headerlink" href="#data-models" title="Permanent link">¶</a></h1>
+<p>This document systematically outlines GoVector's data models, covering core data structures (PointStruct, ScoredPoint, Filter, Payload, CollectionMeta, etc.), explaining their field definitions, data types, constraints, and use cases; detailing Protocol Buffers binary format and JSON mapping relationships; describing vector data storage format, serialization mechanism, and performance considerations; providing relationship diagrams between data models and conversion rules, and offering practical data examples to aid understanding.</p>
+<h2 id="project-structure-and-data-model-overview">Project Structure and Data Model Overview<a class="headerlink" href="#project-structure-and-data-model-overview" title="Permanent link">¶</a></h2>
+<ul>
+<li>Core data models located in core package:</li>
+<li>models.go: Defines Payload, PointStruct, ScoredPoint, Filter, RangeValue, MatchValue, CollectionMeta and filter matching logic</li>
+<li>proto/point.proto: Defines Protobuf message structures (PointStruct, Value, ScoredPoint, Condition, MatchValue, Filter)</li>
+<li>proto/point.pb.go: Protobuf Go code generated by protoc-gen-go</li>
+<li>storage.go: bbolt-based persistence layer, responsible for serializing PointStruct to Protobuf and writing to disk</li>
+<li>collection.go: Collection abstraction encapsulating Upsert/Search/Delete operations and coordinating storage and index</li>
+<li>math.go: Distance metric enumeration and calculation functions (Cosine, Euclid, Dot)</li>
+<li>hnsw_index.go: HNSW parameters and index implementation</li>
+<li>models_test.go: Unit tests for filter and matching logic, demonstrating typical usage</li>
+<li>README.md: Project features and usage instructions</li>
+</ul>
+<pre class="mermaid"><code>graph TB
+subgraph "Core Data Models"
+A["Payload<br/>String key to arbitrary value"]
+B["PointStruct<br/>ID/Version/Vector/Payload"]
+C["ScoredPoint<br/>ID/Version/Score/Payload"]
+D["Filter<br/>Must/MustNot conditions"]
+E["Condition<br/>Key/Type/Match/Range"]
+F["MatchValue<br/>oneof string/int/float/bool/bytes"]
+G["RangeValue<br/>GT/GTE/LT/LTE"]
+H["CollectionMeta<br/>Name/Dimension/Metric/HNSW params"]
+end
+subgraph "Serialization and Storage"
+P["Protobuf Messages<br/>PointStruct/Value/ScoredPoint/Condition/MatchValue/Filter"]
+S["Storage<br/>bbolt + Protobuf"]
+end
+subgraph "Index and Collection"
+I["Collection<br/>Upsert/Search/Delete"]
+J["HNSWIndex<br/>Parameters and distance functions"]
+end
+B --&gt; P
+C --&gt; P
+D --&gt; E
+E --&gt; F
+E --&gt; G
+P --&gt; S
+I --&gt; S
+I --&gt; J
+</code></pre>
+<h2 id="core-data-structures-overview">Core Data Structures Overview<a class="headerlink" href="#core-data-structures-overview" title="Permanent link">¶</a></h2>
+<ul>
+<li>Payload: String key to arbitrary value metadata mapping, used for filtering and retrieval</li>
+<li>PointStruct: Vector point entity containing unique identifier, version number, vector array, and optional metadata</li>
+<li>ScoredPoint: Query result containing similarity/distance score and point information</li>
+<li>Filter: Query filter supporting Must and MustNot condition sets</li>
+<li>Condition: Single filter condition specifying key, type, and match value or range</li>
+<li>MatchValue: Match value using oneof to support multiple basic types</li>
+<li>RangeValue: Range value supporting greater than/greater than or equal/less than/less than or equal</li>
+<li>CollectionMeta: Collection metadata recording collection name, vector dimension, distance metric, whether HNSW is used, and parameters</li>
+</ul>
+<h2 id="architecture-and-data-flow-overview">Architecture and Data Flow Overview<a class="headerlink" href="#architecture-and-data-flow-overview" title="Permanent link">¶</a></h2>
+<ul>
+<li>Write flow: Application calls Collection.Upsert → Validate dimension and set version → Storage layer writes to bbolt first (Protobuf serialization) → Update in-memory index (Flat or HNSW)</li>
+<li>Query flow: Collection.Search → Lock for reading → Call index Search → Return ScoredPoint list</li>
+<li>Delete flow: Collection.Delete → Determine target IDs (explicit ID or by filter matching) → Delete from storage first then from index</li>
+<li>Filter matching: MatchFilter iterates through Must/MustNot conditions, calling matchCondition for each → Branch processing for exact/range/prefix/contains/regex</li>
+</ul>
+<pre class="mermaid"><code>sequenceDiagram
+participant App as "Application"
+participant Col as "Collection"
+participant St as "Storage"
+participant Idx as "VectorIndex(HNSW/Flat)"
+App-&gt;&gt;Col : Upsert(points)
+Col-&gt;&gt;Col : Validate dimension/set version
+Col-&gt;&gt;St : UpsertPoints(Protobuf serialization)
+St--&gt;&gt;Col : Success/failure
+Col-&gt;&gt;Idx : Upsert(points)
+Idx--&gt;&gt;Col : Success/failure
+Col--&gt;&gt;App : Return
+App-&gt;&gt;Col : Search(query, filter, topK)
+Col-&gt;&gt;Idx : Search(query, filter, topK)
+Idx--&gt;&gt;Col : []ScoredPoint
+Col--&gt;&gt;App : []ScoredPoint
+</code></pre>
+<h2 id="detailed-data-model-analysis">Detailed Data Model Analysis<a class="headerlink" href="#detailed-data-model-analysis" title="Permanent link">¶</a></h2>
+<h3 id="payload-metadata">Payload (Metadata)<a class="headerlink" href="#payload-metadata" title="Permanent link">¶</a></h3>
+<ul>
+<li>Type: map[string]interface{}</li>
+<li>Constraints: Keys must be strings; values can be strings, integers, floats, booleans, byte slices, or arrays of strings/integers (recognized in filters)</li>
+<li>Use cases: Used as matching objects in Filter, supporting multi-condition combinations</li>
+<li>JSON mapping: Directly mapped to JSON object</li>
+</ul>
+<h3 id="pointstruct-vector-point">PointStruct (Vector Point)<a class="headerlink" href="#pointstruct-vector-point" title="Permanent link">¶</a></h3>
+<ul>
+<li>Fields</li>
+<li>ID: string, unique identifier</li>
+<li>Version: uint64, version number (nanosecond-level timestamp)</li>
+<li>Vector: []float32, vector embedding</li>
+<li>Payload: Payload, optional metadata</li>
+<li>Constraints</li>
+<li>Vector length must match collection dimension</li>
+<li>Version number is uniformly set during batch Upsert</li>
+<li>Use cases: Insert/update vector points; target for Protobuf serialization</li>
+</ul>
+<h3 id="scoredpoint-scored-result">ScoredPoint (Scored Result)<a class="headerlink" href="#scoredpoint-scored-result" title="Permanent link">¶</a></h3>
+<ul>
+<li>Fields</li>
+<li>ID: string</li>
+<li>Version: uint64</li>
+<li>Score: float32, similarity or distance score (determined by collection metric - "smaller/larger is more similar")</li>
+<li>Payload: Payload</li>
+<li>Constraints: Score value returned by underlying index; sorting follows metric convention</li>
+<li>Use cases: Search query return results</li>
+</ul>
+<h3 id="filter">Filter<a class="headerlink" href="#filter" title="Permanent link">¶</a></h3>
+<ul>
+<li>Fields</li>
+<li>Must: []Condition, all must be satisfied</li>
+<li>MustNot: []Condition, none can be satisfied</li>
+<li>Constraints: When both Must and MustNot exist, both must be satisfied for a hit</li>
+<li>Use cases: Filter by metadata during Search/Delete</li>
+</ul>
+<h3 id="condition">Condition<a class="headerlink" href="#condition" title="Permanent link">¶</a></h3>
+<ul>
+<li>Fields</li>
+<li>Key: string, metadata key</li>
+<li>Type: ConditionType, match type (exact/range/prefix/contains/regex)</li>
+<li>Match: MatchValue, exact match value</li>
+<li>Range: *RangeValue, range match</li>
+<li>Constraints: Use Range when Type is range; otherwise use Match</li>
+<li>Use cases: Describe single key's filter rule</li>
+</ul>
+<h3 id="matchvalue">MatchValue<a class="headerlink" href="#matchvalue" title="Permanent link">¶</a></h3>
+<ul>
+<li>oneof support: string/int/float/bool/bytes</li>
+<li>Use cases: Value carrier for exact matching in Filter</li>
+</ul>
+<h3 id="rangevalue">RangeValue<a class="headerlink" href="#rangevalue" title="Permanent link">¶</a></h3>
+<ul>
+<li>Fields: GT/GTE/LT/LTE, supports int and float64</li>
+<li>Use cases: Numeric range filtering</li>
+</ul>
+<h3 id="collectionmeta-collection-metadata">CollectionMeta (Collection Metadata)<a class="headerlink" href="#collectionmeta-collection-metadata" title="Permanent link">¶</a></h3>
+<ul>
+<li>Fields</li>
+<li>Name: string</li>
+<li>VectorLen: int</li>
+<li>Metric: Distance</li>
+<li>UseHNSW: bool</li>
+<li>HNSWParams: HNSWParams</li>
+<li>Use cases: Persist collection configuration, recover after restart</li>
+</ul>
+<h2 id="protocol-buffers-and-json-mapping">Protocol Buffers and JSON Mapping<a class="headerlink" href="#protocol-buffers-and-json-mapping" title="Permanent link">¶</a></h2>
+<h3 id="protobuf-message-definition-and-field-mapping">Protobuf Message Definition and Field Mapping<a class="headerlink" href="#protobuf-message-definition-and-field-mapping" title="Permanent link">¶</a></h3>
+<ul>
+<li>PointStruct</li>
+<li>id: string</li>
+<li>vector: repeated float</li>
+<li>payload: map<string, value=""></string,></li>
+<li>Value (oneof)</li>
+<li>string<em>value, int</em>value, double<em>value, bool</em>value, bytes_value</li>
+<li>ScoredPoint</li>
+<li>id: string</li>
+<li>version: uint64</li>
+<li>score: float</li>
+<li>payload: map<string, value=""></string,></li>
+<li>Condition</li>
+<li>key: string</li>
+<li>match: MatchValue</li>
+<li>MatchValue (oneof)</li>
+<li>string<em>value, int</em>value, double<em>value, bool</em>value, bytes_value</li>
+<li>Filter</li>
+<li>must: []Condition</li>
+<li>must_not: []Condition</li>
+</ul>
+<h3 id="json-mapping-rules">JSON Mapping Rules<a class="headerlink" href="#json-mapping-rules" title="Permanent link">¶</a></h3>
+<ul>
+<li>Protobuf field names and JSON names are usually consistent (e.g., id, version, score, must, must_not)</li>
+<li>map<string, value=""> appears as an object in JSON with string keys and Value objects as values</string,></li>
+<li>oneof fields in JSON only output the field that is set (e.g., stringValue, intValue, etc.)</li>
+</ul>
+<h3 id="go-struct-and-protobuf-conversion">Go Struct and Protobuf Conversion<a class="headerlink" href="#go-struct-and-protobuf-conversion" title="Permanent link">¶</a></h3>
+<ul>
+<li>toProtoPoint/fromProtoPoint: Maps core.Payload to pb.Value.oneof, and vice versa</li>
+<li>Note: Go Payload's interface{} values are converted by selecting the appropriate oneof field based on concrete type during conversion; unsupported types are skipped</li>
+</ul>
+<h2 id="vector-storage-and-serialization-mechanism">Vector Storage and Serialization Mechanism<a class="headerlink" href="#vector-storage-and-serialization-mechanism" title="Permanent link">¶</a></h2>
+<h3 id="storage-engine-and-container">Storage Engine and Container<a class="headerlink" href="#storage-engine-and-container" title="Permanent link">¶</a></h3>
+<ul>
+<li>bbolt (BoltDB): One bucket per collection, key is point ID, value is Protobuf-serialized bytes</li>
+<li>Metadata bucket: <strong>collections_meta</strong>, stores CollectionMeta (JSON)</li>
+</ul>
+<h3 id="serialization-and-deserialization">Serialization and Deserialization<a class="headerlink" href="#serialization-and-deserialization" title="Permanent link">¶</a></h3>
+<ul>
+<li>Write: PointStruct → toProtoPoint → proto.Marshal → bbolt.Put</li>
+<li>Read: bbolt.Get → proto.Unmarshal → fromProtoPoint</li>
+<li>Quantization: Optional SQ8 quantization compresses vectors during write and stores in Payload; decompresses to restore during read</li>
+</ul>
+<h3 id="version-control-and-consistency">Version Control and Consistency<a class="headerlink" href="#version-control-and-consistency" title="Permanent link">¶</a></h3>
+<ul>
+<li>Upsert batch write uniformly sets Version (nanosecond-level timestamp)</li>
+<li>Write order: Storage first, then index; if index update fails, attempt rollback of storage (best effort)</li>
+</ul>
+<h2 id="data-model-relationship-diagram-and-conversion-rules">Data Model Relationship Diagram and Conversion Rules<a class="headerlink" href="#data-model-relationship-diagram-and-conversion-rules" title="Permanent link">¶</a></h2>
+<pre class="mermaid"><code>classDiagram
+class Payload {
+    +map[string]interface{}
+}
+class PointStruct {
+    +string ID
+    +uint64 Version
+    +[]float32 Vector
+    +Payload Payload
+}
+class ScoredPoint {
+    +string ID
+    +uint64 Version
+    +float32 Score
+    +Payload Payload
+}
+class Filter {
+    +[]Condition Must
+    +[]Condition MustNot
+}
+class Condition {
+    +string Key
+    +ConditionType Type
+    +MatchValue Match
+    +RangeValue Range
+}
+class MatchValue {
+    +oneof Value
+}
+class RangeValue {
+    +interface{} GT
+    +interface{} GTE
+    +interface{} LT
+    +interface{} LTE
+}
+class CollectionMeta {
+    +string Name
+    +int VectorLen
+    +Distance Metric
+    +bool UseHNSW
+    +HNSWParams HNSWParams
+}
+PointStruct --&gt; Payload : "contains"
+ScoredPoint --&gt; Payload : "contains"
+Filter --&gt; Condition : "contains"
+Condition --&gt; MatchValue : "uses"
+Condition --&gt; RangeValue : "uses"
+</code></pre>
+<h3 id="conversion-rules">Conversion Rules<a class="headerlink" href="#conversion-rules" title="Permanent link">¶</a></h3>
+<ul>
+<li>Go Payload ↔ Protobuf Value.oneof</li>
+<li>string/int/int64/float32/float64/bool/[]byte map to corresponding oneof fields</li>
+<li>Unsupported types are ignored</li>
+<li>CollectionMeta stored as JSON in <strong>collections_meta</strong> bucket</li>
+</ul>
+<h2 id="performance-considerations-and-optimization-suggestions">Performance Considerations and Optimization Suggestions<a class="headerlink" href="#performance-considerations-and-optimization-suggestions" title="Permanent link">¶</a></h2>
+<ul>
+<li>Distance Metrics</li>
+<li>Cosine: Normalized, suitable for vectors of different scales; HNSW uses 1 - cos directly as distance by default</li>
+<li>Euclid: L2 distance, smaller is more similar; HNSW uses standard Euclidean distance</li>
+<li>Dot: Inner product, larger is more similar; HNSW converts to negative value to adapt to minimization strategy</li>
+<li>HNSW Parameters</li>
+<li>M: Maximum connections per node</li>
+<li>EfConstruction/EfSearch: Construction/search candidate list size</li>
+<li>K: Number of neighbors to return</li>
+<li>Quantization</li>
+<li>SQ8 quantization can significantly reduce disk usage; automatically decompressed on load; suitable for large-scale data</li>
+<li>Write Order</li>
+<li>Storage first, then index, ensuring storage-priority consistency; best-effort rollback when index fails</li>
+</ul>
+<h2 id="troubleshooting-guide">Troubleshooting Guide<a class="headerlink" href="#troubleshooting-guide" title="Permanent link">¶</a></h2>
+<ul>
+<li>Dimension mismatch</li>
+<li>Symptom: Upsert/Search errors "dimension mismatch"</li>
+<li>Solution: Ensure PointStruct.Vector length matches collection VectorLen</li>
+<li>Filter not working</li>
+<li>Symptom: Filter not taking effect or misjudging</li>
+<li>Diagnosis: Confirm Key exists in Payload; RangeValue type matches value type (int/float64)</li>
+<li>Regular expression error</li>
+<li>Symptom: matchRegex returns false</li>
+<li>Solution: Check regex syntax; invalid regex will directly return non-match</li>
+<li>Storage closed or unavailable</li>
+<li>Symptom: UpsertPoints/LoadCollection error "storage is closed"</li>
+<li>Solution: Ensure Storage is correctly opened and not closed</li>
+</ul>
+<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">¶</a></h2>
+<p>GoVector's data models revolve around PointStruct, ScoredPoint, Filter, Payload, and CollectionMeta, combined with Protobuf's strong typing and efficient serialization capabilities, as well as bbolt's lightweight persistence, to achieve a high-performance, scalable embedded vector database. Through clear field definitions, strict constraints, and complete filter matching logic, users can quickly build vector retrieval and filtering capabilities on local or edge devices.</p>
+<h2 id="appendix-data-examples">Appendix: Data Examples<a class="headerlink" href="#appendix-data-examples" title="Permanent link">¶</a></h2>
+<p>The following examples show complete representations of each data structure (presented in JSON format for easy understanding of fields and values):</p>
+<ul>
+<li>PointStruct Example</li>
+<li>Fields: id, version, vector, payload</li>
+<li>Payload example key-values: category(string), price(int), in_stock(bool), tags([]string), name(string)</li>
+<li>
+<p>Reference path: <a href="file://core/models_test.go#L8-L15">models_test.go:8-15</a></p>
+</li>
+<li>
+<p>ScoredPoint Example</p>
+</li>
+<li>Fields: id, version, score, payload</li>
+<li>
+<p>Reference path: <a href="file://core/collection.go#L135-L147">collection.go:135-147</a></p>
+</li>
+<li>
+<p>Filter/Condition/MatchValue/RangeValue Example</p>
+</li>
+<li>Filter: must/must_not arrays, each element is Condition</li>
+<li>Condition: key, type, match or range</li>
+<li>MatchValue: oneof fields (string<em>value/int</em>value/double<em>value/bool</em>value/bytes_value)</li>
+<li>RangeValue: gt/gte/lt/lte</li>
+<li>
+<p>Reference path: <a href="file://core/models_test.go#L132-L218">models_test.go:132-218</a>, <a href="file://core/proto/point.proto#L30-L49">point.proto:30-49</a></p>
+</li>
+<li>
+<p>CollectionMeta Example</p>
+</li>
+<li>Fields: name, vector_size, distance, hnsw, parameters</li>
+<li>Reference path: <a href="file://core/collection.go#L56-L66">collection.go:56-66</a></li>
+</ul>
+</article>
+</div>
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+</div>
+</main>
+<footer class="md-footer">
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+<div class="md-copyright__highlight">
+      Copyright © 2024 Raya Info
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.sections", "search.suggest", "search.highlight", "content.code.highlight", "content.code.copy", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+<script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+<script src="../../../javascripts/mathjax.js"></script>
+<script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script type="module">import mermaid from "https://unpkg.com/mermaid@10.4.0/dist/mermaid.esm.min.mjs";
+window.mermaidConfig = {default: {
+    startOnLoad: false
+}};</script></body>
+</html>

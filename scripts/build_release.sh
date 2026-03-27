@@ -2,7 +2,7 @@
 
 # build_release.sh - 自动编译所有平台的 Release 压缩包并更新 Homebrew Formula
 
-VERSION=${1:-"v0.1.3"}
+VERSION=${1:-$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.1.3")}
 APP_NAME="govector"
 OUTPUT_DIR="dist"
 BREW_FORMULA="scripts/release/govector.rb"
@@ -45,7 +45,7 @@ for PLATFORM in "${PLATFORMS[@]}"; do
     env CGO_ENABLED=0 GOOS=$GOOS GOARCH=$GOARCH go build \
         -ldflags "-s -w" \
         -o "$OUTPUT_DIR/$ARCHIVE_DIR/$OUTPUT_NAME" \
-        ./cmd/govector-server
+        ./cmd/govector
     
     # 拷贝 README 和 LICENSE 到压缩包
     cp README.md "$OUTPUT_DIR/$ARCHIVE_DIR/"
@@ -89,11 +89,11 @@ if [ -f "$BREW_FORMULA" ]; then
     # 使用 sed 更新版本号和校验和
     # 注意：这里假设了 Formula 的结构，使用 MacOS 的 sed 语法兼容性处理
     if [[ "$OSTYPE" == "darwin"* ]]; then
-        sed -i '' "s/version \".*\"/version \"${VERSION/v/}\"/" "$BREW_FORMULA"
-        sed -i '' "s|/download/v.*/|/download/${VERSION}/|g" "$BREW_FORMULA"
-        sed -i '' "s/govector_v.*_darwin_arm64.tar.gz/govector_${VERSION}_darwin_arm64.tar.gz/g" "$BREW_FORMULA"
-        sed -i '' "s/govector_v.*_darwin_amd64.tar.gz/govector_${VERSION}_darwin_amd64.tar.gz/g" "$BREW_FORMULA"
-        sed -i '' "s/govector_v.*_linux_amd64.tar.gz/govector_${VERSION}_linux_amd64.tar.gz/g" "$BREW_FORMULA"
+        sed -i '' "s/version \"[0-9.]*\"/version \"${VERSION/v/}\"/" "$BREW_FORMULA"
+        sed -i '' "s|/download/v[0-9.]*/|/download/${VERSION}/|g" "$BREW_FORMULA"
+        sed -i '' "s/govector_v[0-9.]*_darwin_arm64.tar.gz/govector_${VERSION}_darwin_arm64.tar.gz/g" "$BREW_FORMULA"
+        sed -i '' "s/govector_v[0-9.]*_darwin_amd64.tar.gz/govector_${VERSION}_darwin_amd64.tar.gz/g" "$BREW_FORMULA"
+        sed -i '' "s/govector_v[0-9.]*_linux_amd64.tar.gz/govector_${VERSION}_linux_amd64.tar.gz/g" "$BREW_FORMULA"
         
         # 定向更新特定平台的 SHA
         # 这里通过行号定位可能更稳妥，或者利用上下文
@@ -101,11 +101,11 @@ if [ -f "$BREW_FORMULA" ]; then
         perl -i -pe "BEGIN{undef $/;} s/(if OS.mac\? && Hardware::CPU.intel\?.*?sha256 \").*?(\")/\${1}${SHA_DARWIN_AMD64}\${2}/s" "$BREW_FORMULA"
         perl -i -pe "BEGIN{undef $/;} s/(if OS.linux\? && Hardware::CPU.intel\?.*?sha256 \").*?(\")/\${1}${SHA_LINUX_AMD64}\${2}/s" "$BREW_FORMULA"
     else
-        sed -i "s/version \".*\"/version \"${VERSION/v/}\"/" "$BREW_FORMULA"
-        sed -i "s|/download/v.*/|/download/${VERSION}/|g" "$BREW_FORMULA"
-        sed -i "s/govector_v.*_darwin_arm64.tar.gz/govector_${VERSION}_darwin_arm64.tar.gz/g" "$BREW_FORMULA"
-        sed -i "s/govector_v.*_darwin_amd64.tar.gz/govector_${VERSION}_darwin_amd64.tar.gz/g" "$BREW_FORMULA"
-        sed -i "s/govector_v.*_linux_amd64.tar.gz/govector_${VERSION}_linux_amd64.tar.gz/g" "$BREW_FORMULA"
+        sed -i "s/version \"[0-9.]*\"/version \"${VERSION/v/}\"/" "$BREW_FORMULA"
+        sed -i "s|/download/v[0-9.]*/|/download/${VERSION}/|g" "$BREW_FORMULA"
+        sed -i "s/govector_v[0-9.]*_darwin_arm64.tar.gz/govector_${VERSION}_darwin_arm64.tar.gz/g" "$BREW_FORMULA"
+        sed -i "s/govector_v[0-9.]*_darwin_amd64.tar.gz/govector_${VERSION}_darwin_amd64.tar.gz/g" "$BREW_FORMULA"
+        sed -i "s/govector_v[0-9.]*_linux_amd64.tar.gz/govector_${VERSION}_linux_amd64.tar.gz/g" "$BREW_FORMULA"
         
         perl -i -pe "BEGIN{undef $/;} s/(if OS.mac\? && Hardware::CPU.arm\?.*?sha256 \").*?(\")/\${1}${SHA_DARWIN_ARM64}\${2}/s" "$BREW_FORMULA"
         perl -i -pe "BEGIN{undef $/;} s/(if OS.mac\? && Hardware::CPU.intel\?.*?sha256 \").*?(\")/\${1}${SHA_DARWIN_AMD64}\${2}/s" "$BREW_FORMULA"

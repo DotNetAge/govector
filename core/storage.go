@@ -357,3 +357,27 @@ func (s *Storage) DeletePoints(colName string, ids []string) error {
 		return nil
 	})
 }
+
+// DropCollection removes a collection and its metadata from the storage.
+func (s *Storage) DropCollection(name string) error {
+	if s.closed {
+		return fmt.Errorf("storage is closed")
+	}
+
+	return s.db.Update(func(tx *bbolt.Tx) error {
+		// Delete collection bucket
+		if err := tx.DeleteBucket([]byte(name)); err != nil && err != bbolt.ErrBucketNotFound {
+			return fmt.Errorf("failed to delete bucket: %w", err)
+		}
+
+		// Delete metadata
+		metaBucket := tx.Bucket([]byte("__collections_meta__"))
+		if metaBucket != nil {
+			if err := metaBucket.Delete([]byte(name)); err != nil {
+				return fmt.Errorf("failed to delete metadata: %w", err)
+			}
+		}
+
+		return nil
+	})
+}

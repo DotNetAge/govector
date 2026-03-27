@@ -1,0 +1,1741 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="zh">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="GoVector 向量数据库" name="description"/>
+<meta content="goRAG Team" name="author"/>
+<link href="../../../../en/" hreflang="en" rel="alternate"/>
+<link href="../../../" hreflang="zh" rel="alternate"/>
+<link href="../../../assets/images/favicon.png" rel="icon"/>
+<meta content="mkdocs-1.6.1, mkdocs-material-9.7.6" name="generator"/>
+<title>整体架构概览 - GoVector 开发文档</title>
+<link href="../../../assets/stylesheets/main.484c7ddc.min.css" rel="stylesheet"/>
+<link href="../../../assets/stylesheets/palette.ab4e12ef.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+</head>
+<body data-md-color-accent="green" data-md-color-primary="green" data-md-color-scheme="default" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#_1">
+          跳转至
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header" data-md-component="header">
+<nav aria-label="页眉" class="md-header__inner md-grid">
+<a aria-label="GoVector 开发文档" class="md-header__button md-logo" data-md-component="logo" href="../../.." title="GoVector 开发文档">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            GoVector 开发文档
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              整体架构概览
+            
+          </span>
+</div>
+</div>
+</div>
+<div class="md-header__option">
+<div class="md-select">
+<button aria-label="选择当前语言" class="md-header__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"></path></svg>
+</button>
+<div class="md-select__inner">
+<ul class="md-select__list">
+<li class="md-select__item">
+<a class="md-select__link" href="../../../../en/" hreflang="en">
+              English
+            </a>
+</li>
+<li class="md-select__item">
+<a class="md-select__link" href="../../../" hreflang="zh">
+              中文
+            </a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="搜索" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="搜索" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+</label>
+<nav aria-label="查找" class="md-search__options">
+<button aria-label="清空当前内容" class="md-search__icon md-icon" tabindex="-1" title="清空当前内容" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+</button>
+</nav>
+<div class="md-search__suggest" data-md-component="search-suggest"></div>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="" tabindex="0">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+<ol class="md-search-result__list" role="presentation"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/DotNetAge/govector" title="前往仓库">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+</div>
+<div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<nav aria-label="标签" class="md-tabs" data-md-component="tabs">
+<div class="md-grid">
+<ul class="md-tabs__list">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../index.md">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../quick-start.md">
+          
+  
+  
+  GoVector
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../arch/architecture-design.md">
+          
+  
+  
+  开发指南
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../api-references/api-reference.md">
+          
+  
+  
+  API 参考
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../deployment/deployment-operations.md">
+          
+  
+  
+  部署运维
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../trouble-removal/troubleshooting.md">
+          
+  
+  
+  故障排除
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../vectordb/01-introduction.md">
+          
+  
+  
+  理论学习
+
+        </a>
+</li>
+</ul>
+</div>
+</nav>
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="导航栏" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="GoVector 开发文档" class="md-nav__button md-logo" data-md-component="logo" href="../../.." title="GoVector 开发文档">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+</a>
+    GoVector 开发文档
+  </label>
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/DotNetAge/govector" title="前往仓库">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+</div>
+<div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../index.md">
+<span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    GoVector
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    GoVector
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../quick-start.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../usage/cli-guide.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../development-guide.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../project-overview.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../data-model.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    开发指南
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    开发指南
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    架构设计
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_1_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_3_1">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    架构设计
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../arch/architecture-design.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../arch/architecture-overview.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../arch/component-interactions.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../arch/data-flow-analysis.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../arch/design-patterns.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    核心模块
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_2_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_3_2">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    核心模块
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../core/core-modules.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../core/collection-management.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../core/flat-index.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../core/hnsw-index.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../core/quantization.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../core/storage-engine.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../core/data-model-system.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    使用模式
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_3_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_3_3">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    使用模式
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../usage/usage-patterns.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../usage/embedded-mode.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../usage/microservice-mode.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../usage/performance-optimization.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    API 参考
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    API 参考
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../api-references/api-reference.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../api-references/data-models.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../api-references/point-operations-api.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../api-references/collection-management-api.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../api-references/error-handling.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_5" type="checkbox"/>
+<label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    部署运维
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_5_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_5">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    部署运维
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../deployment/deployment-operations.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../deployment/production-deployment.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../deployment/monitoring-alerts.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../deployment/backup-recovery.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../deployment/upgrades-migration.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_6" type="checkbox"/>
+<label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    故障排除
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_6_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_6">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    故障排除
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../trouble-removal/troubleshooting.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../trouble-removal/installation-issues.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../trouble-removal/performance-issues.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../trouble-removal/data-consistency-issues.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../trouble-removal/debugging-tools.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../trouble-removal/configuration-issues.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_7" type="checkbox"/>
+<label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    理论学习
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_7_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_7">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    理论学习
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../vectordb/01-introduction.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../vectordb/02-history.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../vectordb/03-core-principles.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../vectordb/04-basic-concepts.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../vectordb/05-applications.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../vectordb/06-learning-path.md">
+<span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_2">
+<span class="md-ellipsis">
+      
+        项目结构
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_3">
+<span class="md-ellipsis">
+      
+        核心组件
+      
+    </span>
+</a>
+<nav aria-label="核心组件" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_4">
+<span class="md-ellipsis">
+      
+        四层架构设计
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_5">
+<span class="md-ellipsis">
+      
+        关键数据模型
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_6">
+<span class="md-ellipsis">
+      
+        架构总览
+      
+    </span>
+</a>
+<nav aria-label="架构总览" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_7">
+<span class="md-ellipsis">
+      
+        数据流完整流程
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_8">
+<span class="md-ellipsis">
+      
+        架构设计原则
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_9">
+<span class="md-ellipsis">
+      
+        详细组件分析
+      
+    </span>
+</a>
+<nav aria-label="详细组件分析" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#api">
+<span class="md-ellipsis">
+      
+        API 层分析
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_10">
+<span class="md-ellipsis">
+      
+        业务逻辑层分析
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_11">
+<span class="md-ellipsis">
+      
+        索引层分析
+      
+    </span>
+</a>
+<nav aria-label="索引层分析" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#hnsw">
+<span class="md-ellipsis">
+      
+        HNSW 索引实现
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_12">
+<span class="md-ellipsis">
+      
+        扁平索引实现
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_13">
+<span class="md-ellipsis">
+      
+        存储层分析
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_14">
+<span class="md-ellipsis">
+      
+        技术选型权衡
+      
+    </span>
+</a>
+<nav aria-label="技术选型权衡" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#hnsw_1">
+<span class="md-ellipsis">
+      
+        为什么选择 HNSW 索引而非其他算法？
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_15">
+<span class="md-ellipsis">
+      
+        为什么采用嵌入式存储？
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_16">
+<span class="md-ellipsis">
+      
+        依赖关系分析
+      
+    </span>
+</a>
+<nav aria-label="依赖关系分析" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_17">
+<span class="md-ellipsis">
+      
+        外部依赖
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_18">
+<span class="md-ellipsis">
+      
+        内部模块依赖
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_19">
+<span class="md-ellipsis">
+      
+        性能考量
+      
+    </span>
+</a>
+<nav aria-label="性能考量" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_20">
+<span class="md-ellipsis">
+      
+        索引性能对比
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_21">
+<span class="md-ellipsis">
+      
+        量化压缩效果
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_22">
+<span class="md-ellipsis">
+      
+        故障排除指南
+      
+    </span>
+</a>
+<nav aria-label="故障排除指南" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_23">
+<span class="md-ellipsis">
+      
+        常见问题及解决方案
+      
+    </span>
+</a>
+<nav aria-label="常见问题及解决方案" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1">
+<span class="md-ellipsis">
+      
+        1. 收集器创建失败
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2">
+<span class="md-ellipsis">
+      
+        2. 数据持久化异常
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3">
+<span class="md-ellipsis">
+      
+        3. 搜索结果异常
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_24">
+<span class="md-ellipsis">
+      
+        结论
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<h1 id="_1">整体架构概览<a class="headerlink" href="#_1" title="Permanent link">¶</a></h1>
+<p>GoVector 是一个用纯 Go 编写的轻量级、可嵌入向量数据库，旨在为本地 AI 应用、桌面应用和边缘计算场景提供高性能的向量相似性搜索能力。它提供了与 Qdrant 兼容的 REST API，并采用 HNSW 图索引实现近似最近邻搜索，同时通过 BoltDB 实现持久化存储。</p>
+<p>该系统的核心设计理念是：</p>
+<ul>
+<li><strong>分层解耦</strong>：清晰的四层架构，每层职责明确且相互独立</li>
+<li><strong>接口抽象</strong>：通过 VectorIndex 接口实现索引策略的透明切换</li>
+<li><strong>可扩展性</strong>：支持多种距离度量、过滤条件和存储后端</li>
+<li><strong>可靠性</strong>：基于 bbolt 的事务性持久化，保证数据一致性</li>
+</ul>
+<h2 id="_2">项目结构<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
+<p>GoVector 采用模块化的目录结构，按照功能层次组织代码：</p>
+<pre class="mermaid"><code>graph TB
+subgraph "应用层"
+CMD[命令行入口<br/>cmd/govector/main.go]
+API[HTTP API 层<br/>api/server.go]
+end
+subgraph "业务逻辑层"
+CORE[核心业务逻辑<br/>core/collection.go]
+MODELS[数据模型<br/>core/models.go]
+end
+subgraph "索引层"
+INDEX[索引接口<br/>core/index.go]
+HNSW[HNSW 索引<br/>core/hnsw_index.go]
+FLAT[扁平索引<br/>core/flat_index.go]
+end
+subgraph "存储层"
+STORAGE[存储引擎<br/>core/storage.go]
+QUANT[量化器<br/>core/quantization.go]
+end
+CMD --&gt; API
+API --&gt; CORE
+CORE --&gt; INDEX
+INDEX --&gt; HNSW
+INDEX --&gt; FLAT
+CORE --&gt; STORAGE
+STORAGE --&gt; QUANT
+</code></pre>
+<h2 id="_3">核心组件<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>
+<h3 id="_4">四层架构设计<a class="headerlink" href="#_4" title="Permanent link">¶</a></h3>
+<p>GoVector 采用经典的四层架构模式：</p>
+<ol>
+<li><strong>API 层</strong>：提供 RESTful HTTP 接口，处理客户端请求</li>
+<li><strong>业务逻辑层</strong>：封装 Collection 抽象，管理向量集合的生命周期</li>
+<li><strong>索引层</strong>：实现 VectorIndex 接口，支持 HNSW 和扁平索引两种策略</li>
+<li><strong>存储层</strong>：基于 bbolt 的持久化存储，支持向量量化压缩</li>
+</ol>
+<h3 id="_5">关键数据模型<a class="headerlink" href="#_5" title="Permanent link">¶</a></h3>
+<p>系统使用以下核心数据结构：</p>
+<pre class="mermaid"><code>classDiagram
+    class Collection {
+        +string Name
+        +int VectorLen
+        +Distance Metric
+        +VectorIndex index
+        +Storage storage
+        +Upsert(points) error
+        +Search(query, filter, topK) []ScoredPoint
+        +Delete(points, filter) int
+        +Count() int
+
+    }
+    class VectorIndex {
+
+        &lt;<interface>&gt;
+        +Upsert(points) error
+        +Search(query, filter, topK) []ScoredPoint
+        +Delete(id) error
+        +Count() int
+        +GetIDsByFilter(filter) []string
+        +DeleteByFilter(filter) []string
+
+    }
+    class HNSWIndex {
+
+        +Graph graph
+        +map~string, PointStruct~ points
+        +Distance metric
+        +HNSWParams params
+        +Upsert(points) error
+        +Search(query, filter, topK) []ScoredPoint
+        +Delete(id) error
+        +Count() int
+
+    }
+    class FlatIndex {
+
+        +map~string, PointStruct~ points
+        +Distance metric
+        +Upsert(points) error
+        +Search(query, filter, topK) []ScoredPoint
+        +Delete(id) error
+        +Count() int
+
+    }
+    class Storage {
+
+        +bbolt.DB db
+        +Quantizer quantizer
+        +bool useQuant
+        +EnsureCollection(name) error
+        +UpsertPoints(name, points) error
+        +LoadCollection(name) map[string]*PointStruct
+        +DeletePoints(name, ids) error
+
+    }
+    class Server {
+
+        +string addr
+        +map~string, Collection~ collections
+        +Storage store
+        +http.Server httpServer
+        +Start() error
+        +Stop(ctx) error
+        +AddCollection(col)
+
+    }
+    Collection ..|&gt; VectorIndex : implements
+    HNSWIndex ..|&gt; VectorIndex : implements
+    FlatIndex ..|&gt; VectorIndex : implements
+    Collection --&gt; Storage : uses
+    Server --&gt; Collection : manages
+    Server --&gt; Storage : uses
+</interface></code></pre>
+<h2 id="_6">架构总览<a class="headerlink" href="#_6" title="Permanent link">¶</a></h2>
+<h3 id="_7">数据流完整流程<a class="headerlink" href="#_7" title="Permanent link">¶</a></h3>
+<p>从客户端请求到数据持久化的完整数据流如下：</p>
+<pre class="mermaid"><code>sequenceDiagram
+participant Client as 客户端
+participant API as API 层
+participant Collection as 业务逻辑层
+participant Index as 索引层
+participant Storage as 存储层
+Note over Client,Storage : 写入流程 (Upsert)
+Client-&gt;&gt;API : PUT /collections/{name}/points
+API-&gt;&gt;Collection : handleUpsert()
+Collection-&gt;&gt;Collection : 验证向量维度
+Collection-&gt;&gt;Storage : UpsertPoints()
+Storage-&gt;&gt;Storage : 序列化并存储
+Collection-&gt;&gt;Index : Upsert()
+Index-&gt;&gt;Index : 更新内存索引
+API--&gt;&gt;Client : 返回操作结果
+Note over Client,Storage : 查询流程 (Search)
+Client-&gt;&gt;API : POST /collections/{name}/points/search
+API-&gt;&gt;Collection : handleSearch()
+Collection-&gt;&gt;Index : Search()
+Index-&gt;&gt;Index : HNSW 近似搜索
+Index-&gt;&gt;Index : 后过滤 (payload)
+Index--&gt;&gt;Collection : 返回 TopK 结果
+Collection--&gt;&gt;API : 返回查询结果
+API--&gt;&gt;Client : 返回匹配向量
+</code></pre>
+<h3 id="_8">架构设计原则<a class="headerlink" href="#_8" title="Permanent link">¶</a></h3>
+<ol>
+<li><strong>分层解耦</strong>：每层都有明确的职责边界，层间通过接口通信</li>
+<li><strong>接口抽象</strong>：VectorIndex 接口允许透明切换不同的索引策略</li>
+<li><strong>可扩展性</strong>：支持多种距离度量（余弦、欧几里得、点积）</li>
+<li><strong>可靠性</strong>：基于 bbolt 的事务性操作确保数据一致性</li>
+<li><strong>性能优化</strong>：HNSW 索引提供近似但高效的搜索能力</li>
+</ol>
+<h2 id="_9">详细组件分析<a class="headerlink" href="#_9" title="Permanent link">¶</a></h2>
+<h3 id="api">API 层分析<a class="headerlink" href="#api" title="Permanent link">¶</a></h3>
+<p>API 层负责处理 HTTP 请求，提供与 Qdrant 兼容的 REST API：</p>
+<pre class="mermaid"><code>flowchart TD
+Start([HTTP 请求到达]) --&gt; ParsePath["解析路径参数<br/>/collections/{name}"]
+ParsePath --&gt; CheckCollection{"集合是否存在?"}
+CheckCollection --&gt; |否| NotFound["返回 404 Not Found"]
+CheckCollection --&gt; |是| ParseBody["解析请求体 JSON"]
+ParseBody --&gt; ValidateJSON{"JSON 格式有效?"}
+ValidateJSON --&gt; |否| BadRequest["返回 400 Bad Request"]
+ValidateJSON --&gt; |是| ProcessOp["处理具体操作"]
+ProcessOp --&gt; Upsert["Upsert 操作"]
+ProcessOp --&gt; Search["Search 操作"]
+ProcessOp --&gt; Delete["Delete 操作"]
+ProcessOp --&gt; Create["Create Collection 操作"]
+ProcessOp --&gt; DeleteCol["Delete Collection 操作"]
+Upsert --&gt; CallCollection["调用 Collection 方法"]
+Search --&gt; CallCollection
+Delete --&gt; CallCollection
+Create --&gt; CreateCollection["创建新集合"]
+DeleteCol --&gt; RemoveCollection["移除集合"]
+CallCollection --&gt; Success["返回 200 OK"]
+CreateCollection --&gt; Success
+RemoveCollection --&gt; Success
+NotFound --&gt; End([响应结束])
+BadRequest --&gt; End
+Success --&gt; End
+</code></pre>
+<h3 id="_10">业务逻辑层分析<a class="headerlink" href="#_10" title="Permanent link">¶</a></h3>
+<p>Collection 类是业务逻辑的核心，封装了向量集合的所有操作：</p>
+<pre class="mermaid"><code>classDiagram
+    class Collection {
+        +string Name
+        +int VectorLen
+        +Distance Metric
+        +VectorIndex index
+        +Storage storage
+        +RWMutex mu
+        +NewCollection(name, dim, metric, store, useHNSW)
+        +NewCollectionWithParams(name, dim, metric, store, useHNSW, params)
+        +Upsert(points) error
+        +Search(query, filter, topK) []ScoredPoint
+        +Delete(points, filter) int
+        +Count() int
+
+    }
+
+    class UpsertProcess {
+
+        +验证向量维度
+        +设置版本号
+        +持久化到磁盘
+        +更新内存索引
+        +错误回滚
+
+    }
+    class SearchProcess {
+
+        +验证查询向量维度
+        +读锁保护
+        +委托给索引层
+
+    }
+    class DeleteProcess {
+
+        +确定删除目标ID
+        +先删除磁盘数据
+        +再删除内存索引
+        +统计成功数量
+
+    }
+    Collection --&gt; UpsertProcess : 包含
+    Collection --&gt; SearchProcess : 包含
+    Collection --&gt; DeleteProcess : 包含
+</code></pre>
+<h3 id="_11">索引层分析<a class="headerlink" href="#_11" title="Permanent link">¶</a></h3>
+<p>索引层实现了 VectorIndex 接口，提供两种不同的索引策略：</p>
+<h4 id="hnsw">HNSW 索引实现<a class="headerlink" href="#hnsw" title="Permanent link">¶</a></h4>
+<p>HNSW（Hierarchical Navigable Small World）是一种高效的图结构索引：</p>
+<pre class="mermaid"><code>flowchart TD
+HNSWStart([HNSW 初始化]) --&gt; ConfigDist["配置距离函数<br/>Cosine/Euclid/Dot"]
+ConfigDist --&gt; SetParams["设置 HNSW 参数<br/>M, EfConstruction, EfSearch"]
+SetParams --&gt; GraphInit["初始化 hnsw.Graph"]
+GraphInit --&gt; UpsertNodes["批量添加节点"]
+UpsertNodes --&gt; UpdateMap["更新元数据映射"]
+SearchStart([搜索开始]) --&gt; OverFetch["超取策略<br/>fetchK = topK * 10"]
+OverFetch --&gt; HNSWSearch["HNSW 图搜索"]
+HNSWSearch --&gt; PostFilter["后过滤 (payload)"]
+PostFilter --&gt; CalcScore["精确评分计算"]
+CalcScore --&gt; ReturnResults["返回 TopK 结果"]
+DeleteStart([删除开始]) --&gt; DeleteFromGraph["从图中删除节点"]
+DeleteFromGraph --&gt; DeleteFromMap["从映射中删除元数据"]
+DeleteFromMap --&gt; DeleteComplete["删除完成"]
+</code></pre>
+<h4 id="_12">扁平索引实现<a class="headerlink" href="#_12" title="Permanent link">¶</a></h4>
+<p>扁平索引提供精确但低效的暴力搜索：</p>
+<h3 id="_13">存储层分析<a class="headerlink" href="#_13" title="Permanent link">¶</a></h3>
+<p>存储层基于 bbolt 提供持久化能力，支持向量量化压缩：</p>
+<pre class="mermaid"><code>erDiagram
+COLLECTION {
+string name PK
+int vector_len
+enum metric
+bool use_hnsw
+json hnsw_params
+}
+POINT {
+string id PK
+float32[] vector
+json payload
+uint64 version
+}
+META_BUCKET {
+string name PK
+json collection_meta
+}
+COLLECTION ||--o{ POINT : contains
+META_BUCKET ||--|| COLLECTION : metadata_for
+</code></pre>
+<h3 id="_14">技术选型权衡<a class="headerlink" href="#_14" title="Permanent link">¶</a></h3>
+<h4 id="hnsw_1">为什么选择 HNSW 索引而非其他算法？<a class="headerlink" href="#hnsw_1" title="Permanent link">¶</a></h4>
+<ol>
+<li><strong>性能优势</strong>：HNSW 提供 O(log N) 的搜索复杂度，相比扁平索引的 O(n) 性能提升显著</li>
+<li><strong>工业级成熟度</strong>：HNSW 在多个生产环境中得到验证，稳定性可靠</li>
+<li><strong>参数可调性</strong>：通过 M、EfConstruction、EfSearch 等参数可以针对不同场景进行优化</li>
+<li><strong>内存效率</strong>：相比完全图结构，HNSW 的分层结构更节省内存</li>
+</ol>
+<h4 id="_15">为什么采用嵌入式存储？<a class="headerlink" href="#_15" title="Permanent link">¶</a></h4>
+<ol>
+<li><strong>部署简单</strong>：无需额外的数据库服务，单文件即可运行</li>
+<li><strong>可靠性高</strong>：基于 bbolt 的事务性操作，保证数据一致性</li>
+<li><strong>跨平台</strong>：纯 Go 实现，支持多平台编译</li>
+<li><strong>零依赖</strong>：避免复杂的 C/C++ 依赖问题</li>
+</ol>
+<h2 id="_16">依赖关系分析<a class="headerlink" href="#_16" title="Permanent link">¶</a></h2>
+<h3 id="_17">外部依赖<a class="headerlink" href="#_17" title="Permanent link">¶</a></h3>
+<p>GoVector 的外部依赖相对简洁，主要包含三个核心库：</p>
+<pre class="mermaid"><code>graph TB
+GOVECTOR[GoVector 核心代码]
+subgraph "外部依赖"
+HNSW[coder/hnsw<br/>HNSW 图索引实现]
+BBOLT[go.etcd.io/bbolt<br/>嵌入式键值存储]
+PROTOBUF[google.golang.org/protobuf<br/>协议缓冲区]
+end
+GOVECTOR --&gt; HNSW
+GOVECTOR --&gt; BBOLT
+GOVECTOR --&gt; PROTOBUF
+</code></pre>
+<h3 id="_18">内部模块依赖<a class="headerlink" href="#_18" title="Permanent link">¶</a></h3>
+<pre class="mermaid"><code>graph TD
+MAIN[cmd/govector/main.go] --&gt; API[api/server.go]
+MAIN --&gt; CORE[core/collection.go]
+API --&gt; CORE
+CORE --&gt; INDEX[core/index.go]
+INDEX --&gt; HNSW[core/hnsw_index.go]
+INDEX --&gt; FLAT[core/flat_index.go]
+CORE --&gt; STORAGE[core/storage.go]
+STORAGE --&gt; QUANT[core/quantization.go]
+CORE --&gt; MODELS[core/models.go]
+</code></pre>
+<h2 id="_19">性能考量<a class="headerlink" href="#_19" title="Permanent link">¶</a></h2>
+<h3 id="_20">索引性能对比<a class="headerlink" href="#_20" title="Permanent link">¶</a></h3>
+<p>根据项目文档中的基准测试数据：</p>
+<table>
+<thead>
+<tr>
+<th>索引类型</th>
+<th>规模(N)</th>
+<th>构建时间</th>
+<th>平均延迟</th>
+<th>吞吐量(QPS)</th>
+<th>内存占用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>扁平</strong></td>
+<td>100K</td>
+<td>186ms</td>
+<td>54.46ms</td>
+<td>18 QPS</td>
+<td>59MB</td>
+</tr>
+<tr>
+<td><strong>HNSW</strong></td>
+<td>100K</td>
+<td>20.9s</td>
+<td><strong>0.08ms</strong></td>
+<td><strong>11,812 QPS</strong></td>
+<td>311MB</td>
+</tr>
+<tr>
+<td><strong>HNSW</strong></td>
+<td>1M</td>
+<td>4m 17s</td>
+<td><strong>0.11ms</strong></td>
+<td><strong>8,709 QPS</strong></td>
+<td>3.32GB</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_21">量化压缩效果<a class="headerlink" href="#_21" title="Permanent link">¶</a></h3>
+<p>系统支持 SQ8 8位标量量化，可以显著减少存储空间：</p>
+<ul>
+<li><strong>压缩比</strong>：每个维度从 4 字节减少到 1 字节 + 8 字节元信息</li>
+<li><strong>精度损失</strong>：通过最小值和最大值范围控制，保持合理的精度</li>
+<li><strong>性能影响</strong>：量化在加载时进行解压，不影响查询性能</li>
+</ul>
+<h2 id="_22">故障排除指南<a class="headerlink" href="#_22" title="Permanent link">¶</a></h2>
+<h3 id="_23">常见问题及解决方案<a class="headerlink" href="#_23" title="Permanent link">¶</a></h3>
+<h4 id="1">1. 收集器创建失败<a class="headerlink" href="#1" title="Permanent link">¶</a></h4>
+<p><strong>症状</strong>：创建集合时报错
+<strong>可能原因</strong>：
+- 集合名称已存在
+- 向量维度无效
+- 距离度量不支持
+- 存储初始化失败</p>
+<p><strong>解决方法</strong>：
+- 检查集合名称唯一性
+- 验证向量维度必须为正数
+- 确认距离度量字符串正确
+- 检查数据库文件权限</p>
+<h4 id="2">2. 数据持久化异常<a class="headerlink" href="#2" title="Permanent link">¶</a></h4>
+<p><strong>症状</strong>：Upsert 操作后数据丢失
+<strong>可能原因</strong>：
+- 存储层写入失败
+- 内存索引更新后回滚
+- 数据库连接中断</p>
+<p><strong>解决方法</strong>：
+- 检查磁盘空间和权限
+- 验证数据库文件完整性
+- 查看存储层错误日志</p>
+<h4 id="3">3. 搜索结果异常<a class="headerlink" href="#3" title="Permanent link">¶</a></h4>
+<p><strong>症状</strong>：搜索结果为空或不准确
+<strong>可能原因</strong>：
+- 查询向量维度不匹配
+- 过滤条件过于严格
+- HNSW 参数配置不当</p>
+<p><strong>解决方法</strong>：
+- 确认查询向量维度与集合一致
+- 调整过滤条件
+- 优化 HNSW 参数（M、EfSearch）</p>
+<h2 id="_24">结论<a class="headerlink" href="#_24" title="Permanent link">¶</a></h2>
+<p>GoVector 通过清晰的四层架构设计，成功地将复杂的向量搜索功能封装为易于使用的嵌入式数据库。其核心优势包括：</p>
+<ol>
+<li><strong>架构清晰</strong>：分层解耦的设计使得系统易于理解和维护</li>
+<li><strong>性能优异</strong>：HNSW 索引提供接近实时的搜索性能</li>
+<li><strong>部署简单</strong>：单文件部署，零依赖运行</li>
+<li><strong>功能完整</strong>：支持完整的向量搜索、过滤和持久化功能</li>
+</ol>
+<p>该架构为构建本地 AI 应用、桌面程序和边缘计算场景提供了理想的基础设施，既满足了性能需求，又保持了开发的便利性。</p>
+</article>
+</div>
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+</div>
+</main>
+<footer class="md-footer">
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+<div class="md-copyright__highlight">
+      Copyright © 2024 Raya Info
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.sections", "search.suggest", "search.highlight", "content.code.highlight", "content.code.copy", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+<script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+<script src="../../../javascripts/mathjax.js"></script>
+<script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script type="module">import mermaid from "https://unpkg.com/mermaid@10.4.0/dist/mermaid.esm.min.mjs";
+window.mermaidConfig = {default: {
+    startOnLoad: false
+}};</script></body>
+</html>

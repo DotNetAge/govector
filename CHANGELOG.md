@@ -2,7 +2,27 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased] - 2026-03-12
+## [Unreleased]
+
+### Added
+- **Unified CLI (`govector`)**: Merged `govectord` and `govector-server` into a single, comprehensive CLI tool.
+- **Interactive TUI**: Added a green-themed Terminal User Interface (TUI) as the default mode when running `govector` without arguments, featuring a custom ASCII banner and a `/?` help menu.
+- **`rm` Command**: Introduced a command to safely delete collections from the database, with explicit safeguards to prevent the deletion of the "default" collection.
+- **Auto-Creation**: Write operations (like `upsert` and TUI startup) now automatically create the specified database file and collections if they don't exist, defaulting to HNSW indexing.
+- **Existence Validation**: Read operations (`search`, `count`, `delete`) now strictly validate the existence of databases and collections, gracefully exiting with an error if missing.
+- **Dynamic Versioning**: Integrated `git describe --tags` into the build and release pipelines (`Makefile`, `build_release.sh`) for dynamic version resolution, replacing hardcoded version strings.
+
+### Changed
+- **CLI Syntax**: Updated the CLI command syntax to `govector <command> [dbfile] [options]`, making the database file optional (defaults to `govector.db`).
+- **Server Shutdown**: The `serve` command running inside the TUI now handles `Ctrl+C` gracefully, stopping the HTTP server and returning to the TUI prompt instead of terminating the application.
+- **Release Scripts**: Updated Homebrew `.rb` formula and `.service` templates to use the unified `govector serve` command and removed legacy flags (e.g., `-hnsw=true`).
+- **Documentation Sync**: Synchronized all global documentation, including `README.md`, `README_zh.md`, `.docs/`, and `.qoder/repowiki/` content to match the new CLI architecture.
+
+### Removed
+- **`cmd/govector-server`**: Entirely deleted the standalone server entrypoint in favor of the new `govector serve` subcommand.
+- **`govectord`**: Removed the `govectord` binary alias from the Homebrew build pipeline.
+
+## [0.2.0] - 2026-03-12
 
 ### Added
 - **Protobuf Storage Engine**: Replaced JSON serialization with Protocol Buffers for high-performance vector and point persistence.

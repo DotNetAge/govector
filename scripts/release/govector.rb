@@ -23,7 +23,7 @@ class Govector < Formula
   end
 
   def install
-    bin.install "govector" => "govectord"
+    bin.install "govector"
     
     # Create the data directory
     (var/"govector").mkpath
@@ -31,7 +31,7 @@ class Govector < Formula
 
   # This makes 'brew services start govector' work beautifully!
   service do
-    run [opt_bin/"govectord", "-port", "18080", "-db", var/"govector/data.db", "-hnsw=true"]
+    run [opt_bin/"govector", "serve", "-port", "18080", "-db", var/"govector/data.db"]
     keep_alive true
     log_path var/"log/govector.log"
     error_log_path var/"log/govector_error.log"
@@ -39,6 +39,6 @@ class Govector < Formula
   end
 
   test do
-    system "#{bin}/govectord", "-h"
+    system "#{bin}/govector", "-h"
   end
 end

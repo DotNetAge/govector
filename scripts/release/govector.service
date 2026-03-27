@@ -6,7 +6,7 @@ After=network.target
 Type=simple
 User=root
 # Change the path to where you downloaded the govector binary
-ExecStart=/usr/local/bin/govectord -port 18080 -db /var/lib/govector/data.db -hnsw=true
+ExecStart=/usr/local/bin/govector serve -port 18080 -db /var/lib/govector/data.db
 
 Restart=always
 RestartSec=5
