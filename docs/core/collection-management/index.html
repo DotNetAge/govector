@@ -324,7 +324,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../deployment/deployment-operations/" class="md-tabs__link">
+        <a href="../../deployment/" class="md-tabs__link">
           
   
   
@@ -344,7 +344,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../trouble-removal/troubleshooting/" class="md-tabs__link">
+        <a href="../../troubleshooting/" class="md-tabs__link">
           
   
   
@@ -591,14 +591,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../project-overview/" class="md-nav__link">
+      <a href="../../data-model/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Project Overview
+    Data Model
   
 
     
@@ -619,14 +619,42 @@
   
   
     <li class="md-nav__item">
-      <a href="../../data-model/" class="md-nav__link">
+      <a href="../../usage-modes/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Data Model
+    Usage Modes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vector-database-fundamentals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vector Database Fundamentals
   
 
     
@@ -1059,10 +1087,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
+  <a href="#collection-overview" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Overview
+        📋 Collection Overview
       
     </span>
   </a>
@@ -1070,33 +1098,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#class-definition" class="md-nav__link">
+  <a href="#creating-a-collection" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Class Definition
+        🚀 Creating a Collection
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#core-operations" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Core Operations
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Core Operations">
+    <nav class="md-nav" aria-label="🚀 Creating a Collection">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#collection-initialization" class="md-nav__link">
+  <a href="#embedded-mode" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Collection Initialization
+        Embedded Mode
       
     </span>
   </a>
@@ -1104,43 +1121,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#upsert-operation" class="md-nav__link">
+  <a href="#microservice-mode" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Upsert Operation
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#search-operation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Search Operation
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#delete-operation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Delete Operation
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#count-operation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Count Operation
+        Microservice Mode
       
     </span>
   </a>
@@ -1156,19 +1140,19 @@
   <a href="#collection-configuration" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Collection Configuration
+        🔧 Collection Configuration
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Collection Configuration">
+    <nav class="md-nav" aria-label="🔧 Collection Configuration">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#collectionoptions" class="md-nav__link">
+  <a href="#core-parameters" class="md-nav__link">
     <span class="md-ellipsis">
       
-        CollectionOptions
+        Core Parameters
       
     </span>
   </a>
@@ -1176,21 +1160,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#distance-metrics" class="md-nav__link">
+  <a href="#hnsw-index-parameters" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Distance Metrics
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#index-types" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Index Types
+        HNSW Index Parameters
       
     </span>
   </a>
@@ -1203,35 +1176,180 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#hnsw-parameter-configuration" class="md-nav__link">
+  <a href="#persistence" class="md-nav__link">
     <span class="md-ellipsis">
       
-        HNSW Parameter Configuration
+        📁 Persistence
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📁 Persistence">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#saving-a-collection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Saving a Collection
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#thread-safety" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#loading-a-collection" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Thread Safety
+        Loading a Collection
       
     </span>
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#error-handling" class="md-nav__link">
+  <a href="#collection-operations" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Error Handling
+        📊 Collection Operations
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="📊 Collection Operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#upsert-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Upsert Points
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#search-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Search Points
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Delete Points
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Get Points
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#collection-statistics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📈 Collection Statistics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📈 Collection Statistics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-collection-info" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Get Collection Info
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#microservice-mode_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Microservice Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deleting-a-collection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🗑️ Deleting a Collection
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🗑️ Deleting a Collection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#embedded-mode_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Embedded Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#microservice-mode_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Microservice Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1239,7 +1357,107 @@
   <a href="#best-practices" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Best Practices
+        💡 Best Practices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="💡 Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#collection-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Collection Design
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Optimization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Storage Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🚩 Common Issues
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚩 Common Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dimension-mismatch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dimension Mismatch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#out-of-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Out of Memory
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#slow-search-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Slow Search Performance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔗 Related Documentation
       
     </span>
   </a>
@@ -1843,6 +2061,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment and Operations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../deployment/deployment-operations/" class="md-nav__link">
         
   
@@ -2034,6 +2280,34 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -2464,10 +2738,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
+  <a href="#collection-overview" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Overview
+        📋 Collection Overview
       
     </span>
   </a>
@@ -2475,33 +2749,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#class-definition" class="md-nav__link">
+  <a href="#creating-a-collection" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Class Definition
+        🚀 Creating a Collection
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#core-operations" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Core Operations
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Core Operations">
+    <nav class="md-nav" aria-label="🚀 Creating a Collection">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#collection-initialization" class="md-nav__link">
+  <a href="#embedded-mode" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Collection Initialization
+        Embedded Mode
       
     </span>
   </a>
@@ -2509,43 +2772,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#upsert-operation" class="md-nav__link">
+  <a href="#microservice-mode" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Upsert Operation
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#search-operation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Search Operation
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#delete-operation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Delete Operation
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#count-operation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Count Operation
+        Microservice Mode
       
     </span>
   </a>
@@ -2561,19 +2791,19 @@
   <a href="#collection-configuration" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Collection Configuration
+        🔧 Collection Configuration
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Collection Configuration">
+    <nav class="md-nav" aria-label="🔧 Collection Configuration">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#collectionoptions" class="md-nav__link">
+  <a href="#core-parameters" class="md-nav__link">
     <span class="md-ellipsis">
       
-        CollectionOptions
+        Core Parameters
       
     </span>
   </a>
@@ -2581,21 +2811,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#distance-metrics" class="md-nav__link">
+  <a href="#hnsw-index-parameters" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Distance Metrics
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#index-types" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Index Types
+        HNSW Index Parameters
       
     </span>
   </a>
@@ -2608,35 +2827,180 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#hnsw-parameter-configuration" class="md-nav__link">
+  <a href="#persistence" class="md-nav__link">
     <span class="md-ellipsis">
       
-        HNSW Parameter Configuration
+        📁 Persistence
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📁 Persistence">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#saving-a-collection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Saving a Collection
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#thread-safety" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#loading-a-collection" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Thread Safety
+        Loading a Collection
       
     </span>
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#error-handling" class="md-nav__link">
+  <a href="#collection-operations" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Error Handling
+        📊 Collection Operations
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="📊 Collection Operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#upsert-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Upsert Points
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#search-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Search Points
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Delete Points
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Get Points
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#collection-statistics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📈 Collection Statistics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📈 Collection Statistics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-collection-info" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Get Collection Info
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#microservice-mode_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Microservice Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deleting-a-collection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🗑️ Deleting a Collection
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🗑️ Deleting a Collection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#embedded-mode_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Embedded Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#microservice-mode_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Microservice Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2644,7 +3008,107 @@
   <a href="#best-practices" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Best Practices
+        💡 Best Practices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="💡 Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#collection-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Collection Design
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Optimization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Storage Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🚩 Common Issues
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚩 Common Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dimension-mismatch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dimension Mismatch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#out-of-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Out of Memory
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#slow-search-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Slow Search Performance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔗 Related Documentation
       
     </span>
   </a>
@@ -2669,323 +3133,289 @@
 
 
 <h1 id="collection-management">Collection Management<a class="headerlink" href="#collection-management" title="Permanent link">&para;</a></h1>
-<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
-<p>Collection is the core abstraction for managing vector data in GoVector. It provides unified interfaces for vector storage, indexing, and search operations, supporting multiple index types and distance metrics.</p>
-<h2 id="class-definition">Class Definition<a class="headerlink" href="#class-definition" title="Permanent link">&para;</a></h2>
-<div class="language-go highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kd">type</span><span class="w"> </span><span class="nx">Collection</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="nx">mu</span><span class="w">         </span><span class="nx">sync</span><span class="p">.</span><span class="nx">RWMutex</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="nx">name</span><span class="w">       </span><span class="kt">string</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="nx">vectorLen</span><span class="w">  </span><span class="kt">int</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="nx">metric</span><span class="w">     </span><span class="nx">Distance</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="nx">indexType</span><span class="w">  </span><span class="nx">IndexType</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="nx">hnswParams</span><span class="w"> </span><span class="o">*</span><span class="nx">HNSWParams</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="nx">flatIndex</span><span class="w">  </span><span class="o">*</span><span class="nx">FlatIndex</span>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="nx">hnswIndex</span><span class="w">  </span><span class="o">*</span><span class="nx">HNSWIndex</span>
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="nx">storage</span><span class="w">    </span><span class="o">*</span><span class="nx">Storage</span>
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="nx">quantizer</span><span class="w">  </span><span class="o">*</span><span class="nx">SQ8Quantizer</span>
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span><span class="nx">useQuant</span><span class="w">   </span><span class="kt">bool</span>
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="p">}</span>
-</code></pre></div>
-<h2 id="core-operations">Core Operations<a class="headerlink" href="#core-operations" title="Permanent link">&para;</a></h2>
-<h3 id="collection-initialization">Collection Initialization<a class="headerlink" href="#collection-initialization" title="Permanent link">&para;</a></h3>
-<div class="language-go highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kd">func</span><span class="w"> </span><span class="nx">NewCollection</span><span class="p">(</span><span class="nx">opt</span><span class="w"> </span><span class="nx">CollectionOptions</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="nx">Collection</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">opt</span><span class="p">.</span><span class="nx">Name</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="kc">nil</span><span class="p">,</span><span class="w"> </span><span class="nx">errors</span><span class="p">.</span><span class="nx">New</span><span class="p">(</span><span class="s">&quot;collection name cannot be empty&quot;</span><span class="p">)</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">opt</span><span class="p">.</span><span class="nx">VectorLen</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="kc">nil</span><span class="p">,</span><span class="w"> </span><span class="nx">errors</span><span class="p">.</span><span class="nx">New</span><span class="p">(</span><span class="s">&quot;vector length must be positive&quot;</span><span class="p">)</span>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">opt</span><span class="p">.</span><span class="nx">Metric</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nx">Cosine</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">opt</span><span class="p">.</span><span class="nx">Metric</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nx">Euclidean</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">opt</span><span class="p">.</span><span class="nx">Metric</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nx">Dot</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="kc">nil</span><span class="p">,</span><span class="w"> </span><span class="nx">errors</span><span class="p">.</span><span class="nx">New</span><span class="p">(</span><span class="s">&quot;invalid distance metric&quot;</span><span class="p">)</span>
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">    </span><span class="nx">col</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">Collection</span><span class="p">{</span>
-<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">        </span><span class="nx">name</span><span class="p">:</span><span class="w">       </span><span class="nx">opt</span><span class="p">.</span><span class="nx">Name</span><span class="p">,</span>
-<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">        </span><span class="nx">vectorLen</span><span class="p">:</span><span class="w">  </span><span class="nx">opt</span><span class="p">.</span><span class="nx">VectorLen</span><span class="p">,</span>
-<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">        </span><span class="nx">metric</span><span class="p">:</span><span class="w">     </span><span class="nx">opt</span><span class="p">.</span><span class="nx">Metric</span><span class="p">,</span>
-<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">        </span><span class="nx">indexType</span><span class="p">:</span><span class="w">  </span><span class="nx">opt</span><span class="p">.</span><span class="nx">IndexType</span><span class="p">,</span>
-<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">        </span><span class="nx">hnswParams</span><span class="p">:</span><span class="w"> </span><span class="nx">opt</span><span class="p">.</span><span class="nx">HnswParams</span><span class="p">,</span>
-<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>
-<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">    </span><span class="c1">// Initialize storage</span>
-<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="w">    </span><span class="nx">storage</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">NewStorage</span><span class="p">(</span><span class="nx">opt</span><span class="p">.</span><span class="nx">StoragePath</span><span class="p">,</span><span class="w"> </span><span class="nx">opt</span><span class="p">.</span><span class="nx">UseQuantization</span><span class="p">)</span>
-<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="kc">nil</span><span class="p">,</span><span class="w"> </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Errorf</span><span class="p">(</span><span class="s">&quot;failed to initialize storage: %w&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
-<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="w">    </span><span class="nx">col</span><span class="p">.</span><span class="nx">storage</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">storage</span>
-<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>
-<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="w">    </span><span class="c1">// Initialize index based on type</span>
-<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">opt</span><span class="p">.</span><span class="nx">IndexType</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nx">IndexTypeFlat</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="w">        </span><span class="nx">col</span><span class="p">.</span><span class="nx">flatIndex</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">NewFlatIndex</span><span class="p">(</span><span class="nx">opt</span><span class="p">.</span><span class="nx">Metric</span><span class="p">)</span>
-<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="nx">opt</span><span class="p">.</span><span class="nx">IndexType</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nx">IndexTypeHNSW</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nx">col</span><span class="p">.</span><span class="nx">hnswParams</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="w">            </span><span class="nx">col</span><span class="p">.</span><span class="nx">hnswParams</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">DefaultHNSWParams</span>
-<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a><span class="w">        </span><span class="p">}</span>
-<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a><span class="w">        </span><span class="nx">hnswIndex</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">NewHNSWIndex</span><span class="p">(</span><span class="nx">opt</span><span class="p">.</span><span class="nx">Metric</span><span class="p">,</span><span class="w"> </span><span class="nx">col</span><span class="p">.</span><span class="nx">hnswParams</span><span class="p">)</span>
-<a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="kc">nil</span><span class="p">,</span><span class="w"> </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Errorf</span><span class="p">(</span><span class="s">&quot;failed to initialize HNSW index: %w&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
-<a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a><span class="w">        </span><span class="p">}</span>
-<a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a><span class="w">        </span><span class="nx">col</span><span class="p">.</span><span class="nx">hnswIndex</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">hnswIndex</span>
-<a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>
-<a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a><span class="w">    </span><span class="c1">// Initialize quantization</span>
-<a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">opt</span><span class="p">.</span><span class="nx">UseQuantization</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a><span class="w">        </span><span class="nx">col</span><span class="p">.</span><span class="nx">quantizer</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">NewSQ8Quantizer</span><span class="p">()</span>
-<a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a><span class="w">        </span><span class="nx">col</span><span class="p">.</span><span class="nx">useQuant</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">true</span>
-<a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a>
-<a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a><span class="w">    </span><span class="c1">// Load existing data from storage</span>
-<a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">col</span><span class="p">.</span><span class="nx">loadFromStorage</span><span class="p">();</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="kc">nil</span><span class="p">,</span><span class="w"> </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Errorf</span><span class="p">(</span><span class="s">&quot;failed to load from storage: %w&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
-<a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a>
-<a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">col</span><span class="p">,</span><span class="w"> </span><span class="kc">nil</span>
-<a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a><span class="p">}</span>
-</code></pre></div>
-<h3 id="upsert-operation">Upsert Operation<a class="headerlink" href="#upsert-operation" title="Permanent link">&para;</a></h3>
-<p>The Upsert operation is used to add or update vectors. When a vector with the same ID exists, it will be updated; otherwise, it will be inserted.</p>
-<div class="language-go highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">c</span><span class="w"> </span><span class="o">*</span><span class="nx">Collection</span><span class="p">)</span><span class="w"> </span><span class="nx">Upsert</span><span class="p">(</span><span class="nx">points</span><span class="w"> </span><span class="p">[]</span><span class="o">*</span><span class="nx">PointStruct</span><span class="p">)</span><span class="w"> </span><span class="kt">error</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="nx">c</span><span class="p">.</span><span class="nx">mu</span><span class="p">.</span><span class="nx">Lock</span><span class="p">()</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="k">defer</span><span class="w"> </span><span class="nx">c</span><span class="p">.</span><span class="nx">mu</span><span class="p">.</span><span class="nx">Unlock</span><span class="p">()</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">c</span><span class="p">.</span><span class="nx">closed</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">errors</span><span class="p">.</span><span class="nx">New</span><span class="p">(</span><span class="s">&quot;collection is closed&quot;</span><span class="p">)</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
-<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">    </span><span class="c1">// Validate all points</span>
-<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="nx">_</span><span class="p">,</span><span class="w"> </span><span class="nx">p</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">range</span><span class="w"> </span><span class="nx">points</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">Vector</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nx">c</span><span class="p">.</span><span class="nx">vectorLen</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Errorf</span><span class="p">(</span><span class="s">&quot;vector length mismatch: expected %d, got %d&quot;</span><span class="p">,</span>
-<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">                </span><span class="nx">c</span><span class="p">.</span><span class="nx">vectorLen</span><span class="p">,</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">Vector</span><span class="p">))</span>
-<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">        </span><span class="p">}</span>
-<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>
-<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="w">    </span><span class="c1">// Add to indexes</span>
-<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">c</span><span class="p">.</span><span class="nx">flatIndex</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">c</span><span class="p">.</span><span class="nx">flatIndex</span><span class="p">.</span><span class="nx">AddPoints</span><span class="p">(</span><span class="nx">points</span><span class="p">);</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="nx">err</span>
-<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="w">        </span><span class="p">}</span>
-<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">c</span><span class="p">.</span><span class="nx">hnswIndex</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">c</span><span class="p">.</span><span class="nx">hnswIndex</span><span class="p">.</span><span class="nx">AddPoints</span><span class="p">(</span><span class="nx">points</span><span class="p">);</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="nx">err</span>
-<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a><span class="w">        </span><span class="p">}</span>
-<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a>
-<a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a><span class="w">    </span><span class="c1">// Persist to storage</span>
-<a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">c</span><span class="p">.</span><span class="nx">storage</span><span class="p">.</span><span class="nx">UpsertPoints</span><span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span><span class="w"> </span><span class="nx">points</span><span class="p">);</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Errorf</span><span class="p">(</span><span class="s">&quot;failed to persist points: %w&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
-<a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a>
-<a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kc">nil</span>
-<a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a><span class="p">}</span>
-</code></pre></div>
-<h3 id="search-operation">Search Operation<a class="headerlink" href="#search-operation" title="Permanent link">&para;</a></h3>
-<p>The Search operation finds the top-K vectors most similar to the query vector.</p>
-<div class="language-go highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">c</span><span class="w"> </span><span class="o">*</span><span class="nx">Collection</span><span class="p">)</span><span class="w"> </span><span class="nx">Search</span><span class="p">(</span><span class="nx">query</span><span class="w"> </span><span class="p">[]</span><span class="kt">float32</span><span class="p">,</span><span class="w"> </span><span class="nx">filter</span><span class="w"> </span><span class="o">*</span><span class="nx">Filter</span><span class="p">,</span><span class="w"> </span><span class="nx">topK</span><span class="w"> </span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="p">([]</span><span class="nx">ScoredPoint</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="nx">c</span><span class="p">.</span><span class="nx">mu</span><span class="p">.</span><span class="nx">RLock</span><span class="p">()</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="k">defer</span><span class="w"> </span><span class="nx">c</span><span class="p">.</span><span class="nx">mu</span><span class="p">.</span><span class="nx">RUnlock</span><span class="p">()</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">c</span><span class="p">.</span><span class="nx">closed</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="kc">nil</span><span class="p">,</span><span class="w"> </span><span class="nx">errors</span><span class="p">.</span><span class="nx">New</span><span class="p">(</span><span class="s">&quot;collection is closed&quot;</span><span class="p">)</span>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
-<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="nx">query</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nx">c</span><span class="p">.</span><span class="nx">vectorLen</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="kc">nil</span><span class="p">,</span><span class="w"> </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Errorf</span><span class="p">(</span><span class="s">&quot;query vector length mismatch: expected %d, got %d&quot;</span><span class="p">,</span>
-<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">            </span><span class="nx">c</span><span class="p">.</span><span class="nx">vectorLen</span><span class="p">,</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="nx">query</span><span class="p">))</span>
-<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>
-<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">topK</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="kc">nil</span><span class="p">,</span><span class="w"> </span><span class="nx">errors</span><span class="p">.</span><span class="nx">New</span><span class="p">(</span><span class="s">&quot;topK must be positive&quot;</span><span class="p">)</span>
-<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>
-<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">results</span><span class="w"> </span><span class="p">[]</span><span class="nx">ScoredPoint</span>
-<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="kt">error</span>
-<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>
-<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">c</span><span class="p">.</span><span class="nx">flatIndex</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="w">        </span><span class="nx">results</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">c</span><span class="p">.</span><span class="nx">flatIndex</span><span class="p">.</span><span class="nx">Search</span><span class="p">(</span><span class="nx">query</span><span class="p">,</span><span class="w"> </span><span class="nx">filter</span><span class="p">,</span><span class="w"> </span><span class="nx">topK</span><span class="p">)</span>
-<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="nx">c</span><span class="p">.</span><span class="nx">hnswIndex</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="w">        </span><span class="nx">results</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">c</span><span class="p">.</span><span class="nx">hnswIndex</span><span class="p">.</span><span class="nx">Search</span><span class="p">(</span><span class="nx">query</span><span class="p">,</span><span class="w"> </span><span class="nx">filter</span><span class="p">,</span><span class="w"> </span><span class="nx">topK</span><span class="p">)</span>
-<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>
-<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="kc">nil</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span>
-<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a>
-<a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">results</span><span class="p">,</span><span class="w"> </span><span class="kc">nil</span>
-<a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a><span class="p">}</span>
-</code></pre></div>
-<h3 id="delete-operation">Delete Operation<a class="headerlink" href="#delete-operation" title="Permanent link">&para;</a></h3>
-<p>The Delete operation removes vectors from the collection based on ID or filter conditions.</p>
-<div class="language-go highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">c</span><span class="w"> </span><span class="o">*</span><span class="nx">Collection</span><span class="p">)</span><span class="w"> </span><span class="nx">Delete</span><span class="p">(</span><span class="nx">pointIDs</span><span class="w"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">filter</span><span class="w"> </span><span class="o">*</span><span class="nx">Filter</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="nx">c</span><span class="p">.</span><span class="nx">mu</span><span class="p">.</span><span class="nx">Lock</span><span class="p">()</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="k">defer</span><span class="w"> </span><span class="nx">c</span><span class="p">.</span><span class="nx">mu</span><span class="p">.</span><span class="nx">Unlock</span><span class="p">()</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">c</span><span class="p">.</span><span class="nx">closed</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nx">errors</span><span class="p">.</span><span class="nx">New</span><span class="p">(</span><span class="s">&quot;collection is closed&quot;</span><span class="p">)</span>
-<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>
-<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">    </span><span class="nx">deletedCount</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span>
-<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>
-<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">    </span><span class="c1">// Delete from indexes</span>
-<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">c</span><span class="p">.</span><span class="nx">flatIndex</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">        </span><span class="nx">count</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">c</span><span class="p">.</span><span class="nx">flatIndex</span><span class="p">.</span><span class="nx">Delete</span><span class="p">(</span><span class="nx">pointIDs</span><span class="p">,</span><span class="w"> </span><span class="nx">filter</span><span class="p">)</span>
-<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="nx">deletedCount</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span>
-<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="w">        </span><span class="p">}</span>
-<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="w">        </span><span class="nx">deletedCount</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">count</span>
-<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">c</span><span class="p">.</span><span class="nx">hnswIndex</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a><span class="w">        </span><span class="nx">count</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">c</span><span class="p">.</span><span class="nx">hnswIndex</span><span class="p">.</span><span class="nx">Delete</span><span class="p">(</span><span class="nx">pointIDs</span><span class="p">,</span><span class="w"> </span><span class="nx">filter</span><span class="p">)</span>
-<a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="nx">deletedCount</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span>
-<a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a><span class="w">        </span><span class="p">}</span>
-<a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a><span class="w">        </span><span class="nx">deletedCount</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">count</span>
-<a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a>
-<a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a><span class="w">    </span><span class="c1">// Delete from storage</span>
-<a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">c</span><span class="p">.</span><span class="nx">storage</span><span class="p">.</span><span class="nx">DeletePoints</span><span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span><span class="w"> </span><span class="nx">pointIDs</span><span class="p">,</span><span class="w"> </span><span class="nx">filter</span><span class="p">);</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">deletedCount</span><span class="p">,</span><span class="w"> </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Errorf</span><span class="p">(</span><span class="s">&quot;failed to delete from storage: %w&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
-<a id="__codelineno-4-30" name="__codelineno-4-30" href="#__codelineno-4-30"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-4-31" name="__codelineno-4-31" href="#__codelineno-4-31"></a>
-<a id="__codelineno-4-32" name="__codelineno-4-32" href="#__codelineno-4-32"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">deletedCount</span><span class="p">,</span><span class="w"> </span><span class="kc">nil</span>
-<a id="__codelineno-4-33" name="__codelineno-4-33" href="#__codelineno-4-33"></a><span class="p">}</span>
-</code></pre></div>
-<h3 id="count-operation">Count Operation<a class="headerlink" href="#count-operation" title="Permanent link">&para;</a></h3>
-<p>Returns the total number of vectors in the collection.</p>
-<div class="language-go highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">c</span><span class="w"> </span><span class="o">*</span><span class="nx">Collection</span><span class="p">)</span><span class="w"> </span><span class="nx">Count</span><span class="p">()</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="nx">c</span><span class="p">.</span><span class="nx">mu</span><span class="p">.</span><span class="nx">RLock</span><span class="p">()</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="k">defer</span><span class="w"> </span><span class="nx">c</span><span class="p">.</span><span class="nx">mu</span><span class="p">.</span><span class="nx">RUnlock</span><span class="p">()</span>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">c</span><span class="p">.</span><span class="nx">flatIndex</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">c</span><span class="p">.</span><span class="nx">flatIndex</span><span class="p">.</span><span class="nx">Size</span><span class="p">()</span>
-<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">c</span><span class="p">.</span><span class="nx">hnswIndex</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">c</span><span class="p">.</span><span class="nx">hnswIndex</span><span class="p">.</span><span class="nx">Size</span><span class="p">()</span>
-<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span>
-<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="p">}</span>
-</code></pre></div>
-<h2 id="collection-configuration">Collection Configuration<a class="headerlink" href="#collection-configuration" title="Permanent link">&para;</a></h2>
-<h3 id="collectionoptions">CollectionOptions<a class="headerlink" href="#collectionoptions" title="Permanent link">&para;</a></h3>
-<div class="language-go highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kd">type</span><span class="w"> </span><span class="nx">CollectionOptions</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="nx">Name</span><span class="w">            </span><span class="kt">string</span>
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="nx">VectorLen</span><span class="w">       </span><span class="kt">int</span>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="nx">Metric</span><span class="w">          </span><span class="nx">Distance</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">    </span><span class="nx">IndexType</span><span class="w">       </span><span class="nx">IndexType</span>
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">    </span><span class="nx">StoragePath</span><span class="w">     </span><span class="kt">string</span>
-<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">    </span><span class="nx">HnswParams</span><span class="w">      </span><span class="o">*</span><span class="nx">HNSWParams</span>
-<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">    </span><span class="nx">UseQuantization</span><span class="w"> </span><span class="kt">bool</span>
-<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="p">}</span>
-</code></pre></div>
-<h3 id="distance-metrics">Distance Metrics<a class="headerlink" href="#distance-metrics" title="Permanent link">&para;</a></h3>
-<p>GoVector supports three distance metrics:</p>
-<table>
-<thead>
-<tr>
-<th>Metric</th>
-<th>Description</th>
-<th>Use Case</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Cosine</td>
-<td>Cosine Similarity</td>
-<td>Text embeddings, semantic search</td>
-</tr>
-<tr>
-<td>Euclidean</td>
-<td>Euclidean Distance</td>
-<td>Image features, general similarity</td>
-</tr>
-<tr>
-<td>Dot</td>
-<td>Dot Product</td>
-<td>Unnormalized vectors, recommendation systems</td>
-</tr>
-</tbody>
-</table>
-<h3 id="index-types">Index Types<a class="headerlink" href="#index-types" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Index Type</th>
-<th>Description</th>
-<th>Best For</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Flat</td>
-<td>Brute-force exact search</td>
-<td>Small datasets, accuracy-critical scenarios</td>
-</tr>
-<tr>
-<td>HNSW</td>
-<td>Hierarchical Navigableable Small World</td>
-<td>Large datasets, latency-critical scenarios</td>
-</tr>
-</tbody>
-</table>
-<h2 id="hnsw-parameter-configuration">HNSW Parameter Configuration<a class="headerlink" href="#hnsw-parameter-configuration" title="Permanent link">&para;</a></h2>
-<p>HNSW index performance depends on the following key parameters:</p>
-<div class="language-go highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kd">type</span><span class="w"> </span><span class="nx">HNSWParams</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="nx">M</span><span class="w">              </span><span class="kt">int</span><span class="w">  </span><span class="c1">// Maximum connections per node (default: 16)</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="nx">EfConstruction</span><span class="w"> </span><span class="kt">int</span><span class="w">  </span><span class="c1">// Candidate list size during construction (default: 200)</span>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="nx">EfSearch</span><span class="w">       </span><span class="kt">int</span><span class="w">  </span><span class="c1">// Candidate list size during search (default: 64)</span>
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">    </span><span class="nx">K</span><span class="w">              </span><span class="kt">int</span><span class="w">  </span><span class="c1">// Number of neighbors (default: 10)</span>
-<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="p">}</span>
-</code></pre></div>
-<p>Parameter tuning recommendations:</p>
+<p>Collections are the primary organizational unit in GoVector, similar to tables in traditional databases. This document explains how to create, configure, and manage collections effectively.</p>
+<h2 id="collection-overview">📋 Collection Overview<a class="headerlink" href="#collection-overview" title="Permanent link">&para;</a></h2>
+<p>A collection is a container for vectors with specific configuration parameters. Each collection has its own:</p>
 <ul>
-<li><strong>M</strong>: Higher values improve accuracy but increase memory usage and construction time</li>
-<li><strong>EfConstruction</strong>: Higher values improve index quality but increase construction time</li>
-<li><strong>EfSearch</strong>: Higher values improve search accuracy but increase latency</li>
+<li><strong>Vector configuration</strong> (dimension, distance metric)</li>
+<li><strong>Indexing strategy</strong> (HNSW or Flat)</li>
+<li><strong>Quantization settings</strong> (SQ8 compression)</li>
+<li><strong>Storage location</strong> (local directory)</li>
 </ul>
-<h2 id="thread-safety">Thread Safety<a class="headerlink" href="#thread-safety" title="Permanent link">&para;</a></h2>
-<p>The Collection class is thread-safe, using read-write locks to support concurrent read operations while ensuring exclusive access for write operations.</p>
-<h2 id="error-handling">Error Handling<a class="headerlink" href="#error-handling" title="Permanent link">&para;</a></h2>
-<p>Common errors and handling strategies:</p>
+<h2 id="creating-a-collection">🚀 Creating a Collection<a class="headerlink" href="#creating-a-collection" title="Permanent link">&para;</a></h2>
+<h3 id="embedded-mode">Embedded Mode<a class="headerlink" href="#embedded-mode" title="Permanent link">&para;</a></h3>
+<div class="language-go highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="s">&quot;github.com/yourusername/govector/core&quot;</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">)</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1">// Create a new collection with custom configuration</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="nx">collection</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">core</span><span class="p">.</span><span class="nx">NewCollection</span><span class="p">(</span><span class="nx">core</span><span class="p">.</span><span class="nx">CollectionConfig</span><span class="p">{</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="nx">Name</span><span class="p">:</span><span class="w">       </span><span class="s">&quot;my-collection&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="nx">VectorLen</span><span class="p">:</span><span class="w">  </span><span class="mi">768</span><span class="p">,</span><span class="w">             </span><span class="c1">// Vector dimension</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="nx">Metric</span><span class="p">:</span><span class="w">     </span><span class="nx">core</span><span class="p">.</span><span class="nx">Cosine</span><span class="p">,</span><span class="w">      </span><span class="c1">// Distance metric (Cosine, Euclidean, Dot)</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="nx">IndexType</span><span class="p">:</span><span class="w">  </span><span class="nx">core</span><span class="p">.</span><span class="nx">HNSW</span><span class="p">,</span><span class="w">        </span><span class="c1">// Index type (HNSW or Flat)</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="nx">Quantize</span><span class="p">:</span><span class="w">   </span><span class="kc">false</span><span class="p">,</span><span class="w">            </span><span class="c1">// Enable/disable SQ8 quantization</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span><span class="nx">M</span><span class="p">:</span><span class="w">          </span><span class="mi">16</span><span class="p">,</span><span class="w">               </span><span class="c1">// HNSW M parameter (number of connections per node)</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">    </span><span class="nx">EfConstruction</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">          </span><span class="c1">// HNSW construction parameter</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">    </span><span class="nx">EfSearch</span><span class="p">:</span><span class="w">   </span><span class="mi">10</span><span class="p">,</span><span class="w">               </span><span class="c1">// HNSW search parameter</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="p">})</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">    </span><span class="nx">log</span><span class="p">.</span><span class="nx">Fatalf</span><span class="p">(</span><span class="s">&quot;Failed to create collection: %v&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="p">}</span>
+</code></pre></div>
+<h3 id="microservice-mode">Microservice Mode<a class="headerlink" href="#microservice-mode" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:6333/collections<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="s1">    &quot;name&quot;: &quot;my-collection&quot;,</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="s1">    &quot;vectors&quot;: {</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="s1">      &quot;size&quot;: 768,</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="s1">      &quot;distance&quot;: &quot;Cosine&quot;</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="s1">    },</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="s1">    &quot;hnsw_config&quot;: {</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="s1">      &quot;m&quot;: 16,</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="s1">      &quot;ef_construction&quot;: 200,</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="s1">      &quot;ef&quot;: 10</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="s1">    },</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="s1">    &quot;quantization_config&quot;: {</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="s1">      &quot;enabled&quot;: false</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="s1">    }</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="s1">  }&#39;</span>
+</code></pre></div>
+<h2 id="collection-configuration">🔧 Collection Configuration<a class="headerlink" href="#collection-configuration" title="Permanent link">&para;</a></h2>
+<h3 id="core-parameters">Core Parameters<a class="headerlink" href="#core-parameters" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
-<th>Error</th>
-<th>Cause</th>
-<th>Handling</th>
+<th style="text-align: left;">Parameter</th>
+<th style="text-align: left;">Description</th>
+<th style="text-align: left;">Default</th>
+<th style="text-align: left;">Range</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Empty collection name</td>
-<td>Invalid parameter</td>
-<td>Check before initialization</td>
+<td style="text-align: left;"><code>VectorLen</code></td>
+<td style="text-align: left;">Vector dimension</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">1-∞</td>
 </tr>
 <tr>
-<td>Vector length mismatch</td>
-<td>Data inconsistency</td>
-<td>Validate before upsert</td>
+<td style="text-align: left;"><code>Metric</code></td>
+<td style="text-align: left;">Distance metric</td>
+<td style="text-align: left;"><code>Cosine</code></td>
+<td style="text-align: left;"><code>Cosine</code>, <code>Euclidean</code>, <code>Dot</code></td>
 </tr>
 <tr>
-<td>Storage failure</td>
-<td>Disk issues</td>
-<td>Check disk space and permissions</td>
+<td style="text-align: left;"><code>IndexType</code></td>
+<td style="text-align: left;">Index type</td>
+<td style="text-align: left;"><code>HNSW</code></td>
+<td style="text-align: left;"><code>HNSW</code>, <code>Flat</code></td>
 </tr>
 <tr>
-<td>Index failure</td>
-<td>Memory issues</td>
-<td>Reduce data volume or parameters</td>
+<td style="text-align: left;"><code>Quantize</code></td>
+<td style="text-align: left;">Enable SQ8 quantization</td>
+<td style="text-align: left;"><code>false</code></td>
+<td style="text-align: left;"><code>true</code>, <code>false</code></td>
 </tr>
 </tbody>
 </table>
-<h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
-<ol>
-<li><strong>Batch Operations</strong>: Use batch upsert instead of single inserts for better performance</li>
-<li><strong>Index Selection</strong>: Choose Flat for datasets under 10,000 vectors, HNSW for larger datasets</li>
-<li><strong>Memory Management</strong>: Enable quantization for large datasets to reduce memory usage</li>
-<li><strong>Filter Optimization</strong>: Use early filtering to reduce search scope</li>
-<li><strong>Regular Persistence</strong>: Important data should be persisted to disk regularly</li>
-</ol>
+<h3 id="hnsw-index-parameters">HNSW Index Parameters<a class="headerlink" href="#hnsw-index-parameters" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Parameter</th>
+<th style="text-align: left;">Description</th>
+<th style="text-align: left;">Default</th>
+<th style="text-align: left;">Range</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>M</code></td>
+<td style="text-align: left;">Number of connections per node</td>
+<td style="text-align: left;">16</td>
+<td style="text-align: left;">4-64</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>EfConstruction</code></td>
+<td style="text-align: left;">Size of the dynamic candidate list during construction</td>
+<td style="text-align: left;">200</td>
+<td style="text-align: left;">10-∞</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>EfSearch</code></td>
+<td style="text-align: left;">Size of the dynamic candidate list during search</td>
+<td style="text-align: left;">10</td>
+<td style="text-align: left;">10-∞</td>
+</tr>
+</tbody>
+</table>
+<h2 id="persistence">📁 Persistence<a class="headerlink" href="#persistence" title="Permanent link">&para;</a></h2>
+<h3 id="saving-a-collection">Saving a Collection<a class="headerlink" href="#saving-a-collection" title="Permanent link">&para;</a></h3>
+<div class="language-go highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1">// Save collection to disk</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">collection</span><span class="p">.</span><span class="nx">Save</span><span class="p">(</span><span class="s">&quot;/path/to/collection&quot;</span><span class="p">);</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="nx">log</span><span class="p">.</span><span class="nx">Fatalf</span><span class="p">(</span><span class="s">&quot;Failed to save collection: %v&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="p">}</span>
+</code></pre></div>
+<h3 id="loading-a-collection">Loading a Collection<a class="headerlink" href="#loading-a-collection" title="Permanent link">&para;</a></h3>
+<div class="language-go highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">// Load collection from disk</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nx">loadedCollection</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">core</span><span class="p">.</span><span class="nx">LoadCollection</span><span class="p">(</span><span class="s">&quot;/path/to/collection&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="nx">log</span><span class="p">.</span><span class="nx">Fatalf</span><span class="p">(</span><span class="s">&quot;Failed to load collection: %v&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="p">}</span>
+</code></pre></div>
+<h2 id="collection-operations">📊 Collection Operations<a class="headerlink" href="#collection-operations" title="Permanent link">&para;</a></h2>
+<h3 id="upsert-points">Upsert Points<a class="headerlink" href="#upsert-points" title="Permanent link">&para;</a></h3>
+<div class="language-go highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1">// Upsert single point</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nx">point</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">core</span><span class="p">.</span><span class="nx">PointStruct</span><span class="p">{</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="nx">ID</span><span class="p">:</span><span class="w">     </span><span class="s">&quot;doc_1&quot;</span><span class="p">,</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="nx">Vector</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="kt">float32</span><span class="p">{</span><span class="mf">0.1</span><span class="p">,</span><span class="w"> </span><span class="mf">0.2</span><span class="p">,</span><span class="w"> </span><span class="mf">0.3</span><span class="p">,</span><span class="w"> </span><span class="cm">/* ... */</span><span class="p">},</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="nx">Payload</span><span class="p">:</span><span class="w"> </span><span class="nx">core</span><span class="p">.</span><span class="nx">Payload</span><span class="p">{</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">        </span><span class="s">&quot;category&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;tech&quot;</span><span class="p">,</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">    </span><span class="p">},</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="p">}</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">collection</span><span class="p">.</span><span class="nx">Upsert</span><span class="p">([]</span><span class="nx">core</span><span class="p">.</span><span class="nx">PointStruct</span><span class="p">{</span><span class="nx">point</span><span class="p">});</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">    </span><span class="nx">log</span><span class="p">.</span><span class="nx">Fatalf</span><span class="p">(</span><span class="s">&quot;Failed to upsert point: %v&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="p">}</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="c1">// Upsert multiple points</span>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="nx">points</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="p">[]</span><span class="nx">core</span><span class="p">.</span><span class="nx">PointStruct</span><span class="p">{</span>
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="w">    </span><span class="c1">// ... multiple points ...</span>
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="p">}</span>
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">collection</span><span class="p">.</span><span class="nx">Upsert</span><span class="p">(</span><span class="nx">points</span><span class="p">);</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a><span class="w">    </span><span class="nx">log</span><span class="p">.</span><span class="nx">Fatalf</span><span class="p">(</span><span class="s">&quot;Failed to upsert points: %v&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
+<a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a><span class="p">}</span>
+</code></pre></div>
+<h3 id="search-points">Search Points<a class="headerlink" href="#search-points" title="Permanent link">&para;</a></h3>
+<div class="language-go highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1">// Search with query vector</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nx">queryVector</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="p">[]</span><span class="kt">float32</span><span class="p">{</span><span class="mf">0.1</span><span class="p">,</span><span class="w"> </span><span class="mf">0.2</span><span class="p">,</span><span class="w"> </span><span class="mf">0.3</span><span class="p">,</span><span class="w"> </span><span class="cm">/* ... */</span><span class="p">}</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nx">results</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">collection</span><span class="p">.</span><span class="nx">Search</span><span class="p">(</span><span class="nx">queryVector</span><span class="p">,</span><span class="w"> </span><span class="kc">nil</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span><span class="nx">log</span><span class="p">.</span><span class="nx">Fatalf</span><span class="p">(</span><span class="s">&quot;Failed to search: %v&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="p">}</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="c1">// Search with filter</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="nx">filter</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">core</span><span class="p">.</span><span class="nx">Filter</span><span class="p">{</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">    </span><span class="nx">Must</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="nx">core</span><span class="p">.</span><span class="nx">Condition</span><span class="p">{</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">            </span><span class="nx">Key</span><span class="p">:</span><span class="w">   </span><span class="s">&quot;category&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="w">            </span><span class="nx">Type</span><span class="p">:</span><span class="w">  </span><span class="nx">core</span><span class="p">.</span><span class="nx">MatchTypeExact</span><span class="p">,</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="w">            </span><span class="nx">Match</span><span class="p">:</span><span class="w"> </span><span class="nx">core</span><span class="p">.</span><span class="nx">MatchValue</span><span class="p">{</span><span class="nx">Value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;tech&quot;</span><span class="p">},</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="w">        </span><span class="p">},</span>
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="w">    </span><span class="p">},</span>
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="p">}</span>
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>
+<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="nx">results</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">collection</span><span class="p">.</span><span class="nx">Search</span><span class="p">(</span><span class="nx">queryVector</span><span class="p">,</span><span class="w"> </span><span class="nx">filter</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span>
+<a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a><span class="w">    </span><span class="nx">log</span><span class="p">.</span><span class="nx">Fatalf</span><span class="p">(</span><span class="s">&quot;Failed to search with filter: %v&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
+<a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a><span class="p">}</span>
+</code></pre></div>
+<h3 id="delete-points">Delete Points<a class="headerlink" href="#delete-points" title="Permanent link">&para;</a></h3>
+<div class="language-go highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1">// Delete by IDs</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="nx">ids</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;doc_1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;doc_2&quot;</span><span class="p">}</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="nx">deleted</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">collection</span><span class="p">.</span><span class="nx">Delete</span><span class="p">(</span><span class="nx">ids</span><span class="p">,</span><span class="w"> </span><span class="kc">nil</span><span class="p">)</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">    </span><span class="nx">log</span><span class="p">.</span><span class="nx">Fatalf</span><span class="p">(</span><span class="s">&quot;Failed to delete points: %v&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="p">}</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;Deleted %d points\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">deleted</span><span class="p">)</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="c1">// Delete by filter</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="nx">deleted</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">collection</span><span class="p">.</span><span class="nx">Delete</span><span class="p">(</span><span class="kc">nil</span><span class="p">,</span><span class="w"> </span><span class="nx">filter</span><span class="p">)</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="w">    </span><span class="nx">log</span><span class="p">.</span><span class="nx">Fatalf</span><span class="p">(</span><span class="s">&quot;Failed to delete points by filter: %v&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="p">}</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;Deleted %d points by filter\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">deleted</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="get-points">Get Points<a class="headerlink" href="#get-points" title="Permanent link">&para;</a></h3>
+<div class="language-go highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1">// Get points by IDs</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="nx">ids</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;doc_1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;doc_2&quot;</span><span class="p">}</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="nx">points</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">collection</span><span class="p">.</span><span class="nx">Get</span><span class="p">(</span><span class="nx">ids</span><span class="p">)</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">    </span><span class="nx">log</span><span class="p">.</span><span class="nx">Fatalf</span><span class="p">(</span><span class="s">&quot;Failed to get points: %v&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="p">}</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="k">for</span><span class="w"> </span><span class="nx">_</span><span class="p">,</span><span class="w"> </span><span class="nx">point</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">range</span><span class="w"> </span><span class="nx">points</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;ID: %s, Vector: %v\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">point</span><span class="p">.</span><span class="nx">ID</span><span class="p">,</span><span class="w"> </span><span class="nx">point</span><span class="p">.</span><span class="nx">Vector</span><span class="p">)</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="p">}</span>
+</code></pre></div>
+<h2 id="collection-statistics">📈 Collection Statistics<a class="headerlink" href="#collection-statistics" title="Permanent link">&para;</a></h2>
+<h3 id="get-collection-info">Get Collection Info<a class="headerlink" href="#get-collection-info" title="Permanent link">&para;</a></h3>
+<div class="language-go highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1">// Get collection information</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nx">info</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">collection</span><span class="p">.</span><span class="nx">Info</span><span class="p">()</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span><span class="nx">log</span><span class="p">.</span><span class="nx">Fatalf</span><span class="p">(</span><span class="s">&quot;Failed to get collection info: %v&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="p">}</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;Collection: %s\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">info</span><span class="p">.</span><span class="nx">Name</span><span class="p">)</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;Vector length: %d\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">info</span><span class="p">.</span><span class="nx">VectorLen</span><span class="p">)</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;Metric: %s\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">info</span><span class="p">.</span><span class="nx">Metric</span><span class="p">)</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;Index type: %s\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">info</span><span class="p">.</span><span class="nx">IndexType</span><span class="p">)</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;Point count: %d\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">info</span><span class="p">.</span><span class="nx">PointCount</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="microservice-mode_1">Microservice Mode<a class="headerlink" href="#microservice-mode_1" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># Get collection information</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>curl<span class="w"> </span>http://localhost:6333/collections/my-collection
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="c1"># List all collections</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>curl<span class="w"> </span>http://localhost:6333/collections
+</code></pre></div>
+<h2 id="deleting-a-collection">🗑️ Deleting a Collection<a class="headerlink" href="#deleting-a-collection" title="Permanent link">&para;</a></h2>
+<h3 id="embedded-mode_1">Embedded Mode<a class="headerlink" href="#embedded-mode_1" title="Permanent link">&para;</a></h3>
+<div class="language-go highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1">// Delete collection (removes from memory, but not from disk)</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="c1">// To completely remove, delete the directory after closing</span>
+</code></pre></div>
+<h3 id="microservice-mode_2">Microservice Mode<a class="headerlink" href="#microservice-mode_2" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># Delete collection</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>curl<span class="w"> </span>-X<span class="w"> </span>DELETE<span class="w"> </span>http://localhost:6333/collections/my-collection
+</code></pre></div>
+<h2 id="best-practices">💡 Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
+<h3 id="collection-design">Collection Design<a class="headerlink" href="#collection-design" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Vector Dimension</strong>: Choose the appropriate dimension based on your embedding model (e.g., 768 for BERT-based models)</li>
+<li><strong>Distance Metric</strong>: Use Cosine for normalized vectors, Euclidean for unnormalized vectors</li>
+<li><strong>Index Selection</strong>: Use HNSW for large datasets, Flat for small datasets (&lt; 10,000 points)</li>
+<li><strong>Quantization</strong>: Enable SQ8 for large datasets to reduce memory and storage usage</li>
+</ul>
+<h3 id="performance-optimization">Performance Optimization<a class="headerlink" href="#performance-optimization" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Batch Operations</strong>: Use batch upserts for multiple points to improve performance</li>
+<li><strong>Index Parameters</strong>: Adjust HNSW parameters based on your dataset size:</li>
+<li>Small datasets (10,000-100,000 points): M=12, EfConstruction=100</li>
+<li>Medium datasets (100,000-1,000,000 points): M=16, EfConstruction=200</li>
+<li>Large datasets (1,000,000+ points): M=24, EfConstruction=400</li>
+</ul>
+<h3 id="storage-management">Storage Management<a class="headerlink" href="#storage-management" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Backup</strong>: Regularly backup collection directories</li>
+<li><strong>Disk Space</strong>: Monitor disk usage, especially for large collections</li>
+<li><strong>Loading Time</strong>: Large collections may take time to load due to index rebuilding</li>
+</ul>
+<h2 id="common-issues">🚩 Common Issues<a class="headerlink" href="#common-issues" title="Permanent link">&para;</a></h2>
+<h3 id="dimension-mismatch">Dimension Mismatch<a class="headerlink" href="#dimension-mismatch" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Error</strong>: "dimension mismatch"</li>
+<li><strong>Solution</strong>: Ensure all vectors have the same dimension as the collection configuration</li>
+</ul>
+<h3 id="out-of-memory">Out of Memory<a class="headerlink" href="#out-of-memory" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Error</strong>: "out of memory"</li>
+<li><strong>Solution</strong>: Enable SQ8 quantization, use Flat index for small datasets, or reduce collection size</li>
+</ul>
+<h3 id="slow-search-performance">Slow Search Performance<a class="headerlink" href="#slow-search-performance" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Cause</strong>: Inappropriate HNSW parameters or large result sets</li>
+<li><strong>Solution</strong>: Increase EfSearch parameter, reduce topK, or use more selective filters</li>
+</ul>
+<h2 id="related-documentation">🔗 Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../../data-model/">Data Model</a> - Core data structures</li>
+<li><a href="../hnsw-index/">HNSW Index</a> - HNSW index implementation</li>
+<li><a href="../storage-engine/">Storage Engine</a> - Persistence and serialization</li>
+<li><a href="../../usage-modes/">Usage Modes</a> - Different ways to use GoVector</li>
+</ul>
 
 
 

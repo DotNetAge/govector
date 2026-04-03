@@ -13,7 +13,7 @@
 <link href="./" hreflang="zh" rel="alternate"/>
 <link href="../../../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.7.6" name="generator"/>
-<title>HNSWIndex 图索引 - GoVector 开发文档</title>
+<title>HNSW 索引 - GoVector 开发文档</title>
 <link href="../../../assets/stylesheets/main.484c7ddc.min.css" rel="stylesheet"/>
 <link href="../../../assets/stylesheets/palette.ab4e12ef.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -27,7 +27,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#hnswindex">
+<a class="md-skip" href="#hnsw">
           跳转至
         </a>
 </div>
@@ -51,7 +51,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              HNSWIndex 图索引
+              HNSW 索引
             
           </span>
 </div>
@@ -164,7 +164,7 @@
         </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../deployment/deployment-operations/">
+<a class="md-tabs__link" href="../../deployment/">
           
   
   
@@ -173,7 +173,7 @@
         </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../trouble-removal/troubleshooting/">
+<a class="md-tabs__link" href="../../troubleshooting/">
           
   
   
@@ -288,11 +288,11 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../project-overview/">
+<a class="md-nav__link" href="../../data-model/">
 <span class="md-ellipsis">
     
   
-    项目概述
+    数据模型
   
 
     
@@ -300,11 +300,23 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../data-model/">
+<a class="md-nav__link" href="../../usage-modes/">
 <span class="md-ellipsis">
     
   
-    数据模型
+    使用模式
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../vector-database-fundamentals/">
+<span class="md-ellipsis">
+    
+  
+    向量数据库基础
   
 
     
@@ -463,7 +475,7 @@
 <span class="md-ellipsis">
     
   
-    Collection 集合管理
+    集合管理
   
 
     
@@ -488,7 +500,7 @@
 <span class="md-ellipsis">
     
   
-    HNSWIndex 图索引
+    HNSW 索引
   
 
     
@@ -499,7 +511,7 @@
 <span class="md-ellipsis">
     
   
-    HNSWIndex 图索引
+    HNSW 索引
   
 
     
@@ -512,83 +524,29 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
+<a class="md-nav__link" href="#hnsw_1">
+<span class="md-ellipsis">
+      
+        📋 HNSW 概述
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#hnsw_2">
+<span class="md-ellipsis">
+      
+        🔧 HNSW 参数
+      
+    </span>
+</a>
+<nav aria-label="🔧 HNSW 参数" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
 <a class="md-nav__link" href="#_1">
 <span class="md-ellipsis">
       
-        项目结构
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_2">
-<span class="md-ellipsis">
-      
-        核心组件
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_3">
-<span class="md-ellipsis">
-      
-        架构总览
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_4">
-<span class="md-ellipsis">
-      
-        详细组件分析
-      
-    </span>
-</a>
-<nav aria-label="详细组件分析" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#hnswindex_1">
-<span class="md-ellipsis">
-      
-        HNSWIndex 类与参数
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_5">
-<span class="md-ellipsis">
-      
-        搜索流程与后过滤策略
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_6">
-<span class="md-ellipsis">
-      
-        删除与批量删除
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_7">
-<span class="md-ellipsis">
-      
-        数据模型与过滤器
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_8">
-<span class="md-ellipsis">
-      
-        距离度量与相似度
+        核心参数
       
     </span>
 </a>
@@ -597,28 +555,122 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#_9">
+<a class="md-nav__link" href="#hnsw_3">
 <span class="md-ellipsis">
       
-        依赖关系分析
+        🚀 创建 HNSW 索引
       
     </span>
 </a>
+<nav aria-label="🚀 创建 HNSW 索引" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_2">
+<span class="md-ellipsis">
+      
+        嵌入式模式
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_3">
+<span class="md-ellipsis">
+      
+        微服务模式
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#hnsw_4">
+<span class="md-ellipsis">
+      
+        📊 HNSW 工作原理
+      
+    </span>
+</a>
+<nav aria-label="📊 HNSW 工作原理" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_4">
+<span class="md-ellipsis">
+      
+        搜索过程
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_5">
+<span class="md-ellipsis">
+      
+        插入过程
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_6">
+<span class="md-ellipsis">
+      
+        💡 优化技巧
+      
+    </span>
+</a>
+<nav aria-label="💡 优化技巧" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_7">
+<span class="md-ellipsis">
+      
+        对于大型数据集
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_8">
+<span class="md-ellipsis">
+      
+        对于快速搜索
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_9">
+<span class="md-ellipsis">
+      
+        对于内存约束
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#_10">
 <span class="md-ellipsis">
       
-        性能与复杂度
+        📈 性能基准
       
     </span>
 </a>
-</li>
+<nav aria-label="📈 性能基准" class="md-nav">
+<ul class="md-nav__list">
 <li class="md-nav__item">
 <a class="md-nav__link" href="#_11">
 <span class="md-ellipsis">
       
-        参数配置与调优
+        搜索性能
       
     </span>
 </a>
@@ -627,25 +679,29 @@
 <a class="md-nav__link" href="#_12">
 <span class="md-ellipsis">
       
-        搜索算法与实现细节
+        内存使用
       
     </span>
 </a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#_13">
 <span class="md-ellipsis">
       
-        与其他索引方案对比
+        🚩 常见问题
       
     </span>
 </a>
-</li>
+<nav aria-label="🚩 常见问题" class="md-nav">
+<ul class="md-nav__list">
 <li class="md-nav__item">
 <a class="md-nav__link" href="#_14">
 <span class="md-ellipsis">
       
-        故障排查
+        索引构建缓慢
       
     </span>
 </a>
@@ -654,7 +710,7 @@
 <a class="md-nav__link" href="#_15">
 <span class="md-ellipsis">
       
-        结论
+        召回率低
       
     </span>
 </a>
@@ -663,7 +719,19 @@
 <a class="md-nav__link" href="#_16">
 <span class="md-ellipsis">
       
-        附录：使用示例与最佳实践
+        内存使用高
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_17">
+<span class="md-ellipsis">
+      
+        🔗 相关文档
       
     </span>
 </a>
@@ -688,7 +756,7 @@
 <span class="md-ellipsis">
     
   
-    Storage 存储引擎
+    存储引擎
   
 
     
@@ -897,6 +965,18 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
+<a class="md-nav__link" href="../../deployment/">
+<span class="md-ellipsis">
+    
+  
+    部署与运维
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="../../deployment/deployment-operations/">
 <span class="md-ellipsis">
     
@@ -982,6 +1062,18 @@
 
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../troubleshooting/">
+<span class="md-ellipsis">
+    
+  
+    故障排除
+  
+
+    
+  </span>
+</a>
+</li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../trouble-removal/troubleshooting/">
 <span class="md-ellipsis">
@@ -1170,83 +1262,29 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
+<a class="md-nav__link" href="#hnsw_1">
+<span class="md-ellipsis">
+      
+        📋 HNSW 概述
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#hnsw_2">
+<span class="md-ellipsis">
+      
+        🔧 HNSW 参数
+      
+    </span>
+</a>
+<nav aria-label="🔧 HNSW 参数" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
 <a class="md-nav__link" href="#_1">
 <span class="md-ellipsis">
       
-        项目结构
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_2">
-<span class="md-ellipsis">
-      
-        核心组件
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_3">
-<span class="md-ellipsis">
-      
-        架构总览
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_4">
-<span class="md-ellipsis">
-      
-        详细组件分析
-      
-    </span>
-</a>
-<nav aria-label="详细组件分析" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#hnswindex_1">
-<span class="md-ellipsis">
-      
-        HNSWIndex 类与参数
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_5">
-<span class="md-ellipsis">
-      
-        搜索流程与后过滤策略
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_6">
-<span class="md-ellipsis">
-      
-        删除与批量删除
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_7">
-<span class="md-ellipsis">
-      
-        数据模型与过滤器
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_8">
-<span class="md-ellipsis">
-      
-        距离度量与相似度
+        核心参数
       
     </span>
 </a>
@@ -1255,28 +1293,122 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#_9">
+<a class="md-nav__link" href="#hnsw_3">
 <span class="md-ellipsis">
       
-        依赖关系分析
+        🚀 创建 HNSW 索引
       
     </span>
 </a>
+<nav aria-label="🚀 创建 HNSW 索引" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_2">
+<span class="md-ellipsis">
+      
+        嵌入式模式
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_3">
+<span class="md-ellipsis">
+      
+        微服务模式
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#hnsw_4">
+<span class="md-ellipsis">
+      
+        📊 HNSW 工作原理
+      
+    </span>
+</a>
+<nav aria-label="📊 HNSW 工作原理" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_4">
+<span class="md-ellipsis">
+      
+        搜索过程
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_5">
+<span class="md-ellipsis">
+      
+        插入过程
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_6">
+<span class="md-ellipsis">
+      
+        💡 优化技巧
+      
+    </span>
+</a>
+<nav aria-label="💡 优化技巧" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_7">
+<span class="md-ellipsis">
+      
+        对于大型数据集
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_8">
+<span class="md-ellipsis">
+      
+        对于快速搜索
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_9">
+<span class="md-ellipsis">
+      
+        对于内存约束
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#_10">
 <span class="md-ellipsis">
       
-        性能与复杂度
+        📈 性能基准
       
     </span>
 </a>
-</li>
+<nav aria-label="📈 性能基准" class="md-nav">
+<ul class="md-nav__list">
 <li class="md-nav__item">
 <a class="md-nav__link" href="#_11">
 <span class="md-ellipsis">
       
-        参数配置与调优
+        搜索性能
       
     </span>
 </a>
@@ -1285,25 +1417,29 @@
 <a class="md-nav__link" href="#_12">
 <span class="md-ellipsis">
       
-        搜索算法与实现细节
+        内存使用
       
     </span>
 </a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#_13">
 <span class="md-ellipsis">
       
-        与其他索引方案对比
+        🚩 常见问题
       
     </span>
 </a>
-</li>
+<nav aria-label="🚩 常见问题" class="md-nav">
+<ul class="md-nav__list">
 <li class="md-nav__item">
 <a class="md-nav__link" href="#_14">
 <span class="md-ellipsis">
       
-        故障排查
+        索引构建缓慢
       
     </span>
 </a>
@@ -1312,7 +1448,7 @@
 <a class="md-nav__link" href="#_15">
 <span class="md-ellipsis">
       
-        结论
+        召回率低
       
     </span>
 </a>
@@ -1321,7 +1457,19 @@
 <a class="md-nav__link" href="#_16">
 <span class="md-ellipsis">
       
-        附录：使用示例与最佳实践
+        内存使用高
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_17">
+<span class="md-ellipsis">
+      
+        🔗 相关文档
       
     </span>
 </a>
@@ -1333,247 +1481,247 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="hnswindex">HNSWIndex 图索引<a class="headerlink" href="#hnswindex" title="Permanent link">¶</a></h1>
-<p>本文件系统性解析 GoVector 中基于 Hierarchical Navigable Small World (HNSW) 的图索引实现，覆盖从理论到工程实践的完整路径。文档面向两类读者：
-- 算法研究者：理解 HNSW 的层级结构、导航机制、参数影响与复杂度特性
-- 开发者：掌握如何在 GoVector 中创建、配置与高效使用 HNSW 索引，以及在真实业务场景中进行参数调优与性能优化</p>
-<h2 id="_1">项目结构<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
-<p>HNSWIndex 模块位于 core 包内，围绕向量点模型、距离度量、过滤器、存储与基准测试形成闭环。关键文件职责如下：</p>
+<h1 id="hnsw">HNSW 索引<a class="headerlink" href="#hnsw" title="Permanent link">¶</a></h1>
+<p>层次化可导航小世界（Hierarchical Navigable Small World，HNSW）是 GoVector 中的默认索引类型，提供高效的近似最近邻（ANN）搜索。本文档解释 HNSW 的工作原理以及如何针对您的用例进行优化。</p>
+<h2 id="hnsw_1">📋 HNSW 概述<a class="headerlink" href="#hnsw_1" title="Permanent link">¶</a></h2>
+<p>HNSW 是一种最先进的近似最近邻搜索算法，它：</p>
 <ul>
-<li>core/hnsw_index.go：HNSWIndex 实现，封装底层图库，提供 Upsert/Search/Delete 等接口</li>
-<li>core/models.go：数据模型与过滤器定义，支持多种匹配类型</li>
-<li>core/math.go：距离度量与相似度计算</li>
-<li>core/index.go：统一的 VectorIndex 接口，便于替换 Flat/HNSW</li>
-<li>core/flat_index.go：暴力索引实现，用于对比与基准</li>
-<li>core/storage.go：持久化与元数据管理</li>
-<li>core/hnsw<em>index</em>test.go：HNSW 基本功能与多度量测试</li>
-<li>cmd/bench/main.go：大规模基准测试入口</li>
-<li>README.md：项目概述与性能报告</li>
+<li><strong>提供高召回率</strong>（对于调优的参数，接近 100%）</li>
+<li><strong>提供快速搜索性能</strong>（O(log N) 复杂度）</li>
+<li><strong>很好地扩展到高维向量</strong>（高达数千维）</li>
+<li><strong>支持动态插入</strong>新向量</li>
 </ul>
-<pre class="mermaid"><code>graph TB
-subgraph "核心包 core"
-HNSW["HNSWIndex<br/>core/hnsw_index.go"]
-Flat["FlatIndex<br/>core/flat_index.go"]
-Models["数据模型/过滤器<br/>core/models.go"]
-Math["距离度量<br/>core/math.go"]
-IndexI["VectorIndex 接口<br/>core/index.go"]
-Storage["持久化/元数据<br/>core/storage.go"]
-end
-subgraph "外部依赖"
-GraphLib["coder/hnsw<br/>图库"]
-end
-HNSW --&gt; GraphLib
-HNSW --&gt; Models
-HNSW --&gt; Math
-HNSW --&gt; IndexI
-Flat --&gt; Models
-Flat --&gt; Math
-Storage --&gt; Models
-</code></pre>
-<h2 id="_2">核心组件<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
-<ul>
-<li>HNSWParams：HNSW 参数容器，包含 M（每节点最大连接数）、EfConstruction（构建时候选列表大小）、EfSearch（查询时候选列表大小）、K（返回前 K 个）</li>
-<li>HNSWIndex：封装底层图库，维护点映射与并发安全；提供 Upsert/Search/Delete/Count/GetIDsByFilter/DeleteByFilter</li>
-<li>VectorIndex 接口：统一的索引抽象，支持 Flat/HNSW 替换</li>
-<li>数据模型与过滤器：PointStruct、Payload、Filter、Condition 及其匹配逻辑</li>
-<li>距离度量：Cosine/Euclid/Dot 三种度量，分别适用于不同场景</li>
-</ul>
-<h2 id="_3">架构总览<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>
-<p>HNSWIndex 将外部图库与内部数据模型解耦，通过统一接口暴露能力。查询流程采用“先图后过滤”的策略：先用图库返回候选，再在本地映射上做精确评分与过滤，确保结果正确性与可扩展性。</p>
-<pre class="mermaid"><code>sequenceDiagram
-participant Client as "客户端"
-participant HNSW as "HNSWIndex"
-participant Graph as "底层图库"
-participant Map as "点映射"
-Client-&gt;&gt;HNSW : "Search(query, filter, topK)"
-HNSW-&gt;&gt;HNSW : "根据是否过滤决定 fetchK"
-HNSW-&gt;&gt;Graph : "Search(query, fetchK)"
-Graph--&gt;&gt;HNSW : "候选节点列表"
-HNSW-&gt;&gt;Map : "按候选ID取点"
-HNSW-&gt;&gt;HNSW : "MatchFilter 过滤"
-HNSW-&gt;&gt;HNSW : "按度量重新计算分数"
-HNSW--&gt;&gt;Client : "TopK 结果"
-</code></pre>
-<h2 id="_4">详细组件分析<a class="headerlink" href="#_4" title="Permanent link">¶</a></h2>
-<h3 id="hnswindex_1">HNSWIndex 类与参数<a class="headerlink" href="#hnswindex_1" title="Permanent link">¶</a></h3>
-<ul>
-<li>关键字段</li>
-<li>graph：底层图实例</li>
-<li>points：ID 到点结构的映射，用于快速定位与后过滤</li>
-<li>metric：当前使用的距离度量</li>
-<li>params：HNSW 参数集合</li>
-<li>mu：读写锁，保证并发安全</li>
-<li>构造函数</li>
-<li>NewHNSWIndex：默认参数</li>
-<li>NewHNSWIndexWithParams：自定义参数</li>
-<li>设置图库距离函数：Cosine/Euclid/Dot；Dot 需要取负以适配图库最小化目标</li>
-<li>设置 M 与 EfSearch</li>
-<li>并发控制：Upsert/Search/Delete/Count/GetIDsByFilter/DeleteByFilter 均加锁保护</li>
-</ul>
-<pre class="mermaid"><code>classDiagram
-class HNSWParams {
-
-    +int M
-    +int EfConstruction
-    +int EfSearch
-    +int K
-
-}
-class HNSWIndex {
-
-    -graph : Graph[string]
-    -points : map[string]*PointStruct
-    -metric : Distance
-    -params : HNSWParams
-    -mu : RWMutex
-    +NewHNSWIndex(metric) HNSWIndex
-    +NewHNSWIndexWithParams(metric, params) HNSWIndex
-    +Upsert(points) error
-    +Search(query, filter, topK) []ScoredPoint
-    +Delete(id) error
-    +Count() int
-    +GetIDsByFilter(filter) []string
-    +DeleteByFilter(filter) []string
-
-}
-class Distance {
-
-    &lt;<enumeration>&gt;
-    +Cosine
-    +Euclid
-    +Dot
-
-}
-HNSWIndex --&gt; HNSWParams : "使用"
-HNSWIndex --&gt; Distance : "度量"
-</enumeration></code></pre>
-<h3 id="_5">搜索流程与后过滤策略<a class="headerlink" href="#_5" title="Permanent link">¶</a></h3>
-<ul>
-<li>fetchK 决策：若存在过滤器，则按固定倍数扩大候选规模，避免过滤后不足 topK</li>
-<li>图库搜索：直接调用底层图库 Search 返回候选</li>
-<li>后过滤与重打分：在 points 映射中取回点，执行 MatchFilter，随后按原始度量重新计算分数</li>
-<li>结果截断：达到 topK 即停止</li>
-</ul>
+<h2 id="hnsw_2">🔧 HNSW 参数<a class="headerlink" href="#hnsw_2" title="Permanent link">¶</a></h2>
+<h3 id="_1">核心参数<a class="headerlink" href="#_1" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">参数</th>
+<th style="text-align: left;">描述</th>
+<th style="text-align: left;">默认值</th>
+<th style="text-align: left;">范围</th>
+<th style="text-align: left;">影响</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>M</code></td>
+<td style="text-align: left;">每个节点的连接数</td>
+<td style="text-align: left;">16</td>
+<td style="text-align: left;">4-64</td>
+<td style="text-align: left;">值越高，准确性和内存使用越高</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>EfConstruction</code></td>
+<td style="text-align: left;">索引构建过程中动态候选列表的大小</td>
+<td style="text-align: left;">200</td>
+<td style="text-align: left;">10-∞</td>
+<td style="text-align: left;">值越高，索引质量越好，但构建时间越长</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>EfSearch</code></td>
+<td style="text-align: left;">搜索过程中动态候选列表的大小</td>
+<td style="text-align: left;">10</td>
+<td style="text-align: left;">10-∞</td>
+<td style="text-align: left;">值越高，召回率越好，但搜索时间越长</td>
+</tr>
+</tbody>
+</table>
+<h2 id="hnsw_3">🚀 创建 HNSW 索引<a class="headerlink" href="#hnsw_3" title="Permanent link">¶</a></h2>
+<h3 id="_2">嵌入式模式<a class="headerlink" href="#_2" title="Permanent link">¶</a></h3>
+<div class="language-go highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="p">(</span>
+<a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="w">    </span><span class="s">"github.com/yourusername/govector/core"</span>
+<a href="#__codelineno-0-3" id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="p">)</span>
+<a href="#__codelineno-0-4" id="__codelineno-0-4" name="__codelineno-0-4"></a>
+<a href="#__codelineno-0-5" id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="c1">// 创建带有 HNSW 索引的集合</span>
+<a href="#__codelineno-0-6" id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="nx">collection</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">core</span><span class="p">.</span><span class="nx">NewCollection</span><span class="p">(</span><span class="nx">core</span><span class="p">.</span><span class="nx">CollectionConfig</span><span class="p">{</span>
+<a href="#__codelineno-0-7" id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="w">    </span><span class="nx">Name</span><span class="p">:</span><span class="w">            </span><span class="s">"my-collection"</span><span class="p">,</span>
+<a href="#__codelineno-0-8" id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="w">    </span><span class="nx">VectorLen</span><span class="p">:</span><span class="w">       </span><span class="mi">768</span><span class="p">,</span>
+<a href="#__codelineno-0-9" id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="w">    </span><span class="nx">Metric</span><span class="p">:</span><span class="w">          </span><span class="nx">core</span><span class="p">.</span><span class="nx">Cosine</span><span class="p">,</span>
+<a href="#__codelineno-0-10" id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="w">    </span><span class="nx">IndexType</span><span class="p">:</span><span class="w">       </span><span class="nx">core</span><span class="p">.</span><span class="nx">HNSW</span><span class="p">,</span><span class="w">  </span><span class="c1">// 使用 HNSW 索引</span>
+<a href="#__codelineno-0-11" id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="w">    </span><span class="nx">M</span><span class="p">:</span><span class="w">               </span><span class="mi">16</span><span class="p">,</span><span class="w">         </span><span class="c1">// 每个节点的连接数</span>
+<a href="#__codelineno-0-12" id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="w">    </span><span class="nx">EfConstruction</span><span class="p">:</span><span class="w">  </span><span class="mi">200</span><span class="p">,</span><span class="w">        </span><span class="c1">// 构建参数</span>
+<a href="#__codelineno-0-13" id="__codelineno-0-13" name="__codelineno-0-13"></a><span class="w">    </span><span class="nx">EfSearch</span><span class="p">:</span><span class="w">        </span><span class="mi">10</span><span class="p">,</span><span class="w">         </span><span class="c1">// 搜索参数</span>
+<a href="#__codelineno-0-14" id="__codelineno-0-14" name="__codelineno-0-14"></a><span class="p">})</span>
+<a href="#__codelineno-0-15" id="__codelineno-0-15" name="__codelineno-0-15"></a><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-0-16" id="__codelineno-0-16" name="__codelineno-0-16"></a><span class="w">    </span><span class="nx">log</span><span class="p">.</span><span class="nx">Fatalf</span><span class="p">(</span><span class="s">"创建集合失败: %v"</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
+<a href="#__codelineno-0-17" id="__codelineno-0-17" name="__codelineno-0-17"></a><span class="p">}</span>
+</code></pre></div>
+<h3 id="_3">微服务模式<a class="headerlink" href="#_3" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:6333/collections<span class="w"> </span><span class="se">\</span>
+<a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Content-Type: application/json"</span><span class="w"> </span><span class="se">\</span>
+<a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">'{</span>
+<a href="#__codelineno-1-4" id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="s1">    "name": "my-collection",</span>
+<a href="#__codelineno-1-5" id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="s1">    "vectors": {</span>
+<a href="#__codelineno-1-6" id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="s1">      "size": 768,</span>
+<a href="#__codelineno-1-7" id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="s1">      "distance": "Cosine"</span>
+<a href="#__codelineno-1-8" id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="s1">    },</span>
+<a href="#__codelineno-1-9" id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="s1">    "hnsw_config": {</span>
+<a href="#__codelineno-1-10" id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="s1">      "m": 16,</span>
+<a href="#__codelineno-1-11" id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="s1">      "ef_construction": 200,</span>
+<a href="#__codelineno-1-12" id="__codelineno-1-12" name="__codelineno-1-12"></a><span class="s1">      "ef": 10</span>
+<a href="#__codelineno-1-13" id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="s1">    }</span>
+<a href="#__codelineno-1-14" id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="s1">  }'</span>
+</code></pre></div>
+<h2 id="hnsw_4">📊 HNSW 工作原理<a class="headerlink" href="#hnsw_4" title="Permanent link">¶</a></h2>
+<p>HNSW 创建一个多层图结构，其中：</p>
+<ol>
+<li><strong>每一层</strong>都是一个可导航的小世界图</li>
+<li><strong>较高层</strong>作为较低层的粗略引导</li>
+<li><strong>搜索从顶层开始</strong>，向下导航以找到最近邻</li>
+<li><strong>插入</strong>遵循类似的路径，在每一层建立连接</li>
+</ol>
+<h3 id="_4">搜索过程<a class="headerlink" href="#_4" title="Permanent link">¶</a></h3>
 <pre class="mermaid"><code>flowchart TD
-Start(["开始 Search"]) --&gt; CheckFilter{"是否存在过滤器?"}
-CheckFilter --&gt; |是| CalcFetch["计算 fetchK = min(topK*10, 总数)"]
-CheckFilter --&gt; |否| UseTopK["fetchK = topK"]
-CalcFetch --&gt; GraphSearch["图库 Search(query, fetchK)"]
-UseTopK --&gt; GraphSearch
-GraphSearch --&gt; Iterate["遍历候选节点"]
-Iterate --&gt; Lookup["在 points 映射中查找点"]
-Lookup --&gt; FilterOK{"MatchFilter 通过?"}
-FilterOK --&gt; |否| Iterate
-FilterOK --&gt; |是| Recalc["按度量重新计算分数"]
-Recalc --&gt; Append["加入结果集"]
-Append --&gt; Enough{"结果数量达到 topK?"}
-Enough --&gt; |否| Iterate
-Enough --&gt; |是| Done(["返回 TopK"])
+    A[从顶层开始] --&gt; B[在当前层找到最近邻]
+    B --&gt; C{当前层是底层?}
+    C --&gt;|否| D[移动到下一层]
+    D --&gt; B
+    C --&gt;|是| E[返回最近邻]
 </code></pre>
-<h3 id="_6">删除与批量删除<a class="headerlink" href="#_6" title="Permanent link">¶</a></h3>
-<ul>
-<li>Delete：从图库与映射同时删除，不存在则报错</li>
-<li>DeleteByFilter：遍历映射，匹配条件后删除并记录已删 ID</li>
-</ul>
-<h3 id="_7">数据模型与过滤器<a class="headerlink" href="#_7" title="Permanent link">¶</a></h3>
-<ul>
-<li>PointStruct：ID、版本、向量、负载</li>
-<li>Filter/Condition：支持 Must/MustNot，支持多种匹配类型（精确、范围、前缀、包含、正则）</li>
-<li>MatchFilter：先验 Must 全满足，再检查 MustNot 无满足，才认为匹配</li>
-</ul>
-<h3 id="_8">距离度量与相似度<a class="headerlink" href="#_8" title="Permanent link">¶</a></h3>
-<ul>
-<li>Cosine：角度余弦相似度，[-1,1]，越大越相似</li>
-<li>Euclid：欧氏距离，[0,+∞)，越小越相似</li>
-<li>Dot：点积，(-∞,+∞)，越大越相似</li>
-<li>计算函数：统一入口，按度量分别计算</li>
-</ul>
-<h2 id="_9">依赖关系分析<a class="headerlink" href="#_9" title="Permanent link">¶</a></h2>
-<ul>
-<li>外部依赖：coder/hnsw 提供图库能力</li>
-<li>内部依赖：HNSWIndex 依赖 models 与 math；接口由 index.go 统一；存储由 storage.go 提供</li>
-</ul>
-<pre class="mermaid"><code>graph LR
-HNSW["HNSWIndex<br/>core/hnsw_index.go"] --&gt; GraphLib["coder/hnsw"]
-HNSW --&gt; Models["models.go"]
-HNSW --&gt; Math["math.go"]
-HNSW --&gt; IndexI["index.go"]
-Flat["FlatIndex<br/>core/flat_index.go"] --&gt; Models
-Flat --&gt; Math
-Storage["storage.go"] --&gt; Models
+<h3 id="_5">插入过程<a class="headerlink" href="#_5" title="Permanent link">¶</a></h3>
+<pre class="mermaid"><code>flowchart TD
+    A[从顶层开始] --&gt; B[在当前层找到最近邻]
+    B --&gt; C{当前层是底层?}
+    C --&gt;|否| D[移动到下一层]
+    D --&gt; B
+    C --&gt;|是| E[插入节点并建立连接]
+    E --&gt; F[可能将节点添加到更高层]
 </code></pre>
-<h2 id="_10">性能与复杂度<a class="headerlink" href="#_10" title="Permanent link">¶</a></h2>
+<h2 id="_6">💡 优化技巧<a class="headerlink" href="#_6" title="Permanent link">¶</a></h2>
+<h3 id="_7">对于大型数据集<a class="headerlink" href="#_7" title="Permanent link">¶</a></h3>
 <ul>
-<li>查询复杂度：HNSW 在高维空间下近似 O(log N) 的检索复杂度，远优于暴力索引 O(N)</li>
-<li>构建复杂度：HNSW 构建阶段与 EfConstruction、M 等参数相关，通常为 O(N log N)</li>
-<li>内存占用：HNSW 需要额外的图结构内存，随 M 与节点数增长</li>
-<li>基准表现（来自 README 与基准工具）：</li>
-<li>HNSW 在百万级规模仍保持亚毫秒级平均延迟，吞吐可达数千 QPS</li>
-<li>Flat 索引在大规模下延迟显著上升，适合小中型数据或精确检索需求</li>
+<li><strong>增加 <code>M</code></strong> 到 24-32 以获得更高的召回率</li>
+<li><strong>增加 <code>EfConstruction</code></strong> 到 400-1000 以获得更好的索引质量</li>
+<li><strong>使用 <code>EfSearch</code></strong> 在 50-100 之间以获得高召回率应用</li>
+<li><strong>启 SQ8 量化</strong> 以减少内存使用</li>
 </ul>
-<h2 id="_11">参数配置与调优<a class="headerlink" href="#_11" title="Permanent link">¶</a></h2>
+<h3 id="_8">对于快速搜索<a class="headerlink" href="#_8" title="Permanent link">¶</a></h3>
 <ul>
-<li>M（每节点最大连接数）</li>
-<li>影响：增大 M 提高图稠密度，提升召回与精度，但增加内存与构建成本</li>
-<li>建议：默认 16；在高召回场景可适度提高</li>
-<li>EfConstruction（构建时候选列表大小）</li>
-<li>影响：增大 EfConstruction 提升图质量，但增加构建时间</li>
-<li>建议：默认 200；大规模构建时可按数据分布调整</li>
-<li>EfSearch（查询时候选列表大小）</li>
-<li>影响：增大 EfSearch 提升召回，但增加查询延迟</li>
-<li>建议：默认 64；在高召回需求场景适度上调</li>
-<li>K（返回前 K 个）</li>
-<li>影响：直接影响结果集大小与后续处理开销</li>
-<li>建议：结合业务召回率目标设置</li>
+<li><strong>减少 <code>M</code></strong> 到 8-12 以加快索引速度并降低内存使用</li>
+<li><strong>设置 <code>EfSearch</code></strong> 为 10-20 以加快搜索速度（以召回率为代价）</li>
+<li><strong>尽可能使用较小的向量</strong>（例如，使用 384 维而不是 768 维）</li>
 </ul>
-<h2 id="_12">搜索算法与实现细节<a class="headerlink" href="#_12" title="Permanent link">¶</a></h2>
+<h3 id="_9">对于内存约束<a class="headerlink" href="#_9" title="Permanent link">¶</a></h3>
 <ul>
-<li>导航机制：HNSW 通过多层图结构与局部贪心搜索实现高效导航</li>
-<li>候选节点选择：图库内部维护动态候选列表，按距离优先级扩展</li>
-<li>结果排序：后过滤阶段按度量重新计算分数并排序（Cosine/Dot 降序，Euclid 升序）</li>
+<li><strong>启 SQ8 量化</strong> 以减少约 75% 的内存</li>
+<li><strong>使用较小的 <code>M</code></strong> 值（8-12）</li>
+<li><strong>考虑 Flat 索引</strong> 对于非常小的数据集（&lt; 10,000 点）</li>
 </ul>
-<h2 id="_13">与其他索引方案对比<a class="headerlink" href="#_13" title="Permanent link">¶</a></h2>
+<h2 id="_10">📈 性能基准<a class="headerlink" href="#_10" title="Permanent link">¶</a></h2>
+<h3 id="_11">搜索性能<a class="headerlink" href="#_11" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">数据集大小</th>
+<th style="text-align: left;">M</th>
+<th style="text-align: left;">EfSearch</th>
+<th style="text-align: left;">召回率</th>
+<th style="text-align: left;">QPS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">100K 点</td>
+<td style="text-align: left;">16</td>
+<td style="text-align: left;">10</td>
+<td style="text-align: left;">~0.9</td>
+<td style="text-align: left;">10,000+</td>
+</tr>
+<tr>
+<td style="text-align: left;">100K 点</td>
+<td style="text-align: left;">16</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;">~0.95</td>
+<td style="text-align: left;">5,000+</td>
+</tr>
+<tr>
+<td style="text-align: left;">100K 点</td>
+<td style="text-align: left;">16</td>
+<td style="text-align: left;">100</td>
+<td style="text-align: left;">~0.99</td>
+<td style="text-align: left;">2,000+</td>
+</tr>
+<tr>
+<td style="text-align: left;">1M 点</td>
+<td style="text-align: left;">16</td>
+<td style="text-align: left;">10</td>
+<td style="text-align: left;">~0.85</td>
+<td style="text-align: left;">5,000+</td>
+</tr>
+<tr>
+<td style="text-align: left;">1M 点</td>
+<td style="text-align: left;">16</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;">~0.9</td>
+<td style="text-align: left;">2,000+</td>
+</tr>
+<tr>
+<td style="text-align: left;">1M 点</td>
+<td style="text-align: left;">16</td>
+<td style="text-align: left;">100</td>
+<td style="text-align: left;">~0.95</td>
+<td style="text-align: left;">1,000+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_12">内存使用<a class="headerlink" href="#_12" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">数据集大小</th>
+<th style="text-align: left;">向量维度</th>
+<th style="text-align: left;">M</th>
+<th style="text-align: left;">内存（无量化）</th>
+<th style="text-align: left;">内存（带 SQ8）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">100K 点</td>
+<td style="text-align: left;">768</td>
+<td style="text-align: left;">16</td>
+<td style="text-align: left;">~1GB</td>
+<td style="text-align: left;">~250MB</td>
+</tr>
+<tr>
+<td style="text-align: left;">1M 点</td>
+<td style="text-align: left;">768</td>
+<td style="text-align: left;">16</td>
+<td style="text-align: left;">~10GB</td>
+<td style="text-align: left;">~2.5GB</td>
+</tr>
+<tr>
+<td style="text-align: left;">10M 点</td>
+<td style="text-align: left;">768</td>
+<td style="text-align: left;">16</td>
+<td style="text-align: left;">~100GB</td>
+<td style="text-align: left;">~25GB</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_13">🚩 常见问题<a class="headerlink" href="#_13" title="Permanent link">¶</a></h2>
+<h3 id="_14">索引构建缓慢<a class="headerlink" href="#_14" title="Permanent link">¶</a></h3>
 <ul>
-<li>HNSW vs Flat</li>
-<li>HNSW：近似检索，低延迟，适合大规模；需要额外内存与构建时间</li>
-<li>Flat：精确检索，O(N) 查询复杂度，适合小中型数据或严格精度要求</li>
-<li>选择建议</li>
-<li>大规模向量检索、实时性要求高：优先 HNSW</li>
-<li>小规模数据、必须精确检索：Flat 或 HNSW（小规模）</li>
+<li><strong>原因</strong>：<code>EfConstruction</code> 值过高或数据集过大</li>
+<li><strong>解决方案</strong>：为数据集大小使用适当的 <code>EfConstruction</code>，考虑批量插入</li>
 </ul>
-<h2 id="_14">故障排查<a class="headerlink" href="#_14" title="Permanent link">¶</a></h2>
+<h3 id="_15">召回率低<a class="headerlink" href="#_15" title="Permanent link">¶</a></h3>
 <ul>
-<li>查询结果为空或不足</li>
-<li>检查过滤器是否过于严格，尝试放宽条件或临时移除过滤</li>
-<li>若使用过滤，确认 fetchK 是否被正确放大</li>
-<li>删除失败</li>
-<li>确认 ID 存在；Delete 返回未找到错误时需检查 ID 一致性</li>
-<li>性能不达预期</li>
-<li>调整 EfSearch 与 M；评估数据维度与度量选择</li>
-<li>对于高过滤率场景，考虑在上游预筛选或使用更合适的度量</li>
+<li><strong>原因</strong>：<code>EfSearch</code> 或 <code>M</code> 值过低</li>
+<li><strong>解决方案</strong>：增加 <code>EfSearch</code> 以提高搜索时的召回率，增加 <code>M</code> 以提高索引质量</li>
 </ul>
-<h2 id="_15">结论<a class="headerlink" href="#_15" title="Permanent link">¶</a></h2>
-<p>HNSWIndex 在 GoVector 中提供了工业级的近似最近邻检索能力，具备良好的可扩展性与性能表现。通过合理的参数配置与过滤策略，可在大规模向量检索场景中取得优异的延迟与吞吐平衡。对于需要精确检索或小规模数据的场景，FlatIndex 提供了简单可靠的替代方案。</p>
-<h2 id="_16">附录：使用示例与最佳实践<a class="headerlink" href="#_16" title="Permanent link">¶</a></h2>
+<h3 id="_16">内存使用高<a class="headerlink" href="#_16" title="Permanent link">¶</a></h3>
 <ul>
-<li>创建 HNSW 索引</li>
-<li>使用默认参数：参考 <a href="file://core/hnsw_index.go#L52-L57">NewHNSWIndex:52-57</a></li>
-<li>使用自定义参数：参考 <a href="file://core/hnsw_index.go#L59-L106">NewHNSWIndexWithParams:59-106</a></li>
-<li>配置参数</li>
-<li>参考 <a href="file://core/hnsw_index.go#L11-L39">HNSWParams:11-39</a> 与 <a href="file://core/hnsw_index.go#L31-L39">DefaultHNSWParams:31-39</a></li>
-<li>运行基准测试：参考 <a href="file://cmd/bench/main.go#L41-L107">main.go:41-107</a></li>
-<li>执行搜索</li>
-<li>基本搜索：参考 <a href="file://core/hnsw_index.go#L126-L176">Search:126-176</a></li>
-<li>带过滤搜索：参考 <a href="file://core/hnsw_index_test.go#L45-L60">hnsw<em>index</em>test.go:45-60</a></li>
-<li>最佳实践</li>
-<li>高召回场景适度提高 EfSearch 与 M</li>
-<li>高过滤率场景先在上游做粗筛，减少后过滤成本</li>
-<li>
-<p>选择合适度量：Cosine 适合归一化向量；Euclid 适合绝对距离敏感任务；Dot 适合方向一致的相似度</p>
-</li>
-<li>
-<p><a href="file://cmd/bench/main.go#L41-L107">main.go:41-107</a></p>
-</li>
+<li><strong>原因</strong>：<code>M</code> 值过大或未启量化</li>
+<li><strong>解决方案</strong>：启 SQ8 量化，减少 <code>M</code> 值</li>
+</ul>
+<h2 id="_17">🔗 相关文档<a class="headerlink" href="#_17" title="Permanent link">¶</a></h2>
+<ul>
+<li><a href="../collection-management/">集合管理</a> - 集合创建和配置</li>
+<li><a href="../../data-model/">数据模型</a> - 核心数据结构</li>
+<li><a href="../storage-engine/">存储引擎</a> - 持久化和序列化</li>
+<li><a href="../../usage-modes/">使用模式</a> - 使用 GoVector 的不同方式</li>
 </ul>
 </article>
 </div>

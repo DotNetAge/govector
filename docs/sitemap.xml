@@ -2,632 +2,756 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
     <url>
         <loc>None./</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="None"/>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/"/>
     </url>
     <url>
         <loc>Nonedata-model/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonedata-model/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/data-model/"/>
     </url>
     <url>
+        <loc>Nonedeployment/</loc>
+        <lastmod>2026-04-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonedeployment/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/deployment/"/>
+    </url>
+    <url>
         <loc>Nonedevelopment-guide/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonedevelopment-guide/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/development-guide/"/>
     </url>
     <url>
         <loc>Noneproject-overview/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Noneproject-overview/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/project-overview/"/>
     </url>
     <url>
         <loc>Nonequick-start/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonequick-start/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/quick-start/"/>
     </url>
     <url>
+        <loc>Nonetroubleshooting/</loc>
+        <lastmod>2026-04-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonetroubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/troubleshooting/"/>
+    </url>
+    <url>
+        <loc>Noneusage-modes/</loc>
+        <lastmod>2026-04-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneusage-modes/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/usage-modes/"/>
+    </url>
+    <url>
+        <loc>Nonevector-database-fundamentals/</loc>
+        <lastmod>2026-04-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonevector-database-fundamentals/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/vector-database-fundamentals/"/>
+    </url>
+    <url>
         <loc>Noneapi-references/api-reference/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Noneapi-references/api-reference/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/api-references/api-reference/"/>
     </url>
     <url>
         <loc>Noneapi-references/collection-management-api/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Noneapi-references/collection-management-api/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/api-references/collection-management-api/"/>
     </url>
     <url>
         <loc>Noneapi-references/data-models/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Noneapi-references/data-models/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/api-references/data-models/"/>
     </url>
     <url>
         <loc>Noneapi-references/error-handling/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Noneapi-references/error-handling/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/api-references/error-handling/"/>
     </url>
     <url>
         <loc>Noneapi-references/point-operations-api/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Noneapi-references/point-operations-api/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/api-references/point-operations-api/"/>
     </url>
     <url>
         <loc>Nonearch/architecture-design/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonearch/architecture-design/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/arch/architecture-design/"/>
     </url>
     <url>
         <loc>Nonearch/architecture-overview/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonearch/architecture-overview/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/arch/architecture-overview/"/>
     </url>
     <url>
         <loc>Nonearch/component-interactions/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonearch/component-interactions/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/arch/component-interactions/"/>
     </url>
     <url>
         <loc>Nonearch/data-flow-analysis/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonearch/data-flow-analysis/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/arch/data-flow-analysis/"/>
     </url>
     <url>
         <loc>Nonearch/design-patterns/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonearch/design-patterns/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/arch/design-patterns/"/>
     </url>
     <url>
         <loc>Nonecore/collection-management/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonecore/collection-management/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/core/collection-management/"/>
     </url>
     <url>
         <loc>Nonecore/core-modules/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonecore/core-modules/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/core/core-modules/"/>
     </url>
     <url>
         <loc>Nonecore/data-model-system/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonecore/data-model-system/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/core/data-model-system/"/>
     </url>
     <url>
         <loc>Nonecore/flat-index/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonecore/flat-index/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/core/flat-index/"/>
     </url>
     <url>
         <loc>Nonecore/hnsw-index/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonecore/hnsw-index/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/core/hnsw-index/"/>
     </url>
     <url>
         <loc>Nonecore/quantization/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonecore/quantization/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/core/quantization/"/>
     </url>
     <url>
         <loc>Nonecore/storage-engine/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonecore/storage-engine/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/core/storage-engine/"/>
     </url>
     <url>
         <loc>Nonedeployment/backup-recovery/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonedeployment/backup-recovery/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/deployment/backup-recovery/"/>
     </url>
     <url>
         <loc>Nonedeployment/deployment-operations/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonedeployment/deployment-operations/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/deployment/deployment-operations/"/>
     </url>
     <url>
         <loc>Nonedeployment/monitoring-alerts/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonedeployment/monitoring-alerts/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/deployment/monitoring-alerts/"/>
     </url>
     <url>
         <loc>Nonedeployment/production-deployment/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonedeployment/production-deployment/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/deployment/production-deployment/"/>
     </url>
     <url>
         <loc>Nonedeployment/upgrades-migration/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonedeployment/upgrades-migration/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/deployment/upgrades-migration/"/>
     </url>
     <url>
+        <loc>Nonerelease-notes/CHANGELOG/</loc>
+        <lastmod>2026-04-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonerelease-notes/CHANGELOG/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/release-notes/CHANGELOG/"/>
+    </url>
+    <url>
         <loc>Nonetrouble-removal/configuration-issues/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonetrouble-removal/configuration-issues/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/trouble-removal/configuration-issues/"/>
     </url>
     <url>
         <loc>Nonetrouble-removal/data-consistency-issues/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonetrouble-removal/data-consistency-issues/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/trouble-removal/data-consistency-issues/"/>
     </url>
     <url>
         <loc>Nonetrouble-removal/debugging-tools/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonetrouble-removal/debugging-tools/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/trouble-removal/debugging-tools/"/>
     </url>
     <url>
         <loc>Nonetrouble-removal/installation-issues/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonetrouble-removal/installation-issues/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/trouble-removal/installation-issues/"/>
     </url>
     <url>
         <loc>Nonetrouble-removal/performance-issues/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonetrouble-removal/performance-issues/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/trouble-removal/performance-issues/"/>
     </url>
     <url>
         <loc>Nonetrouble-removal/troubleshooting/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonetrouble-removal/troubleshooting/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/trouble-removal/troubleshooting/"/>
     </url>
     <url>
         <loc>Noneusage/cli-guide/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Noneusage/cli-guide/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/usage/cli-guide/"/>
     </url>
     <url>
         <loc>Noneusage/embedded-mode/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Noneusage/embedded-mode/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/usage/embedded-mode/"/>
     </url>
     <url>
         <loc>Noneusage/microservice-mode/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Noneusage/microservice-mode/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/usage/microservice-mode/"/>
     </url>
     <url>
         <loc>Noneusage/performance-optimization/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Noneusage/performance-optimization/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/usage/performance-optimization/"/>
     </url>
     <url>
         <loc>Noneusage/usage-patterns/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Noneusage/usage-patterns/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/usage/usage-patterns/"/>
     </url>
     <url>
         <loc>Nonevectordb/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonevectordb/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/vectordb/"/>
     </url>
     <url>
         <loc>Nonevectordb/01-introduction/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonevectordb/01-introduction/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/vectordb/01-introduction/"/>
     </url>
     <url>
         <loc>Nonevectordb/02-history/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonevectordb/02-history/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/vectordb/02-history/"/>
     </url>
     <url>
         <loc>Nonevectordb/03-core-principles/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonevectordb/03-core-principles/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/vectordb/03-core-principles/"/>
     </url>
     <url>
         <loc>Nonevectordb/04-basic-concepts/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonevectordb/04-basic-concepts/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/vectordb/04-basic-concepts/"/>
     </url>
     <url>
         <loc>Nonevectordb/05-applications/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonevectordb/05-applications/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/vectordb/05-applications/"/>
     </url>
     <url>
         <loc>Nonevectordb/06-learning-path/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="Nonevectordb/06-learning-path/"/>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/vectordb/06-learning-path/"/>
     </url>
     <url>
         <loc>Nonezh/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/"/>
         <xhtml:link rel="alternate" hreflang="en" href="None"/>
     </url>
     <url>
         <loc>Nonezh/data-model/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/data-model/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonedata-model/"/>
     </url>
     <url>
+        <loc>Nonezh/deployment/</loc>
+        <lastmod>2026-04-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/deployment/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonedeployment/"/>
+    </url>
+    <url>
         <loc>Nonezh/development-guide/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/development-guide/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonedevelopment-guide/"/>
     </url>
     <url>
         <loc>Nonezh/project-overview/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/project-overview/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Noneproject-overview/"/>
     </url>
     <url>
         <loc>Nonezh/quick-start/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/quick-start/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonequick-start/"/>
     </url>
     <url>
+        <loc>Nonezh/troubleshooting/</loc>
+        <lastmod>2026-04-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonetroubleshooting/"/>
+    </url>
+    <url>
+        <loc>Nonezh/usage-modes/</loc>
+        <lastmod>2026-04-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/usage-modes/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Noneusage-modes/"/>
+    </url>
+    <url>
+        <loc>Nonezh/vector-database-fundamentals/</loc>
+        <lastmod>2026-04-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/vector-database-fundamentals/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonevector-database-fundamentals/"/>
+    </url>
+    <url>
         <loc>Nonezh/api-references/api-reference/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/api-references/api-reference/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Noneapi-references/api-reference/"/>
     </url>
     <url>
         <loc>Nonezh/api-references/collection-management-api/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/api-references/collection-management-api/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Noneapi-references/collection-management-api/"/>
     </url>
     <url>
         <loc>Nonezh/api-references/data-models/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/api-references/data-models/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Noneapi-references/data-models/"/>
     </url>
     <url>
         <loc>Nonezh/api-references/error-handling/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/api-references/error-handling/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Noneapi-references/error-handling/"/>
     </url>
     <url>
         <loc>Nonezh/api-references/point-operations-api/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/api-references/point-operations-api/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Noneapi-references/point-operations-api/"/>
     </url>
     <url>
         <loc>Nonezh/arch/architecture-design/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/arch/architecture-design/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonearch/architecture-design/"/>
     </url>
     <url>
         <loc>Nonezh/arch/architecture-overview/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/arch/architecture-overview/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonearch/architecture-overview/"/>
     </url>
     <url>
         <loc>Nonezh/arch/component-interactions/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/arch/component-interactions/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonearch/component-interactions/"/>
     </url>
     <url>
         <loc>Nonezh/arch/data-flow-analysis/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/arch/data-flow-analysis/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonearch/data-flow-analysis/"/>
     </url>
     <url>
         <loc>Nonezh/arch/design-patterns/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/arch/design-patterns/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonearch/design-patterns/"/>
     </url>
     <url>
         <loc>Nonezh/core/collection-management/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/core/collection-management/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonecore/collection-management/"/>
     </url>
     <url>
         <loc>Nonezh/core/core-modules/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/core/core-modules/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonecore/core-modules/"/>
     </url>
     <url>
         <loc>Nonezh/core/data-model-system/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/core/data-model-system/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonecore/data-model-system/"/>
     </url>
     <url>
         <loc>Nonezh/core/flat-index/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/core/flat-index/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonecore/flat-index/"/>
     </url>
     <url>
         <loc>Nonezh/core/hnsw-index/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/core/hnsw-index/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonecore/hnsw-index/"/>
     </url>
     <url>
         <loc>Nonezh/core/quantization/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/core/quantization/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonecore/quantization/"/>
     </url>
     <url>
         <loc>Nonezh/core/storage-engine/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/core/storage-engine/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonecore/storage-engine/"/>
     </url>
     <url>
         <loc>Nonezh/deployment/backup-recovery/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/deployment/backup-recovery/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonedeployment/backup-recovery/"/>
     </url>
     <url>
         <loc>Nonezh/deployment/deployment-operations/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/deployment/deployment-operations/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonedeployment/deployment-operations/"/>
     </url>
     <url>
         <loc>Nonezh/deployment/monitoring-alerts/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/deployment/monitoring-alerts/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonedeployment/monitoring-alerts/"/>
     </url>
     <url>
         <loc>Nonezh/deployment/production-deployment/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/deployment/production-deployment/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonedeployment/production-deployment/"/>
     </url>
     <url>
         <loc>Nonezh/deployment/upgrades-migration/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/deployment/upgrades-migration/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonedeployment/upgrades-migration/"/>
     </url>
     <url>
+        <loc>Nonezh/release-notes/CHANGELOG/</loc>
+        <lastmod>2026-04-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/release-notes/CHANGELOG/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="Nonerelease-notes/CHANGELOG/"/>
+    </url>
+    <url>
         <loc>Nonezh/trouble-removal/configuration-issues/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/trouble-removal/configuration-issues/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonetrouble-removal/configuration-issues/"/>
     </url>
     <url>
         <loc>Nonezh/trouble-removal/data-consistency-issues/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/trouble-removal/data-consistency-issues/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonetrouble-removal/data-consistency-issues/"/>
     </url>
     <url>
         <loc>Nonezh/trouble-removal/debugging-tools/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/trouble-removal/debugging-tools/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonetrouble-removal/debugging-tools/"/>
     </url>
     <url>
         <loc>Nonezh/trouble-removal/installation-issues/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/trouble-removal/installation-issues/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonetrouble-removal/installation-issues/"/>
     </url>
     <url>
         <loc>Nonezh/trouble-removal/performance-issues/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/trouble-removal/performance-issues/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonetrouble-removal/performance-issues/"/>
     </url>
     <url>
         <loc>Nonezh/trouble-removal/troubleshooting/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/trouble-removal/troubleshooting/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonetrouble-removal/troubleshooting/"/>
     </url>
     <url>
         <loc>Nonezh/usage/cli-guide/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/usage/cli-guide/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Noneusage/cli-guide/"/>
     </url>
     <url>
         <loc>Nonezh/usage/embedded-mode/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/usage/embedded-mode/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Noneusage/embedded-mode/"/>
     </url>
     <url>
         <loc>Nonezh/usage/microservice-mode/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/usage/microservice-mode/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Noneusage/microservice-mode/"/>
     </url>
     <url>
         <loc>Nonezh/usage/performance-optimization/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/usage/performance-optimization/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Noneusage/performance-optimization/"/>
     </url>
     <url>
         <loc>Nonezh/usage/usage-patterns/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/usage/usage-patterns/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Noneusage/usage-patterns/"/>
     </url>
     <url>
         <loc>Nonezh/vectordb/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/vectordb/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonevectordb/"/>
     </url>
     <url>
         <loc>Nonezh/vectordb/01-introduction/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/vectordb/01-introduction/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonevectordb/01-introduction/"/>
     </url>
     <url>
         <loc>Nonezh/vectordb/02-history/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/vectordb/02-history/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonevectordb/02-history/"/>
     </url>
     <url>
         <loc>Nonezh/vectordb/03-core-principles/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/vectordb/03-core-principles/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonevectordb/03-core-principles/"/>
     </url>
     <url>
         <loc>Nonezh/vectordb/04-basic-concepts/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/vectordb/04-basic-concepts/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonevectordb/04-basic-concepts/"/>
     </url>
     <url>
         <loc>Nonezh/vectordb/05-applications/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/vectordb/05-applications/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonevectordb/05-applications/"/>
     </url>
     <url>
         <loc>Nonezh/vectordb/06-learning-path/</loc>
-        <lastmod>2026-03-27</lastmod>
+        <lastmod>2026-04-03</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/vectordb/06-learning-path/"/>
         <xhtml:link rel="alternate" hreflang="en" href="Nonevectordb/06-learning-path/"/>
+    </url>
+    <url>
+        <loc>Nonezh/cgo/CGO_ISOLATION_DESIGN/</loc>
+        <lastmod>2026-04-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/cgo/CGO_ISOLATION_DESIGN/"/>
+    </url>
+    <url>
+        <loc>Nonezh/cgo/CGO_QUICKSTART/</loc>
+        <lastmod>2026-04-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/cgo/CGO_QUICKSTART/"/>
+    </url>
+    <url>
+        <loc>Nonezh/cgo/SWIG_CGO_INDEX/</loc>
+        <lastmod>2026-04-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/cgo/SWIG_CGO_INDEX/"/>
+    </url>
+    <url>
+        <loc>Nonezh/cgo/SWIG_CGO_SUMMARY/</loc>
+        <lastmod>2026-04-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/cgo/SWIG_CGO_SUMMARY/"/>
+    </url>
+    <url>
+        <loc>Nonezh/cgo/SWIG_EXAMPLES_AND_BEST_PRACTICES/</loc>
+        <lastmod>2026-04-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/cgo/SWIG_EXAMPLES_AND_BEST_PRACTICES/"/>
+    </url>
+    <url>
+        <loc>Nonezh/cgo/SWIG_IMPLEMENTATION/</loc>
+        <lastmod>2026-04-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/cgo/SWIG_IMPLEMENTATION/"/>
+    </url>
+    <url>
+        <loc>Nonezh/cgo/SWIG_INTEGRATION_GUIDE/</loc>
+        <lastmod>2026-04-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/cgo/SWIG_INTEGRATION_GUIDE/"/>
+    </url>
+    <url>
+        <loc>Nonezh/cgo/SWIG_QUICK_REFERENCE/</loc>
+        <lastmod>2026-04-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/cgo/SWIG_QUICK_REFERENCE/"/>
+    </url>
+    <url>
+        <loc>Nonezh/release-notes/CHANGELOG_zh/</loc>
+        <lastmod>2026-04-03</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="Nonezh/release-notes/CHANGELOG_zh/"/>
     </url>
 </urlset>

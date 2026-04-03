@@ -13,7 +13,7 @@
 <link href="./" hreflang="zh" rel="alternate"/>
 <link href="../../../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.7.6" name="generator"/>
-<title>Storage 存储引擎 - GoVector 开发文档</title>
+<title>存储引擎 - GoVector 开发文档</title>
 <link href="../../../assets/stylesheets/main.484c7ddc.min.css" rel="stylesheet"/>
 <link href="../../../assets/stylesheets/palette.ab4e12ef.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -27,7 +27,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#storage">
+<a class="md-skip" href="#_1">
           跳转至
         </a>
 </div>
@@ -51,7 +51,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Storage 存储引擎
+              存储引擎
             
           </span>
 </div>
@@ -164,7 +164,7 @@
         </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../deployment/deployment-operations/">
+<a class="md-tabs__link" href="../../deployment/">
           
   
   
@@ -173,7 +173,7 @@
         </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../trouble-removal/troubleshooting/">
+<a class="md-tabs__link" href="../../troubleshooting/">
           
   
   
@@ -288,11 +288,11 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../project-overview/">
+<a class="md-nav__link" href="../../data-model/">
 <span class="md-ellipsis">
     
   
-    项目概述
+    数据模型
   
 
     
@@ -300,11 +300,23 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../data-model/">
+<a class="md-nav__link" href="../../usage-modes/">
 <span class="md-ellipsis">
     
   
-    数据模型
+    使用模式
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../vector-database-fundamentals/">
+<span class="md-ellipsis">
+    
+  
+    向量数据库基础
   
 
     
@@ -463,7 +475,7 @@
 <span class="md-ellipsis">
     
   
-    Collection 集合管理
+    集合管理
   
 
     
@@ -487,7 +499,7 @@
 <span class="md-ellipsis">
     
   
-    HNSWIndex 图索引
+    HNSW 索引
   
 
     
@@ -512,7 +524,7 @@
 <span class="md-ellipsis">
     
   
-    Storage 存储引擎
+    存储引擎
   
 
     
@@ -523,7 +535,7 @@
 <span class="md-ellipsis">
     
   
-    Storage 存储引擎
+    存储引擎
   
 
     
@@ -536,19 +548,10 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#_1">
-<span class="md-ellipsis">
-      
-        项目结构
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
 <a class="md-nav__link" href="#_2">
 <span class="md-ellipsis">
       
-        核心组件
+        📋 存储概述
       
     </span>
 </a>
@@ -557,44 +560,17 @@
 <a class="md-nav__link" href="#_3">
 <span class="md-ellipsis">
       
-        架构总览
+        🔧 存储架构
       
     </span>
 </a>
-</li>
+<nav aria-label="🔧 存储架构" class="md-nav">
+<ul class="md-nav__list">
 <li class="md-nav__item">
 <a class="md-nav__link" href="#_4">
 <span class="md-ellipsis">
       
-        详细组件分析
-      
-    </span>
-</a>
-<nav aria-label="详细组件分析" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#storage_1">
-<span class="md-ellipsis">
-      
-        存储引擎 Storage 组件
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#collection">
-<span class="md-ellipsis">
-      
-        集合 Collection 组件
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#quantizersq8quantizer">
-<span class="md-ellipsis">
-      
-        向量量化 Quantizer/SQ8Quantizer 组件
+        数据流
       
     </span>
 </a>
@@ -603,16 +579,7 @@
 <a class="md-nav__link" href="#_5">
 <span class="md-ellipsis">
       
-        数据模型与过滤器
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#protocol-buffers">
-<span class="md-ellipsis">
-      
-        协议定义（Protocol Buffers）
+        组件
       
     </span>
 </a>
@@ -624,16 +591,17 @@
 <a class="md-nav__link" href="#_6">
 <span class="md-ellipsis">
       
-        依赖分析
+        🚀 持久化
       
     </span>
 </a>
-</li>
+<nav aria-label="🚀 持久化" class="md-nav">
+<ul class="md-nav__list">
 <li class="md-nav__item">
 <a class="md-nav__link" href="#_7">
 <span class="md-ellipsis">
       
-        性能考虑
+        保存集合
       
     </span>
 </a>
@@ -642,50 +610,164 @@
 <a class="md-nav__link" href="#_8">
 <span class="md-ellipsis">
       
-        故障排查指南
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_9">
-<span class="md-ellipsis">
-      
-        结论
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_10">
-<span class="md-ellipsis">
-      
-        附录
-      
-    </span>
-</a>
-<nav aria-label="附录" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_11">
-<span class="md-ellipsis">
-      
-        使用示例（代码片段路径）
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_12">
-<span class="md-ellipsis">
-      
-        配置选项与最佳实践
+        加载集合
       
     </span>
 </a>
 </li>
 </ul>
 </nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_9">
+<span class="md-ellipsis">
+      
+        📊 存储格式
+      
+    </span>
+</a>
+<nav aria-label="📊 存储格式" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_10">
+<span class="md-ellipsis">
+      
+        集合目录结构
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_11">
+<span class="md-ellipsis">
+      
+        元数据格式
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_12">
+<span class="md-ellipsis">
+      
+        💡 性能优化
+      
+    </span>
+</a>
+<nav aria-label="💡 性能优化" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_13">
+<span class="md-ellipsis">
+      
+        对于写入性能
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_14">
+<span class="md-ellipsis">
+      
+        对于读取性能
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_15">
+<span class="md-ellipsis">
+      
+        对于存储效率
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_16">
+<span class="md-ellipsis">
+      
+        📈 存储需求
+      
+    </span>
+</a>
+<nav aria-label="📈 存储需求" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_17">
+<span class="md-ellipsis">
+      
+        向量存储
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_18">
+<span class="md-ellipsis">
+      
+        开销
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_19">
+<span class="md-ellipsis">
+      
+        🚩 常见问题
+      
+    </span>
+</a>
+<nav aria-label="🚩 常见问题" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_20">
+<span class="md-ellipsis">
+      
+        保存/加载缓慢
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_21">
+<span class="md-ellipsis">
+      
+        数据库损坏
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_22">
+<span class="md-ellipsis">
+      
+        磁盘使用高
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_23">
+<span class="md-ellipsis">
+      
+        🔗 相关文档
+      
+    </span>
+</a>
 </li>
 </ul>
 </nav>
@@ -892,6 +974,18 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
+<a class="md-nav__link" href="../../deployment/">
+<span class="md-ellipsis">
+    
+  
+    部署与运维
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="../../deployment/deployment-operations/">
 <span class="md-ellipsis">
     
@@ -977,6 +1071,18 @@
 
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../troubleshooting/">
+<span class="md-ellipsis">
+    
+  
+    故障排除
+  
+
+    
+  </span>
+</a>
+</li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../trouble-removal/troubleshooting/">
 <span class="md-ellipsis">
@@ -1165,19 +1271,10 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#_1">
-<span class="md-ellipsis">
-      
-        项目结构
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
 <a class="md-nav__link" href="#_2">
 <span class="md-ellipsis">
       
-        核心组件
+        📋 存储概述
       
     </span>
 </a>
@@ -1186,44 +1283,17 @@
 <a class="md-nav__link" href="#_3">
 <span class="md-ellipsis">
       
-        架构总览
+        🔧 存储架构
       
     </span>
 </a>
-</li>
+<nav aria-label="🔧 存储架构" class="md-nav">
+<ul class="md-nav__list">
 <li class="md-nav__item">
 <a class="md-nav__link" href="#_4">
 <span class="md-ellipsis">
       
-        详细组件分析
-      
-    </span>
-</a>
-<nav aria-label="详细组件分析" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#storage_1">
-<span class="md-ellipsis">
-      
-        存储引擎 Storage 组件
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#collection">
-<span class="md-ellipsis">
-      
-        集合 Collection 组件
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#quantizersq8quantizer">
-<span class="md-ellipsis">
-      
-        向量量化 Quantizer/SQ8Quantizer 组件
+        数据流
       
     </span>
 </a>
@@ -1232,16 +1302,7 @@
 <a class="md-nav__link" href="#_5">
 <span class="md-ellipsis">
       
-        数据模型与过滤器
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#protocol-buffers">
-<span class="md-ellipsis">
-      
-        协议定义（Protocol Buffers）
+        组件
       
     </span>
 </a>
@@ -1253,16 +1314,17 @@
 <a class="md-nav__link" href="#_6">
 <span class="md-ellipsis">
       
-        依赖分析
+        🚀 持久化
       
     </span>
 </a>
-</li>
+<nav aria-label="🚀 持久化" class="md-nav">
+<ul class="md-nav__list">
 <li class="md-nav__item">
 <a class="md-nav__link" href="#_7">
 <span class="md-ellipsis">
       
-        性能考虑
+        保存集合
       
     </span>
 </a>
@@ -1271,50 +1333,164 @@
 <a class="md-nav__link" href="#_8">
 <span class="md-ellipsis">
       
-        故障排查指南
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_9">
-<span class="md-ellipsis">
-      
-        结论
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_10">
-<span class="md-ellipsis">
-      
-        附录
-      
-    </span>
-</a>
-<nav aria-label="附录" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_11">
-<span class="md-ellipsis">
-      
-        使用示例（代码片段路径）
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_12">
-<span class="md-ellipsis">
-      
-        配置选项与最佳实践
+        加载集合
       
     </span>
 </a>
 </li>
 </ul>
 </nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_9">
+<span class="md-ellipsis">
+      
+        📊 存储格式
+      
+    </span>
+</a>
+<nav aria-label="📊 存储格式" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_10">
+<span class="md-ellipsis">
+      
+        集合目录结构
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_11">
+<span class="md-ellipsis">
+      
+        元数据格式
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_12">
+<span class="md-ellipsis">
+      
+        💡 性能优化
+      
+    </span>
+</a>
+<nav aria-label="💡 性能优化" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_13">
+<span class="md-ellipsis">
+      
+        对于写入性能
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_14">
+<span class="md-ellipsis">
+      
+        对于读取性能
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_15">
+<span class="md-ellipsis">
+      
+        对于存储效率
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_16">
+<span class="md-ellipsis">
+      
+        📈 存储需求
+      
+    </span>
+</a>
+<nav aria-label="📈 存储需求" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_17">
+<span class="md-ellipsis">
+      
+        向量存储
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_18">
+<span class="md-ellipsis">
+      
+        开销
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_19">
+<span class="md-ellipsis">
+      
+        🚩 常见问题
+      
+    </span>
+</a>
+<nav aria-label="🚩 常见问题" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_20">
+<span class="md-ellipsis">
+      
+        保存/加载缓慢
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_21">
+<span class="md-ellipsis">
+      
+        数据库损坏
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_22">
+<span class="md-ellipsis">
+      
+        磁盘使用高
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_23">
+<span class="md-ellipsis">
+      
+        🔗 相关文档
+      
+    </span>
+</a>
 </li>
 </ul>
 </nav>
@@ -1323,320 +1499,147 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="storage">Storage 存储引擎<a class="headerlink" href="#storage" title="Permanent link">¶</a></h1>
-<p>本文件系统性阐述基于 BoltDB（bbolt）的嵌入式存储引擎实现，涵盖数据持久化机制、键值存储设计、事务处理、集合元数据存储、向量点数据序列化、批量操作优化、性能特征与磁盘使用模式、内存映射策略、配置选项、备份恢复、性能调优以及可靠性保证与扩展性。文档同时提供面向初学者的概念讲解与面向专家的底层实现细节，并通过具体代码示例路径帮助快速上手。</p>
-<h2 id="_1">项目结构<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
-<p>该仓库采用按领域分层的组织方式：核心业务逻辑位于 core 包，命令行入口位于 cmd 目录，示例位于 example 目录，协议定义位于 core/proto。存储引擎位于 core/storage.go，配合 collection.go 提供集合级抽象，quantization.go 提供向量量化能力，models.go 定义数据模型与过滤器，proto 文件定义序列化结构。</p>
-<pre class="mermaid"><code>graph TB
-subgraph "核心包 core"
-A["storage.go<br/>存储引擎"]
-B["collection.go<br/>集合抽象"]
-C["quantization.go<br/>向量量化"]
-D["models.go<br/>数据模型/过滤器"]
-E["proto/point.proto<br/>PB 模型"]
-end
-subgraph "命令行"
-F["cmd/govector/main.go<br/>服务端入口"]
-G["example/embedded/main.go<br/>嵌入式示例"]
-H["cmd/bench/main.go<br/>基准测试"]
-end
-A --&gt; E
-B --&gt; A
-B --&gt; D
-C --&gt; A
-F --&gt; A
-F --&gt; B
-G --&gt; A
-G --&gt; B
-H --&gt; B
-</code></pre>
-<h2 id="_2">核心组件<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
+<h1 id="_1">存储引擎<a class="headerlink" href="#_1" title="Permanent link">¶</a></h1>
+<p>GoVector 的存储引擎负责将向量数据持久化到磁盘并将其加载回内存。本文档解释存储引擎的工作原理以及如何针对您的用例进行优化。</p>
+<h2 id="_2">📋 存储概述<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
+<p>GoVector 使用多种技术组合实现高效存储：</p>
 <ul>
-<li>存储引擎 Storage：封装 bbolt 数据库，提供集合桶管理、点数据的增删改查、集合元数据的持久化与加载、批量写入与删除、关闭与状态检查。</li>
-<li>集合 Collection：在存储之上提供线程安全的集合抽象，负责维度校验、版本号生成、持久化优先的一致性策略、索引更新与回滚尝试。</li>
-<li>向量量化 Quantizer/SQ8Quantizer：提供 8 位标量量化接口与实现，用于压缩向量以降低磁盘占用。</li>
-<li>数据模型与过滤器：定义点结构、评分结果、过滤条件、匹配类型与范围条件，支持多种匹配策略。</li>
-<li>协议定义：通过 protobuf 定义点结构、评分点、过滤器等消息格式，确保跨语言/跨进程的稳定序列化。</li>
+<li><strong>BoltDB</strong> - 用于持久存储的嵌入式键值存储</li>
+<li><strong>Protocol Buffers</strong> - 用于向量数据的高效序列化格式</li>
+<li><strong>SQ8 量化</strong> - 用于内存优化的可选 8 位标量量化</li>
 </ul>
-<h2 id="_3">架构总览<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>
-<p>存储引擎采用“集合即桶”的键值存储设计，每个集合对应一个 bbolt 桶；点数据以 Protocol Buffers 序列化后作为值存入，ID 作为键；集合元数据单独保存在一个特殊桶中，使用 JSON 序列化。写入流程遵循“先持久化再索引”的一致性策略，读取时根据是否启用量化决定解压与内存清理。</p>
-<pre class="mermaid"><code>graph TB
-S["Storage<br/>bbolt + PB"]
-M["元数据桶<br/>__collections_meta__"]
-C1["集合桶 A"]
-C2["集合桶 B"]
-P["点数据<br/>PB 序列化"]
-Q["量化器<br/>SQ8Quantizer"]
-S --&gt; M
-S --&gt; C1
-S --&gt; C2
-C1 --&gt; P
-C2 --&gt; P
-S -.可选.-&gt; Q
-</code></pre>
-<h2 id="_4">详细组件分析<a class="headerlink" href="#_4" title="Permanent link">¶</a></h2>
-<h3 id="storage_1">存储引擎 Storage 组件<a class="headerlink" href="#storage_1" title="Permanent link">¶</a></h3>
-<ul>
-<li>初始化与关闭</li>
-<li>NewStorage/NewStorageWithQuantization：打开 bbolt 数据库文件，支持可选量化器与量化开关。</li>
-<li>Close：优雅关闭数据库连接，幂等设计。</li>
-<li>集合管理</li>
-<li>EnsureCollection：为集合创建桶（若不存在），每个集合独立桶。</li>
-<li>ListCollections：枚举所有集合桶（排除元数据桶）。</li>
-<li>点数据操作</li>
-<li>UpsertPoints：批量写入点，支持量化压缩；序列化为 PB；键为点 ID。</li>
-<li>LoadCollection：批量读取集合点，反序列化 PB；若启用量化则解压并清理临时字段。</li>
-<li>DeletePoints：批量删除点，忽略不存在的 ID。</li>
-<li>元数据管理</li>
-<li>SaveCollectionMeta：将集合元数据写入特殊桶，JSON 序列化。</li>
-<li>LoadCollectionMeta/ListCollectionMetas：读取单个或全部元数据。</li>
-<li>错误处理与状态</li>
-<li>所有方法在存储关闭状态下返回明确错误。</li>
-<li>写入失败时返回带上下文的错误信息，便于定位问题。</li>
-</ul>
-<pre class="mermaid"><code>classDiagram
-class Storage {
-
-    -db : bbolt.DB
-    -closed : bool
-    -quantizer : Quantizer
-    -useQuant : bool
-    +NewStorage(dbPath) Storage
-    +NewStorageWithQuantization(dbPath, useQuant, quantizer) Storage
-    +Close() error
-    +EnsureCollection(name) error
-    +UpsertPoints(colName, points) error
-    +LoadCollection(colName) map[string]*PointStruct, error
-    +ListCollections() []string, error
-    +SaveCollectionMeta(name, meta) error
-    +LoadCollectionMeta(name) *CollectionMeta, error
-    +ListCollectionMetas() []CollectionMeta, error
-    +DeletePoints(colName, ids) error
-
-}
-</code></pre>
-<h3 id="collection">集合 Collection 组件<a class="headerlink" href="#collection" title="Permanent link">¶</a></h3>
-<ul>
-<li>生命周期与一致性</li>
-<li>NewCollection/NewCollectionWithParams：创建集合，自动确保桶存在，保存元数据，从存储加载现有点到内存索引。</li>
-<li>Upsert：先持久化，再更新内存索引；若索引更新失败，尝试回滚删除已持久化的点，保持一致性。</li>
-<li>Delete：先删除存储，再删除索引；支持按 ID 或过滤器删除。</li>
-<li>线程安全</li>
-<li>使用读写锁保护集合内部状态与索引访问。</li>
-<li>查询</li>
-<li>Search：委托给底层索引（Flat/HNSW），支持过滤器与 TopK。</li>
-</ul>
-<pre class="mermaid"><code>sequenceDiagram
-participant U as "调用方"
-participant Col as "Collection"
-participant St as "Storage"
-participant Idx as "VectorIndex"
-U-&gt;&gt;Col : Upsert(points)
-Col-&gt;&gt;Col : 校验维度/生成版本
-Col-&gt;&gt;St : UpsertPoints(name, points)
-St--&gt;&gt;Col : 成功/失败
-Col-&gt;&gt;Idx : Upsert(points)
-Idx--&gt;&gt;Col : 成功/失败
-alt 索引失败
-Col-&gt;&gt;St : DeletePoints(name, ids)
-St--&gt;&gt;Col : 回滚完成
-end
-Col--&gt;&gt;U : 返回结果
-</code></pre>
-<h3 id="quantizersq8quantizer">向量量化 Quantizer/SQ8Quantizer 组件<a class="headerlink" href="#quantizersq8quantizer" title="Permanent link">¶</a></h3>
-<ul>
-<li>接口与实现</li>
-<li>Quantizer：定义 Quantize/Dequantize/GetCompressedSize。</li>
-<li>SQ8Quantizer：按向量最小/最大值归一化到 [0,255]，存储 min/max 与 8 位整数，解压时还原浮点向量。</li>
-<li>存储集成</li>
-<li>当启用量化时，UpsertPoints 将原始向量置空，将压缩后的字节串放入点的负载中，加载时解压并移除临时字段，节省内存。</li>
-</ul>
+<h2 id="_3">🔧 存储架构<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>
+<h3 id="_4">数据流<a class="headerlink" href="#_4" title="Permanent link">¶</a></h3>
 <pre class="mermaid"><code>flowchart TD
-Start(["开始"]) --&gt; CheckQuant{"启用量化?"}
-CheckQuant --&gt; |否| DirectStore["直接存储向量"]
-CheckQuant --&gt; |是| Compress["压缩向量为字节串"]
-Compress --&gt; StoreMeta["将压缩字节串写入负载<br/>键名: __quantized_vector"]
-DirectStore --&gt; End(["结束"])
-StoreMeta --&gt; End
+    A[Go 结构体] --&gt; B[Protocol Buffers]
+    B --&gt; C[可选 SQ8 量化]
+    C --&gt; D[BoltDB 存储]
+    D --&gt; E[BoltDB 检索]
+    E --&gt; F[可选解量化]
+    F --&gt; G[Protocol Buffers]
+    G --&gt; H[Go 结构体]
 </code></pre>
-<h3 id="_5">数据模型与过滤器<a class="headerlink" href="#_5" title="Permanent link">¶</a></h3>
+<h3 id="_5">组件<a class="headerlink" href="#_5" title="Permanent link">¶</a></h3>
+<ol>
+<li><strong>Protocol Buffers</strong>：将 Go 结构体序列化为紧凑的二进制格式</li>
+<li><strong>BoltDB</strong>：将序列化数据存储在事务性键值存储中</li>
+<li><strong>SQ8 量化</strong>：在启用时将向量压缩为 8 位整数</li>
+</ol>
+<h2 id="_6">🚀 持久化<a class="headerlink" href="#_6" title="Permanent link">¶</a></h2>
+<h3 id="_7">保存集合<a class="headerlink" href="#_7" title="Permanent link">¶</a></h3>
+<div class="language-go highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="c1">// 保存集合到磁盘</span>
+<a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">collection</span><span class="p">.</span><span class="nx">Save</span><span class="p">(</span><span class="s">"/path/to/collection"</span><span class="p">);</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-0-3" id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="w">    </span><span class="nx">log</span><span class="p">.</span><span class="nx">Fatalf</span><span class="p">(</span><span class="s">"保存集合失败: %v"</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
+<a href="#__codelineno-0-4" id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="p">}</span>
+</code></pre></div>
+<h3 id="_8">加载集合<a class="headerlink" href="#_8" title="Permanent link">¶</a></h3>
+<div class="language-go highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="c1">// 从磁盘加载集合</span>
+<a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="nx">loadedCollection</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">core</span><span class="p">.</span><span class="nx">LoadCollection</span><span class="p">(</span><span class="s">"/path/to/collection"</span><span class="p">)</span>
+<a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-1-4" id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="w">    </span><span class="nx">log</span><span class="p">.</span><span class="nx">Fatalf</span><span class="p">(</span><span class="s">"加载集合失败: %v"</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
+<a href="#__codelineno-1-5" id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="p">}</span>
+</code></pre></div>
+<h2 id="_9">📊 存储格式<a class="headerlink" href="#_9" title="Permanent link">¶</a></h2>
+<h3 id="_10">集合目录结构<a class="headerlink" href="#_10" title="Permanent link">¶</a></h3>
+<div class="language-text highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a>/path/to/collection/
+<a href="#__codelineno-2-2" id="__codelineno-2-2" name="__codelineno-2-2"></a>├── metadata.json       # 集合配置
+<a href="#__codelineno-2-3" id="__codelineno-2-3" name="__codelineno-2-3"></a>├── points.db           # 点的 BoltDB 数据库
+<a href="#__codelineno-2-4" id="__codelineno-2-4" name="__codelineno-2-4"></a>└── index/             # 索引文件（HNSW 图）
+</code></pre></div>
+<h3 id="_11">元数据格式<a class="headerlink" href="#_11" title="Permanent link">¶</a></h3>
+<div class="language-json highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="p">{</span>
+<a href="#__codelineno-3-2" id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="w">  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"my-collection"</span><span class="p">,</span>
+<a href="#__codelineno-3-3" id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="w">  </span><span class="nt">"vector_len"</span><span class="p">:</span><span class="w"> </span><span class="mi">768</span><span class="p">,</span>
+<a href="#__codelineno-3-4" id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="w">  </span><span class="nt">"metric"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cosine"</span><span class="p">,</span>
+<a href="#__codelineno-3-5" id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="w">  </span><span class="nt">"index_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HNSW"</span><span class="p">,</span>
+<a href="#__codelineno-3-6" id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="w">  </span><span class="nt">"quantize"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<a href="#__codelineno-3-7" id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="w">  </span><span class="nt">"hnsw_config"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-3-8" id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="w">    </span><span class="nt">"m"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span>
+<a href="#__codelineno-3-9" id="__codelineno-3-9" name="__codelineno-3-9"></a><span class="w">    </span><span class="nt">"ef_construction"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span>
+<a href="#__codelineno-3-10" id="__codelineno-3-10" name="__codelineno-3-10"></a><span class="w">    </span><span class="nt">"ef_search"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span>
+<a href="#__codelineno-3-11" id="__codelineno-3-11" name="__codelineno-3-11"></a><span class="w">  </span><span class="p">}</span>
+<a href="#__codelineno-3-12" id="__codelineno-3-12" name="__codelineno-3-12"></a><span class="p">}</span>
+</code></pre></div>
+<h2 id="_12">💡 性能优化<a class="headerlink" href="#_12" title="Permanent link">¶</a></h2>
+<h3 id="_13">对于写入性能<a class="headerlink" href="#_13" title="Permanent link">¶</a></h3>
 <ul>
-<li>PointStruct/ScoredPoint：定义点 ID、版本、向量与负载。</li>
-<li>Filter/Condition：支持 Must/MustNot 条件，支持精确匹配、范围、前缀、包含、正则。</li>
-<li>匹配算法：MatchFilter/matchCondition/matchRange/matchPrefix/matchContains/matchRegex。</li>
+<li><strong>批处理操作</strong>：对多个点使用批量写入</li>
+<li><strong>禁用量化</strong>：对于写入密集型工作负载，考虑禁 SQ8 量化</li>
+<li><strong>SSD 存储</strong>：使用 SSD 以获得更快的写入操作</li>
 </ul>
-<pre class="mermaid"><code>classDiagram
-class PointStruct {
-
-    +string ID
-    +uint64 Version
-    +[]float32 Vector
-    +Payload Payload
-
-}
-class ScoredPoint {
-
-    +string ID
-    +uint64 Version
-    +float32 Score
-    +Payload Payload
-
-}
-class Filter {
-
-    +[]Condition Must
-    +[]Condition MustNot
-
-}
-class Condition {
-
-    +string Key
-    +ConditionType Type
-    +MatchValue Match
-    +RangeValue Range
-
-}
-class MatchValue {
-
-    +interface{
-} Value
-}
-class RangeValue {
-
-    +interface{
-} GT
-+interface{} GTE
-+interface{} LT
-+interface{} LTE
-}
-Filter --&gt; Condition
-Condition --&gt; MatchValue
-Condition --&gt; RangeValue
-</code></pre>
-<h3 id="protocol-buffers">协议定义（Protocol Buffers）<a class="headerlink" href="#protocol-buffers" title="Permanent link">¶</a></h3>
+<h3 id="_14">对于读取性能<a class="headerlink" href="#_14" title="Permanent link">¶</a></h3>
 <ul>
-<li>PointStruct/Value/ScoredPoint/Filter/Condition/MatchValue：PB 消息定义，支持字符串、整数、双精度、布尔、字节等类型。</li>
-<li>与存储的桥接：toProtoPoint/fromProtoPoint 在存储层负责与 PB 的转换。</li>
+<li><strong>启用量化</strong>：SQ8 量化减少磁盘 I/O 和内存使用</li>
+<li><strong>内存映射</strong>：BoltDB 使用内存映射以获得更快的读取</li>
+<li><strong>缓存预热</strong>：加载集合后，执行几次搜索操作以预热缓存</li>
 </ul>
-<pre class="mermaid"><code>classDiagram
-class PointStruct {
-
-    +string id
-    +[]float vector
-    +map~string,Value~ payload
-
-}
-class Value {
-
-    +oneof value
-
-}
-class ScoredPoint {
-
-    +string id
-    +uint64 version
-    +float score
-    +map~string,Value~ payload
-
-}
-class Filter {
-
-    +[]Condition must
-    +[]Condition must_not
-
-}
-class Condition {
-
-    +string key
-    +MatchValue match
-
-}
-class MatchValue {
-
-    +oneof value
-
-}
-</code></pre>
-<h2 id="_6">依赖分析<a class="headerlink" href="#_6" title="Permanent link">¶</a></h2>
+<h3 id="_15">对于存储效率<a class="headerlink" href="#_15" title="Permanent link">¶</a></h3>
 <ul>
-<li>外部依赖</li>
-<li>bbolt：嵌入式键值数据库，提供 ACID 事务与只读视图。</li>
-<li>protobuf：用于点结构与评分结果的高效序列化。</li>
-<li>hnsw：可选的高性能近似最近邻索引（由集合层使用）。</li>
-<li>内部耦合</li>
-<li>Storage 依赖 bbolt 与 protobuf；Collection 依赖 Storage 与索引实现；Quantizer 与 Storage 解耦但被集成使用。</li>
-<li>循环依赖</li>
-<li>未发现循环依赖，模块边界清晰。</li>
+<li><strong>启 SQ8 量化</strong>：减少约 75% 的向量存储</li>
+<li><strong>优化 Payload</strong>：保持 payload 小，避免存储大型对象</li>
+<li><strong>定期压缩</strong>：BoltDB 自动压缩数据，但大量删除可能需要手动压缩</li>
 </ul>
-<pre class="mermaid"><code>graph LR
-BB["bbolt"] --&gt; ST["Storage"]
-PB["protobuf"] --&gt; ST
-ST --&gt; CO["Collection"]
-QU["Quantizer"] --&gt; ST
-CO --&gt; IDX["VectorIndex(HNSW/Flat)"]
-</code></pre>
-<h2 id="_7">性能考虑<a class="headerlink" href="#_7" title="Permanent link">¶</a></h2>
+<h2 id="_16">📈 存储需求<a class="headerlink" href="#_16" title="Permanent link">¶</a></h2>
+<h3 id="_17">向量存储<a class="headerlink" href="#_17" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">向量大小</th>
+<th style="text-align: left;">精度</th>
+<th style="text-align: left;">每 1M 向量的存储</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">768 维</td>
+<td style="text-align: left;">Float32（4 字节）</td>
+<td style="text-align: left;">~3GB</td>
+</tr>
+<tr>
+<td style="text-align: left;">768 维</td>
+<td style="text-align: left;">SQ8（1 字节）</td>
+<td style="text-align: left;">~750MB</td>
+</tr>
+<tr>
+<td style="text-align: left;">384 维</td>
+<td style="text-align: left;">Float32（4 字节）</td>
+<td style="text-align: left;">~1.5GB</td>
+</tr>
+<tr>
+<td style="text-align: left;">384 维</td>
+<td style="text-align: left;">SQ8（1 字节）</td>
+<td style="text-align: left;">~375MB</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_18">开销<a class="headerlink" href="#_18" title="Permanent link">¶</a></h3>
 <ul>
-<li>磁盘与内存映射</li>
-<li>bbolt 基于 LSM-Tree 的变体，适合顺序写入与随机读取；通过批量写入减少事务开销。</li>
-<li>量化可显著降低磁盘占用，但会引入解压成本；建议在高维向量场景开启。</li>
-<li>事务与并发</li>
-<li>写入使用 Update 事务，读取使用 View 事务；集合层使用读写锁隔离集合级并发。</li>
-<li>批量操作</li>
-<li>UpsertPoints/DeletePoints 支持批量，减少多次事务与系统调用开销。</li>
-<li>查询路径</li>
-<li>读取集合时可选择是否启用量化，避免不必要的解压；加载后清理临时字段释放内存。</li>
-<li>基准测试</li>
-<li>提供纯索引基准脚本，可用于评估 Flat/HNSW 在不同规模下的构建时间、延迟与吞吐。</li>
+<li><strong>BoltDB</strong>：事务功能约 10-15% 的开销</li>
+<li><strong>Protocol Buffers</strong>：最小开销（&lt; 5%）</li>
+<li><strong>索引文件</strong>：HNSW 索引根据 M 参数增加约 20-30% 的开销</li>
 </ul>
-<h2 id="_8">故障排查指南<a class="headerlink" href="#_8" title="Permanent link">¶</a></h2>
+<h2 id="_19">🚩 常见问题<a class="headerlink" href="#_19" title="Permanent link">¶</a></h2>
+<h3 id="_20">保存/加载缓慢<a class="headerlink" href="#_20" title="Permanent link">¶</a></h3>
 <ul>
-<li>常见错误与处理</li>
-<li>存储关闭：所有方法在存储关闭状态下返回错误，需确保在正确生命周期内使用。</li>
-<li>集合不存在：Upsert/Load/Delete 对应桶不存在时的行为（Upsert 报错，Delete 忽略，Load 返回空）。</li>
-<li>序列化失败：PB 序列化/反序列化错误会返回带上下文的错误，检查点结构与类型兼容性。</li>
-<li>量化异常：解压失败或维度不一致会导致加载失败，检查量化器与存储数据一致性。</li>
-<li>单元测试覆盖</li>
-<li>测试包含基本 CRUD、量化、元数据、错误场景与关闭状态下的行为验证，可作为回归参考。</li>
+<li><strong>原因</strong>：集合大小过大或磁盘速度慢</li>
+<li><strong>解决方案</strong>：使用 SSD 存储，启 SQ8 量化，考虑较小的批处理大小</li>
 </ul>
-<h2 id="_9">结论<a class="headerlink" href="#_9" title="Permanent link">¶</a></h2>
-<p>该存储引擎以 bbolt 为基础，结合 PB 序列化与可选量化，在保证数据持久化与一致性的同时，提供了良好的性能与可扩展性。集合层通过“存储优先”的一致性策略与线程安全设计，使得嵌入式与微服务两种使用模式均具备工业级可靠性。对于大规模向量场景，建议结合量化与 HNSW 索引以获得更优的吞吐与延迟表现。</p>
-<h2 id="_10">附录<a class="headerlink" href="#_10" title="Permanent link">¶</a></h2>
-<h3 id="_11">使用示例（代码片段路径）<a class="headerlink" href="#_11" title="Permanent link">¶</a></h3>
+<h3 id="_21">数据库损坏<a class="headerlink" href="#_21" title="Permanent link">¶</a></h3>
 <ul>
-<li>初始化存储与集合</li>
-<li><a href="file://cmd/govector/main.go#L27-L36">初始化存储:27-36</a></li>
-<li><a href="file://cmd/govector/main.go#L41-L44">创建集合:41-44</a></li>
-<li><a href="file://example/embedded/main.go#L14-L24">嵌入式示例:14-24</a></li>
-<li>数据持久化与读取</li>
-<li><a href="file://example/embedded/main.go#L27-L41">批量插入点:27-41</a></li>
-<li><a href="file://core/storage.go#L189-L235">加载集合:189-235</a></li>
-<li><a href="file://core/storage.go#L338-L360">批量删除点:338-360</a></li>
-<li>元数据管理</li>
-<li><a href="file://core/storage.go#L261-L280">保存元数据:261-280</a></li>
-<li><a href="file://core/storage.go#L282-L307">加载元数据:282-307</a></li>
-<li><a href="file://core/storage.go#L309-L336">列出元数据:309-336</a></li>
+<li><strong>原因</strong>：意外关闭或磁盘错误</li>
+<li><strong>解决方案</strong>：定期备份，使用日志文件系统（ext4、APFS），实现适当的错误处理</li>
 </ul>
-<h3 id="_12">配置选项与最佳实践<a class="headerlink" href="#_12" title="Permanent link">¶</a></h3>
+<h3 id="_22">磁盘使用高<a class="headerlink" href="#_22" title="Permanent link">¶</a></h3>
 <ul>
-<li>存储配置</li>
-<li>数据库路径：通过构造函数参数指定，建议使用绝对路径或稳定的相对路径。</li>
-<li>量化开关：NewStorageWithQuantization 可启用 SQ8 量化，默认使用内置量化器。</li>
-<li>性能调优</li>
-<li>批量写入：合并小批次写入，减少事务次数。</li>
-<li>量化策略：高维向量建议开启量化；注意查询时的解压成本。</li>
-<li>索引选择：大规模数据优先 HNSW；小规模或低延迟要求可考虑 Flat。</li>
-<li>备份与恢复</li>
-<li>复制 bbolt 数据库文件即可完成物理备份；恢复时确保应用处于停止状态或使用只读模式。</li>
-<li>元数据桶与集合桶均参与备份，确保重启后可自动发现集合。</li>
-<li>可靠性与一致性</li>
-<li>写入采用“存储优先”策略，失败时尝试回滚；集合层提供版本号与维度校验。</li>
-<li>
-<p>关闭存储前确保 Flush，避免数据丢失。</p>
-</li>
-<li>
-<p><a href="file://README.md#L30-L42">README.md:30-42</a></p>
-</li>
+<li><strong>原因</strong>：大型向量或 payload，未启量化</li>
+<li><strong>解决方案</strong>：启 SQ8 量化，优化 payload 大小，考虑使用较小的向量</li>
+</ul>
+<h2 id="_23">🔗 相关文档<a class="headerlink" href="#_23" title="Permanent link">¶</a></h2>
+<ul>
+<li><a href="../collection-management/">集合管理</a> - 集合创建和配置</li>
+<li><a href="../../data-model/">数据模型</a> - 核心数据结构</li>
+<li><a href="../hnsw-index/">HNSW 索引</a> - HNSW 索引实现</li>
+<li><a href="../../usage-modes/">使用模式</a> - 使用 GoVector 的不同方式</li>
 </ul>
 </article>
 </div>

@@ -4,7 +4,7 @@ import "regexp"
 
 // Payload mimics Qdrant's payload structure, storing metadata as a map of string keys to any values.
 // It is used for filtering points based on their associated metadata.
-type Payload map[string]interface{}
+type Payload map[string]any
 
 // PointStruct represents a single vector data point, compatible with Qdrant's data model.
 // It contains a unique identifier, the vector embedding, and optional metadata.
@@ -57,15 +57,15 @@ type Condition struct {
 
 // MatchValue holds the value to match against in a filter condition.
 type MatchValue struct {
-	Value interface{} `json:"value"`
+	Value any `json:"value"`
 }
 
 // RangeValue holds range values for range conditions
 type RangeValue struct {
-	GT  interface{} `json:"gt,omitempty"`  // Greater than
-	GTE interface{} `json:"gte,omitempty"` // Greater than or equal
-	LT  interface{} `json:"lt,omitempty"`  // Less than
-	LTE interface{} `json:"lte,omitempty"` // Less than or equal
+	GT  any `json:"gt,omitempty"`  // Greater than
+	GTE any `json:"gte,omitempty"` // Greater than or equal
+	LT  any `json:"lt,omitempty"`  // Less than
+	LTE any `json:"lte,omitempty"` // Less than or equal
 }
 
 // CollectionMeta stores the configuration and metadata for a vector collection.
@@ -129,7 +129,7 @@ func matchCondition(payload Payload, cond Condition) bool {
 }
 
 // matchRange evaluates a range condition
-func matchRange(val interface{}, r *RangeValue) bool {
+func matchRange(val any, r *RangeValue) bool {
 	if r == nil {
 		return false
 	}
@@ -195,7 +195,7 @@ func matchRange(val interface{}, r *RangeValue) bool {
 }
 
 // matchPrefix evaluates a prefix condition
-func matchPrefix(val interface{}, prefix interface{}) bool {
+func matchPrefix(val any, prefix any) bool {
 	strVal, ok := val.(string)
 	if !ok {
 		return false
@@ -214,9 +214,9 @@ func matchPrefix(val interface{}, prefix interface{}) bool {
 }
 
 // matchContains evaluates a contains condition
-func matchContains(val interface{}, target interface{}) bool {
+func matchContains(val any, target any) bool {
 	switch v := val.(type) {
-	case []interface{}:
+	case []any:
 		for _, item := range v {
 			if item == target {
 				return true
@@ -258,7 +258,7 @@ func containsString(s, substr string) bool {
 }
 
 // matchRegex evaluates a regex condition
-func matchRegex(val interface{}, pattern interface{}) bool {
+func matchRegex(val any, pattern any) bool {
 	strVal, ok := val.(string)
 	if !ok {
 		return false

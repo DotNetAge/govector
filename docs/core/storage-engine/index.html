@@ -164,7 +164,7 @@
         </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../deployment/deployment-operations/">
+<a class="md-tabs__link" href="../../deployment/">
           
   
   
@@ -173,7 +173,7 @@
         </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../trouble-removal/troubleshooting/">
+<a class="md-tabs__link" href="../../troubleshooting/">
           
   
   
@@ -288,11 +288,11 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../project-overview/">
+<a class="md-nav__link" href="../../data-model/">
 <span class="md-ellipsis">
     
   
-    Project Overview
+    Data Model
   
 
     
@@ -300,11 +300,23 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../data-model/">
+<a class="md-nav__link" href="../../usage-modes/">
 <span class="md-ellipsis">
     
   
-    Data Model
+    Usage Modes
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../vector-database-fundamentals/">
+<span class="md-ellipsis">
+    
+  
+    Vector Database Fundamentals
   
 
     
@@ -536,47 +548,38 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#overview">
+<a class="md-nav__link" href="#storage-overview">
 <span class="md-ellipsis">
       
-        Overview
+        📋 Storage Overview
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#architecture">
+<a class="md-nav__link" href="#storage-architecture">
 <span class="md-ellipsis">
       
-        Architecture
+        🔧 Storage Architecture
       
     </span>
 </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#core-implementation">
-<span class="md-ellipsis">
-      
-        Core Implementation
-      
-    </span>
-</a>
-<nav aria-label="Core Implementation" class="md-nav">
+<nav aria-label="🔧 Storage Architecture" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#data-structure">
+<a class="md-nav__link" href="#data-flow">
 <span class="md-ellipsis">
       
-        Data Structure
+        Data Flow
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#initialization">
+<a class="md-nav__link" href="#components">
 <span class="md-ellipsis">
       
-        Initialization
+        Components
       
     </span>
 </a>
@@ -585,29 +588,29 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#collection-management">
+<a class="md-nav__link" href="#persistence">
 <span class="md-ellipsis">
       
-        Collection Management
+        🚀 Persistence
       
     </span>
 </a>
-<nav aria-label="Collection Management" class="md-nav">
+<nav aria-label="🚀 Persistence" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#creating-collections">
+<a class="md-nav__link" href="#saving-a-collection">
 <span class="md-ellipsis">
       
-        Creating Collections
+        Saving a Collection
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#deleting-collections">
+<a class="md-nav__link" href="#loading-a-collection">
 <span class="md-ellipsis">
       
-        Deleting Collections
+        Loading a Collection
       
     </span>
 </a>
@@ -616,47 +619,29 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#point-operations">
+<a class="md-nav__link" href="#storage-format">
 <span class="md-ellipsis">
       
-        Point Operations
+        📊 Storage Format
       
     </span>
 </a>
-<nav aria-label="Point Operations" class="md-nav">
+<nav aria-label="📊 Storage Format" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#upsert-points">
+<a class="md-nav__link" href="#collection-directory-structure">
 <span class="md-ellipsis">
       
-        Upsert Points
+        Collection Directory Structure
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#retrieve-points">
+<a class="md-nav__link" href="#metadata-format">
 <span class="md-ellipsis">
       
-        Retrieve Points
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#delete-points">
-<span class="md-ellipsis">
-      
-        Delete Points
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#iterate-points">
-<span class="md-ellipsis">
-      
-        Iterate Points
+        Metadata Format
       
     </span>
 </a>
@@ -665,29 +650,38 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#serialization">
+<a class="md-nav__link" href="#performance-optimization">
 <span class="md-ellipsis">
       
-        Serialization
+        💡 Performance Optimization
       
     </span>
 </a>
-<nav aria-label="Serialization" class="md-nav">
+<nav aria-label="💡 Performance Optimization" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#protobuf-serialization">
+<a class="md-nav__link" href="#for-write-performance">
 <span class="md-ellipsis">
       
-        Protobuf Serialization
+        For Write Performance
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#protobuf-deserialization">
+<a class="md-nav__link" href="#for-read-performance">
 <span class="md-ellipsis">
       
-        Protobuf Deserialization
+        For Read Performance
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#for-storage-efficiency">
+<span class="md-ellipsis">
+      
+        For Storage Efficiency
       
     </span>
 </a>
@@ -696,29 +690,29 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#boltdb-configuration">
+<a class="md-nav__link" href="#storage-requirements">
 <span class="md-ellipsis">
       
-        BoltDB Configuration
+        📈 Storage Requirements
       
     </span>
 </a>
-<nav aria-label="BoltDB Configuration" class="md-nav">
+<nav aria-label="📈 Storage Requirements" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#default-options">
+<a class="md-nav__link" href="#vector-storage">
 <span class="md-ellipsis">
       
-        Default Options
+        Vector Storage
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#performance-tuning">
+<a class="md-nav__link" href="#overhead">
 <span class="md-ellipsis">
       
-        Performance Tuning
+        Overhead
       
     </span>
 </a>
@@ -727,47 +721,38 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#thread-safety">
+<a class="md-nav__link" href="#common-issues">
 <span class="md-ellipsis">
       
-        Thread Safety
+        🚩 Common Issues
       
     </span>
 </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#error-handling">
-<span class="md-ellipsis">
-      
-        Error Handling
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#backup-and-recovery">
-<span class="md-ellipsis">
-      
-        Backup and Recovery
-      
-    </span>
-</a>
-<nav aria-label="Backup and Recovery" class="md-nav">
+<nav aria-label="🚩 Common Issues" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#backup">
+<a class="md-nav__link" href="#slow-saveload">
 <span class="md-ellipsis">
       
-        Backup
+        Slow Save/Load
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#restore">
+<a class="md-nav__link" href="#corrupted-database">
 <span class="md-ellipsis">
       
-        Restore
+        Corrupted Database
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#high-disk-usage">
+<span class="md-ellipsis">
+      
+        High Disk Usage
       
     </span>
 </a>
@@ -776,10 +761,10 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#best-practices">
+<a class="md-nav__link" href="#related-documentation">
 <span class="md-ellipsis">
       
-        Best Practices
+        🔗 Related Documentation
       
     </span>
 </a>
@@ -989,6 +974,18 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
+<a class="md-nav__link" href="../../deployment/">
+<span class="md-ellipsis">
+    
+  
+    Deployment and Operations
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="../../deployment/deployment-operations/">
 <span class="md-ellipsis">
     
@@ -1074,6 +1071,18 @@
 
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../troubleshooting/">
+<span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+</a>
+</li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../trouble-removal/troubleshooting/">
 <span class="md-ellipsis">
@@ -1262,47 +1271,38 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#overview">
+<a class="md-nav__link" href="#storage-overview">
 <span class="md-ellipsis">
       
-        Overview
+        📋 Storage Overview
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#architecture">
+<a class="md-nav__link" href="#storage-architecture">
 <span class="md-ellipsis">
       
-        Architecture
+        🔧 Storage Architecture
       
     </span>
 </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#core-implementation">
-<span class="md-ellipsis">
-      
-        Core Implementation
-      
-    </span>
-</a>
-<nav aria-label="Core Implementation" class="md-nav">
+<nav aria-label="🔧 Storage Architecture" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#data-structure">
+<a class="md-nav__link" href="#data-flow">
 <span class="md-ellipsis">
       
-        Data Structure
+        Data Flow
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#initialization">
+<a class="md-nav__link" href="#components">
 <span class="md-ellipsis">
       
-        Initialization
+        Components
       
     </span>
 </a>
@@ -1311,29 +1311,29 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#collection-management">
+<a class="md-nav__link" href="#persistence">
 <span class="md-ellipsis">
       
-        Collection Management
+        🚀 Persistence
       
     </span>
 </a>
-<nav aria-label="Collection Management" class="md-nav">
+<nav aria-label="🚀 Persistence" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#creating-collections">
+<a class="md-nav__link" href="#saving-a-collection">
 <span class="md-ellipsis">
       
-        Creating Collections
+        Saving a Collection
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#deleting-collections">
+<a class="md-nav__link" href="#loading-a-collection">
 <span class="md-ellipsis">
       
-        Deleting Collections
+        Loading a Collection
       
     </span>
 </a>
@@ -1342,47 +1342,29 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#point-operations">
+<a class="md-nav__link" href="#storage-format">
 <span class="md-ellipsis">
       
-        Point Operations
+        📊 Storage Format
       
     </span>
 </a>
-<nav aria-label="Point Operations" class="md-nav">
+<nav aria-label="📊 Storage Format" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#upsert-points">
+<a class="md-nav__link" href="#collection-directory-structure">
 <span class="md-ellipsis">
       
-        Upsert Points
+        Collection Directory Structure
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#retrieve-points">
+<a class="md-nav__link" href="#metadata-format">
 <span class="md-ellipsis">
       
-        Retrieve Points
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#delete-points">
-<span class="md-ellipsis">
-      
-        Delete Points
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#iterate-points">
-<span class="md-ellipsis">
-      
-        Iterate Points
+        Metadata Format
       
     </span>
 </a>
@@ -1391,29 +1373,38 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#serialization">
+<a class="md-nav__link" href="#performance-optimization">
 <span class="md-ellipsis">
       
-        Serialization
+        💡 Performance Optimization
       
     </span>
 </a>
-<nav aria-label="Serialization" class="md-nav">
+<nav aria-label="💡 Performance Optimization" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#protobuf-serialization">
+<a class="md-nav__link" href="#for-write-performance">
 <span class="md-ellipsis">
       
-        Protobuf Serialization
+        For Write Performance
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#protobuf-deserialization">
+<a class="md-nav__link" href="#for-read-performance">
 <span class="md-ellipsis">
       
-        Protobuf Deserialization
+        For Read Performance
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#for-storage-efficiency">
+<span class="md-ellipsis">
+      
+        For Storage Efficiency
       
     </span>
 </a>
@@ -1422,29 +1413,29 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#boltdb-configuration">
+<a class="md-nav__link" href="#storage-requirements">
 <span class="md-ellipsis">
       
-        BoltDB Configuration
+        📈 Storage Requirements
       
     </span>
 </a>
-<nav aria-label="BoltDB Configuration" class="md-nav">
+<nav aria-label="📈 Storage Requirements" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#default-options">
+<a class="md-nav__link" href="#vector-storage">
 <span class="md-ellipsis">
       
-        Default Options
+        Vector Storage
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#performance-tuning">
+<a class="md-nav__link" href="#overhead">
 <span class="md-ellipsis">
       
-        Performance Tuning
+        Overhead
       
     </span>
 </a>
@@ -1453,47 +1444,38 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#thread-safety">
+<a class="md-nav__link" href="#common-issues">
 <span class="md-ellipsis">
       
-        Thread Safety
+        🚩 Common Issues
       
     </span>
 </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#error-handling">
-<span class="md-ellipsis">
-      
-        Error Handling
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#backup-and-recovery">
-<span class="md-ellipsis">
-      
-        Backup and Recovery
-      
-    </span>
-</a>
-<nav aria-label="Backup and Recovery" class="md-nav">
+<nav aria-label="🚩 Common Issues" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#backup">
+<a class="md-nav__link" href="#slow-saveload">
 <span class="md-ellipsis">
       
-        Backup
+        Slow Save/Load
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#restore">
+<a class="md-nav__link" href="#corrupted-database">
 <span class="md-ellipsis">
       
-        Restore
+        Corrupted Database
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#high-disk-usage">
+<span class="md-ellipsis">
+      
+        High Disk Usage
       
     </span>
 </a>
@@ -1502,10 +1484,10 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#best-practices">
+<a class="md-nav__link" href="#related-documentation">
 <span class="md-ellipsis">
       
-        Best Practices
+        🔗 Related Documentation
       
     </span>
 </a>
@@ -1518,345 +1500,147 @@
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <h1 id="storage-engine">Storage Engine<a class="headerlink" href="#storage-engine" title="Permanent link">¶</a></h1>
-<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">¶</a></h2>
-<p>The Storage engine provides persistent storage for vector data using BoltDB as the underlying key-value store. It handles data serialization, collection management, and integrates with the quantization subsystem for efficient storage.</p>
-<h2 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">¶</a></h2>
-<pre class="mermaid"><code>graph TB
-    subgraph StorageEngine
-        DB[(BoltDB<br/>Key-Value Store)]
-        Serial[Protobuf<br/>Serialization]
-        Quant[Quantizer<br/>Integration]
-    end
-    Serial --&gt; DB
-    Quant --&gt; DB
-</code></pre>
-<h2 id="core-implementation">Core Implementation<a class="headerlink" href="#core-implementation" title="Permanent link">¶</a></h2>
-<h3 id="data-structure">Data Structure<a class="headerlink" href="#data-structure" title="Permanent link">¶</a></h3>
-<div class="language-go highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="kd">type</span><span class="w"> </span><span class="nx">Storage</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
-<a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="w">    </span><span class="nx">db</span><span class="w">        </span><span class="o">*</span><span class="nx">bbolt</span><span class="p">.</span><span class="nx">DB</span>
-<a href="#__codelineno-0-3" id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="w">    </span><span class="nx">closed</span><span class="w">    </span><span class="kt">bool</span>
-<a href="#__codelineno-0-4" id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="w">    </span><span class="nx">quantizer</span><span class="w"> </span><span class="nx">Quantizer</span>
-<a href="#__codelineno-0-5" id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="w">    </span><span class="nx">useQuant</span><span class="w">  </span><span class="kt">bool</span>
-<a href="#__codelineno-0-6" id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="p">}</span>
-</code></pre></div>
-<h3 id="initialization">Initialization<a class="headerlink" href="#initialization" title="Permanent link">¶</a></h3>
-<div class="language-go highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="kd">func</span><span class="w"> </span><span class="nx">NewStorage</span><span class="p">(</span><span class="nx">path</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">useQuant</span><span class="w"> </span><span class="kt">bool</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="nx">Storage</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="w">    </span><span class="nx">db</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">bbolt</span><span class="p">.</span><span class="nx">Open</span><span class="p">(</span><span class="nx">path</span><span class="p">,</span><span class="w"> </span><span class="mo">0666</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">bbolt</span><span class="p">.</span><span class="nx">Options</span><span class="p">{</span>
-<a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="w">        </span><span class="nx">Timeout</span><span class="p">:</span><span class="w"> </span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
-<a href="#__codelineno-1-4" id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="w">    </span><span class="p">})</span>
-<a href="#__codelineno-1-5" id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
-<a href="#__codelineno-1-6" id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="kc">nil</span><span class="p">,</span><span class="w"> </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Errorf</span><span class="p">(</span><span class="s">"failed to open database: %w"</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
-<a href="#__codelineno-1-7" id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="w">    </span><span class="p">}</span>
-<a href="#__codelineno-1-8" id="__codelineno-1-8" name="__codelineno-1-8"></a>
-<a href="#__codelineno-1-9" id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="w">    </span><span class="nx">s</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">Storage</span><span class="p">{</span>
-<a href="#__codelineno-1-10" id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="w">        </span><span class="nx">db</span><span class="p">:</span><span class="w">       </span><span class="nx">db</span><span class="p">,</span>
-<a href="#__codelineno-1-11" id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="w">        </span><span class="nx">useQuant</span><span class="p">:</span><span class="w"> </span><span class="nx">useQuant</span><span class="p">,</span>
-<a href="#__codelineno-1-12" id="__codelineno-1-12" name="__codelineno-1-12"></a><span class="w">    </span><span class="p">}</span>
-<a href="#__codelineno-1-13" id="__codelineno-1-13" name="__codelineno-1-13"></a>
-<a href="#__codelineno-1-14" id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">useQuant</span><span class="w"> </span><span class="p">{</span>
-<a href="#__codelineno-1-15" id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="w">        </span><span class="nx">s</span><span class="p">.</span><span class="nx">quantizer</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">NewSQ8Quantizer</span><span class="p">()</span>
-<a href="#__codelineno-1-16" id="__codelineno-1-16" name="__codelineno-1-16"></a><span class="w">    </span><span class="p">}</span>
-<a href="#__codelineno-1-17" id="__codelineno-1-17" name="__codelineno-1-17"></a>
-<a href="#__codelineno-1-18" id="__codelineno-1-18" name="__codelineno-1-18"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">s</span><span class="p">,</span><span class="w"> </span><span class="kc">nil</span>
-<a href="#__codelineno-1-19" id="__codelineno-1-19" name="__codelineno-1-19"></a><span class="p">}</span>
-</code></pre></div>
-<h2 id="collection-management">Collection Management<a class="headerlink" href="#collection-management" title="Permanent link">¶</a></h2>
-<h3 id="creating-collections">Creating Collections<a class="headerlink" href="#creating-collections" title="Permanent link">¶</a></h3>
-<p>BoltDB automatically creates collections (buckets) when data is first inserted:</p>
-<div class="language-go highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">s</span><span class="w"> </span><span class="o">*</span><span class="nx">Storage</span><span class="p">)</span><span class="w"> </span><span class="nx">getOrCreateBucket</span><span class="p">(</span><span class="nx">colName</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="nx">bbolt</span><span class="p">.</span><span class="nx">Bucket</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a href="#__codelineno-2-2" id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">bucket</span><span class="w"> </span><span class="o">*</span><span class="nx">bbolt</span><span class="p">.</span><span class="nx">Bucket</span>
-<a href="#__codelineno-2-3" id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="w">    </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">s</span><span class="p">.</span><span class="nx">db</span><span class="p">.</span><span class="nx">Update</span><span class="p">(</span><span class="kd">func</span><span class="p">(</span><span class="nx">tx</span><span class="w"> </span><span class="o">*</span><span class="nx">bbolt</span><span class="p">.</span><span class="nx">Tx</span><span class="p">)</span><span class="w"> </span><span class="kt">error</span><span class="w"> </span><span class="p">{</span>
-<a href="#__codelineno-2-4" id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="kt">error</span>
-<a href="#__codelineno-2-5" id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="w">        </span><span class="nx">bucket</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">tx</span><span class="p">.</span><span class="nx">CreateBucketIfNotExists</span><span class="p">([]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">colName</span><span class="p">))</span>
-<a href="#__codelineno-2-6" id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">err</span>
-<a href="#__codelineno-2-7" id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="w">    </span><span class="p">})</span>
-<a href="#__codelineno-2-8" id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">bucket</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span>
-<a href="#__codelineno-2-9" id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="p">}</span>
-</code></pre></div>
-<h3 id="deleting-collections">Deleting Collections<a class="headerlink" href="#deleting-collections" title="Permanent link">¶</a></h3>
-<div class="language-go highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">s</span><span class="w"> </span><span class="o">*</span><span class="nx">Storage</span><span class="p">)</span><span class="w"> </span><span class="nx">DeleteCollection</span><span class="p">(</span><span class="nx">colName</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="w"> </span><span class="kt">error</span><span class="w"> </span><span class="p">{</span>
-<a href="#__codelineno-3-2" id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">s</span><span class="p">.</span><span class="nx">db</span><span class="p">.</span><span class="nx">Update</span><span class="p">(</span><span class="kd">func</span><span class="p">(</span><span class="nx">tx</span><span class="w"> </span><span class="o">*</span><span class="nx">bbolt</span><span class="p">.</span><span class="nx">Tx</span><span class="p">)</span><span class="w"> </span><span class="kt">error</span><span class="w"> </span><span class="p">{</span>
-<a href="#__codelineno-3-3" id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">tx</span><span class="p">.</span><span class="nx">DeleteBucket</span><span class="p">([]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">colName</span><span class="p">))</span>
-<a href="#__codelineno-3-4" id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="w">    </span><span class="p">})</span>
-<a href="#__codelineno-3-5" id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="p">}</span>
-</code></pre></div>
-<h2 id="point-operations">Point Operations<a class="headerlink" href="#point-operations" title="Permanent link">¶</a></h2>
-<h3 id="upsert-points">Upsert Points<a class="headerlink" href="#upsert-points" title="Permanent link">¶</a></h3>
-<div class="language-go highlight"><pre><span></span><code><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">s</span><span class="w"> </span><span class="o">*</span><span class="nx">Storage</span><span class="p">)</span><span class="w"> </span><span class="nx">UpsertPoints</span><span class="p">(</span><span class="nx">colName</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">points</span><span class="w"> </span><span class="p">[]</span><span class="o">*</span><span class="nx">PointStruct</span><span class="p">)</span><span class="w"> </span><span class="kt">error</span><span class="w"> </span><span class="p">{</span>
-<a href="#__codelineno-4-2" id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">s</span><span class="p">.</span><span class="nx">closed</span><span class="w"> </span><span class="p">{</span>
-<a href="#__codelineno-4-3" id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">errors</span><span class="p">.</span><span class="nx">New</span><span class="p">(</span><span class="s">"storage is closed"</span><span class="p">)</span>
-<a href="#__codelineno-4-4" id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="w">    </span><span class="p">}</span>
-<a href="#__codelineno-4-5" id="__codelineno-4-5" name="__codelineno-4-5"></a>
-<a href="#__codelineno-4-6" id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">s</span><span class="p">.</span><span class="nx">db</span><span class="p">.</span><span class="nx">Update</span><span class="p">(</span><span class="kd">func</span><span class="p">(</span><span class="nx">tx</span><span class="w"> </span><span class="o">*</span><span class="nx">bbolt</span><span class="p">.</span><span class="nx">Tx</span><span class="p">)</span><span class="w"> </span><span class="kt">error</span><span class="w"> </span><span class="p">{</span>
-<a href="#__codelineno-4-7" id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="w">        </span><span class="nx">b</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">tx</span><span class="p">.</span><span class="nx">CreateBucketIfNotExists</span><span class="p">([]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">colName</span><span class="p">))</span>
-<a href="#__codelineno-4-8" id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
-<a href="#__codelineno-4-9" id="__codelineno-4-9" name="__codelineno-4-9"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="nx">err</span>
-<a href="#__codelineno-4-10" id="__codelineno-4-10" name="__codelineno-4-10"></a><span class="w">        </span><span class="p">}</span>
-<a href="#__codelineno-4-11" id="__codelineno-4-11" name="__codelineno-4-11"></a>
-<a href="#__codelineno-4-12" id="__codelineno-4-12" name="__codelineno-4-12"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="nx">_</span><span class="p">,</span><span class="w"> </span><span class="nx">p</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">range</span><span class="w"> </span><span class="nx">points</span><span class="w"> </span><span class="p">{</span>
-<a href="#__codelineno-4-13" id="__codelineno-4-13" name="__codelineno-4-13"></a><span class="w">            </span><span class="c1">// Handle quantization if enabled</span>
-<a href="#__codelineno-4-14" id="__codelineno-4-14" name="__codelineno-4-14"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="nx">s</span><span class="p">.</span><span class="nx">useQuant</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">s</span><span class="p">.</span><span class="nx">quantizer</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">Vector</span><span class="p">)</span><span class="w"> </span><span class="p">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">{</span>
-<a href="#__codelineno-4-15" id="__codelineno-4-15" name="__codelineno-4-15"></a><span class="w">                </span><span class="nx">quantized</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">s</span><span class="p">.</span><span class="nx">quantizer</span><span class="p">.</span><span class="nx">Quantize</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">Vector</span><span class="p">)</span>
-<a href="#__codelineno-4-16" id="__codelineno-4-16" name="__codelineno-4-16"></a><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="nx">p</span><span class="p">.</span><span class="nx">Payload</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
-<a href="#__codelineno-4-17" id="__codelineno-4-17" name="__codelineno-4-17"></a><span class="w">                    </span><span class="nx">p</span><span class="p">.</span><span class="nx">Payload</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{})</span>
-<a href="#__codelineno-4-18" id="__codelineno-4-18" name="__codelineno-4-18"></a><span class="w">                </span><span class="p">}</span>
-<a href="#__codelineno-4-19" id="__codelineno-4-19" name="__codelineno-4-19"></a><span class="w">                </span><span class="nx">p</span><span class="p">.</span><span class="nx">Payload</span><span class="p">[</span><span class="s">"__quantized_vector"</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">quantized</span>
-<a href="#__codelineno-4-20" id="__codelineno-4-20" name="__codelineno-4-20"></a><span class="w">                </span><span class="nx">p</span><span class="p">.</span><span class="nx">Vector</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="c1">// Clear original vector</span>
-<a href="#__codelineno-4-21" id="__codelineno-4-21" name="__codelineno-4-21"></a><span class="w">            </span><span class="p">}</span>
-<a href="#__codelineno-4-22" id="__codelineno-4-22" name="__codelineno-4-22"></a>
-<a href="#__codelineno-4-23" id="__codelineno-4-23" name="__codelineno-4-23"></a><span class="w">            </span><span class="c1">// Serialize point to protobuf</span>
-<a href="#__codelineno-4-24" id="__codelineno-4-24" name="__codelineno-4-24"></a><span class="w">            </span><span class="nx">pbPoint</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">toProtoPoint</span><span class="p">(</span><span class="nx">p</span><span class="p">)</span>
-<a href="#__codelineno-4-25" id="__codelineno-4-25" name="__codelineno-4-25"></a><span class="w">            </span><span class="nx">data</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">proto</span><span class="p">.</span><span class="nx">Marshal</span><span class="p">(</span><span class="nx">pbPoint</span><span class="p">)</span>
-<a href="#__codelineno-4-26" id="__codelineno-4-26" name="__codelineno-4-26"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
-<a href="#__codelineno-4-27" id="__codelineno-4-27" name="__codelineno-4-27"></a><span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="nx">err</span>
-<a href="#__codelineno-4-28" id="__codelineno-4-28" name="__codelineno-4-28"></a><span class="w">            </span><span class="p">}</span>
-<a href="#__codelineno-4-29" id="__codelineno-4-29" name="__codelineno-4-29"></a>
-<a href="#__codelineno-4-30" id="__codelineno-4-30" name="__codelineno-4-30"></a><span class="w">            </span><span class="c1">// Store in bucket</span>
-<a href="#__codelineno-4-31" id="__codelineno-4-31" name="__codelineno-4-31"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">b</span><span class="p">.</span><span class="nx">Put</span><span class="p">([]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">ID</span><span class="p">),</span><span class="w"> </span><span class="nx">data</span><span class="p">);</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
-<a href="#__codelineno-4-32" id="__codelineno-4-32" name="__codelineno-4-32"></a><span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="nx">err</span>
-<a href="#__codelineno-4-33" id="__codelineno-4-33" name="__codelineno-4-33"></a><span class="w">            </span><span class="p">}</span>
-<a href="#__codelineno-4-34" id="__codelineno-4-34" name="__codelineno-4-34"></a><span class="w">        </span><span class="p">}</span>
-<a href="#__codelineno-4-35" id="__codelineno-4-35" name="__codelineno-4-35"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="kc">nil</span>
-<a href="#__codelineno-4-36" id="__codelineno-4-36" name="__codelineno-4-36"></a><span class="w">    </span><span class="p">})</span>
-<a href="#__codelineno-4-37" id="__codelineno-4-37" name="__codelineno-4-37"></a><span class="p">}</span>
-</code></pre></div>
-<h3 id="retrieve-points">Retrieve Points<a class="headerlink" href="#retrieve-points" title="Permanent link">¶</a></h3>
-<div class="language-go highlight"><pre><span></span><code><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">s</span><span class="w"> </span><span class="o">*</span><span class="nx">Storage</span><span class="p">)</span><span class="w"> </span><span class="nx">GetPoint</span><span class="p">(</span><span class="nx">colName</span><span class="p">,</span><span class="w"> </span><span class="nx">pointID</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="nx">PointStruct</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a href="#__codelineno-5-2" id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">s</span><span class="p">.</span><span class="nx">closed</span><span class="w"> </span><span class="p">{</span>
-<a href="#__codelineno-5-3" id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="kc">nil</span><span class="p">,</span><span class="w"> </span><span class="nx">errors</span><span class="p">.</span><span class="nx">New</span><span class="p">(</span><span class="s">"storage is closed"</span><span class="p">)</span>
-<a href="#__codelineno-5-4" id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="w">    </span><span class="p">}</span>
-<a href="#__codelineno-5-5" id="__codelineno-5-5" name="__codelineno-5-5"></a>
-<a href="#__codelineno-5-6" id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">point</span><span class="w"> </span><span class="o">*</span><span class="nx">PointStruct</span>
-<a href="#__codelineno-5-7" id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="w">    </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">s</span><span class="p">.</span><span class="nx">db</span><span class="p">.</span><span class="nx">View</span><span class="p">(</span><span class="kd">func</span><span class="p">(</span><span class="nx">tx</span><span class="w"> </span><span class="o">*</span><span class="nx">bbolt</span><span class="p">.</span><span class="nx">Tx</span><span class="p">)</span><span class="w"> </span><span class="kt">error</span><span class="w"> </span><span class="p">{</span>
-<a href="#__codelineno-5-8" id="__codelineno-5-8" name="__codelineno-5-8"></a><span class="w">        </span><span class="nx">b</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">tx</span><span class="p">.</span><span class="nx">Bucket</span><span class="p">([]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">colName</span><span class="p">))</span>
-<a href="#__codelineno-5-9" id="__codelineno-5-9" name="__codelineno-5-9"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nx">b</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
-<a href="#__codelineno-5-10" id="__codelineno-5-10" name="__codelineno-5-10"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="nx">errors</span><span class="p">.</span><span class="nx">New</span><span class="p">(</span><span class="s">"collection not found"</span><span class="p">)</span>
-<a href="#__codelineno-5-11" id="__codelineno-5-11" name="__codelineno-5-11"></a><span class="w">        </span><span class="p">}</span>
-<a href="#__codelineno-5-12" id="__codelineno-5-12" name="__codelineno-5-12"></a>
-<a href="#__codelineno-5-13" id="__codelineno-5-13" name="__codelineno-5-13"></a><span class="w">        </span><span class="nx">data</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">b</span><span class="p">.</span><span class="nx">Get</span><span class="p">([]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">pointID</span><span class="p">))</span>
-<a href="#__codelineno-5-14" id="__codelineno-5-14" name="__codelineno-5-14"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
-<a href="#__codelineno-5-15" id="__codelineno-5-15" name="__codelineno-5-15"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="kc">nil</span>
-<a href="#__codelineno-5-16" id="__codelineno-5-16" name="__codelineno-5-16"></a><span class="w">        </span><span class="p">}</span>
-<a href="#__codelineno-5-17" id="__codelineno-5-17" name="__codelineno-5-17"></a>
-<a href="#__codelineno-5-18" id="__codelineno-5-18" name="__codelineno-5-18"></a><span class="w">        </span><span class="nx">pbPoint</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">proto</span><span class="p">.</span><span class="nx">Point</span><span class="p">{}</span>
-<a href="#__codelineno-5-19" id="__codelineno-5-19" name="__codelineno-5-19"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">proto</span><span class="p">.</span><span class="nx">Unmarshal</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span><span class="w"> </span><span class="nx">pbPoint</span><span class="p">);</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
-<a href="#__codelineno-5-20" id="__codelineno-5-20" name="__codelineno-5-20"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="nx">err</span>
-<a href="#__codelineno-5-21" id="__codelineno-5-21" name="__codelineno-5-21"></a><span class="w">        </span><span class="p">}</span>
-<a href="#__codelineno-5-22" id="__codelineno-5-22" name="__codelineno-5-22"></a>
-<a href="#__codelineno-5-23" id="__codelineno-5-23" name="__codelineno-5-23"></a><span class="w">        </span><span class="nx">point</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">fromProtoPoint</span><span class="p">(</span><span class="nx">pbPoint</span><span class="p">)</span>
-<a href="#__codelineno-5-24" id="__codelineno-5-24" name="__codelineno-5-24"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="kc">nil</span>
-<a href="#__codelineno-5-25" id="__codelineno-5-25" name="__codelineno-5-25"></a><span class="w">    </span><span class="p">})</span>
-<a href="#__codelineno-5-26" id="__codelineno-5-26" name="__codelineno-5-26"></a>
-<a href="#__codelineno-5-27" id="__codelineno-5-27" name="__codelineno-5-27"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">point</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span>
-<a href="#__codelineno-5-28" id="__codelineno-5-28" name="__codelineno-5-28"></a><span class="p">}</span>
-</code></pre></div>
-<h3 id="delete-points">Delete Points<a class="headerlink" href="#delete-points" title="Permanent link">¶</a></h3>
-<div class="language-go highlight"><pre><span></span><code><a href="#__codelineno-6-1" id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">s</span><span class="w"> </span><span class="o">*</span><span class="nx">Storage</span><span class="p">)</span><span class="w"> </span><span class="nx">DeletePoints</span><span class="p">(</span><span class="nx">colName</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">pointIDs</span><span class="w"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">filter</span><span class="w"> </span><span class="o">*</span><span class="nx">Filter</span><span class="p">)</span><span class="w"> </span><span class="kt">error</span><span class="w"> </span><span class="p">{</span>
-<a href="#__codelineno-6-2" id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">s</span><span class="p">.</span><span class="nx">closed</span><span class="w"> </span><span class="p">{</span>
-<a href="#__codelineno-6-3" id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">errors</span><span class="p">.</span><span class="nx">New</span><span class="p">(</span><span class="s">"storage is closed"</span><span class="p">)</span>
-<a href="#__codelineno-6-4" id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="w">    </span><span class="p">}</span>
-<a href="#__codelineno-6-5" id="__codelineno-6-5" name="__codelineno-6-5"></a>
-<a href="#__codelineno-6-6" id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">s</span><span class="p">.</span><span class="nx">db</span><span class="p">.</span><span class="nx">Update</span><span class="p">(</span><span class="kd">func</span><span class="p">(</span><span class="nx">tx</span><span class="w"> </span><span class="o">*</span><span class="nx">bbolt</span><span class="p">.</span><span class="nx">Tx</span><span class="p">)</span><span class="w"> </span><span class="kt">error</span><span class="w"> </span><span class="p">{</span>
-<a href="#__codelineno-6-7" id="__codelineno-6-7" name="__codelineno-6-7"></a><span class="w">        </span><span class="nx">b</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">tx</span><span class="p">.</span><span class="nx">Bucket</span><span class="p">([]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">colName</span><span class="p">))</span>
-<a href="#__codelineno-6-8" id="__codelineno-6-8" name="__codelineno-6-8"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nx">b</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
-<a href="#__codelineno-6-9" id="__codelineno-6-9" name="__codelineno-6-9"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="nx">errors</span><span class="p">.</span><span class="nx">New</span><span class="p">(</span><span class="s">"collection not found"</span><span class="p">)</span>
-<a href="#__codelineno-6-10" id="__codelineno-6-10" name="__codelineno-6-10"></a><span class="w">        </span><span class="p">}</span>
-<a href="#__codelineno-6-11" id="__codelineno-6-11" name="__codelineno-6-11"></a>
-<a href="#__codelineno-6-12" id="__codelineno-6-12" name="__codelineno-6-12"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="nx">_</span><span class="p">,</span><span class="w"> </span><span class="nx">id</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">range</span><span class="w"> </span><span class="nx">pointIDs</span><span class="w"> </span><span class="p">{</span>
-<a href="#__codelineno-6-13" id="__codelineno-6-13" name="__codelineno-6-13"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">b</span><span class="p">.</span><span class="nx">Delete</span><span class="p">([]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">id</span><span class="p">));</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
-<a href="#__codelineno-6-14" id="__codelineno-6-14" name="__codelineno-6-14"></a><span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="nx">err</span>
-<a href="#__codelineno-6-15" id="__codelineno-6-15" name="__codelineno-6-15"></a><span class="w">            </span><span class="p">}</span>
-<a href="#__codelineno-6-16" id="__codelineno-6-16" name="__codelineno-6-16"></a><span class="w">        </span><span class="p">}</span>
-<a href="#__codelineno-6-17" id="__codelineno-6-17" name="__codelineno-6-17"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="kc">nil</span>
-<a href="#__codelineno-6-18" id="__codelineno-6-18" name="__codelineno-6-18"></a><span class="w">    </span><span class="p">})</span>
-<a href="#__codelineno-6-19" id="__codelineno-6-19" name="__codelineno-6-19"></a><span class="p">}</span>
-</code></pre></div>
-<h3 id="iterate-points">Iterate Points<a class="headerlink" href="#iterate-points" title="Permanent link">¶</a></h3>
-<div class="language-go highlight"><pre><span></span><code><a href="#__codelineno-7-1" id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">s</span><span class="w"> </span><span class="o">*</span><span class="nx">Storage</span><span class="p">)</span><span class="w"> </span><span class="nx">IteratePoints</span><span class="p">(</span><span class="nx">colName</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">handler</span><span class="w"> </span><span class="kd">func</span><span class="p">(</span><span class="o">*</span><span class="nx">PointStruct</span><span class="p">)</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span><span class="w"> </span><span class="kt">error</span><span class="w"> </span><span class="p">{</span>
-<a href="#__codelineno-7-2" id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">s</span><span class="p">.</span><span class="nx">closed</span><span class="w"> </span><span class="p">{</span>
-<a href="#__codelineno-7-3" id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">errors</span><span class="p">.</span><span class="nx">New</span><span class="p">(</span><span class="s">"storage is closed"</span><span class="p">)</span>
-<a href="#__codelineno-7-4" id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="w">    </span><span class="p">}</span>
-<a href="#__codelineno-7-5" id="__codelineno-7-5" name="__codelineno-7-5"></a>
-<a href="#__codelineno-7-6" id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">s</span><span class="p">.</span><span class="nx">db</span><span class="p">.</span><span class="nx">View</span><span class="p">(</span><span class="kd">func</span><span class="p">(</span><span class="nx">tx</span><span class="w"> </span><span class="o">*</span><span class="nx">bbolt</span><span class="p">.</span><span class="nx">Tx</span><span class="p">)</span><span class="w"> </span><span class="kt">error</span><span class="w"> </span><span class="p">{</span>
-<a href="#__codelineno-7-7" id="__codelineno-7-7" name="__codelineno-7-7"></a><span class="w">        </span><span class="nx">b</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">tx</span><span class="p">.</span><span class="nx">Bucket</span><span class="p">([]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">colName</span><span class="p">))</span>
-<a href="#__codelineno-7-8" id="__codelineno-7-8" name="__codelineno-7-8"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nx">b</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
-<a href="#__codelineno-7-9" id="__codelineno-7-9" name="__codelineno-7-9"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="nx">errors</span><span class="p">.</span><span class="nx">New</span><span class="p">(</span><span class="s">"collection not found"</span><span class="p">)</span>
-<a href="#__codelineno-7-10" id="__codelineno-7-10" name="__codelineno-7-10"></a><span class="w">        </span><span class="p">}</span>
-<a href="#__codelineno-7-11" id="__codelineno-7-11" name="__codelineno-7-11"></a>
-<a href="#__codelineno-7-12" id="__codelineno-7-12" name="__codelineno-7-12"></a><span class="w">        </span><span class="nx">cursor</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">b</span><span class="p">.</span><span class="nx">Cursor</span><span class="p">()</span>
-<a href="#__codelineno-7-13" id="__codelineno-7-13" name="__codelineno-7-13"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="nx">k</span><span class="p">,</span><span class="w"> </span><span class="nx">v</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">cursor</span><span class="p">.</span><span class="nx">First</span><span class="p">();</span><span class="w"> </span><span class="nx">k</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="p">;</span><span class="w"> </span><span class="nx">k</span><span class="p">,</span><span class="w"> </span><span class="nx">v</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">cursor</span><span class="p">.</span><span class="nx">Next</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<a href="#__codelineno-7-14" id="__codelineno-7-14" name="__codelineno-7-14"></a><span class="w">            </span><span class="nx">pbPoint</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">proto</span><span class="p">.</span><span class="nx">Point</span><span class="p">{}</span>
-<a href="#__codelineno-7-15" id="__codelineno-7-15" name="__codelineno-7-15"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">proto</span><span class="p">.</span><span class="nx">Unmarshal</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span><span class="w"> </span><span class="nx">pbPoint</span><span class="p">);</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
-<a href="#__codelineno-7-16" id="__codelineno-7-16" name="__codelineno-7-16"></a><span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="nx">err</span>
-<a href="#__codelineno-7-17" id="__codelineno-7-17" name="__codelineno-7-17"></a><span class="w">            </span><span class="p">}</span>
-<a href="#__codelineno-7-18" id="__codelineno-7-18" name="__codelineno-7-18"></a><span class="w">            </span><span class="nx">point</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">fromProtoPoint</span><span class="p">(</span><span class="nx">pbPoint</span><span class="p">)</span>
-<a href="#__codelineno-7-19" id="__codelineno-7-19" name="__codelineno-7-19"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">handler</span><span class="p">(</span><span class="nx">point</span><span class="p">);</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
-<a href="#__codelineno-7-20" id="__codelineno-7-20" name="__codelineno-7-20"></a><span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="nx">err</span>
-<a href="#__codelineno-7-21" id="__codelineno-7-21" name="__codelineno-7-21"></a><span class="w">            </span><span class="p">}</span>
-<a href="#__codelineno-7-22" id="__codelineno-7-22" name="__codelineno-7-22"></a><span class="w">        </span><span class="p">}</span>
-<a href="#__codelineno-7-23" id="__codelineno-7-23" name="__codelineno-7-23"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="kc">nil</span>
-<a href="#__codelineno-7-24" id="__codelineno-7-24" name="__codelineno-7-24"></a><span class="w">    </span><span class="p">})</span>
-<a href="#__codelineno-7-25" id="__codelineno-7-25" name="__codelineno-7-25"></a><span class="p">}</span>
-</code></pre></div>
-<h2 id="serialization">Serialization<a class="headerlink" href="#serialization" title="Permanent link">¶</a></h2>
-<h3 id="protobuf-serialization">Protobuf Serialization<a class="headerlink" href="#protobuf-serialization" title="Permanent link">¶</a></h3>
-<div class="language-go highlight"><pre><span></span><code><a href="#__codelineno-8-1" id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="kd">func</span><span class="w"> </span><span class="nx">toProtoPoint</span><span class="p">(</span><span class="nx">p</span><span class="w"> </span><span class="o">*</span><span class="nx">PointStruct</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="nx">proto</span><span class="p">.</span><span class="nx">Point</span><span class="w"> </span><span class="p">{</span>
-<a href="#__codelineno-8-2" id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="w">    </span><span class="nx">pbPoint</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">proto</span><span class="p">.</span><span class="nx">Point</span><span class="p">{</span>
-<a href="#__codelineno-8-3" id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="w">        </span><span class="nx">ID</span><span class="p">:</span><span class="w">      </span><span class="nx">p</span><span class="p">.</span><span class="nx">ID</span><span class="p">,</span>
-<a href="#__codelineno-8-4" id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="w">        </span><span class="nx">Version</span><span class="p">:</span><span class="w"> </span><span class="nx">p</span><span class="p">.</span><span class="nx">Version</span><span class="p">,</span>
-<a href="#__codelineno-8-5" id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="w">        </span><span class="nx">Vector</span><span class="p">:</span><span class="w">  </span><span class="nb">make</span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">Vector</span><span class="p">)</span><span class="o">*</span><span class="mi">4</span><span class="p">),</span>
-<a href="#__codelineno-8-6" id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="w">    </span><span class="p">}</span>
-<a href="#__codelineno-8-7" id="__codelineno-8-7" name="__codelineno-8-7"></a>
-<a href="#__codelineno-8-8" id="__codelineno-8-8" name="__codelineno-8-8"></a><span class="w">    </span><span class="c1">// Convert float32 vector to bytes</span>
-<a href="#__codelineno-8-9" id="__codelineno-8-9" name="__codelineno-8-9"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="nx">i</span><span class="p">,</span><span class="w"> </span><span class="nx">v</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">range</span><span class="w"> </span><span class="nx">p</span><span class="p">.</span><span class="nx">Vector</span><span class="w"> </span><span class="p">{</span>
-<a href="#__codelineno-8-10" id="__codelineno-8-10" name="__codelineno-8-10"></a><span class="w">        </span><span class="nx">bits</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">math</span><span class="p">.</span><span class="nx">Float32bits</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span>
-<a href="#__codelineno-8-11" id="__codelineno-8-11" name="__codelineno-8-11"></a><span class="w">        </span><span class="nx">binary</span><span class="p">.</span><span class="nx">LittleEndian</span><span class="p">.</span><span class="nx">PutUint32</span><span class="p">(</span><span class="nx">pbPoint</span><span class="p">.</span><span class="nx">Vector</span><span class="p">[</span><span class="nx">i</span><span class="o">*</span><span class="mi">4</span><span class="p">:</span><span class="nx">i</span><span class="o">*</span><span class="mi">4</span><span class="o">+</span><span class="mi">4</span><span class="p">],</span><span class="w"> </span><span class="nx">bits</span><span class="p">)</span>
-<a href="#__codelineno-8-12" id="__codelineno-8-12" name="__codelineno-8-12"></a><span class="w">    </span><span class="p">}</span>
-<a href="#__codelineno-8-13" id="__codelineno-8-13" name="__codelineno-8-13"></a>
-<a href="#__codelineno-8-14" id="__codelineno-8-14" name="__codelineno-8-14"></a><span class="w">    </span><span class="c1">// Convert payload</span>
-<a href="#__codelineno-8-15" id="__codelineno-8-15" name="__codelineno-8-15"></a><span class="w">    </span><span class="nx">pbPoint</span><span class="p">.</span><span class="nx">Payload</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="o">*</span><span class="nx">proto</span><span class="p">.</span><span class="nx">Value</span><span class="p">)</span>
-<a href="#__codelineno-8-16" id="__codelineno-8-16" name="__codelineno-8-16"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="nx">k</span><span class="p">,</span><span class="w"> </span><span class="nx">v</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">range</span><span class="w"> </span><span class="nx">p</span><span class="p">.</span><span class="nx">Payload</span><span class="w"> </span><span class="p">{</span>
-<a href="#__codelineno-8-17" id="__codelineno-8-17" name="__codelineno-8-17"></a><span class="w">        </span><span class="nx">pbPoint</span><span class="p">.</span><span class="nx">Payload</span><span class="p">[</span><span class="nx">k</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">interfaceToValue</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span>
-<a href="#__codelineno-8-18" id="__codelineno-8-18" name="__codelineno-8-18"></a><span class="w">    </span><span class="p">}</span>
-<a href="#__codelineno-8-19" id="__codelineno-8-19" name="__codelineno-8-19"></a>
-<a href="#__codelineno-8-20" id="__codelineno-8-20" name="__codelineno-8-20"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">pbPoint</span>
-<a href="#__codelineno-8-21" id="__codelineno-8-21" name="__codelineno-8-21"></a><span class="p">}</span>
-</code></pre></div>
-<h3 id="protobuf-deserialization">Protobuf Deserialization<a class="headerlink" href="#protobuf-deserialization" title="Permanent link">¶</a></h3>
-<div class="language-go highlight"><pre><span></span><code><a href="#__codelineno-9-1" id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="kd">func</span><span class="w"> </span><span class="nx">fromProtoPoint</span><span class="p">(</span><span class="nx">pbPoint</span><span class="w"> </span><span class="o">*</span><span class="nx">proto</span><span class="p">.</span><span class="nx">Point</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="nx">PointStruct</span><span class="w"> </span><span class="p">{</span>
-<a href="#__codelineno-9-2" id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="w">    </span><span class="c1">// Convert bytes back to float32 vector</span>
-<a href="#__codelineno-9-3" id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="w">    </span><span class="nx">vector</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nb">make</span><span class="p">([]</span><span class="kt">float32</span><span class="p">,</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="nx">pbPoint</span><span class="p">.</span><span class="nx">Vector</span><span class="p">)</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span>
-<a href="#__codelineno-9-4" id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="nx">vector</span><span class="p">);</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="w"> </span><span class="p">{</span>
-<a href="#__codelineno-9-5" id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="w">        </span><span class="nx">bits</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">binary</span><span class="p">.</span><span class="nx">LittleEndian</span><span class="p">.</span><span class="nx">Uint32</span><span class="p">(</span><span class="nx">pbPoint</span><span class="p">.</span><span class="nx">Vector</span><span class="p">[</span><span class="nx">i</span><span class="o">*</span><span class="mi">4</span><span class="p">:</span><span class="nx">i</span><span class="o">*</span><span class="mi">4</span><span class="o">+</span><span class="mi">4</span><span class="p">])</span>
-<a href="#__codelineno-9-6" id="__codelineno-9-6" name="__codelineno-9-6"></a><span class="w">        </span><span class="nx">vector</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">math</span><span class="p">.</span><span class="nx">Float32frombits</span><span class="p">(</span><span class="nx">bits</span><span class="p">)</span>
-<a href="#__codelineno-9-7" id="__codelineno-9-7" name="__codelineno-9-7"></a><span class="w">    </span><span class="p">}</span>
-<a href="#__codelineno-9-8" id="__codelineno-9-8" name="__codelineno-9-8"></a>
-<a href="#__codelineno-9-9" id="__codelineno-9-9" name="__codelineno-9-9"></a><span class="w">    </span><span class="c1">// Convert payload</span>
-<a href="#__codelineno-9-10" id="__codelineno-9-10" name="__codelineno-9-10"></a><span class="w">    </span><span class="nx">payload</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{})</span>
-<a href="#__codelineno-9-11" id="__codelineno-9-11" name="__codelineno-9-11"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="nx">k</span><span class="p">,</span><span class="w"> </span><span class="nx">v</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">range</span><span class="w"> </span><span class="nx">pbPoint</span><span class="p">.</span><span class="nx">Payload</span><span class="w"> </span><span class="p">{</span>
-<a href="#__codelineno-9-12" id="__codelineno-9-12" name="__codelineno-9-12"></a><span class="w">        </span><span class="nx">payload</span><span class="p">[</span><span class="nx">k</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">valueToInterface</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span>
-<a href="#__codelineno-9-13" id="__codelineno-9-13" name="__codelineno-9-13"></a><span class="w">    </span><span class="p">}</span>
-<a href="#__codelineno-9-14" id="__codelineno-9-14" name="__codelineno-9-14"></a>
-<a href="#__codelineno-9-15" id="__codelineno-9-15" name="__codelineno-9-15"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">PointStruct</span><span class="p">{</span>
-<a href="#__codelineno-9-16" id="__codelineno-9-16" name="__codelineno-9-16"></a><span class="w">        </span><span class="nx">ID</span><span class="p">:</span><span class="w">      </span><span class="nx">pbPoint</span><span class="p">.</span><span class="nx">ID</span><span class="p">,</span>
-<a href="#__codelineno-9-17" id="__codelineno-9-17" name="__codelineno-9-17"></a><span class="w">        </span><span class="nx">Version</span><span class="p">:</span><span class="w"> </span><span class="nx">pbPoint</span><span class="p">.</span><span class="nx">Version</span><span class="p">,</span>
-<a href="#__codelineno-9-18" id="__codelineno-9-18" name="__codelineno-9-18"></a><span class="w">        </span><span class="nx">Vector</span><span class="p">:</span><span class="w">  </span><span class="nx">vector</span><span class="p">,</span>
-<a href="#__codelineno-9-19" id="__codelineno-9-19" name="__codelineno-9-19"></a><span class="w">        </span><span class="nx">Payload</span><span class="p">:</span><span class="w"> </span><span class="nx">payload</span><span class="p">,</span>
-<a href="#__codelineno-9-20" id="__codelineno-9-20" name="__codelineno-9-20"></a><span class="w">    </span><span class="p">}</span>
-<a href="#__codelineno-9-21" id="__codelineno-9-21" name="__codelineno-9-21"></a><span class="p">}</span>
-</code></pre></div>
-<h2 id="boltdb-configuration">BoltDB Configuration<a class="headerlink" href="#boltdb-configuration" title="Permanent link">¶</a></h2>
-<h3 id="default-options">Default Options<a class="headerlink" href="#default-options" title="Permanent link">¶</a></h3>
-<div class="language-go highlight"><pre><span></span><code><a href="#__codelineno-10-1" id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="o">&amp;</span><span class="nx">bbolt</span><span class="p">.</span><span class="nx">Options</span><span class="p">{</span>
-<a href="#__codelineno-10-2" id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="w">    </span><span class="nx">Timeout</span><span class="p">:</span><span class="w">    </span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
-<a href="#__codelineno-10-3" id="__codelineno-10-3" name="__codelineno-10-3"></a><span class="w">    </span><span class="nx">NoSync</span><span class="p">:</span><span class="w">     </span><span class="kc">false</span><span class="p">,</span>
-<a href="#__codelineno-10-4" id="__codelineno-10-4" name="__codelineno-10-4"></a><span class="w">    </span><span class="nx">NoGrowSync</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<a href="#__codelineno-10-5" id="__codelineno-10-5" name="__codelineno-10-5"></a><span class="w">    </span><span class="nx">MmapSize</span><span class="p">:</span><span class="w">   </span><span class="mi">256</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1024</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1024</span><span class="p">,</span><span class="w"> </span><span class="c1">// 256MB</span>
-<a href="#__codelineno-10-6" id="__codelineno-10-6" name="__codelineno-10-6"></a><span class="p">}</span>
-</code></pre></div>
-<h3 id="performance-tuning">Performance Tuning<a class="headerlink" href="#performance-tuning" title="Permanent link">¶</a></h3>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Recommended</th>
-<th>Use Case</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>MmapSize</td>
-<td>256MB</td>
-<td>1-4GB</td>
-<td>Large datasets</td>
-</tr>
-<tr>
-<td>BucketSize</td>
-<td>N/A</td>
-<td>10000</td>
-<td>Many points</td>
-</tr>
-<tr>
-<td>NoSync</td>
-<td>false</td>
-<td>true*</td>
-<td>Crash resilience</td>
-</tr>
-</tbody>
-</table>
-<p>*Warning: Setting NoSync to true risks data loss on crash.</p>
-<h2 id="thread-safety">Thread Safety<a class="headerlink" href="#thread-safety" title="Permanent link">¶</a></h2>
-<p>BoltDB supports concurrent reads and exclusive writes:</p>
+<p>GoVector's storage engine is responsible for persisting vector data to disk and loading it back into memory. This document explains how the storage engine works and how to optimize it for your use case.</p>
+<h2 id="storage-overview">📋 Storage Overview<a class="headerlink" href="#storage-overview" title="Permanent link">¶</a></h2>
+<p>GoVector uses a combination of technologies for efficient storage:</p>
 <ul>
-<li><strong>Reads</strong>: Multiple goroutines can read simultaneously</li>
-<li><strong>Writes</strong>: Exclusive access required, blocks other operations</li>
-<li><strong>Transactions</strong>: Use read-only transactions for bulk reads</li>
+<li><strong>BoltDB</strong> - Embedded key-value store for persistent storage</li>
+<li><strong>Protocol Buffers</strong> - Efficient serialization format for vector data</li>
+<li><strong>SQ8 Quantization</strong> - Optional 8-bit scalar quantization for memory optimization</li>
 </ul>
-<h2 id="error-handling">Error Handling<a class="headerlink" href="#error-handling" title="Permanent link">¶</a></h2>
+<h2 id="storage-architecture">🔧 Storage Architecture<a class="headerlink" href="#storage-architecture" title="Permanent link">¶</a></h2>
+<h3 id="data-flow">Data Flow<a class="headerlink" href="#data-flow" title="Permanent link">¶</a></h3>
+<pre class="mermaid"><code>flowchart TD
+    A[Go Structs] --&gt; B[Protocol Buffers]
+    B --&gt; C[Optional SQ8 Quantization]
+    C --&gt; D[BoltDB Storage]
+    D --&gt; E[BoltDB Retrieval]
+    E --&gt; F[Optional Dequantization]
+    F --&gt; G[Protocol Buffers]
+    G --&gt; H[Go Structs]
+</code></pre>
+<h3 id="components">Components<a class="headerlink" href="#components" title="Permanent link">¶</a></h3>
+<ol>
+<li><strong>Protocol Buffers</strong>: Serializes Go structs to compact binary format</li>
+<li><strong>BoltDB</strong>: Stores serialized data in a transactional key-value store</li>
+<li><strong>SQ8 Quantization</strong>: Compresses vectors to 8-bit integers when enabled</li>
+</ol>
+<h2 id="persistence">🚀 Persistence<a class="headerlink" href="#persistence" title="Permanent link">¶</a></h2>
+<h3 id="saving-a-collection">Saving a Collection<a class="headerlink" href="#saving-a-collection" title="Permanent link">¶</a></h3>
+<div class="language-go highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="c1">// Save collection to disk</span>
+<a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">collection</span><span class="p">.</span><span class="nx">Save</span><span class="p">(</span><span class="s">"/path/to/collection"</span><span class="p">);</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-0-3" id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="w">    </span><span class="nx">log</span><span class="p">.</span><span class="nx">Fatalf</span><span class="p">(</span><span class="s">"Failed to save collection: %v"</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
+<a href="#__codelineno-0-4" id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="p">}</span>
+</code></pre></div>
+<h3 id="loading-a-collection">Loading a Collection<a class="headerlink" href="#loading-a-collection" title="Permanent link">¶</a></h3>
+<div class="language-go highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="c1">// Load collection from disk</span>
+<a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="nx">loadedCollection</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">core</span><span class="p">.</span><span class="nx">LoadCollection</span><span class="p">(</span><span class="s">"/path/to/collection"</span><span class="p">)</span>
+<a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-1-4" id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="w">    </span><span class="nx">log</span><span class="p">.</span><span class="nx">Fatalf</span><span class="p">(</span><span class="s">"Failed to load collection: %v"</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
+<a href="#__codelineno-1-5" id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="p">}</span>
+</code></pre></div>
+<h2 id="storage-format">📊 Storage Format<a class="headerlink" href="#storage-format" title="Permanent link">¶</a></h2>
+<h3 id="collection-directory-structure">Collection Directory Structure<a class="headerlink" href="#collection-directory-structure" title="Permanent link">¶</a></h3>
+<div class="language-text highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a>/path/to/collection/
+<a href="#__codelineno-2-2" id="__codelineno-2-2" name="__codelineno-2-2"></a>├── metadata.json       # Collection configuration
+<a href="#__codelineno-2-3" id="__codelineno-2-3" name="__codelineno-2-3"></a>├── points.db           # BoltDB database for points
+<a href="#__codelineno-2-4" id="__codelineno-2-4" name="__codelineno-2-4"></a>└── index/             # Index files (HNSW graph)
+</code></pre></div>
+<h3 id="metadata-format">Metadata Format<a class="headerlink" href="#metadata-format" title="Permanent link">¶</a></h3>
+<div class="language-json highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="p">{</span>
+<a href="#__codelineno-3-2" id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="w">  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"my-collection"</span><span class="p">,</span>
+<a href="#__codelineno-3-3" id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="w">  </span><span class="nt">"vector_len"</span><span class="p">:</span><span class="w"> </span><span class="mi">768</span><span class="p">,</span>
+<a href="#__codelineno-3-4" id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="w">  </span><span class="nt">"metric"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cosine"</span><span class="p">,</span>
+<a href="#__codelineno-3-5" id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="w">  </span><span class="nt">"index_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HNSW"</span><span class="p">,</span>
+<a href="#__codelineno-3-6" id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="w">  </span><span class="nt">"quantize"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<a href="#__codelineno-3-7" id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="w">  </span><span class="nt">"hnsw_config"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-3-8" id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="w">    </span><span class="nt">"m"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span>
+<a href="#__codelineno-3-9" id="__codelineno-3-9" name="__codelineno-3-9"></a><span class="w">    </span><span class="nt">"ef_construction"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span>
+<a href="#__codelineno-3-10" id="__codelineno-3-10" name="__codelineno-3-10"></a><span class="w">    </span><span class="nt">"ef_search"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span>
+<a href="#__codelineno-3-11" id="__codelineno-3-11" name="__codelineno-3-11"></a><span class="w">  </span><span class="p">}</span>
+<a href="#__codelineno-3-12" id="__codelineno-3-12" name="__codelineno-3-12"></a><span class="p">}</span>
+</code></pre></div>
+<h2 id="performance-optimization">💡 Performance Optimization<a class="headerlink" href="#performance-optimization" title="Permanent link">¶</a></h2>
+<h3 id="for-write-performance">For Write Performance<a class="headerlink" href="#for-write-performance" title="Permanent link">¶</a></h3>
+<ul>
+<li><strong>Batch Operations</strong>: Use batch upserts for multiple points</li>
+<li><strong>Disable Quantization</strong>: For write-heavy workloads, consider disabling SQ8 quantization</li>
+<li><strong>SSD Storage</strong>: Use SSDs for faster write operations</li>
+</ul>
+<h3 id="for-read-performance">For Read Performance<a class="headerlink" href="#for-read-performance" title="Permanent link">¶</a></h3>
+<ul>
+<li><strong>Enable Quantization</strong>: SQ8 quantization reduces disk I/O and memory usage</li>
+<li><strong>Memory Mapping</strong>: BoltDB uses memory mapping for faster reads</li>
+<li><strong>Cache Warm-up</strong>: After loading a collection, perform a few search operations to warm up the cache</li>
+</ul>
+<h3 id="for-storage-efficiency">For Storage Efficiency<a class="headerlink" href="#for-storage-efficiency" title="Permanent link">¶</a></h3>
+<ul>
+<li><strong>Enable SQ8 Quantization</strong>: Reduces vector storage by ~75%</li>
+<li><strong>Optimize Payload</strong>: Keep payloads small and avoid storing large objects</li>
+<li><strong>Regular Compaction</strong>: BoltDB automatically compacts data, but large deletions may require manual compaction</li>
+</ul>
+<h2 id="storage-requirements">📈 Storage Requirements<a class="headerlink" href="#storage-requirements" title="Permanent link">¶</a></h2>
+<h3 id="vector-storage">Vector Storage<a class="headerlink" href="#vector-storage" title="Permanent link">¶</a></h3>
 <table>
 <thead>
 <tr>
-<th>Error</th>
-<th>Cause</th>
-<th>Handling</th>
+<th style="text-align: left;">Vector Size</th>
+<th style="text-align: left;">Precision</th>
+<th style="text-align: left;">Storage per 1M Vectors</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Database locked</td>
-<td>Concurrent write</td>
-<td>Retry with backoff</td>
+<td style="text-align: left;">768-dim</td>
+<td style="text-align: left;">Float32 (4 bytes)</td>
+<td style="text-align: left;">~3GB</td>
 </tr>
 <tr>
-<td>Collection not found</td>
-<td>Invalid name</td>
-<td>Check before operation</td>
+<td style="text-align: left;">768-dim</td>
+<td style="text-align: left;">SQ8 (1 byte)</td>
+<td style="text-align: left;">~750MB</td>
 </tr>
 <tr>
-<td>Corrupt data</td>
-<td>Disk issue</td>
-<td>Validate and restore</td>
+<td style="text-align: left;">384-dim</td>
+<td style="text-align: left;">Float32 (4 bytes)</td>
+<td style="text-align: left;">~1.5GB</td>
 </tr>
 <tr>
-<td>Out of memory</td>
-<td>MmapSize exceeded</td>
-<td>Increase mmap size</td>
+<td style="text-align: left;">384-dim</td>
+<td style="text-align: left;">SQ8 (1 byte)</td>
+<td style="text-align: left;">~375MB</td>
 </tr>
 </tbody>
 </table>
-<h2 id="backup-and-recovery">Backup and Recovery<a class="headerlink" href="#backup-and-recovery" title="Permanent link">¶</a></h2>
-<h3 id="backup">Backup<a class="headerlink" href="#backup" title="Permanent link">¶</a></h3>
-<div class="language-go highlight"><pre><span></span><code><a href="#__codelineno-11-1" id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">s</span><span class="w"> </span><span class="o">*</span><span class="nx">Storage</span><span class="p">)</span><span class="w"> </span><span class="nx">Backup</span><span class="p">(</span><span class="nx">path</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="w"> </span><span class="kt">error</span><span class="w"> </span><span class="p">{</span>
-<a href="#__codelineno-11-2" id="__codelineno-11-2" name="__codelineno-11-2"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">s</span><span class="p">.</span><span class="nx">db</span><span class="p">.</span><span class="nx">View</span><span class="p">(</span><span class="kd">func</span><span class="p">(</span><span class="nx">tx</span><span class="w"> </span><span class="o">*</span><span class="nx">bbolt</span><span class="p">.</span><span class="nx">Tx</span><span class="p">)</span><span class="w"> </span><span class="kt">error</span><span class="w"> </span><span class="p">{</span>
-<a href="#__codelineno-11-3" id="__codelineno-11-3" name="__codelineno-11-3"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">tx</span><span class="p">.</span><span class="nx">CopyFile</span><span class="p">(</span><span class="nx">path</span><span class="p">,</span><span class="w"> </span><span class="mo">0666</span><span class="p">)</span>
-<a href="#__codelineno-11-4" id="__codelineno-11-4" name="__codelineno-11-4"></a><span class="w">    </span><span class="p">})</span>
-<a href="#__codelineno-11-5" id="__codelineno-11-5" name="__codelineno-11-5"></a><span class="p">}</span>
-</code></pre></div>
-<h3 id="restore">Restore<a class="headerlink" href="#restore" title="Permanent link">¶</a></h3>
-<div class="language-go highlight"><pre><span></span><code><a href="#__codelineno-12-1" id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">s</span><span class="w"> </span><span class="o">*</span><span class="nx">Storage</span><span class="p">)</span><span class="w"> </span><span class="nx">Close</span><span class="p">()</span><span class="w"> </span><span class="kt">error</span><span class="w"> </span><span class="p">{</span>
-<a href="#__codelineno-12-2" id="__codelineno-12-2" name="__codelineno-12-2"></a><span class="w">    </span><span class="nx">s</span><span class="p">.</span><span class="nx">closed</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">true</span>
-<a href="#__codelineno-12-3" id="__codelineno-12-3" name="__codelineno-12-3"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">s</span><span class="p">.</span><span class="nx">db</span><span class="p">.</span><span class="nx">Close</span><span class="p">()</span>
-<a href="#__codelineno-12-4" id="__codelineno-12-4" name="__codelineno-12-4"></a><span class="p">}</span>
-<a href="#__codelineno-12-5" id="__codelineno-12-5" name="__codelineno-12-5"></a>
-<a href="#__codelineno-12-6" id="__codelineno-12-6" name="__codelineno-12-6"></a><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">s</span><span class="w"> </span><span class="o">*</span><span class="nx">Storage</span><span class="p">)</span><span class="w"> </span><span class="nx">Restore</span><span class="p">(</span><span class="nx">path</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="w"> </span><span class="kt">error</span><span class="w"> </span><span class="p">{</span>
-<a href="#__codelineno-12-7" id="__codelineno-12-7" name="__codelineno-12-7"></a><span class="w">    </span><span class="nx">s</span><span class="p">.</span><span class="nx">db</span><span class="p">.</span><span class="nx">Close</span><span class="p">()</span>
-<a href="#__codelineno-12-8" id="__codelineno-12-8" name="__codelineno-12-8"></a><span class="w">    </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">os</span><span class="p">.</span><span class="nx">Rename</span><span class="p">(</span><span class="nx">path</span><span class="p">,</span><span class="w"> </span><span class="nx">s</span><span class="p">.</span><span class="nx">db</span><span class="p">.</span><span class="nx">Path</span><span class="p">())</span>
-<a href="#__codelineno-12-9" id="__codelineno-12-9" name="__codelineno-12-9"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
-<a href="#__codelineno-12-10" id="__codelineno-12-10" name="__codelineno-12-10"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">err</span>
-<a href="#__codelineno-12-11" id="__codelineno-12-11" name="__codelineno-12-11"></a><span class="w">    </span><span class="p">}</span>
-<a href="#__codelineno-12-12" id="__codelineno-12-12" name="__codelineno-12-12"></a><span class="w">    </span><span class="nx">s</span><span class="p">.</span><span class="nx">db</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">bbolt</span><span class="p">.</span><span class="nx">Open</span><span class="p">(</span><span class="nx">s</span><span class="p">.</span><span class="nx">db</span><span class="p">.</span><span class="nx">Path</span><span class="p">(),</span><span class="w"> </span><span class="mo">0666</span><span class="p">,</span><span class="w"> </span><span class="kc">nil</span><span class="p">)</span>
-<a href="#__codelineno-12-13" id="__codelineno-12-13" name="__codelineno-12-13"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">err</span>
-<a href="#__codelineno-12-14" id="__codelineno-12-14" name="__codelineno-12-14"></a><span class="p">}</span>
-</code></pre></div>
-<h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">¶</a></h2>
-<ol>
-<li><strong>Regular backups</strong>: Schedule periodic backups</li>
-<li><strong>Monitor disk space</strong>: BoltDB grows continuously</li>
-<li><strong>Use transactions</strong>: Batch operations for better performance</li>
-<li><strong>Close properly</strong>: Always close the database to ensure data integrity</li>
-<li><strong>Handle quantization</strong>: Enable for large datasets to save storage</li>
-</ol>
+<h3 id="overhead">Overhead<a class="headerlink" href="#overhead" title="Permanent link">¶</a></h3>
+<ul>
+<li><strong>BoltDB</strong>: ~10-15% overhead for transactional features</li>
+<li><strong>Protocol Buffers</strong>: Minimal overhead (&lt; 5%)</li>
+<li><strong>Index Files</strong>: HNSW index adds ~20-30% overhead depending on M parameter</li>
+</ul>
+<h2 id="common-issues">🚩 Common Issues<a class="headerlink" href="#common-issues" title="Permanent link">¶</a></h2>
+<h3 id="slow-saveload">Slow Save/Load<a class="headerlink" href="#slow-saveload" title="Permanent link">¶</a></h3>
+<ul>
+<li><strong>Cause</strong>: Large collection size or slow disk</li>
+<li><strong>Solution</strong>: Use SSD storage, enable SQ8 quantization, consider smaller batch sizes</li>
+</ul>
+<h3 id="corrupted-database">Corrupted Database<a class="headerlink" href="#corrupted-database" title="Permanent link">¶</a></h3>
+<ul>
+<li><strong>Cause</strong>: Unexpected shutdown or disk error</li>
+<li><strong>Solution</strong>: Regular backups, use journaling filesystems (ext4, APFS), implement proper error handling</li>
+</ul>
+<h3 id="high-disk-usage">High Disk Usage<a class="headerlink" href="#high-disk-usage" title="Permanent link">¶</a></h3>
+<ul>
+<li><strong>Cause</strong>: Large vectors or payloads, no quantization</li>
+<li><strong>Solution</strong>: Enable SQ8 quantization, optimize payload size, consider using smaller vectors</li>
+</ul>
+<h2 id="related-documentation">🔗 Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">¶</a></h2>
+<ul>
+<li><a href="../collection-management/">Collection Management</a> - Collection creation and configuration</li>
+<li><a href="../../data-model/">Data Model</a> - Core data structures</li>
+<li><a href="../hnsw-index/">HNSW Index</a> - HNSW index implementation</li>
+<li><a href="../../usage-modes/">Usage Modes</a> - Different ways to use GoVector</li>
+</ul>
 </article>
 </div>
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>

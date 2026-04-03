@@ -1,0 +1,3052 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="GoVector 轻量化高性能的嵌入式向量数据库">
+      
+      
+        <meta name="author" content="Ray">
+      
+      
+      
+      
+      
+        
+          <link rel="alternate" href="/" hreflang="en">
+        
+          <link rel="alternate" href="./" hreflang="zh">
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>GoVector SWIG CGO 接口集成指南 - GoVector 开发文档</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#govector-swig-cgo" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../" title="GoVector 开发文档" class="md-header__button md-logo" aria-label="GoVector 开发文档" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            GoVector 开发文档
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              GoVector SWIG CGO 接口集成指南
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="选择当前语言">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="zh" class="md-select__link">
+              中文
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/DotNetAge/govector" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../quick-start/" class="md-tabs__link">
+          
+  
+  
+  GoVector
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../arch/architecture-design/" class="md-tabs__link">
+          
+  
+  
+  开发指南
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../api-references/api-reference/" class="md-tabs__link">
+          
+  
+  
+  API 参考
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../deployment/" class="md-tabs__link">
+          
+  
+  
+  部署运维
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../troubleshooting/" class="md-tabs__link">
+          
+  
+  
+  故障排除
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../vectordb/01-introduction/" class="md-tabs__link">
+          
+  
+  
+  理论学习
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../" title="GoVector 开发文档" class="md-nav__button md-logo" aria-label="GoVector 开发文档" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    GoVector 开发文档
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/DotNetAge/govector" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GoVector
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    GoVector
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick-start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    快速开始
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/cli-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI使用指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    开发指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data-model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据模型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage-modes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    使用模式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vector-database-fundamentals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    向量数据库基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    开发指南
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    开发指南
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    架构设计
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    架构设计
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../arch/architecture-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    架构设计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../arch/architecture-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    整体架构概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../arch/component-interactions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    组件交互关系
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../arch/data-flow-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据流分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../arch/design-patterns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    设计模式应用
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    核心模块
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    核心模块
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core/core-modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    核心模块
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core/collection-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    集合管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core/flat-index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FlatIndex 扁平索引
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core/hnsw-index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HNSW 索引
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core/quantization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quantization 量化系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core/storage-engine/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    存储引擎
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../core/data-model-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据模型系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    使用模式
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    使用模式
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/usage-patterns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    使用模式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/embedded-mode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    嵌入式模式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/microservice-mode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    微服务模式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/performance-optimization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    性能优化
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API 参考
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API 参考
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api-references/api-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API 参考
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api-references/data-models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据模型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api-references/point-operations-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    点操作 API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api-references/collection-management-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    集合管理 API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api-references/error-handling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    错误处理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    部署运维
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    部署运维
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    部署与运维
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/deployment-operations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    部署运维
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/production-deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    生产环境部署
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/monitoring-alerts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    监控告警
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/backup-recovery/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    备份恢复
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/upgrades-migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    升级迁移
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    故障排除
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    故障排除
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    故障排除
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trouble-removal/troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    故障排除
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trouble-removal/installation-issues/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    安装问题
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trouble-removal/performance-issues/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    性能问题
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trouble-removal/data-consistency-issues/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据一致性问题
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trouble-removal/debugging-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    调试工具和技巧
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trouble-removal/configuration-issues/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    配置问题
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    理论学习
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    理论学习
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vectordb/01-introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第1章：引言 - 向量数据库定义与价值
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vectordb/02-history/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第2章：发展历程 - 关键技术节点与演进
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vectordb/03-core-principles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第3章：核心原理 - 向量表示、距离计算与索引结构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vectordb/04-basic-concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第4章：基础概念解析 - 嵌入、维度、相似度度量
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vectordb/05-applications/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第5章：典型应用场景 - AI检索、推荐系统、语义搜索
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vectordb/06-learning-path/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第6章：学习路径与资源推荐
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        目录
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        概述
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="概述">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#swig" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        为什么使用 SWIG？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        架构设计
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        环境准备
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="环境准备">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        系统要求
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#swig_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安装 SWIG
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="安装 SWIG">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#macos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        macOS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ubuntudebian" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ubuntu/Debian
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#centosrhel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CentOS/RHEL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Windows
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安装 Python 开发包（可选，用于 Python 绑定）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        验证环境
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        项目结构改造
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="项目结构改造">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#capi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        创建 capi 目录
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#swig_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SWIG 接口文件编写
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SWIG 接口文件编写">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-swig" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 创建 SWIG 接口文件
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C 头文件定义
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="C 头文件定义">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 创建 C 头文件
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="govector-swig-cgo">GoVector SWIG CGO 接口集成指南<a class="headerlink" href="#govector-swig-cgo" title="Permanent link">&para;</a></h1>
+<p>本文档详细说明如何使用 SWIG (Simplified Wrapper and Interface Generator) 为 GoVector 向量数据库项目创建 CGO 兼容接口，以便其他语言（如 C/C++、Python、Java 等）能够调用 GoVector 的核心功能。</p>
+<h2 id="_1">目录<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="#概述">概述</a></li>
+<li><a href="#环境准备">环境准备</a></li>
+<li><a href="#项目结构改造">项目结构改造</a></li>
+<li><a href="#swig 接口文件编写">SWIG 接口文件编写</a></li>
+<li><a href="#c 头文件定义">C 头文件定义</a></li>
+<li><a href="#go 导出函数实现">Go 导出函数实现</a></li>
+<li><a href="#构建配置">构建配置</a></li>
+<li><a href="#使用示例">使用示例</a></li>
+<li><a href="#注意事项与最佳实践">注意事项与最佳实践</a></li>
+</ul>
+<hr />
+<h2 id="_2">概述<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="swig">为什么使用 SWIG？<a class="headerlink" href="#swig" title="Permanent link">&para;</a></h3>
+<p>SWIG 是一个强大的工具，可以自动生成将 Go 代码与其他编程语言连接起来的胶水代码。对于 GoVector 项目，使用 SWIG 的优势包括：</p>
+<ol>
+<li><strong>多语言支持</strong>：一次编写，支持 Python、Java、C#、Ruby 等多种语言</li>
+<li><strong>类型安全</strong>：自动处理类型转换和内存管理</li>
+<li><strong>维护性好</strong>：接口定义清晰，易于维护和扩展</li>
+<li><strong>性能优化</strong>：生成的包装代码经过优化，性能损失最小</li>
+</ol>
+<h3 id="_3">架构设计<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>┌─────────────────────────────────────────────────────────┐
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>│                    调用方应用                            │
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>│            (Python / Java / C++ / etc.)                 │
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>└────────────────────┬────────────────────────────────────┘
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>                     │
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>                     ▼
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>┌─────────────────────────────────────────────────────────┐
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>│                  SWIG 生成的包装层                        │
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>│            (语言特定的绑定代码)                          │
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>└────────────────────┬────────────────────────────────────┘
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>                     │
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>                     ▼
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>┌─────────────────────────────────────────────────────────┐
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>│                CGO 桥接层 (C 接口)                        │
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>│          (govector_c.h / govector_c.go)                │
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>└────────────────────┬────────────────────────────────────┘
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>                     │
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>                     ▼
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>┌─────────────────────────────────────────────────────────┐
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>│              GoVector 核心层 (Go 代码)                    │
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>│     (Collection / Storage / Index / Models)            │
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>└─────────────────────────────────────────────────────────┘
+</code></pre></div>
+<hr />
+<h2 id="_4">环境准备<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h3 id="_5">系统要求<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>操作系统</strong>：macOS, Linux, Windows (需要 MinGW)</li>
+<li><strong>Go 版本</strong>：1.25.1 或更高</li>
+<li><strong>SWIG 版本</strong>：4.0 或更高</li>
+<li><strong>C 编译器</strong>：gcc/clang (macOS 需要 Xcode Command Line Tools)</li>
+</ul>
+<h3 id="swig_1">安装 SWIG<a class="headerlink" href="#swig_1" title="Permanent link">&para;</a></h3>
+<h4 id="macos">macOS<a class="headerlink" href="#macos" title="Permanent link">&para;</a></h4>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># 使用 Homebrew</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>brew<span class="w"> </span>install<span class="w"> </span>swig
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># 验证安装</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>swig<span class="w"> </span>-version
+</code></pre></div>
+<h4 id="ubuntudebian">Ubuntu/Debian<a class="headerlink" href="#ubuntudebian" title="Permanent link">&para;</a></h4>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>swig
+</code></pre></div>
+<h4 id="centosrhel">CentOS/RHEL<a class="headerlink" href="#centosrhel" title="Permanent link">&para;</a></h4>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>swig
+</code></pre></div>
+<h4 id="windows">Windows<a class="headerlink" href="#windows" title="Permanent link">&para;</a></h4>
+<p>从 <a href="http://www.swig.org/download.html">SWIG 官网</a> 下载预编译的二进制文件，或使用 Chocolatey：
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>choco<span class="w"> </span>install<span class="w"> </span>swig
+</code></pre></div></p>
+<h3 id="python-python">安装 Python 开发包（可选，用于 Python 绑定）<a class="headerlink" href="#python-python" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># macOS</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>brew<span class="w"> </span>install<span class="w"> </span>python
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># Ubuntu/Debian</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>python3-dev
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="c1"># 安装 Python C 类型文件</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>pip3<span class="w"> </span>install<span class="w"> </span>cffi
+</code></pre></div>
+<h3 id="_6">验证环境<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># 检查 Go 安装</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>go<span class="w"> </span>version
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1"># 检查 SWIG 安装</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>swig<span class="w"> </span>-version
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="c1"># 检查 C 编译器</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>gcc<span class="w"> </span>--version<span class="w">  </span><span class="c1"># 或 clang --version</span>
+</code></pre></div>
+<hr />
+<h2 id="_7">项目结构改造<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>在 <code>govector</code> 项目根目录下创建 <code>capi</code> (C API) 目录：</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>govector/
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>├── api/
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>├── cmd/
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>├── core/
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>├── capi/                    # 新增：C API 层
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>│   ├── govector_c.h        # C 头文件（接口定义）
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>│   ├── govector_c.go       # Go 导出实现
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>│   ├── govector.i          # SWIG 接口文件
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>│   ├── govector_wrap.cxx   # SWIG 生成的包装文件（构建时生成）
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>│   └── govector_python.go  # Python 特定导出（可选）
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>├── docs/
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>└── go.mod
+</code></pre></div>
+<h3 id="capi">创建 capi 目录<a class="headerlink" href="#capi" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nb">cd</span><span class="w"> </span>govector
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>capi
+</code></pre></div>
+<hr />
+<h2 id="swig_2">SWIG 接口文件编写<a class="headerlink" href="#swig_2" title="Permanent link">&para;</a></h2>
+<h3 id="1-swig">1. 创建 SWIG 接口文件<a class="headerlink" href="#1-swig" title="Permanent link">&para;</a></h3>
+<p>创建文件 <code>govector/capi/govector.i</code>：</p>
+<div class="language-swig highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="cm">/* govector/capi/govector.i */</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="nf">%module</span><span class="w"> </span><span class="n">govector</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="cm">/* 启用 Go 模块支持 */</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="o">%</span><span class="p">{</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;govector_c.h&quot;</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="o">%</span><span class="p">}</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="cm">/* 引入 C 头文件 */</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="nf">%include</span><span class="w"> </span><span class="s">&quot;govector_c.h&quot;</span>
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="cm">/* Go 语言特定配置 */</span>
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="nf">%goheader</span><span class="p">(</span><span class="s">&quot;package capi&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="nf">%gopackage</span><span class="p">(</span><span class="s">&quot;capi&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>
+<a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a><span class="cm">/* 类型映射配置 */</span>
+<a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a><span class="nf">%typemap</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">$input</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a><span class="w">        </span><span class="n">PyErr_SetString</span><span class="p">(</span><span class="n">PyExc_TypeError</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;string expected&quot;</span><span class="p">);</span>
+<a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-9-22" name="__codelineno-9-22" href="#__codelineno-9-22"></a><span class="w">    </span><span class="n">$1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">$input</span><span class="p">;</span>
+<a id="__codelineno-9-23" name="__codelineno-9-23" href="#__codelineno-9-23"></a><span class="p">}</span>
+<a id="__codelineno-9-24" name="__codelineno-9-24" href="#__codelineno-9-24"></a>
+<a id="__codelineno-9-25" name="__codelineno-9-25" href="#__codelineno-9-25"></a><span class="nf">%typemap</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-9-26" name="__codelineno-9-26" href="#__codelineno-9-26"></a><span class="w">    </span><span class="n">$result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Py_BuildValue</span><span class="p">(</span><span class="s">&quot;s&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">$1</span><span class="p">);</span>
+<a id="__codelineno-9-27" name="__codelineno-9-27" href="#__codelineno-9-27"></a><span class="p">}</span>
+<a id="__codelineno-9-28" name="__codelineno-9-28" href="#__codelineno-9-28"></a>
+<a id="__codelineno-9-29" name="__codelineno-9-29" href="#__codelineno-9-29"></a><span class="cm">/* 数组类型映射 */</span>
+<a id="__codelineno-9-30" name="__codelineno-9-30" href="#__codelineno-9-30"></a><span class="nf">%typemap</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="kt">float</span><span class="o">*</span><span class="w"> </span><span class="n">vector</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">dim</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-9-31" name="__codelineno-9-31" href="#__codelineno-9-31"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">PyList_Check</span><span class="p">(</span><span class="n">$input</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-9-32" name="__codelineno-9-32" href="#__codelineno-9-32"></a><span class="w">        </span><span class="n">PyErr_SetString</span><span class="p">(</span><span class="n">PyExc_TypeError</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;list of floats expected&quot;</span><span class="p">);</span>
+<a id="__codelineno-9-33" name="__codelineno-9-33" href="#__codelineno-9-33"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<a id="__codelineno-9-34" name="__codelineno-9-34" href="#__codelineno-9-34"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-9-35" name="__codelineno-9-35" href="#__codelineno-9-35"></a><span class="w">    </span><span class="n">$2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PyList_Size</span><span class="p">(</span><span class="n">$input</span><span class="p">);</span>
+<a id="__codelineno-9-36" name="__codelineno-9-36" href="#__codelineno-9-36"></a><span class="w">    </span><span class="n">$1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">float</span><span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="n">$2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">));</span>
+<a id="__codelineno-9-37" name="__codelineno-9-37" href="#__codelineno-9-37"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">$2</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-9-38" name="__codelineno-9-38" href="#__codelineno-9-38"></a><span class="w">        </span><span class="n">PyObject</span><span class="o">*</span><span class="w"> </span><span class="n">item</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PyList_GetItem</span><span class="p">(</span><span class="n">$input</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">);</span>
+<a id="__codelineno-9-39" name="__codelineno-9-39" href="#__codelineno-9-39"></a><span class="w">        </span><span class="n">$1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="n">PyFloat_AsDouble</span><span class="p">(</span><span class="n">item</span><span class="p">);</span>
+<a id="__codelineno-9-40" name="__codelineno-9-40" href="#__codelineno-9-40"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-9-41" name="__codelineno-9-41" href="#__codelineno-9-41"></a><span class="p">}</span>
+<a id="__codelineno-9-42" name="__codelineno-9-42" href="#__codelineno-9-42"></a>
+<a id="__codelineno-9-43" name="__codelineno-9-43" href="#__codelineno-9-43"></a><span class="nf">%typemap</span><span class="p">(</span><span class="n">freememory</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="kt">float</span><span class="o">*</span><span class="w"> </span><span class="n">vector</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">dim</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-9-44" name="__codelineno-9-44" href="#__codelineno-9-44"></a><span class="w">    </span><span class="n">free</span><span class="p">(</span><span class="n">$1</span><span class="p">);</span>
+<a id="__codelineno-9-45" name="__codelineno-9-45" href="#__codelineno-9-45"></a><span class="p">}</span>
+<a id="__codelineno-9-46" name="__codelineno-9-46" href="#__codelineno-9-46"></a>
+<a id="__codelineno-9-47" name="__codelineno-9-47" href="#__codelineno-9-47"></a><span class="cm">/* 错误处理 */</span>
+<a id="__codelineno-9-48" name="__codelineno-9-48" href="#__codelineno-9-48"></a><span class="nf">%exception</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-9-49" name="__codelineno-9-49" href="#__codelineno-9-49"></a><span class="w">    </span><span class="n">PyObject</span><span class="w"> </span><span class="o">*</span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">$action</span><span class="p">;</span>
+<a id="__codelineno-9-50" name="__codelineno-9-50" href="#__codelineno-9-50"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">result</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-9-51" name="__codelineno-9-51" href="#__codelineno-9-51"></a><span class="w">        </span><span class="c1">// Go 错误已设置到 Python 异常</span>
+<a id="__codelineno-9-52" name="__codelineno-9-52" href="#__codelineno-9-52"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<a id="__codelineno-9-53" name="__codelineno-9-53" href="#__codelineno-9-53"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-9-54" name="__codelineno-9-54" href="#__codelineno-9-54"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">result</span><span class="p">;</span>
+<a id="__codelineno-9-55" name="__codelineno-9-55" href="#__codelineno-9-55"></a><span class="p">}</span>
+<a id="__codelineno-9-56" name="__codelineno-9-56" href="#__codelineno-9-56"></a>
+<a id="__codelineno-9-57" name="__codelineno-9-57" href="#__codelineno-9-57"></a><span class="cm">/* 要导出的 C 函数 */</span>
+<a id="__codelineno-9-58" name="__codelineno-9-58" href="#__codelineno-9-58"></a><span class="nf">%include</span><span class="w"> </span><span class="s">&quot;govector_c.h&quot;</span>
+</code></pre></div>
+<hr />
+<h2 id="c">C 头文件定义<a class="headerlink" href="#c" title="Permanent link">&para;</a></h2>
+<h3 id="2-c">2. 创建 C 头文件<a class="headerlink" href="#2-c" title="Permanent link">&para;</a></h3>
+<p>创建文件 <code>govector/capi/govector_c.h</code>：</p>
+<div class="language-c highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="cm">/* govector/capi/govector_c.h */</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="cp">#ifndef GOVECTOR_C_H</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="cp">#define GOVECTOR_C_H</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stddef.h&gt;</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdint.h&gt;</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdbool.h&gt;</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="cp">#ifdef __cplusplus</span>
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="k">extern</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="cp">#endif</span>
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="cm">/* ============================================================================</span>
+<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="cm"> * 类型定义</span>
+<a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a><span class="cm"> * ============================================================================ */</span>
+<a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a>
+<a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a><span class="cm">/* 距离度量类型 */</span>
+<a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a><span class="k">typedef</span><span class="w"> </span><span class="k">enum</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a><span class="w">    </span><span class="n">DISTANCE_COSINE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">    </span><span class="c1">// 余弦相似度</span>
+<a id="__codelineno-10-20" name="__codelineno-10-20" href="#__codelineno-10-20"></a><span class="w">    </span><span class="n">DISTANCE_EUCLID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">    </span><span class="c1">// 欧几里得距离</span>
+<a id="__codelineno-10-21" name="__codelineno-10-21" href="#__codelineno-10-21"></a><span class="w">    </span><span class="n">DISTANCE_DOT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w">        </span><span class="c1">// 点积</span>
+<a id="__codelineno-10-22" name="__codelineno-10-22" href="#__codelineno-10-22"></a><span class="p">}</span><span class="w"> </span><span class="n">DistanceType</span><span class="p">;</span>
+<a id="__codelineno-10-23" name="__codelineno-10-23" href="#__codelineno-10-23"></a>
+<a id="__codelineno-10-24" name="__codelineno-10-24" href="#__codelineno-10-24"></a><span class="cm">/* HNSW 参数结构 */</span>
+<a id="__codelineno-10-25" name="__codelineno-10-25" href="#__codelineno-10-25"></a><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-10-26" name="__codelineno-10-26" href="#__codelineno-10-26"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">m</span><span class="p">;</span><span class="w">              </span><span class="c1">// 每个节点的最大连接数</span>
+<a id="__codelineno-10-27" name="__codelineno-10-27" href="#__codelineno-10-27"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">ef_construction</span><span class="p">;</span><span class="w"> </span><span class="c1">// 构建时的搜索深度</span>
+<a id="__codelineno-10-28" name="__codelineno-10-28" href="#__codelineno-10-28"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">ef_search</span><span class="p">;</span><span class="w">      </span><span class="c1">// 搜索时的深度</span>
+<a id="__codelineno-10-29" name="__codelineno-10-29" href="#__codelineno-10-29"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">k</span><span class="p">;</span><span class="w">              </span><span class="c1">// 量化参数</span>
+<a id="__codelineno-10-30" name="__codelineno-10-30" href="#__codelineno-10-30"></a><span class="p">}</span><span class="w"> </span><span class="n">HNSWParams</span><span class="p">;</span>
+<a id="__codelineno-10-31" name="__codelineno-10-31" href="#__codelineno-10-31"></a>
+<a id="__codelineno-10-32" name="__codelineno-10-32" href="#__codelineno-10-32"></a><span class="cm">/* 点数据结构 */</span>
+<a id="__codelineno-10-33" name="__codelineno-10-33" href="#__codelineno-10-33"></a><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-10-34" name="__codelineno-10-34" href="#__codelineno-10-34"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">id</span><span class="p">;</span><span class="w">           </span><span class="c1">// 点 ID</span>
+<a id="__codelineno-10-35" name="__codelineno-10-35" href="#__codelineno-10-35"></a><span class="w">    </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">version</span><span class="p">;</span><span class="w">         </span><span class="c1">// 版本号</span>
+<a id="__codelineno-10-36" name="__codelineno-10-36" href="#__codelineno-10-36"></a><span class="w">    </span><span class="kt">float</span><span class="o">*</span><span class="w"> </span><span class="n">vector</span><span class="p">;</span><span class="w">            </span><span class="c1">// 向量数据</span>
+<a id="__codelineno-10-37" name="__codelineno-10-37" href="#__codelineno-10-37"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">vector_dim</span><span class="p">;</span><span class="w">           </span><span class="c1">// 向量维度</span>
+<a id="__codelineno-10-38" name="__codelineno-10-38" href="#__codelineno-10-38"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">payload_json</span><span class="p">;</span><span class="w"> </span><span class="c1">// Payload JSON 字符串</span>
+<a id="__codelineno-10-39" name="__codelineno-10-39" href="#__codelineno-10-39"></a><span class="p">}</span><span class="w"> </span><span class="n">PointStruct</span><span class="p">;</span>
+<a id="__codelineno-10-40" name="__codelineno-10-40" href="#__codelineno-10-40"></a>
+<a id="__codelineno-10-41" name="__codelineno-10-41" href="#__codelineno-10-41"></a><span class="cm">/* 搜索结果结构 */</span>
+<a id="__codelineno-10-42" name="__codelineno-10-42" href="#__codelineno-10-42"></a><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-10-43" name="__codelineno-10-43" href="#__codelineno-10-43"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">id</span><span class="p">;</span><span class="w">           </span><span class="c1">// 点 ID</span>
+<a id="__codelineno-10-44" name="__codelineno-10-44" href="#__codelineno-10-44"></a><span class="w">    </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">version</span><span class="p">;</span><span class="w">         </span><span class="c1">// 版本号</span>
+<a id="__codelineno-10-45" name="__codelineno-10-45" href="#__codelineno-10-45"></a><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">score</span><span class="p">;</span><span class="w">              </span><span class="c1">// 相似度分数</span>
+<a id="__codelineno-10-46" name="__codelineno-10-46" href="#__codelineno-10-46"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">payload_json</span><span class="p">;</span><span class="w"> </span><span class="c1">// Payload JSON 字符串</span>
+<a id="__codelineno-10-47" name="__codelineno-10-47" href="#__codelineno-10-47"></a><span class="p">}</span><span class="w"> </span><span class="n">ScoredPoint</span><span class="p">;</span>
+<a id="__codelineno-10-48" name="__codelineno-10-48" href="#__codelineno-10-48"></a>
+<a id="__codelineno-10-49" name="__codelineno-10-49" href="#__codelineno-10-49"></a><span class="cm">/* 集合句柄（不透明指针） */</span>
+<a id="__codelineno-10-50" name="__codelineno-10-50" href="#__codelineno-10-50"></a><span class="k">typedef</span><span class="w"> </span><span class="kt">void</span><span class="o">*</span><span class="w"> </span><span class="n">CollectionHandle</span><span class="p">;</span>
+<a id="__codelineno-10-51" name="__codelineno-10-51" href="#__codelineno-10-51"></a>
+<a id="__codelineno-10-52" name="__codelineno-10-52" href="#__codelineno-10-52"></a><span class="cm">/* 存储句柄（不透明指针） */</span>
+<a id="__codelineno-10-53" name="__codelineno-10-53" href="#__codelineno-10-53"></a><span class="k">typedef</span><span class="w"> </span><span class="kt">void</span><span class="o">*</span><span class="w"> </span><span class="n">StorageHandle</span><span class="p">;</span>
+<a id="__codelineno-10-54" name="__codelineno-10-54" href="#__codelineno-10-54"></a>
+<a id="__codelineno-10-55" name="__codelineno-10-55" href="#__codelineno-10-55"></a><span class="cm">/* ============================================================================</span>
+<a id="__codelineno-10-56" name="__codelineno-10-56" href="#__codelineno-10-56"></a><span class="cm"> * 错误码定义</span>
+<a id="__codelineno-10-57" name="__codelineno-10-57" href="#__codelineno-10-57"></a><span class="cm"> * ============================================================================ */</span>
+<a id="__codelineno-10-58" name="__codelineno-10-58" href="#__codelineno-10-58"></a><span class="k">typedef</span><span class="w"> </span><span class="k">enum</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-10-59" name="__codelineno-10-59" href="#__codelineno-10-59"></a><span class="w">    </span><span class="n">GOVECTOR_OK</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<a id="__codelineno-10-60" name="__codelineno-10-60" href="#__codelineno-10-60"></a><span class="w">    </span><span class="n">GOVECTOR_ERROR_GENERAL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<a id="__codelineno-10-61" name="__codelineno-10-61" href="#__codelineno-10-61"></a><span class="w">    </span><span class="n">GOVECTOR_ERROR_INVALID_PARAM</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<a id="__codelineno-10-62" name="__codelineno-10-62" href="#__codelineno-10-62"></a><span class="w">    </span><span class="n">GOVECTOR_ERROR_NOT_FOUND</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<a id="__codelineno-10-63" name="__codelineno-10-63" href="#__codelineno-10-63"></a><span class="w">    </span><span class="n">GOVECTOR_ERROR_ALREADY_EXISTS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
+<a id="__codelineno-10-64" name="__codelineno-10-64" href="#__codelineno-10-64"></a><span class="w">    </span><span class="n">GOVECTOR_ERROR_DIM_MISMATCH</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span>
+<a id="__codelineno-10-65" name="__codelineno-10-65" href="#__codelineno-10-65"></a><span class="w">    </span><span class="n">GOVECTOR_ERROR_STORAGE_FAILURE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span>
+<a id="__codelineno-10-66" name="__codelineno-10-66" href="#__codelineno-10-66"></a><span class="w">    </span><span class="n">GOVECTOR_ERROR_MEMORY_ALLOC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">7</span>
+<a id="__codelineno-10-67" name="__codelineno-10-67" href="#__codelineno-10-67"></a><span class="p">}</span><span class="w"> </span><span class="n">GovectorError</span><span class="p">;</span>
+<a id="__codelineno-10-68" name="__codelineno-10-68" href="#__codelineno-10-68"></a>
+<a id="__codelineno-10-69" name="__codelineno-10-69" href="#__codelineno-10-69"></a><span class="cm">/* ============================================================================</span>
+<a id="__codelineno-10-70" name="__codelineno-10-70" href="#__codelineno-10-70"></a><span class="cm"> * 错误信息结构</span>
+<a id="__codelineno-10-71" name="__codelineno-10-71" href="#__codelineno-10-71"></a><span class="cm"> * ============================================================================ */</span>
+<a id="__codelineno-10-72" name="__codelineno-10-72" href="#__codelineno-10-72"></a><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-10-73" name="__codelineno-10-73" href="#__codelineno-10-73"></a><span class="w">    </span><span class="n">GovectorError</span><span class="w"> </span><span class="n">code</span><span class="p">;</span>
+<a id="__codelineno-10-74" name="__codelineno-10-74" href="#__codelineno-10-74"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">message</span><span class="p">;</span>
+<a id="__codelineno-10-75" name="__codelineno-10-75" href="#__codelineno-10-75"></a><span class="p">}</span><span class="w"> </span><span class="n">ErrorInfo</span><span class="p">;</span>
+<a id="__codelineno-10-76" name="__codelineno-10-76" href="#__codelineno-10-76"></a>
+<a id="__codelineno-10-77" name="__codelineno-10-77" href="#__codelineno-10-77"></a><span class="cm">/* ============================================================================</span>
+<a id="__codelineno-10-78" name="__codelineno-10-78" href="#__codelineno-10-78"></a><span class="cm"> * 存储引擎 API</span>
+<a id="__codelineno-10-79" name="__codelineno-10-79" href="#__codelineno-10-79"></a><span class="cm"> * ============================================================================ */</span>
+<a id="__codelineno-10-80" name="__codelineno-10-80" href="#__codelineno-10-80"></a>
+<a id="__codelineno-10-81" name="__codelineno-10-81" href="#__codelineno-10-81"></a><span class="cm">/**</span>
+<a id="__codelineno-10-82" name="__codelineno-10-82" href="#__codelineno-10-82"></a><span class="cm"> * @brief 创建新的存储引擎</span>
+<a id="__codelineno-10-83" name="__codelineno-10-83" href="#__codelineno-10-83"></a><span class="cm"> * @param db_path 数据库文件路径</span>
+<a id="__codelineno-10-84" name="__codelineno-10-84" href="#__codelineno-10-84"></a><span class="cm"> * @param error 输出错误信息</span>
+<a id="__codelineno-10-85" name="__codelineno-10-85" href="#__codelineno-10-85"></a><span class="cm"> * @return 存储句柄，失败返回 NULL</span>
+<a id="__codelineno-10-86" name="__codelineno-10-86" href="#__codelineno-10-86"></a><span class="cm"> */</span>
+<a id="__codelineno-10-87" name="__codelineno-10-87" href="#__codelineno-10-87"></a><span class="n">StorageHandle</span><span class="w"> </span><span class="nf">govector_storage_new</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">db_path</span><span class="p">,</span><span class="w"> </span><span class="n">ErrorInfo</span><span class="o">*</span><span class="w"> </span><span class="n">error</span><span class="p">);</span>
+<a id="__codelineno-10-88" name="__codelineno-10-88" href="#__codelineno-10-88"></a>
+<a id="__codelineno-10-89" name="__codelineno-10-89" href="#__codelineno-10-89"></a><span class="cm">/**</span>
+<a id="__codelineno-10-90" name="__codelineno-10-90" href="#__codelineno-10-90"></a><span class="cm"> * @brief 关闭存储引擎</span>
+<a id="__codelineno-10-91" name="__codelineno-10-91" href="#__codelineno-10-91"></a><span class="cm"> * @param handle 存储句柄</span>
+<a id="__codelineno-10-92" name="__codelineno-10-92" href="#__codelineno-10-92"></a><span class="cm"> * @return 错误码</span>
+<a id="__codelineno-10-93" name="__codelineno-10-93" href="#__codelineno-10-93"></a><span class="cm"> */</span>
+<a id="__codelineno-10-94" name="__codelineno-10-94" href="#__codelineno-10-94"></a><span class="n">GovectorError</span><span class="w"> </span><span class="nf">govector_storage_close</span><span class="p">(</span><span class="n">StorageHandle</span><span class="w"> </span><span class="n">handle</span><span class="p">);</span>
+<a id="__codelineno-10-95" name="__codelineno-10-95" href="#__codelineno-10-95"></a>
+<a id="__codelineno-10-96" name="__codelineno-10-96" href="#__codelineno-10-96"></a><span class="cm">/**</span>
+<a id="__codelineno-10-97" name="__codelineno-10-97" href="#__codelineno-10-97"></a><span class="cm"> * @brief 释放存储句柄</span>
+<a id="__codelineno-10-98" name="__codelineno-10-98" href="#__codelineno-10-98"></a><span class="cm"> * @param handle 存储句柄</span>
+<a id="__codelineno-10-99" name="__codelineno-10-99" href="#__codelineno-10-99"></a><span class="cm"> */</span>
+<a id="__codelineno-10-100" name="__codelineno-10-100" href="#__codelineno-10-100"></a><span class="kt">void</span><span class="w"> </span><span class="nf">govector_storage_free</span><span class="p">(</span><span class="n">StorageHandle</span><span class="w"> </span><span class="n">handle</span><span class="p">);</span>
+<a id="__codelineno-10-101" name="__codelineno-10-101" href="#__codelineno-10-101"></a>
+<a id="__codelineno-10-102" name="__codelineno-10-102" href="#__codelineno-10-102"></a><span class="cm">/* ============================================================================</span>
+<a id="__codelineno-10-103" name="__codelineno-10-103" href="#__codelineno-10-103"></a><span class="cm"> * 集合管理 API</span>
+<a id="__codelineno-10-104" name="__codelineno-10-104" href="#__codelineno-10-104"></a><span class="cm"> * ============================================================================ */</span>
+<a id="__codelineno-10-105" name="__codelineno-10-105" href="#__codelineno-10-105"></a>
+<a id="__codelineno-10-106" name="__codelineno-10-106" href="#__codelineno-10-106"></a><span class="cm">/**</span>
+<a id="__codelineno-10-107" name="__codelineno-10-107" href="#__codelineno-10-107"></a><span class="cm"> * @brief 创建新的向量集合</span>
+<a id="__codelineno-10-108" name="__codelineno-10-108" href="#__codelineno-10-108"></a><span class="cm"> * @param name 集合名称</span>
+<a id="__codelineno-10-109" name="__codelineno-10-109" href="#__codelineno-10-109"></a><span class="cm"> * @param vector_dim 向量维度</span>
+<a id="__codelineno-10-110" name="__codelineno-10-110" href="#__codelineno-10-110"></a><span class="cm"> * @param metric 距离度量类型</span>
+<a id="__codelineno-10-111" name="__codelineno-10-111" href="#__codelineno-10-111"></a><span class="cm"> * @param use_hnsw 是否使用 HNSW 索引</span>
+<a id="__codelineno-10-112" name="__codelineno-10-112" href="#__codelineno-10-112"></a><span class="cm"> * @param hnsw_params HNSW 参数</span>
+<a id="__codelineno-10-113" name="__codelineno-10-113" href="#__codelineno-10-113"></a><span class="cm"> * @param storage 存储句柄</span>
+<a id="__codelineno-10-114" name="__codelineno-10-114" href="#__codelineno-10-114"></a><span class="cm"> * @param error 输出错误信息</span>
+<a id="__codelineno-10-115" name="__codelineno-10-115" href="#__codelineno-10-115"></a><span class="cm"> * @return 集合句柄，失败返回 NULL</span>
+<a id="__codelineno-10-116" name="__codelineno-10-116" href="#__codelineno-10-116"></a><span class="cm"> */</span>
+<a id="__codelineno-10-117" name="__codelineno-10-117" href="#__codelineno-10-117"></a><span class="n">CollectionHandle</span><span class="w"> </span><span class="nf">govector_collection_create</span><span class="p">(</span>
+<a id="__codelineno-10-118" name="__codelineno-10-118" href="#__codelineno-10-118"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">name</span><span class="p">,</span>
+<a id="__codelineno-10-119" name="__codelineno-10-119" href="#__codelineno-10-119"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">vector_dim</span><span class="p">,</span>
+<a id="__codelineno-10-120" name="__codelineno-10-120" href="#__codelineno-10-120"></a><span class="w">    </span><span class="n">DistanceType</span><span class="w"> </span><span class="n">metric</span><span class="p">,</span>
+<a id="__codelineno-10-121" name="__codelineno-10-121" href="#__codelineno-10-121"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">use_hnsw</span><span class="p">,</span>
+<a id="__codelineno-10-122" name="__codelineno-10-122" href="#__codelineno-10-122"></a><span class="w">    </span><span class="n">HNSWParams</span><span class="w"> </span><span class="n">hnsw_params</span><span class="p">,</span>
+<a id="__codelineno-10-123" name="__codelineno-10-123" href="#__codelineno-10-123"></a><span class="w">    </span><span class="n">StorageHandle</span><span class="w"> </span><span class="n">storage</span><span class="p">,</span>
+<a id="__codelineno-10-124" name="__codelineno-10-124" href="#__codelineno-10-124"></a><span class="w">    </span><span class="n">ErrorInfo</span><span class="o">*</span><span class="w"> </span><span class="n">error</span>
+<a id="__codelineno-10-125" name="__codelineno-10-125" href="#__codelineno-10-125"></a><span class="p">);</span>
+<a id="__codelineno-10-126" name="__codelineno-10-126" href="#__codelineno-10-126"></a>
+<a id="__codelineno-10-127" name="__codelineno-10-127" href="#__codelineno-10-127"></a><span class="cm">/**</span>
+<a id="__codelineno-10-128" name="__codelineno-10-128" href="#__codelineno-10-128"></a><span class="cm"> * @brief 加载已存在的集合</span>
+<a id="__codelineno-10-129" name="__codelineno-10-129" href="#__codelineno-10-129"></a><span class="cm"> * @param name 集合名称</span>
+<a id="__codelineno-10-130" name="__codelineno-10-130" href="#__codelineno-10-130"></a><span class="cm"> * @param storage 存储句柄</span>
+<a id="__codelineno-10-131" name="__codelineno-10-131" href="#__codelineno-10-131"></a><span class="cm"> * @param error 输出错误信息</span>
+<a id="__codelineno-10-132" name="__codelineno-10-132" href="#__codelineno-10-132"></a><span class="cm"> * @return 集合句柄，失败返回 NULL</span>
+<a id="__codelineno-10-133" name="__codelineno-10-133" href="#__codelineno-10-133"></a><span class="cm"> */</span>
+<a id="__codelineno-10-134" name="__codelineno-10-134" href="#__codelineno-10-134"></a><span class="n">CollectionHandle</span><span class="w"> </span><span class="nf">govector_collection_load</span><span class="p">(</span>
+<a id="__codelineno-10-135" name="__codelineno-10-135" href="#__codelineno-10-135"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">name</span><span class="p">,</span>
+<a id="__codelineno-10-136" name="__codelineno-10-136" href="#__codelineno-10-136"></a><span class="w">    </span><span class="n">StorageHandle</span><span class="w"> </span><span class="n">storage</span><span class="p">,</span>
+<a id="__codelineno-10-137" name="__codelineno-10-137" href="#__codelineno-10-137"></a><span class="w">    </span><span class="n">ErrorInfo</span><span class="o">*</span><span class="w"> </span><span class="n">error</span>
+<a id="__codelineno-10-138" name="__codelineno-10-138" href="#__codelineno-10-138"></a><span class="p">);</span>
+<a id="__codelineno-10-139" name="__codelineno-10-139" href="#__codelineno-10-139"></a>
+<a id="__codelineno-10-140" name="__codelineno-10-140" href="#__codelineno-10-140"></a><span class="cm">/**</span>
+<a id="__codelineno-10-141" name="__codelineno-10-141" href="#__codelineno-10-141"></a><span class="cm"> * @brief 删除集合</span>
+<a id="__codelineno-10-142" name="__codelineno-10-142" href="#__codelineno-10-142"></a><span class="cm"> * @param name 集合名称</span>
+<a id="__codelineno-10-143" name="__codelineno-10-143" href="#__codelineno-10-143"></a><span class="cm"> * @param storage 存储句柄</span>
+<a id="__codelineno-10-144" name="__codelineno-10-144" href="#__codelineno-10-144"></a><span class="cm"> * @param error 输出错误信息</span>
+<a id="__codelineno-10-145" name="__codelineno-10-145" href="#__codelineno-10-145"></a><span class="cm"> * @return 错误码</span>
+<a id="__codelineno-10-146" name="__codelineno-10-146" href="#__codelineno-10-146"></a><span class="cm"> */</span>
+<a id="__codelineno-10-147" name="__codelineno-10-147" href="#__codelineno-10-147"></a><span class="n">GovectorError</span><span class="w"> </span><span class="nf">govector_collection_drop</span><span class="p">(</span>
+<a id="__codelineno-10-148" name="__codelineno-10-148" href="#__codelineno-10-148"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">name</span><span class="p">,</span>
+<a id="__codelineno-10-149" name="__codelineno-10-149" href="#__codelineno-10-149"></a><span class="w">    </span><span class="n">StorageHandle</span><span class="w"> </span><span class="n">storage</span><span class="p">,</span>
+<a id="__codelineno-10-150" name="__codelineno-10-150" href="#__codelineno-10-150"></a><span class="w">    </span><span class="n">ErrorInfo</span><span class="o">*</span><span class="w"> </span><span class="n">error</span>
+<a id="__codelineno-10-151" name="__codelineno-10-151" href="#__codelineno-10-151"></a><span class="p">);</span>
+<a id="__codelineno-10-152" name="__codelineno-10-152" href="#__codelineno-10-152"></a>
+<a id="__codelineno-10-153" name="__codelineno-10-153" href="#__codelineno-10-153"></a><span class="cm">/**</span>
+<a id="__codelineno-10-154" name="__codelineno-10-154" href="#__codelineno-10-154"></a><span class="cm"> * @brief 释放集合句柄</span>
+<a id="__codelineno-10-155" name="__codelineno-10-155" href="#__codelineno-10-155"></a><span class="cm"> * @param handle 集合句柄</span>
+<a id="__codelineno-10-156" name="__codelineno-10-156" href="#__codelineno-10-156"></a><span class="cm"> */</span>
+<a id="__codelineno-10-157" name="__codelineno-10-157" href="#__codelineno-10-157"></a><span class="kt">void</span><span class="w"> </span><span class="nf">govector_collection_free</span><span class="p">(</span><span class="n">CollectionHandle</span><span class="w"> </span><span class="n">handle</span><span class="p">);</span>
+<a id="__codelineno-10-158" name="__codelineno-10-158" href="#__codelineno-10-158"></a>
+<a id="__codelineno-10-159" name="__codelineno-10-159" href="#__codelineno-10-159"></a><span class="cm">/* ============================================================================</span>
+<a id="__codelineno-10-160" name="__codelineno-10-160" href="#__codelineno-10-160"></a><span class="cm"> * 点操作 API</span>
+<a id="__codelineno-10-161" name="__codelineno-10-161" href="#__codelineno-10-161"></a><span class="cm"> * ============================================================================ */</span>
+<a id="__codelineno-10-162" name="__codelineno-10-162" href="#__codelineno-10-162"></a>
+<a id="__codelineno-10-163" name="__codelineno-10-163" href="#__codelineno-10-163"></a><span class="cm">/**</span>
+<a id="__codelineno-10-164" name="__codelineno-10-164" href="#__codelineno-10-164"></a><span class="cm"> * @brief 插入或更新点</span>
+<a id="__codelineno-10-165" name="__codelineno-10-165" href="#__codelineno-10-165"></a><span class="cm"> * @param handle 集合句柄</span>
+<a id="__codelineno-10-166" name="__codelineno-10-166" href="#__codelineno-10-166"></a><span class="cm"> * @param points 点数组</span>
+<a id="__codelineno-10-167" name="__codelineno-10-167" href="#__codelineno-10-167"></a><span class="cm"> * @param count 点的数量</span>
+<a id="__codelineno-10-168" name="__codelineno-10-168" href="#__codelineno-10-168"></a><span class="cm"> * @param error 输出错误信息</span>
+<a id="__codelineno-10-169" name="__codelineno-10-169" href="#__codelineno-10-169"></a><span class="cm"> * @return 错误码</span>
+<a id="__codelineno-10-170" name="__codelineno-10-170" href="#__codelineno-10-170"></a><span class="cm"> */</span>
+<a id="__codelineno-10-171" name="__codelineno-10-171" href="#__codelineno-10-171"></a><span class="n">GovectorError</span><span class="w"> </span><span class="nf">govector_collection_upsert</span><span class="p">(</span>
+<a id="__codelineno-10-172" name="__codelineno-10-172" href="#__codelineno-10-172"></a><span class="w">    </span><span class="n">CollectionHandle</span><span class="w"> </span><span class="n">handle</span><span class="p">,</span>
+<a id="__codelineno-10-173" name="__codelineno-10-173" href="#__codelineno-10-173"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">PointStruct</span><span class="o">*</span><span class="w"> </span><span class="n">points</span><span class="p">,</span>
+<a id="__codelineno-10-174" name="__codelineno-10-174" href="#__codelineno-10-174"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="p">,</span>
+<a id="__codelineno-10-175" name="__codelineno-10-175" href="#__codelineno-10-175"></a><span class="w">    </span><span class="n">ErrorInfo</span><span class="o">*</span><span class="w"> </span><span class="n">error</span>
+<a id="__codelineno-10-176" name="__codelineno-10-176" href="#__codelineno-10-176"></a><span class="p">);</span>
+<a id="__codelineno-10-177" name="__codelineno-10-177" href="#__codelineno-10-177"></a>
+<a id="__codelineno-10-178" name="__codelineno-10-178" href="#__codelineno-10-178"></a><span class="cm">/**</span>
+<a id="__codelineno-10-179" name="__codelineno-10-179" href="#__codelineno-10-179"></a><span class="cm"> * @brief 向量搜索</span>
+<a id="__codelineno-10-180" name="__codelineno-10-180" href="#__codelineno-10-180"></a><span class="cm"> * @param handle 集合句柄</span>
+<a id="__codelineno-10-181" name="__codelineno-10-181" href="#__codelineno-10-181"></a><span class="cm"> * @param query_vector 查询向量</span>
+<a id="__codelineno-10-182" name="__codelineno-10-182" href="#__codelineno-10-182"></a><span class="cm"> * @param vector_dim 向量维度</span>
+<a id="__codelineno-10-183" name="__codelineno-10-183" href="#__codelineno-10-183"></a><span class="cm"> * @param top_k 返回结果数量</span>
+<a id="__codelineno-10-184" name="__codelineno-10-184" href="#__codelineno-10-184"></a><span class="cm"> * @param results 输出结果数组</span>
+<a id="__codelineno-10-185" name="__codelineno-10-185" href="#__codelineno-10-185"></a><span class="cm"> * @param result_count 输出结果数量</span>
+<a id="__codelineno-10-186" name="__codelineno-10-186" href="#__codelineno-10-186"></a><span class="cm"> * @param error 输出错误信息</span>
+<a id="__codelineno-10-187" name="__codelineno-10-187" href="#__codelineno-10-187"></a><span class="cm"> * @return 错误码</span>
+<a id="__codelineno-10-188" name="__codelineno-10-188" href="#__codelineno-10-188"></a><span class="cm"> */</span>
+<a id="__codelineno-10-189" name="__codelineno-10-189" href="#__codelineno-10-189"></a><span class="n">GovectorError</span><span class="w"> </span><span class="nf">govector_collection_search</span><span class="p">(</span>
+<a id="__codelineno-10-190" name="__codelineno-10-190" href="#__codelineno-10-190"></a><span class="w">    </span><span class="n">CollectionHandle</span><span class="w"> </span><span class="n">handle</span><span class="p">,</span>
+<a id="__codelineno-10-191" name="__codelineno-10-191" href="#__codelineno-10-191"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="o">*</span><span class="w"> </span><span class="n">query_vector</span><span class="p">,</span>
+<a id="__codelineno-10-192" name="__codelineno-10-192" href="#__codelineno-10-192"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">vector_dim</span><span class="p">,</span>
+<a id="__codelineno-10-193" name="__codelineno-10-193" href="#__codelineno-10-193"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">top_k</span><span class="p">,</span>
+<a id="__codelineno-10-194" name="__codelineno-10-194" href="#__codelineno-10-194"></a><span class="w">    </span><span class="n">ScoredPoint</span><span class="o">**</span><span class="w"> </span><span class="n">results</span><span class="p">,</span>
+<a id="__codelineno-10-195" name="__codelineno-10-195" href="#__codelineno-10-195"></a><span class="w">    </span><span class="kt">int</span><span class="o">*</span><span class="w"> </span><span class="n">result_count</span><span class="p">,</span>
+<a id="__codelineno-10-196" name="__codelineno-10-196" href="#__codelineno-10-196"></a><span class="w">    </span><span class="n">ErrorInfo</span><span class="o">*</span><span class="w"> </span><span class="n">error</span>
+<a id="__codelineno-10-197" name="__codelineno-10-197" href="#__codelineno-10-197"></a><span class="p">);</span>
+<a id="__codelineno-10-198" name="__codelineno-10-198" href="#__codelineno-10-198"></a>
+<a id="__codelineno-10-199" name="__codelineno-10-199" href="#__codelineno-10-199"></a><span class="cm">/**</span>
+<a id="__codelineno-10-200" name="__codelineno-10-200" href="#__codelineno-10-200"></a><span class="cm"> * @brief 删除点</span>
+<a id="__codelineno-10-201" name="__codelineno-10-201" href="#__codelineno-10-201"></a><span class="cm"> * @param handle 集合句柄</span>
+<a id="__codelineno-10-202" name="__codelineno-10-202" href="#__codelineno-10-202"></a><span class="cm"> * @param ids 点 ID 数组</span>
+<a id="__codelineno-10-203" name="__codelineno-10-203" href="#__codelineno-10-203"></a><span class="cm"> * @param count ID 数量</span>
+<a id="__codelineno-10-204" name="__codelineno-10-204" href="#__codelineno-10-204"></a><span class="cm"> * @param deleted_count 输出实际删除的数量</span>
+<a id="__codelineno-10-205" name="__codelineno-10-205" href="#__codelineno-10-205"></a><span class="cm"> * @param error 输出错误信息</span>
+<a id="__codelineno-10-206" name="__codelineno-10-206" href="#__codelineno-10-206"></a><span class="cm"> * @return 错误码</span>
+<a id="__codelineno-10-207" name="__codelineno-10-207" href="#__codelineno-10-207"></a><span class="cm"> */</span>
+<a id="__codelineno-10-208" name="__codelineno-10-208" href="#__codelineno-10-208"></a><span class="n">GovectorError</span><span class="w"> </span><span class="nf">govector_collection_delete</span><span class="p">(</span>
+<a id="__codelineno-10-209" name="__codelineno-10-209" href="#__codelineno-10-209"></a><span class="w">    </span><span class="n">CollectionHandle</span><span class="w"> </span><span class="n">handle</span><span class="p">,</span>
+<a id="__codelineno-10-210" name="__codelineno-10-210" href="#__codelineno-10-210"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">**</span><span class="w"> </span><span class="n">ids</span><span class="p">,</span>
+<a id="__codelineno-10-211" name="__codelineno-10-211" href="#__codelineno-10-211"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="p">,</span>
+<a id="__codelineno-10-212" name="__codelineno-10-212" href="#__codelineno-10-212"></a><span class="w">    </span><span class="kt">int</span><span class="o">*</span><span class="w"> </span><span class="n">deleted_count</span><span class="p">,</span>
+<a id="__codelineno-10-213" name="__codelineno-10-213" href="#__codelineno-10-213"></a><span class="w">    </span><span class="n">ErrorInfo</span><span class="o">*</span><span class="w"> </span><span class="n">error</span>
+<a id="__codelineno-10-214" name="__codelineno-10-214" href="#__codelineno-10-214"></a><span class="p">);</span>
+<a id="__codelineno-10-215" name="__codelineno-10-215" href="#__codelineno-10-215"></a>
+<a id="__codelineno-10-216" name="__codelineno-10-216" href="#__codelineno-10-216"></a><span class="cm">/**</span>
+<a id="__codelineno-10-217" name="__codelineno-10-217" href="#__codelineno-10-217"></a><span class="cm"> * @brief 获取集合中点的数量</span>
+<a id="__codelineno-10-218" name="__codelineno-10-218" href="#__codelineno-10-218"></a><span class="cm"> * @param handle 集合句柄</span>
+<a id="__codelineno-10-219" name="__codelineno-10-219" href="#__codelineno-10-219"></a><span class="cm"> * @return 点的数量</span>
+<a id="__codelineno-10-220" name="__codelineno-10-220" href="#__codelineno-10-220"></a><span class="cm"> */</span>
+<a id="__codelineno-10-221" name="__codelineno-10-221" href="#__codelineno-10-221"></a><span class="kt">int</span><span class="w"> </span><span class="nf">govector_collection_count</span><span class="p">(</span><span class="n">CollectionHandle</span><span class="w"> </span><span class="n">handle</span><span class="p">);</span>
+<a id="__codelineno-10-222" name="__codelineno-10-222" href="#__codelineno-10-222"></a>
+<a id="__codelineno-10-223" name="__codelineno-10-223" href="#__codelineno-10-223"></a><span class="cm">/* ============================================================================</span>
+<a id="__codelineno-10-224" name="__codelineno-10-224" href="#__codelineno-10-224"></a><span class="cm"> * 内存管理 API</span>
+<a id="__codelineno-10-225" name="__codelineno-10-225" href="#__codelineno-10-225"></a><span class="cm"> * ============================================================================ */</span>
+<a id="__codelineno-10-226" name="__codelineno-10-226" href="#__codelineno-10-226"></a>
+<a id="__codelineno-10-227" name="__codelineno-10-227" href="#__codelineno-10-227"></a><span class="cm">/**</span>
+<a id="__codelineno-10-228" name="__codelineno-10-228" href="#__codelineno-10-228"></a><span class="cm"> * @brief 释放点数组</span>
+<a id="__codelineno-10-229" name="__codelineno-10-229" href="#__codelineno-10-229"></a><span class="cm"> * @param points 点数组</span>
+<a id="__codelineno-10-230" name="__codelineno-10-230" href="#__codelineno-10-230"></a><span class="cm"> * @param count 点的数量</span>
+<a id="__codelineno-10-231" name="__codelineno-10-231" href="#__codelineno-10-231"></a><span class="cm"> */</span>
+<a id="__codelineno-10-232" name="__codelineno-10-232" href="#__codelineno-10-232"></a><span class="kt">void</span><span class="w"> </span><span class="nf">govector_points_free</span><span class="p">(</span><span class="n">PointStruct</span><span class="o">*</span><span class="w"> </span><span class="n">points</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="p">);</span>
+<a id="__codelineno-10-233" name="__codelineno-10-233" href="#__codelineno-10-233"></a>
+<a id="__codelineno-10-234" name="__codelineno-10-234" href="#__codelineno-10-234"></a><span class="cm">/**</span>
+<a id="__codelineno-10-235" name="__codelineno-10-235" href="#__codelineno-10-235"></a><span class="cm"> * @brief 释放搜索结果数组</span>
+<a id="__codelineno-10-236" name="__codelineno-10-236" href="#__codelineno-10-236"></a><span class="cm"> * @param results 结果数组</span>
+<a id="__codelineno-10-237" name="__codelineno-10-237" href="#__codelineno-10-237"></a><span class="cm"> * @param count 结果数量</span>
+<a id="__codelineno-10-238" name="__codelineno-10-238" href="#__codelineno-10-238"></a><span class="cm"> */</span>
+<a id="__codelineno-10-239" name="__codelineno-10-239" href="#__codelineno-10-239"></a><span class="kt">void</span><span class="w"> </span><span class="nf">govector_scored_points_free</span><span class="p">(</span><span class="n">ScoredPoint</span><span class="o">*</span><span class="w"> </span><span class="n">results</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="p">);</span>
+<a id="__codelineno-10-240" name="__codelineno-10-240" href="#__codelineno-10-240"></a>
+<a id="__codelineno-10-241" name="__codelineno-10-241" href="#__codelineno-10-241"></a><span class="cm">/**</span>
+<a id="__codelineno-10-242" name="__codelineno-10-242" href="#__codelineno-10-242"></a><span class="cm"> * @brief 释放错误信息</span>
+<a id="__codelineno-10-243" name="__codelineno-10-243" href="#__codelineno-10-243"></a><span class="cm"> * @param error 错误信息结构</span>
+<a id="__codelineno-10-244" name="__codelineno-10-244" href="#__codelineno-10-244"></a><span class="cm"> */</span>
+<a id="__codelineno-10-245" name="__codelineno-10-245" href="#__codelineno-10-245"></a><span class="kt">void</span><span class="w"> </span><span class="nf">govector_error_free</span><span class="p">(</span><span class="n">ErrorInfo</span><span class="o">*</span><span class="w"> </span><span class="n">error</span><span class="p">);</span>
+<a id="__codelineno-10-246" name="__codelineno-10-246" href="#__codelineno-10-246"></a>
+<a id="__codelineno-10-247" name="__codelineno-10-247" href="#__codelineno-10-247"></a><span class="cp">#ifdef __cplusplus</span>
+<a id="__codelineno-10-248" name="__codelineno-10-248" href="#__codelineno-10-248"></a><span class="p">}</span>
+<a id="__codelineno-10-249" name="__codelineno-10-249" href="#__codelineno-10-249"></a><span class="cp">#endif</span>
+<a id="__codelineno-10-250" name="__codelineno-10-250" href="#__codelineno-10-250"></a>
+<a id="__codelineno-10-251" name="__codelineno-10-251" href="#__codelineno-10-251"></a><span class="cp">#endif </span><span class="cm">/* GOVECTOR_C_H */</span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Guangzhou Raya Info Co., Ltd
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.sections", "search.suggest", "search.highlight", "content.code.highlight", "content.code.copy", "content.code.annotate", "i18n.languages"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

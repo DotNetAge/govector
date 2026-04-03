@@ -1,132 +1,235 @@
 
-<!DOCTYPE html>
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="GoVector Vector Database">
+      
+      
+        <meta name="author" content="Ray">
+      
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../usage/cli-guide/">
+      
+      
+        
+          <link rel="alternate" href="./" hreflang="en">
+        
+          <link rel="alternate" href="../zh/quick-start/" hreflang="zh">
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Quick Start - GoVector Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
 
-<html class="no-js" lang="en">
-<head>
-<meta charset="utf-8"/>
-<meta content="width=device-width,initial-scale=1" name="viewport"/>
-<meta content="GoVector Vector Database" name="description"/>
-<meta content="Ray" name="author"/>
-<link href=".." rel="prev"/>
-<link href="../usage/cli-guide/" rel="next"/>
-<link href="./" hreflang="en" rel="alternate"/>
-<link href="../zh/quick-start/" hreflang="zh" rel="alternate"/>
-<link href="../assets/images/favicon.png" rel="icon"/>
-<meta content="mkdocs-1.6.1, mkdocs-material-9.7.6" name="generator"/>
-<title>Quick Start - GoVector Documentation</title>
-<link href="../assets/stylesheets/main.484c7ddc.min.css" rel="stylesheet"/>
-<link href="../assets/stylesheets/palette.ab4e12ef.min.css" rel="stylesheet"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
-<style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" rel="stylesheet"/>
-<script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-</head>
-<body data-md-color-accent="green" data-md-color-primary="green" data-md-color-scheme="default" dir="ltr">
-<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
-<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
-<label class="md-overlay" for="__drawer"></label>
-<div data-md-component="skip">
-<a class="md-skip" href="#quick-start">
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#quick-start" class="md-skip">
           Skip to content
         </a>
-</div>
-<div data-md-component="announce">
-</div>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
 <header class="md-header" data-md-component="header">
-<nav aria-label="Header" class="md-header__inner md-grid">
-<a aria-label="GoVector Documentation" class="md-header__button md-logo" data-md-component="logo" href=".." title="GoVector Documentation">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
-</a>
-<label class="md-header__button md-icon" for="__drawer">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
-</label>
-<div class="md-header__title" data-md-component="header-title">
-<div class="md-header__ellipsis">
-<div class="md-header__topic">
-<span class="md-ellipsis">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="GoVector Documentation" class="md-header__button md-logo" aria-label="GoVector Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
             GoVector Documentation
           </span>
-</div>
-<div class="md-header__topic" data-md-component="header-topic">
-<span class="md-ellipsis">
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
             
               Quick Start
             
           </span>
-</div>
-</div>
-</div>
-<div class="md-header__option">
-<div class="md-select">
-<button aria-label="Select language" class="md-header__button md-icon">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"></path></svg>
-</button>
-<div class="md-select__inner">
-<ul class="md-select__list">
-<li class="md-select__item">
-<a class="md-select__link" href="./" hreflang="en">
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Select language">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="en" class="md-select__link">
               English
             </a>
-</li>
-<li class="md-select__item">
-<a class="md-select__link" href="../zh/quick-start/" hreflang="zh">
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../zh/quick-start/" hreflang="zh" class="md-select__link">
               中文
             </a>
-</li>
-</ul>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
 </div>
-</div>
-</div>
-<label class="md-header__button md-icon" for="__search">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
-</label>
-<div class="md-search" data-md-component="search" role="dialog">
-<label class="md-search__overlay" for="__search"></label>
-<div class="md-search__inner" role="search">
-<form class="md-search__form" name="search">
-<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Search" required="" spellcheck="false" type="text"/>
-<label class="md-search__icon md-icon" for="__search">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
-</label>
-<nav aria-label="Search" class="md-search__options">
-<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" title="Clear" type="reset">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
-</button>
-</nav>
-<div class="md-search__suggest" data-md-component="search-suggest"></div>
-</form>
-<div class="md-search__output">
-<div class="md-search__scrollwrap" data-md-scrollfix="" tabindex="0">
-<div class="md-search-result" data-md-component="search-result">
-<div class="md-search-result__meta">
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
             Initializing search
           </div>
-<ol class="md-search-result__list" role="presentation"></ol>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-</div>
-</div>
-</div>
-</div>
-<div class="md-header__source">
-<a class="md-source" data-md-component="source" href="https://github.com/DotNetAge/govector" title="Go to repository">
-<div class="md-source__icon md-icon">
-<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
-</div>
-<div class="md-source__repository">
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/DotNetAge/govector" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
     GitHub
   </div>
 </a>
-</div>
-</nav>
+      </div>
+    
+  </nav>
+  
 </header>
-<div class="md-container" data-md-component="container">
-<nav aria-label="Tabs" class="md-tabs" data-md-component="tabs">
-<div class="md-grid">
-<ul class="md-tabs__list">
-<li class="md-tabs__item">
-<a class="md-tabs__link" href="..">
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
         
   
   
@@ -135,90 +238,199 @@
   Home
 
       </a>
-</li>
-<li class="md-tabs__item md-tabs__item--active">
-<a class="md-tabs__link" href="./">
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
           
   
   
   GoVector
 
         </a>
-</li>
-<li class="md-tabs__item">
-<a class="md-tabs__link" href="../arch/architecture-design/">
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../arch/architecture-design/" class="md-tabs__link">
           
   
   
   Development Guide
 
         </a>
-</li>
-<li class="md-tabs__item">
-<a class="md-tabs__link" href="../api-references/api-reference/">
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../api-references/api-reference/" class="md-tabs__link">
           
   
   
   API Reference
 
         </a>
-</li>
-<li class="md-tabs__item">
-<a class="md-tabs__link" href="../deployment/deployment-operations/">
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../deployment/" class="md-tabs__link">
           
   
   
   Deployment
 
         </a>
-</li>
-<li class="md-tabs__item">
-<a class="md-tabs__link" href="../trouble-removal/troubleshooting/">
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../troubleshooting/" class="md-tabs__link">
           
   
   
   Troubleshooting
 
         </a>
-</li>
-<li class="md-tabs__item">
-<a class="md-tabs__link" href="../vectordb/01-introduction/">
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../vectordb/01-introduction/" class="md-tabs__link">
           
   
   
   Theory Learning
 
         </a>
-</li>
-</ul>
-</div>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
 </nav>
-<main class="md-main" data-md-component="main">
-<div class="md-main__inner md-grid">
-<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
-<div class="md-sidebar__scrollwrap">
-<div class="md-sidebar__inner">
-<nav aria-label="Navigation" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
-<label class="md-nav__title" for="__drawer">
-<a aria-label="GoVector Documentation" class="md-nav__button md-logo" data-md-component="logo" href=".." title="GoVector Documentation">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
-</a>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="GoVector Documentation" class="md-nav__button md-logo" aria-label="GoVector Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
     GoVector Documentation
   </label>
-<div class="md-nav__source">
-<a class="md-source" data-md-component="source" href="https://github.com/DotNetAge/govector" title="Go to repository">
-<div class="md-source__icon md-icon">
-<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
-</div>
-<div class="md-source__repository">
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/DotNetAge/govector" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
     GitHub
   </div>
 </a>
-</div>
-<ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="..">
-<span class="md-ellipsis">
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     Home
@@ -226,12 +438,47 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" id="__nav_2" type="checkbox"/>
-<label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
     
   
     GoVector
@@ -239,22 +486,44 @@
 
     
   </span>
-<span class="md-nav__icon md-icon"></span>
-</label>
-<nav aria-expanded="true" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
-<label class="md-nav__title" for="__nav_2">
-<span class="md-nav__icon md-icon"></span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
             
   
     GoVector
   
 
           </label>
-<ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item md-nav__item--active">
-<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
-<label class="md-nav__link md-nav__link--active" for="__toc">
-<span class="md-ellipsis">
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
     
   
     Quick Start
@@ -262,10 +531,17 @@
 
     
   </span>
-<span class="md-nav__icon md-icon"></span>
-</label>
-<a class="md-nav__link md-nav__link--active" href="./">
-<span class="md-ellipsis">
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     Quick Start
@@ -273,149 +549,297 @@
 
     
   </span>
-</a>
-<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
-<span class="md-nav__icon md-icon"></span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
       Table of contents
     </label>
-<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#project-structure">
-<span class="md-ellipsis">
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
-        Project Structure
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📦 Installation
       
     </span>
-</a>
+  </a>
+  
+    <nav class="md-nav" aria-label="📦 Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#option-a-install-via-homebrew-maclinux" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option A: Install via Homebrew (Mac/Linux)
+      
+    </span>
+  </a>
+  
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#core-components">
-<span class="md-ellipsis">
+        
+          <li class="md-nav__item">
+  <a href="#option-b-build-from-source" class="md-nav__link">
+    <span class="md-ellipsis">
       
-        Core Components
+        Option B: Build from Source
       
     </span>
-</a>
+  </a>
+  
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#architecture-overview">
-<span class="md-ellipsis">
+        
+          <li class="md-nav__item">
+  <a href="#option-c-use-as-a-go-library" class="md-nav__link">
+    <span class="md-ellipsis">
       
-        Architecture Overview
+        Option C: Use as a Go Library
       
     </span>
-</a>
+  </a>
+  
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#detailed-component-analysis">
-<span class="md-ellipsis">
-      
-        Detailed Component Analysis
-      
-    </span>
-</a>
-<nav aria-label="Detailed Component Analysis" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#embedded-mode-complete-example-from-zero-to-one">
-<span class="md-ellipsis">
-      
-        Embedded Mode: Complete Example from Zero to One
-      
-    </span>
-</a>
+        
+      </ul>
+    </nav>
+  
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#command-line-tool-cli-mode">
-<span class="md-ellipsis">
       
-        Command-Line Tool (CLI) Mode
+        <li class="md-nav__item">
+  <a href="#quick-start-examples" class="md-nav__link">
+    <span class="md-ellipsis">
       
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#command-line-tool-cli-mode_1">
-<span class="md-ellipsis">
-      
-        Command-Line Tool (CLI) Mode
+        🚀 Quick Start Examples
       
     </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#microservice-mode-startup-and-basic-api-calls">
-<span class="md-ellipsis">
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 Quick Start Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#embedded-mode-zero-network-overhead" class="md-nav__link">
+    <span class="md-ellipsis">
       
-        Microservice Mode: Startup and Basic API Calls
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#data-model-and-filtering-mechanism">
-<span class="md-ellipsis">
-      
-        Data Model and Filtering Mechanism
+        Embedded Mode (Zero Network Overhead)
       
     </span>
-</a>
+  </a>
+  
 </li>
-</ul>
+        
+          <li class="md-nav__item">
+  <a href="#microservice-mode-qdrant-compatible" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Microservice Mode (Qdrant Compatible)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Microservice Mode (Qdrant Compatible)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-a-collection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create a Collection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#upsert-vectors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Upsert Vectors
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#search-vectors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Search Vectors
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cli-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CLI Mode
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CLI Mode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interactive-tui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interactive TUI
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#direct-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Direct Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🏗️ Architecture Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-benchmark" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📊 Performance Benchmark
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🛠️ Key Features
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📖 Next Steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🚩 Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚩 Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#common-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Issues
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getting-help" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Getting Help
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#dependency-analysis">
-<span class="md-ellipsis">
       
-        Dependency Analysis
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#performance-and-best-practices">
-<span class="md-ellipsis">
-      
-        Performance and Best Practices
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#troubleshooting-guide">
-<span class="md-ellipsis">
-      
-        Troubleshooting Guide
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#conclusion">
-<span class="md-ellipsis">
-      
-        Conclusion
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#appendix-command-and-example-paths">
-<span class="md-ellipsis">
-      
-        Appendix: Command and Example Paths
-      
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../usage/cli-guide/">
-<span class="md-ellipsis">
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../usage/cli-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     CLI Usage Guide
@@ -423,11 +847,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../development-guide/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     Development Guide
@@ -435,23 +875,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../project-overview/">
-<span class="md-ellipsis">
-    
   
-    Project Overview
   
 
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../data-model/">
-<span class="md-ellipsis">
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     Data Model
@@ -459,15 +903,106 @@
 
     
   </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" id="__nav_3" type="checkbox"/>
-<label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../usage-modes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Usage Modes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vector-database-fundamentals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vector Database Fundamentals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
     
   
     Development Guide
@@ -475,22 +1010,51 @@
 
     
   </span>
-<span class="md-nav__icon md-icon"></span>
-</label>
-<nav aria-expanded="false" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
-<label class="md-nav__title" for="__nav_3">
-<span class="md-nav__icon md-icon"></span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
             
   
     Development Guide
   
 
           </label>
-<ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" id="__nav_3_1" type="checkbox"/>
-<label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
-<span class="md-ellipsis">
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
     
   
     Architecture Design
@@ -498,21 +1062,35 @@
 
     
   </span>
-<span class="md-nav__icon md-icon"></span>
-</label>
-<nav aria-expanded="false" aria-labelledby="__nav_3_1_label" class="md-nav" data-md-level="2">
-<label class="md-nav__title" for="__nav_3_1">
-<span class="md-nav__icon md-icon"></span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
             
   
     Architecture Design
   
 
           </label>
-<ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="../arch/architecture-design/">
-<span class="md-ellipsis">
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../arch/architecture-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     Architecture Design
@@ -520,11 +1098,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../arch/architecture-overview/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../arch/architecture-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     Architecture Overview
@@ -532,11 +1126,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../arch/component-interactions/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../arch/component-interactions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     Component Interactions
@@ -544,11 +1154,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../arch/data-flow-analysis/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../arch/data-flow-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     Data Flow Analysis
@@ -556,11 +1182,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../arch/design-patterns/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../arch/design-patterns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     Design Patterns Application
@@ -568,15 +1210,51 @@
 
     
   </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" id="__nav_3_2" type="checkbox"/>
-<label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
     
   
     Core Modules
@@ -584,21 +1262,35 @@
 
     
   </span>
-<span class="md-nav__icon md-icon"></span>
-</label>
-<nav aria-expanded="false" aria-labelledby="__nav_3_2_label" class="md-nav" data-md-level="2">
-<label class="md-nav__title" for="__nav_3_2">
-<span class="md-nav__icon md-icon"></span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
             
   
     Core Modules
   
 
           </label>
-<ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="../core/core-modules/">
-<span class="md-ellipsis">
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../core/core-modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     Core Modules
@@ -606,11 +1298,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../core/collection-management/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../core/collection-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     Collection Management
@@ -618,11 +1326,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../core/flat-index/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../core/flat-index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     Flat Index
@@ -630,11 +1354,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../core/hnsw-index/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../core/hnsw-index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     HNSW Index
@@ -642,11 +1382,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../core/quantization/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../core/quantization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     Quantization
@@ -654,11 +1410,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../core/storage-engine/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../core/storage-engine/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     Storage Engine
@@ -666,11 +1438,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../core/data-model-system/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../core/data-model-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     Data Model System
@@ -678,15 +1466,51 @@
 
     
   </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" id="__nav_3_3" type="checkbox"/>
-<label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
     
   
     Usage Patterns
@@ -694,21 +1518,35 @@
 
     
   </span>
-<span class="md-nav__icon md-icon"></span>
-</label>
-<nav aria-expanded="false" aria-labelledby="__nav_3_3_label" class="md-nav" data-md-level="2">
-<label class="md-nav__title" for="__nav_3_3">
-<span class="md-nav__icon md-icon"></span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
             
   
     Usage Patterns
   
 
           </label>
-<ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="../usage/usage-patterns/">
-<span class="md-ellipsis">
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../usage/usage-patterns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     Usage Patterns
@@ -716,11 +1554,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../usage/embedded-mode/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../usage/embedded-mode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     Embedded Mode
@@ -728,11 +1582,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../usage/microservice-mode/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../usage/microservice-mode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     Microservice Mode
@@ -740,11 +1610,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../usage/performance-optimization/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../usage/performance-optimization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     Performance Optimization
@@ -752,18 +1638,58 @@
 
     
   </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" id="__nav_4" type="checkbox"/>
-<label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
     
   
     API Reference
@@ -771,21 +1697,35 @@
 
     
   </span>
-<span class="md-nav__icon md-icon"></span>
-</label>
-<nav aria-expanded="false" aria-labelledby="__nav_4_label" class="md-nav" data-md-level="1">
-<label class="md-nav__title" for="__nav_4">
-<span class="md-nav__icon md-icon"></span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
             
   
     API Reference
   
 
           </label>
-<ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="../api-references/api-reference/">
-<span class="md-ellipsis">
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-references/api-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     API Reference
@@ -793,11 +1733,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../api-references/data-models/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-references/data-models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     Data Models
@@ -805,11 +1761,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../api-references/point-operations-api/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-references/point-operations-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     Point Operations API
@@ -817,11 +1789,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../api-references/collection-management-api/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-references/collection-management-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     Collection Management API
@@ -829,11 +1817,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../api-references/error-handling/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-references/error-handling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     Error Handling
@@ -841,15 +1845,50 @@
 
     
   </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" id="__nav_5" type="checkbox"/>
-<label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
     
   
     Deployment
@@ -857,21 +1896,63 @@
 
     
   </span>
-<span class="md-nav__icon md-icon"></span>
-</label>
-<nav aria-expanded="false" aria-labelledby="__nav_5_label" class="md-nav" data-md-level="1">
-<label class="md-nav__title" for="__nav_5">
-<span class="md-nav__icon md-icon"></span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
             
   
     Deployment
   
 
           </label>
-<ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="../deployment/deployment-operations/">
-<span class="md-ellipsis">
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment and Operations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deployment/deployment-operations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     Deployment Operations
@@ -879,11 +1960,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../deployment/production-deployment/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deployment/production-deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     Production Deployment
@@ -891,11 +1988,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../deployment/monitoring-alerts/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deployment/monitoring-alerts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     Monitoring and Alerting
@@ -903,11 +2016,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../deployment/backup-recovery/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deployment/backup-recovery/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     Backup and Recovery
@@ -915,11 +2044,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../deployment/upgrades-migration/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deployment/upgrades-migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     Upgrade and Migration
@@ -927,15 +2072,50 @@
 
     
   </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" id="__nav_6" type="checkbox"/>
-<label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
     
   
     Troubleshooting
@@ -943,21 +2123,35 @@
 
     
   </span>
-<span class="md-nav__icon md-icon"></span>
-</label>
-<nav aria-expanded="false" aria-labelledby="__nav_6_label" class="md-nav" data-md-level="1">
-<label class="md-nav__title" for="__nav_6">
-<span class="md-nav__icon md-icon"></span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
             
   
     Troubleshooting
   
 
           </label>
-<ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="../trouble-removal/troubleshooting/">
-<span class="md-ellipsis">
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     Troubleshooting
@@ -965,11 +2159,55 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../trouble-removal/installation-issues/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trouble-removal/troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trouble-removal/installation-issues/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     Installation Issues
@@ -977,11 +2215,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../trouble-removal/performance-issues/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trouble-removal/performance-issues/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     Performance Issues
@@ -989,11 +2243,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../trouble-removal/data-consistency-issues/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trouble-removal/data-consistency-issues/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     Data Consistency Issues
@@ -1001,11 +2271,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../trouble-removal/debugging-tools/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trouble-removal/debugging-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     Debugging Tools and Techniques
@@ -1013,11 +2299,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../trouble-removal/configuration-issues/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trouble-removal/configuration-issues/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     Configuration Issues
@@ -1025,15 +2327,50 @@
 
     
   </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" id="__nav_7" type="checkbox"/>
-<label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
     
   
     Theory Learning
@@ -1041,21 +2378,35 @@
 
     
   </span>
-<span class="md-nav__icon md-icon"></span>
-</label>
-<nav aria-expanded="false" aria-labelledby="__nav_7_label" class="md-nav" data-md-level="1">
-<label class="md-nav__title" for="__nav_7">
-<span class="md-nav__icon md-icon"></span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
             
   
     Theory Learning
   
 
           </label>
-<ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="../vectordb/01-introduction/">
-<span class="md-ellipsis">
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vectordb/01-introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     Introduction
@@ -1063,11 +2414,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../vectordb/02-history/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vectordb/02-history/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     Development History
@@ -1075,11 +2442,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../vectordb/03-core-principles/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vectordb/03-core-principles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     Core Principles
@@ -1087,11 +2470,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../vectordb/04-basic-concepts/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vectordb/04-basic-concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     Basic Concepts
@@ -1099,11 +2498,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../vectordb/05-applications/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vectordb/05-applications/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     Typical Application Scenarios
@@ -1111,11 +2526,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../vectordb/06-learning-path/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vectordb/06-learning-path/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     Learning
@@ -1123,444 +2554,606 @@
 
     
   </span>
-</a>
-</li>
-</ul>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
 </nav>
-</li>
-</ul>
-</nav>
-</div>
-</div>
-</div>
-<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
-<div class="md-sidebar__scrollwrap">
-<div class="md-sidebar__inner">
-<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
-<span class="md-nav__icon md-icon"></span>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
       Table of contents
     </label>
-<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#project-structure">
-<span class="md-ellipsis">
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
-        Project Structure
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📦 Installation
       
     </span>
-</a>
+  </a>
+  
+    <nav class="md-nav" aria-label="📦 Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#option-a-install-via-homebrew-maclinux" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option A: Install via Homebrew (Mac/Linux)
+      
+    </span>
+  </a>
+  
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#core-components">
-<span class="md-ellipsis">
+        
+          <li class="md-nav__item">
+  <a href="#option-b-build-from-source" class="md-nav__link">
+    <span class="md-ellipsis">
       
-        Core Components
+        Option B: Build from Source
       
     </span>
-</a>
+  </a>
+  
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#architecture-overview">
-<span class="md-ellipsis">
+        
+          <li class="md-nav__item">
+  <a href="#option-c-use-as-a-go-library" class="md-nav__link">
+    <span class="md-ellipsis">
       
-        Architecture Overview
+        Option C: Use as a Go Library
       
     </span>
-</a>
+  </a>
+  
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#detailed-component-analysis">
-<span class="md-ellipsis">
-      
-        Detailed Component Analysis
-      
-    </span>
-</a>
-<nav aria-label="Detailed Component Analysis" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#embedded-mode-complete-example-from-zero-to-one">
-<span class="md-ellipsis">
-      
-        Embedded Mode: Complete Example from Zero to One
-      
-    </span>
-</a>
+        
+      </ul>
+    </nav>
+  
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#command-line-tool-cli-mode">
-<span class="md-ellipsis">
       
-        Command-Line Tool (CLI) Mode
+        <li class="md-nav__item">
+  <a href="#quick-start-examples" class="md-nav__link">
+    <span class="md-ellipsis">
       
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#command-line-tool-cli-mode_1">
-<span class="md-ellipsis">
-      
-        Command-Line Tool (CLI) Mode
+        🚀 Quick Start Examples
       
     </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#microservice-mode-startup-and-basic-api-calls">
-<span class="md-ellipsis">
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 Quick Start Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#embedded-mode-zero-network-overhead" class="md-nav__link">
+    <span class="md-ellipsis">
       
-        Microservice Mode: Startup and Basic API Calls
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#data-model-and-filtering-mechanism">
-<span class="md-ellipsis">
-      
-        Data Model and Filtering Mechanism
+        Embedded Mode (Zero Network Overhead)
       
     </span>
-</a>
+  </a>
+  
 </li>
-</ul>
+        
+          <li class="md-nav__item">
+  <a href="#microservice-mode-qdrant-compatible" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Microservice Mode (Qdrant Compatible)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Microservice Mode (Qdrant Compatible)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-a-collection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create a Collection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#upsert-vectors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Upsert Vectors
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#search-vectors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Search Vectors
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cli-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CLI Mode
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CLI Mode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interactive-tui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interactive TUI
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#direct-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Direct Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🏗️ Architecture Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-benchmark" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📊 Performance Benchmark
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🛠️ Key Features
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📖 Next Steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🚩 Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚩 Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#common-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Issues
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getting-help" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Getting Help
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#dependency-analysis">
-<span class="md-ellipsis">
-      
-        Dependency Analysis
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#performance-and-best-practices">
-<span class="md-ellipsis">
-      
-        Performance and Best Practices
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#troubleshooting-guide">
-<span class="md-ellipsis">
-      
-        Troubleshooting Guide
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#conclusion">
-<span class="md-ellipsis">
-      
-        Conclusion
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#appendix-command-and-example-paths">
-<span class="md-ellipsis">
-      
-        Appendix: Command and Example Paths
-      
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</div>
-</div>
-</div>
-<div class="md-content" data-md-component="content">
-<article class="md-content__inner md-typeset">
-<h1 id="quick-start">Quick Start<a class="headerlink" href="#quick-start" title="Permanent link">¶</a></h1>
-<p>This guide is for users first encountering GoVector, with the goal of completing environment setup and running the first vector search example in approximately 15 minutes. Content covers:</p>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="quick-start">Quick Start<a class="headerlink" href="#quick-start" title="Permanent link">&para;</a></h1>
+<p>Welcome to GoVector! This guide will help you get started with GoVector in just a few minutes. GoVector is a lightweight, embeddable vector database written entirely in Go, compatible with Qdrant's API.</p>
+<h2 id="installation">📦 Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
+<h3 id="option-a-install-via-homebrew-maclinux">Option A: Install via Homebrew (Mac/Linux)<a class="headerlink" href="#option-a-install-via-homebrew-maclinux" title="Permanent link">&para;</a></h3>
+<p>The easiest way to install GoVector and run it as a service:</p>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>brew<span class="w"> </span>tap<span class="w"> </span>DotNetAge/govector
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>brew<span class="w"> </span>install<span class="w"> </span>govector
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># Start the background service (starts the REST API server)</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>brew<span class="w"> </span>services<span class="w"> </span>start<span class="w"> </span>govector
+</code></pre></div>
+<h3 id="option-b-build-from-source">Option B: Build from Source<a class="headerlink" href="#option-b-build-from-source" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/DotNetAge/govector.git
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nb">cd</span><span class="w"> </span>govector
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>make<span class="w"> </span>build
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># The binary will be available at ./bin/govector</span>
+</code></pre></div>
+<h3 id="option-c-use-as-a-go-library">Option C: Use as a Go Library<a class="headerlink" href="#option-c-use-as-a-go-library" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>go<span class="w"> </span>get<span class="w"> </span>github.com/DotNetAge/govector/core
+</code></pre></div>
+<h2 id="quick-start-examples">🚀 Quick Start Examples<a class="headerlink" href="#quick-start-examples" title="Permanent link">&para;</a></h2>
+<h3 id="embedded-mode-zero-network-overhead">Embedded Mode (Zero Network Overhead)<a class="headerlink" href="#embedded-mode-zero-network-overhead" title="Permanent link">&para;</a></h3>
+<p>Use GoVector directly in your Go application:</p>
+<div class="language-go highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="kn">import</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="s">&quot;fmt&quot;</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="s">&quot;github.com/DotNetAge/govector/core&quot;</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="p">)</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="c1">// 1. Initialize local storage (creates a single .db file)</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">    </span><span class="nx">store</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">core</span><span class="p">.</span><span class="nx">NewStorage</span><span class="p">(</span><span class="s">&quot;govector.db&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">    </span><span class="k">defer</span><span class="w"> </span><span class="nx">store</span><span class="p">.</span><span class="nx">Close</span><span class="p">()</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">    </span><span class="c1">// 2. Create a Collection (Automatic Persistence)</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">    </span><span class="nx">col</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">core</span><span class="p">.</span><span class="nx">NewCollection</span><span class="p">(</span><span class="s">&quot;documents&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">384</span><span class="p">,</span><span class="w"> </span><span class="nx">core</span><span class="p">.</span><span class="nx">Cosine</span><span class="p">,</span><span class="w"> </span><span class="nx">store</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">    </span><span class="c1">// 3. Upsert Data with Versioning</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w">    </span><span class="nx">col</span><span class="p">.</span><span class="nx">Upsert</span><span class="p">([]</span><span class="nx">core</span><span class="p">.</span><span class="nx">PointStruct</span><span class="p">{</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="w">            </span><span class="nx">ID</span><span class="p">:</span><span class="w">      </span><span class="s">&quot;doc_1&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="w">            </span><span class="nx">Vector</span><span class="p">:</span><span class="w">  </span><span class="p">[]</span><span class="kt">float32</span><span class="p">{</span><span class="mf">0.1</span><span class="p">,</span><span class="w"> </span><span class="mf">0.2</span><span class="p">,</span><span class="w"> </span><span class="mf">0.3</span><span class="p">,</span><span class="w"> </span><span class="cm">/* ... 384 dimensions ... */</span><span class="p">},</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="w">            </span><span class="nx">Payload</span><span class="p">:</span><span class="w"> </span><span class="nx">core</span><span class="p">.</span><span class="nx">Payload</span><span class="p">{</span><span class="s">&quot;category&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;tech&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;author&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;John&quot;</span><span class="p">},</span>
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="w">        </span><span class="p">},</span>
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="w">            </span><span class="nx">ID</span><span class="p">:</span><span class="w">      </span><span class="s">&quot;doc_2&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="w">            </span><span class="nx">Vector</span><span class="p">:</span><span class="w">  </span><span class="p">[]</span><span class="kt">float32</span><span class="p">{</span><span class="mf">0.4</span><span class="p">,</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="mf">0.6</span><span class="p">,</span><span class="w"> </span><span class="cm">/* ... 384 dimensions ... */</span><span class="p">},</span>
+<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a><span class="w">            </span><span class="nx">Payload</span><span class="p">:</span><span class="w"> </span><span class="nx">core</span><span class="p">.</span><span class="nx">Payload</span><span class="p">{</span><span class="s">&quot;category&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;business&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;author&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Jane&quot;</span><span class="p">},</span>
+<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a><span class="w">        </span><span class="p">},</span>
+<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a><span class="w">    </span><span class="p">})</span>
+<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a>
+<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a><span class="w">    </span><span class="c1">// 4. Search with Metadata Filtering</span>
+<a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a><span class="w">    </span><span class="nx">query</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="p">[]</span><span class="kt">float32</span><span class="p">{</span><span class="mf">0.15</span><span class="p">,</span><span class="w"> </span><span class="mf">0.25</span><span class="p">,</span><span class="w"> </span><span class="mf">0.35</span><span class="p">,</span><span class="w"> </span><span class="cm">/* ... 384 dimensions ... */</span><span class="p">}</span>
+<a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a><span class="w">    </span><span class="nx">filter</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">core</span><span class="p">.</span><span class="nx">Filter</span><span class="p">{</span>
+<a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a><span class="w">        </span><span class="nx">Must</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="nx">core</span><span class="p">.</span><span class="nx">Condition</span><span class="p">{</span>
+<a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a><span class="w">            </span><span class="p">{</span>
+<a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a><span class="w">                </span><span class="nx">Key</span><span class="p">:</span><span class="w">   </span><span class="s">&quot;category&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a><span class="w">                </span><span class="nx">Type</span><span class="p">:</span><span class="w">  </span><span class="nx">core</span><span class="p">.</span><span class="nx">MatchTypeExact</span><span class="p">,</span>
+<a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a><span class="w">                </span><span class="nx">Match</span><span class="p">:</span><span class="w"> </span><span class="nx">core</span><span class="p">.</span><span class="nx">MatchValue</span><span class="p">{</span><span class="nx">Value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;tech&quot;</span><span class="p">},</span>
+<a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a><span class="w">            </span><span class="p">},</span>
+<a id="__codelineno-3-39" name="__codelineno-3-39" href="#__codelineno-3-39"></a><span class="w">        </span><span class="p">},</span>
+<a id="__codelineno-3-40" name="__codelineno-3-40" href="#__codelineno-3-40"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-3-41" name="__codelineno-3-41" href="#__codelineno-3-41"></a>
+<a id="__codelineno-3-42" name="__codelineno-3-42" href="#__codelineno-3-42"></a><span class="w">    </span><span class="nx">results</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">col</span><span class="p">.</span><span class="nx">Search</span><span class="p">(</span><span class="nx">query</span><span class="p">,</span><span class="w"> </span><span class="nx">filter</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span>
+<a id="__codelineno-3-43" name="__codelineno-3-43" href="#__codelineno-3-43"></a><span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;Best Match: %s (Score: %f)\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">results</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">ID</span><span class="p">,</span><span class="w"> </span><span class="nx">results</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">Score</span><span class="p">)</span>
+<a id="__codelineno-3-44" name="__codelineno-3-44" href="#__codelineno-3-44"></a><span class="p">}</span>
+</code></pre></div>
+<h3 id="microservice-mode-qdrant-compatible">Microservice Mode (Qdrant Compatible)<a class="headerlink" href="#microservice-mode-qdrant-compatible" title="Permanent link">&para;</a></h3>
+<p>Run GoVector as a standalone server with REST API:</p>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Start the server</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>govector<span class="w"> </span>serve<span class="w"> </span>./govector.db<span class="w"> </span>-port<span class="w"> </span><span class="m">18080</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># API Server ready on http://localhost:18080</span>
+</code></pre></div>
+<h4 id="create-a-collection">Create a Collection<a class="headerlink" href="#create-a-collection" title="Permanent link">&para;</a></h4>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:18080/collections<span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="s1">  &quot;name&quot;: &quot;documents&quot;,</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="s1">  &quot;vector_size&quot;: 384,</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="s1">  &quot;distance&quot;: &quot;cosine&quot;,</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="s1">  &quot;hnsw&quot;: true</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="s1">}&#39;</span>
+</code></pre></div>
+<h4 id="upsert-vectors">Upsert Vectors<a class="headerlink" href="#upsert-vectors" title="Permanent link">&para;</a></h4>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>curl<span class="w"> </span>-X<span class="w"> </span>PUT<span class="w"> </span>http://localhost:18080/collections/documents/points<span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="s1">  &quot;points&quot;: [</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="s1">    {</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="s1">      &quot;id&quot;: &quot;doc_1&quot;,</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="s1">      &quot;vector&quot;: [0.1, 0.2, 0.3, /* ... 384 dimensions ... */],</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="s1">      &quot;payload&quot;: {&quot;category&quot;: &quot;tech&quot;, &quot;author&quot;: &quot;John&quot;}</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="s1">    },</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="s1">    {</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="s1">      &quot;id&quot;: &quot;doc_2&quot;,</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="s1">      &quot;vector&quot;: [0.4, 0.5, 0.6, /* ... 384 dimensions ... */],</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="s1">      &quot;payload&quot;: {&quot;category&quot;: &quot;business&quot;, &quot;author&quot;: &quot;Jane&quot;}</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="s1">    }</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="s1">  ]</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="s1">}&#39;</span>
+</code></pre></div>
+<h4 id="search-vectors">Search Vectors<a class="headerlink" href="#search-vectors" title="Permanent link">&para;</a></h4>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:18080/collections/documents/points/search<span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="s1">  &quot;vector&quot;: [0.15, 0.25, 0.35, /* ... 384 dimensions ... */],</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="s1">  &quot;filter&quot;: {</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="s1">    &quot;must&quot;: [</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="s1">      {</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="s1">        &quot;key&quot;: &quot;category&quot;,</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="s1">        &quot;type&quot;: &quot;exact&quot;,</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="s1">        &quot;match&quot;: {&quot;value&quot;: &quot;tech&quot;}</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="s1">      }</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="s1">    ]</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="s1">  },</span>
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="s1">  &quot;limit&quot;: 10</span>
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="s1">}&#39;</span>
+</code></pre></div>
+<h3 id="cli-mode">CLI Mode<a class="headerlink" href="#cli-mode" title="Permanent link">&para;</a></h3>
+<p>GoVector comes with a powerful Command-Line Interface (CLI) and an interactive Terminal User Interface (TUI).</p>
+<h4 id="interactive-tui">Interactive TUI<a class="headerlink" href="#interactive-tui" title="Permanent link">&para;</a></h4>
+<p>Run the binary without arguments to enter the <strong>Interactive TUI</strong>:</p>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>govector
+</code></pre></div>
+<p><em>(Provides a beautiful, green-themed environment with a <code>/?</code> help menu, auto-creation of DBs/collections, and graceful <code>serve</code> interruption).</em></p>
+<h4 id="direct-commands">Direct Commands<a class="headerlink" href="#direct-commands" title="Permanent link">&para;</a></h4>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># General Syntax</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>govector<span class="w"> </span>&lt;command&gt;<span class="w"> </span><span class="o">[</span>dbfile<span class="o">]</span><span class="w"> </span><span class="o">[</span>options<span class="o">]</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="c1"># Start the Qdrant-compatible REST API server</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>govector<span class="w"> </span>serve<span class="w"> </span>mydata.db<span class="w"> </span>-port<span class="w"> </span><span class="m">18080</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="c1"># Insert data (auto-creates DB and HNSW-enabled collection if missing)</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>govector<span class="w"> </span>upsert<span class="w"> </span>mydata.db<span class="w"> </span>-c<span class="w"> </span>documents<span class="w"> </span>-j<span class="w"> </span><span class="s1">&#39;{&quot;id&quot;:&quot;1&quot;, &quot;vector&quot;:[0.1, 0.2], &quot;payload&quot;:{&quot;tag&quot;:&quot;A&quot;}}&#39;</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="c1"># Search data (with existence validation)</span>
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>govector<span class="w"> </span>search<span class="w"> </span>mydata.db<span class="w"> </span>-c<span class="w"> </span>documents<span class="w"> </span>-v<span class="w"> </span><span class="m">0</span>.1,0.2<span class="w"> </span>-l<span class="w"> </span><span class="m">5</span>
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="c1"># List all collections</span>
+<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>govector<span class="w"> </span>ls<span class="w"> </span>mydata.db
+<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>
+<a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a><span class="c1"># Get point count in a collection</span>
+<a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a>govector<span class="w"> </span>count<span class="w"> </span>mydata.db<span class="w"> </span>-c<span class="w"> </span>documents
+<a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a>
+<a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a><span class="c1"># Delete a collection (safeguards protect the &quot;default&quot; collection)</span>
+<a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a>govector<span class="w"> </span>rm<span class="w"> </span>mydata.db<span class="w"> </span>-c<span class="w"> </span>documents
+</code></pre></div>
+<h2 id="architecture-overview">🏗️ Architecture Overview<a class="headerlink" href="#architecture-overview" title="Permanent link">&para;</a></h2>
+<p>GoVector's architecture consists of several core components:</p>
 <ul>
-<li>Two installation methods: importing as a Go library and Homebrew installation</li>
-<li>Complete flow for embedded mode (zero network overhead): initialize storage, create collection, insert vectors, query and filter</li>
-<li>Microservice mode (HTTP API) startup and basic calls</li>
-<li>Common initialization steps, error handling, and best practices</li>
-<li>Troubleshooting and FAQs</li>
+<li><strong>Storage Engine</strong>: Uses <code>go.etcd.io/bbolt</code> with Protocol Buffers for persistent storage</li>
+<li><strong>Index Module</strong>: Implements HNSW (Hierarchical Navigable Small World) and Flat indexes</li>
+<li><strong>Collection Management</strong>: Provides namespace isolation and CRUD operations for collections</li>
+<li><strong>API Layer</strong>: Offers both Go library API and HTTP REST API compatible with Qdrant</li>
+<li><strong>Quantization Module</strong>: Implements SQ8 quantization for memory optimization</li>
 </ul>
-<h2 id="project-structure">Project Structure<a class="headerlink" href="#project-structure" title="Permanent link">¶</a></h2>
-<p>The repository follows a "function domain + layer" hybrid organization:</p>
+<h2 id="performance-benchmark">📊 Performance Benchmark<a class="headerlink" href="#performance-benchmark" title="Permanent link">&para;</a></h2>
+<p>Measured on a standard machine with 16GB RAM, 128-dimensional vectors:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Index</th>
+<th style="text-align: left;">Scale (N)</th>
+<th style="text-align: left;">Build Time</th>
+<th style="text-align: left;">Latency (Avg)</th>
+<th style="text-align: left;">Throughput (QPS)</th>
+<th style="text-align: left;">Memory (Alloc)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Flat</strong></td>
+<td style="text-align: left;">100K</td>
+<td style="text-align: left;">186 ms</td>
+<td style="text-align: left;">54.46 ms</td>
+<td style="text-align: left;">18 QPS</td>
+<td style="text-align: left;">59 MB</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>HNSW</strong></td>
+<td style="text-align: left;">100K</td>
+<td style="text-align: left;">20.9 s</td>
+<td style="text-align: left;"><strong>0.08 ms</strong></td>
+<td style="text-align: left;"><strong>11,812 QPS</strong></td>
+<td style="text-align: left;">311 MB</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>HNSW</strong></td>
+<td style="text-align: left;">1M</td>
+<td style="text-align: left;">4m 17s</td>
+<td style="text-align: left;"><strong>0.11 ms</strong></td>
+<td style="text-align: left;"><strong>8,709 QPS</strong></td>
+<td style="text-align: left;">3.32 GB</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><em>Note: HNSW maintained sub-millisecond latency even at 1 million scale, providing 480x speedup over Flat index at 100K.</em></p>
+</blockquote>
+<h2 id="key-features">🛠️ Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Core library at core/, providing storage, collection, index, models and other capabilities</li>
-<li>API layer at api/, providing Qdrant-compatible HTTP interface</li>
-<li>Executable at cmd/govector/main.go, as a standalone service</li>
-<li>Examples at example/embedded/main.go, demonstrating embedded usage</li>
-<li>Homebrew script at scripts/release/govector.rb</li>
-<li>Performance benchmarks and scripts at cmd/bench/ and demo.sh</li>
+<li><strong>Pure Go &amp; CGO-Free</strong>: Cross-compile to anywhere without messy C/C++ dependencies</li>
+<li><strong>Qdrant Compatible API</strong>: Drop-in replacement with the same REST API endpoints</li>
+<li><strong>High Performance</strong>: Optimized for single-node performance with sub-millisecond latency</li>
+<li><strong>HNSW Indexing</strong>: Industrial-grade graph-based index for O(log N) search complexity</li>
+<li><strong>Persistent Storage</strong>: Uses BoltDB and Protocol Buffers for ultra-fast persistence</li>
+<li><strong>Advanced Filtering</strong>: Support for payload filtering (Exact, Range, Prefix, Regex, Contains)</li>
+<li><strong>SQ8 Quantization</strong>: Built-in 8-bit scalar quantization to reduce disk footprint</li>
+<li><strong>Dual Modes</strong>: Embedded library or standalone microservice with REST API</li>
+<li><strong>Unified CLI &amp; TUI</strong>: Powerful command-line interface with interactive Terminal User Interface</li>
 </ul>
-<pre class="mermaid"><code>graph TB
-subgraph "Application Layer"
-APP["Your Go application<br/>or command-line script"]
-end
-subgraph "GoVector Core"
-CORE_STORAGE["core/Storage<br/>Persistence (BoltDB)"]
-CORE_COLLECTION["core/Collection<br/>Collection management"]
-CORE_MODELS["core/* Models and filters"]
-CORE_INDEX["core/VectorIndex interface"]
-end
-subgraph "API Layer"
-API_SERVER["api/Server<br/>HTTP API"]
-end
-subgraph "Executable"
-BIN_MAIN["cmd/govector/main.go<br/>Microservice entry"]
-end
-APP --&gt; CORE_COLLECTION
-CORE_COLLECTION --&gt; CORE_STORAGE
-CORE_COLLECTION --&gt; CORE_INDEX
-API_SERVER --&gt; CORE_COLLECTION
-BIN_MAIN --&gt; API_SERVER
-BIN_MAIN --&gt; CORE_STORAGE
-</code></pre>
-<h2 id="core-components">Core Components<a class="headerlink" href="#core-components" title="Permanent link">¶</a></h2>
+<h2 id="next-steps">📖 Next Steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Storage Engine Storage: Local persistence based on bbolt, supporting point CRUD, collection metadata management, optional vector quantization</li>
-<li>Collection: Logical collection encapsulating index and storage, providing thread-safe operations like Upsert/Search/Delete</li>
-<li>Models and Filters: PointStruct, ScoredPoint, Filter, Condition, supporting multiple match types</li>
-<li>Index Interface VectorIndex: Unifying Flat/HNSW and other index strategies</li>
-<li>API Server: Provides Qdrant-compatible REST interface, supporting collection management and point operations</li>
+<li><a href="../usage/cli-guide/">CLI Guide</a> - Learn more about the command-line interface</li>
+<li><a href="../usage/embedded-mode/">Embedded Mode</a> - Deep dive into using GoVector as a library</li>
+<li><a href="../usage/microservice-mode/">Microservice Mode</a> - Learn about running GoVector as a server</li>
+<li><a href="../api-references/api-reference/">API Reference</a> - Complete API documentation</li>
+<li><a href="../arch/architecture-overview/">Architecture Overview</a> - Understand GoVector's architecture in detail</li>
 </ul>
-<h2 id="architecture-overview">Architecture Overview<a class="headerlink" href="#architecture-overview" title="Permanent link">¶</a></h2>
-<p>The diagram shows the interaction relationship and data flow between embedded and microservice modes.</p>
-<pre class="mermaid"><code>graph TB
-subgraph "Embedded Mode"
-E_APP["Your application code"]
-E_STORE["core/Storage"]
-E_COL["core/Collection"]
-E_IDX["VectorIndex (HNSW/Flat)"]
-E_APP --&gt; E_STORE
-E_APP --&gt; E_COL
-E_COL --&gt; E_IDX
-E_COL --&gt; E_STORE
-end
-subgraph "Microservice Mode"
-S_CLI["Client/script (curl)"]
-S_API["api/Server (HTTP)"]
-S_BIN["cmd/govector/main.go"]
-S_STORE["core/Storage"]
-S_COL["core/Collection"]
-S_IDX["VectorIndex (HNSW/Flat)"]
-S_CLI --&gt; S_API
-S_BIN --&gt; S_API
-S_BIN --&gt; S_STORE
-S_API --&gt; S_COL
-S_COL --&gt; S_STORE
-S_COL --&gt; S_IDX
-end
-</code></pre>
-<h2 id="detailed-component-analysis">Detailed Component Analysis<a class="headerlink" href="#detailed-component-analysis" title="Permanent link">¶</a></h2>
-<h3 id="embedded-mode-complete-example-from-zero-to-one">Embedded Mode: Complete Example from Zero to One<a class="headerlink" href="#embedded-mode-complete-example-from-zero-to-one" title="Permanent link">¶</a></h3>
-<p>Embedded mode is suitable for direct use in your Go application without network overhead. Typical flow:
-1) Initialize local storage (create database file)
-2) Create collection (specify dimension, distance metric, whether to enable HNSW)
-3) Batch write vectors (Upsert)
-4) Execute similarity retrieval (Search), with optional Payload filtering
-5) Close storage to release resources</p>
-<pre class="mermaid"><code>sequenceDiagram
-participant App as "Your application"
-participant Store as "core/Storage"
-participant Col as "core/Collection"
-participant Idx as "VectorIndex"
-App-&gt;&gt;Store : Initialize storage (path)
-App-&gt;&gt;Col : Create collection (name, dim, metric, storage, useHNSW)
-App-&gt;&gt;Col : Upsert (vectors + metadata)
-Col-&gt;&gt;Store : Write to persistence
-Col-&gt;&gt;Idx : Update in-memory index
-App-&gt;&gt;Col : Search (query vector, filter, K)
-Col-&gt;&gt;Idx : Query return TopK
-Col--&gt;&gt;App : Result (with ID/score/metadata)
-App-&gt;&gt;Store : Close storage
-</code></pre>
-<h3 id="command-line-tool-cli-mode">Command-Line Tool (CLI) Mode<a class="headerlink" href="#command-line-tool-cli-mode" title="Permanent link">¶</a></h3>
-<p>GoVector provides powerful interactive and non-interactive command-line tools with abbreviated parameters.</p>
+<h2 id="troubleshooting">🚩 Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
+<h3 id="common-issues">Common Issues<a class="headerlink" href="#common-issues" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Startup parameters and subcommands</li>
-<li><code>serve</code>: Start HTTP service, e.g., <code>govector serve -p=18080 -d=govector.db</code></li>
-<li><code>ls</code>: List all collections in the database, e.g., <code>govector ls demo.db</code></li>
-<li><code>upsert</code>: Write data, e.g., <code>govector upsert demo.db -c=demo_col -j=[id:1]</code></li>
-<li><code>search</code>: Similarity search, e.g., <code>govector search demo.db -c=demo_col -v=[0.1] -l=10</code></li>
-<li><code>count</code>: Count points, e.g., <code>govector count demo.db -c=demo_col</code></li>
-<li><code>delete</code>: Delete data, e.g., <code>govector delete demo.db -c=demo_col -i=[1]</code></li>
+<li><strong>Port occupied</strong>: Modify the <code>-port</code> parameter when starting the server</li>
+<li><strong>Vector dimension mismatch</strong>: Ensure the vector length matches the collection's dimension</li>
+<li><strong>Collection not found</strong>: Create the collection before performing operations</li>
+<li><strong>Permission issues</strong>: Ensure the database directory is readable/writable</li>
 </ul>
-<h3 id="command-line-tool-cli-mode_1">Command-Line Tool (CLI) Mode<a class="headerlink" href="#command-line-tool-cli-mode_1" title="Permanent link">¶</a></h3>
-<p>GoVector provides powerful interactive and non-interactive command-line tools with abbreviated parameters.</p>
+<h3 id="getting-help">Getting Help<a class="headerlink" href="#getting-help" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Startup parameters and subcommands</li>
-<li><strong>serve</strong>: Start HTTP service, e.g., <code>govector serve -p=18080 -d=govector.db</code></li>
-<li><strong>ls</strong>: List all collections in the database, e.g., <code>govector ls demo.db</code></li>
-<li><strong>upsert</strong>: Write data, e.g., <code>govector upsert demo.db -c=demo_col -j='[{"id":"1","vector":[0.1]}]'</code></li>
-<li><strong>search</strong>: Similarity search, e.g., <code>govector search demo.db -c=demo_col -v='[0.1]' -l=10</code></li>
-<li><strong>count</strong>: Count points, e.g., <code>govector count demo.db -c=demo_col</code></li>
-<li><strong>delete</strong>: Delete data, e.g., <code>govector delete demo.db -c=demo_col -i='["1"]'</code></li>
+<li><a href="https://github.com/DotNetAge/govector/issues">GitHub Issues</a> - Report bugs or ask questions</li>
+<li><a href="https://pkg.go.dev/github.com/DotNetAge/govector">Go Documentation</a> - API documentation</li>
+<li><a href="https://qdrant.tech/documentation/">Qdrant Documentation</a> - For API compatibility reference</li>
 </ul>
-<h3 id="microservice-mode-startup-and-basic-api-calls">Microservice Mode: Startup and Basic API Calls<a class="headerlink" href="#microservice-mode-startup-and-basic-api-calls" title="Permanent link">¶</a></h3>
-<p>Microservice mode provides Qdrant-compatible HTTP API interface, suitable for standalone deployment or integration with services in other languages.</p>
-<ul>
-<li>Startup command and parameters</li>
-<li>Port: -port, default 18080</li>
-<li>Database path: -db, default govector.db</li>
-<li>Basic API calls (refer to demo.sh)</li>
-<li>Create collection: POST /collections</li>
-<li>Write vectors: PUT /collections/{name}/points</li>
-<li>Search: POST /collections/{name}/points/search</li>
-<li>Delete: POST /collections/{name}/points/delete</li>
-<li>List/info: GET /collections, GET /collections/{name}</li>
-</ul>
-<pre class="mermaid"><code>sequenceDiagram
-participant Client as "Client (curl)"
-participant Bin as "cmd/govector/main.go"
-participant API as "api/Server"
-participant Col as "core/Collection"
-participant Store as "core/Storage"
-Client-&gt;&gt;Bin : Start (port/database/index params)
-Bin-&gt;&gt;Store : Initialize storage
-Bin-&gt;&gt;Col : Create default collection (dim/metric/index)
-Bin-&gt;&gt;API : Register collection and start HTTP listening
-Client-&gt;&gt;API : POST /collections (create collection)
-API-&gt;&gt;Col : Create new collection
-Client-&gt;&gt;API : PUT /collections/{name}/points (batch write)
-API-&gt;&gt;Col : Upsert
-Client-&gt;&gt;API : POST /collections/{name}/points/search (query)
-API-&gt;&gt;Col : Search (filter + TopK)
-Col--&gt;&gt;API : Return results
-API--&gt;&gt;Client : JSON response
-</code></pre>
-<h3 id="data-model-and-filtering-mechanism">Data Model and Filtering Mechanism<a class="headerlink" href="#data-model-and-filtering-mechanism" title="Permanent link">¶</a></h3>
-<ul>
-<li>PointStruct: Contains ID, vector, version number, Payload</li>
-<li>ScoredPoint: Query result, contains ID, version, score, Payload</li>
-<li>Filter/Condition: Supports must/must_not, condition types include exact, range, prefix, contains, regex</li>
-<li>Matching rules: Hit only when all Must satisfied and all MustNot unsatisfied</li>
-</ul>
-<pre class="mermaid"><code>flowchart TD
-Start(["Enter filter matching"]) --&gt; NilCheck{"Is Filter empty?"}
-NilCheck --&gt; |Yes| True["Return true (no filter)"]
-NilCheck --&gt; |No| MustAll["Iterate Must conditions"]
-MustAll --&gt; MustFail{"Any unsatisfied?"}
-MustFail --&gt; |Yes| False["Return false"]
-MustFail --&gt; |No| MustNotAll["Iterate MustNot conditions"]
-MustNotAll --&gt; MustNotFail{"Any satisfied?"}
-MustNotFail --&gt; |Yes| False
-MustNotFail --&gt; |No| True
-</code></pre>
-<h2 id="dependency-analysis">Dependency Analysis<a class="headerlink" href="#dependency-analysis" title="Permanent link">¶</a></h2>
-<ul>
-<li>External Dependencies</li>
-<li>bbolt: Local key-value storage</li>
-<li>protobuf: Serialize points and metadata</li>
-<li>hnsw: HNSW graph index implementation</li>
-<li>Internal Modules</li>
-<li>core: Storage, collection, index, models</li>
-<li>api: HTTP server and routing</li>
-<li>cmd/govector: Microservice entry</li>
-<li>example/embedded: Embedded examples</li>
-</ul>
-<pre class="mermaid"><code>graph LR
-GOV["github.com/DotNetAge/govector"]
-BBOLT["go.etcd.io/bbolt"]
-PROTO["google.golang.org/protobuf"]
-HNSW["github.com/coder/hnsw"]
-GOV --&gt; BBOLT
-GOV --&gt; PROTO
-GOV --&gt; HNSW
-</code></pre>
-<h2 id="performance-and-best-practices">Performance and Best Practices<a class="headerlink" href="#performance-and-best-practices" title="Permanent link">¶</a></h2>
-<ul>
-<li>Choose appropriate index</li>
-<li>Small scale/dev environment: Flat index, simple and stable</li>
-<li>Production/large scale: HNSW index, sublinear search complexity</li>
-<li>Dimension and metric</li>
-<li>Ensure written vector dimension matches collection</li>
-<li>Cosine/Euclidean/Dot perform differently in different scenarios</li>
-<li>Write and consistency</li>
-<li>Upsert persists first then updates in-memory index; attempts rollback on failure</li>
-<li>Filter and query</li>
-<li>Use Payload filter to reduce candidate set, improve query efficiency</li>
-<li>Quantization</li>
-<li>SQ8 quantization can be enabled to reduce disk usage, pay attention to accuracy trade-off</li>
-</ul>
-<h2 id="troubleshooting-guide">Troubleshooting Guide<a class="headerlink" href="#troubleshooting-guide" title="Permanent link">¶</a></h2>
-<ul>
-<li>Microservice startup error</li>
-<li>Port occupied: Modify -port parameter</li>
-<li>Insufficient database path permissions: Ensure directory is readable/writable</li>
-<li>Invalid collection parameters: Check collection configuration parameters</li>
-<li>Write failure</li>
-<li>Vector dimension mismatch: Confirm collection dimension matches vector length</li>
-<li>Storage closed: Ensure Close was not called prematurely</li>
-<li>Query exception</li>
-<li>Collection does not exist: Create collection first or confirm name is correct</li>
-<li>Filter syntax error: Verify JSON structure and field names</li>
-<li>Homebrew installation</li>
-<li>Permission issue: Use sudo or correct directory permissions</li>
-<li>Service fails to start: Check log path var/log/govector.log</li>
-</ul>
-<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">¶</a></h2>
-<p>Through this guide, you can complete GoVector installation and first run in 15 minutes, mastering core usage of both embedded and microservice modes. Recommend starting with embedded mode for local development and testing; production environments should use HNSW index with reasonable filter strategies, combined with quantization to balance performance and storage cost.</p>
-<h2 id="appendix-command-and-example-paths">Appendix: Command and Example Paths<a class="headerlink" href="#appendix-command-and-example-paths" title="Permanent link">¶</a></h2>
-<ul>
-<li>Installation (Go library)</li>
-<li>Import module: go get github.com/DotNetAge/govector/core</li>
-<li>Reference path: <a href="file://README.md#L47-L50">README.md:47-50</a></li>
-<li>Installation (Homebrew)</li>
-<li>brew tap DotNetAge/govector</li>
-<li>brew install govector</li>
-<li>Reference path: <a href="file://README.md#L52-L56">README.md:52-56</a>, <a href="file://scripts/release/govector.rb#L1-L45">scripts/release/govector.rb:1-45</a></li>
-<li>Embedded example</li>
-<li>Example entry: example/embedded/main.go</li>
-<li>Reference path: <a href="file://example/embedded/main.go#L10-L62">example/embedded/main.go:10-62</a></li>
-<li>Microservice startup</li>
-<li>Startup command: go run cmd/govector/main.go -port 18080 -db ./govector.db</li>
-<li>Reference path: <a href="file://cmd/govector/main.go#L18-L55">cmd/govector/main.go:18-55</a>, <a href="file://Makefile#L15-L17">Makefile:15-17</a></li>
-<li>Basic API calls</li>
-<li>Demo script: demo.sh</li>
-<li>Reference path: <a href="file://demo.sh#L11-L38">demo.sh:11-38</a></li>
-<li>Key API documentation</li>
-<li>Collection management: POST /collections, DELETE /collections/{name}, GET /collections, GET /collections/{name}</li>
-<li>Point operations: PUT /collections/{name}/points, POST /collections/{name}/points/search, POST /collections/{name}/points/delete</li>
-<li>Reference path: <a href="file://api/server.go#L54-L95">api/server.go:54-95</a>, <a href="file://api/server.go#L145-L258">api/server.go:145-258</a></li>
-</ul>
-</article>
-</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
-</div>
-</main>
-<footer class="md-footer">
-<div class="md-footer-meta md-typeset">
-<div class="md-footer-meta__inner md-grid">
-<div class="md-copyright">
-<div class="md-copyright__highlight">
-      Copyright © 2026 Guangzhou Raya Info Co., Ltd
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Guangzhou Raya Info Co., Ltd
     </div>
   
   
     Made with
-    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
       Material for MkDocs
     </a>
+  
 </div>
-</div>
-</div>
+      
+    </div>
+  </div>
 </footer>
-</div>
-<div class="md-dialog" data-md-component="dialog">
-<div class="md-dialog__inner md-typeset"></div>
-</div>
-<script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.sections", "search.suggest", "search.highlight", "content.code.highlight", "content.code.copy", "content.code.annotate", "i18n.languages"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
-<script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
-<script src="../javascripts/mathjax.js"></script>
-<script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
-<script type="module">import mermaid from "https://unpkg.com/mermaid@10.4.0/dist/mermaid.esm.min.mjs";
-window.mermaidConfig = {default: {
-    startOnLoad: false
-}};</script></body>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.sections", "search.suggest", "search.highlight", "content.code.highlight", "content.code.copy", "content.code.annotate", "i18n.languages"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
 </html>

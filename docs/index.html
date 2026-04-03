@@ -320,7 +320,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="deployment/deployment-operations/" class="md-tabs__link">
+        <a href="deployment/" class="md-tabs__link">
           
   
   
@@ -340,7 +340,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="trouble-removal/troubleshooting/" class="md-tabs__link">
+        <a href="troubleshooting/" class="md-tabs__link">
           
   
   
@@ -484,10 +484,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#features" class="md-nav__link">
+  <a href="#core-features" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Features
+        🚀 Core Features
       
     </span>
   </a>
@@ -498,7 +498,7 @@
   <a href="#quick-links" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Quick Links
+        📖 Quick Links
       
     </span>
   </a>
@@ -509,7 +509,7 @@
   <a href="#architecture" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Architecture
+        🏗️ Architecture
       
     </span>
   </a>
@@ -520,7 +520,18 @@
   <a href="#license" class="md-nav__link">
     <span class="md-ellipsis">
       
-        License
+        📄 License
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#useful-links" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔗 Useful Links
       
     </span>
   </a>
@@ -678,14 +689,14 @@
   
   
     <li class="md-nav__item">
-      <a href="project-overview/" class="md-nav__link">
+      <a href="data-model/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Project Overview
+    Data Model
   
 
     
@@ -706,14 +717,42 @@
   
   
     <li class="md-nav__item">
-      <a href="data-model/" class="md-nav__link">
+      <a href="usage-modes/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Data Model
+    Usage Modes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="vector-database-fundamentals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vector Database Fundamentals
   
 
     
@@ -1679,6 +1718,34 @@
   
   
     <li class="md-nav__item">
+      <a href="deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment and Operations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="deployment/deployment-operations/" class="md-nav__link">
         
   
@@ -1870,6 +1937,34 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -2300,10 +2395,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#features" class="md-nav__link">
+  <a href="#core-features" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Features
+        🚀 Core Features
       
     </span>
   </a>
@@ -2314,7 +2409,7 @@
   <a href="#quick-links" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Quick Links
+        📖 Quick Links
       
     </span>
   </a>
@@ -2325,7 +2420,7 @@
   <a href="#architecture" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Architecture
+        🏗️ Architecture
       
     </span>
   </a>
@@ -2336,7 +2431,18 @@
   <a href="#license" class="md-nav__link">
     <span class="md-ellipsis">
       
-        License
+        📄 License
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#useful-links" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔗 Useful Links
       
     </span>
   </a>
@@ -2361,32 +2467,46 @@
 
 
 <h1 id="welcome-to-govector-documentation">Welcome to GoVector Documentation<a class="headerlink" href="#welcome-to-govector-documentation" title="Permanent link">&para;</a></h1>
-<p>GoVector is a high-performance vector database written in Go, designed for efficient storage, indexing, and searching of high-dimensional vector data.</p>
-<h2 id="features">Features<a class="headerlink" href="#features" title="Permanent link">&para;</a></h2>
+<p>GoVector is a lightweight, embeddable vector database written entirely in Go. It offers <strong>Qdrant-compatible</strong> API endpoints, <strong>HNSW</strong> indexing for blazing-fast Approximate Nearest Neighbor (ANN) search, and persistent local storage via <strong>BoltDB</strong>.</p>
+<p>In the era of Local AI, desktop applications, and edge computing, you don't always need a heavy, distributed vector cluster like Milvus or Qdrant. GoVector is designed to be the <strong>SQLite for Vectors</strong> - a lightweight, high-performance solution that can be embedded directly into your application.</p>
+<h2 id="core-features">🚀 Core Features<a class="headerlink" href="#core-features" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>High Performance</strong>: Built with Go, delivering excellent performance and low latency</li>
-<li><strong>Multiple Index Types</strong>: Supports HNSW and Flat indexing algorithms</li>
-<li><strong>Flexible Deployment</strong>: Offers both embedded library and microservice deployment modes</li>
-<li><strong>Rich API</strong>: Provides RESTful API compatible with Qdrant</li>
-<li><strong>Quantization Support</strong>: SQ8 quantization for memory optimization</li>
+<li><strong>Pure Go &amp; CGO-Free</strong>: Cross-compile to anywhere (Windows, macOS, Linux, edge devices) without messy C/C++ dependencies</li>
+<li><strong>Qdrant Compatible API</strong>: Drop-in replacement for Qdrant with the same REST API endpoints</li>
+<li><strong>High Performance</strong>: Optimized for single-node performance, supporting millions of vectors with sub-millisecond search latency</li>
+<li><strong>HNSW Indexing</strong>: Industrial-grade graph-based index for O(log N) search complexity, enabled by default</li>
+<li><strong>Persistent Storage</strong>: Uses BoltDB and Protocol Buffers for ultra-fast persistence, data survives restarts</li>
+<li><strong>Advanced Filtering</strong>: Support for payload filtering (Exact, Range, Prefix, Regex, Contains) just like Qdrant</li>
+<li><strong>SQ8 Quantization</strong>: Built-in 8-bit scalar quantization to reduce disk footprint for large-scale data</li>
+<li><strong>Dual Modes</strong>: Embedded library (zero network overhead) or standalone microservice with REST API</li>
+<li><strong>Unified CLI &amp; TUI</strong>: Powerful command-line interface with interactive Terminal User Interface</li>
 </ul>
-<h2 id="quick-links">Quick Links<a class="headerlink" href="#quick-links" title="Permanent link">&para;</a></h2>
+<h2 id="quick-links">📖 Quick Links<a class="headerlink" href="#quick-links" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="quick-start/">Quick Start</a> - Get started with GoVector in minutes</li>
 <li><a href="usage/cli-guide/">CLI Guide</a> - Command-line interface usage</li>
-<li><a href="development-guide/">Development Guide</a> - Integrate GoVector into your application</li>
+<li><a href="usage/embedded-mode/">Embedded Mode</a> - Use GoVector as a library in your Go application</li>
+<li><a href="usage/microservice-mode/">Microservice Mode</a> - Run GoVector as a standalone server</li>
 <li><a href="api-references/api-reference/">API Reference</a> - Complete API documentation</li>
+<li><a href="arch/architecture-overview/">Architecture Overview</a> - Understand GoVector's architecture</li>
 </ul>
-<h2 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h2>
+<h2 id="architecture">🏗️ Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h2>
 <p>GoVector's architecture consists of several core components:</p>
 <ul>
-<li><strong>Storage Engine</strong>: Uses BoltDB for persistent storage with Protocol Buffers for data serialization</li>
+<li><strong>Storage Engine</strong>: Uses <code>go.etcd.io/bbolt</code> with Protocol Buffers for persistent storage</li>
 <li><strong>Index Module</strong>: Implements HNSW (Hierarchical Navigable Small World) and Flat indexes</li>
 <li><strong>Collection Management</strong>: Provides namespace isolation and CRUD operations for collections</li>
-<li><strong>API Layer</strong>: Offers both Go library API and HTTP REST API</li>
+<li><strong>API Layer</strong>: Offers both Go library API and HTTP REST API compatible with Qdrant</li>
+<li><strong>Quantization Module</strong>: Implements SQ8 quantization for memory optimization</li>
 </ul>
-<h2 id="license">License<a class="headerlink" href="#license" title="Permanent link">&para;</a></h2>
-<p>Copyright &copy; 2026 Guangzhou Raya Info Co., Ltd. All rights reserved.</p>
+<h2 id="license">📄 License<a class="headerlink" href="#license" title="Permanent link">&para;</a></h2>
+<p>GoVector is licensed under the MIT License. See <a href="https://github.com/DotNetAge/govector/blob/main/LICENSE">LICENSE</a> for details.</p>
+<h2 id="useful-links">🔗 Useful Links<a class="headerlink" href="#useful-links" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://github.com/DotNetAge/govector">GitHub Repository</a></li>
+<li><a href="https://pkg.go.dev/github.com/DotNetAge/govector">Go Documentation</a></li>
+<li><a href="https://qdrant.tech/documentation/">Qdrant Documentation</a> - For API compatibility reference</li>
+</ul>
 
 
 

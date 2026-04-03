@@ -1,132 +1,235 @@
 
-<!DOCTYPE html>
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="GoVector 轻量化高性能的嵌入式向量数据库">
+      
+      
+        <meta name="author" content="Ray">
+      
+      
+      
+        <link rel="prev" href="../core-modules/">
+      
+      
+        <link rel="next" href="../flat-index/">
+      
+      
+        
+          <link rel="alternate" href="../../../core/collection-management/" hreflang="en">
+        
+          <link rel="alternate" href="./" hreflang="zh">
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>集合管理 - GoVector 开发文档</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
 
-<html class="no-js" lang="zh">
-<head>
-<meta charset="utf-8"/>
-<meta content="width=device-width,initial-scale=1" name="viewport"/>
-<meta content="GoVector 轻量化高性能的嵌入式向量数据库" name="description"/>
-<meta content="Ray" name="author"/>
-<link href="../core-modules/" rel="prev"/>
-<link href="../flat-index/" rel="next"/>
-<link href="../../../core/collection-management/" hreflang="en" rel="alternate"/>
-<link href="./" hreflang="zh" rel="alternate"/>
-<link href="../../../assets/images/favicon.png" rel="icon"/>
-<meta content="mkdocs-1.6.1, mkdocs-material-9.7.6" name="generator"/>
-<title>Collection 集合管理 - GoVector 开发文档</title>
-<link href="../../../assets/stylesheets/main.484c7ddc.min.css" rel="stylesheet"/>
-<link href="../../../assets/stylesheets/palette.ab4e12ef.min.css" rel="stylesheet"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
-<style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" rel="stylesheet"/>
-<script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-</head>
-<body data-md-color-accent="green" data-md-color-primary="green" data-md-color-scheme="default" dir="ltr">
-<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
-<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
-<label class="md-overlay" for="__drawer"></label>
-<div data-md-component="skip">
-<a class="md-skip" href="#collection">
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
           跳转至
         </a>
-</div>
-<div data-md-component="announce">
-</div>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
 <header class="md-header" data-md-component="header">
-<nav aria-label="页眉" class="md-header__inner md-grid">
-<a aria-label="GoVector 开发文档" class="md-header__button md-logo" data-md-component="logo" href="../../" title="GoVector 开发文档">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
-</a>
-<label class="md-header__button md-icon" for="__drawer">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
-</label>
-<div class="md-header__title" data-md-component="header-title">
-<div class="md-header__ellipsis">
-<div class="md-header__topic">
-<span class="md-ellipsis">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../" title="GoVector 开发文档" class="md-header__button md-logo" aria-label="GoVector 开发文档" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
             GoVector 开发文档
           </span>
-</div>
-<div class="md-header__topic" data-md-component="header-topic">
-<span class="md-ellipsis">
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
             
-              Collection 集合管理
+              集合管理
             
           </span>
-</div>
-</div>
-</div>
-<div class="md-header__option">
-<div class="md-select">
-<button aria-label="选择当前语言" class="md-header__button md-icon">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"></path></svg>
-</button>
-<div class="md-select__inner">
-<ul class="md-select__list">
-<li class="md-select__item">
-<a class="md-select__link" href="../../../core/collection-management/" hreflang="en">
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="选择当前语言">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="../../../core/collection-management/" hreflang="en" class="md-select__link">
               English
             </a>
-</li>
-<li class="md-select__item">
-<a class="md-select__link" href="./" hreflang="zh">
+          </li>
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="zh" class="md-select__link">
               中文
             </a>
-</li>
-</ul>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
 </div>
-</div>
-</div>
-<label class="md-header__button md-icon" for="__search">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
-</label>
-<div class="md-search" data-md-component="search" role="dialog">
-<label class="md-search__overlay" for="__search"></label>
-<div class="md-search__inner" role="search">
-<form class="md-search__form" name="search">
-<input aria-label="搜索" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="搜索" required="" spellcheck="false" type="text"/>
-<label class="md-search__icon md-icon" for="__search">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
-</label>
-<nav aria-label="查找" class="md-search__options">
-<button aria-label="清空当前内容" class="md-search__icon md-icon" tabindex="-1" title="清空当前内容" type="reset">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
-</button>
-</nav>
-<div class="md-search__suggest" data-md-component="search-suggest"></div>
-</form>
-<div class="md-search__output">
-<div class="md-search__scrollwrap" data-md-scrollfix="" tabindex="0">
-<div class="md-search-result" data-md-component="search-result">
-<div class="md-search-result__meta">
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
             正在初始化搜索引擎
           </div>
-<ol class="md-search-result__list" role="presentation"></ol>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-</div>
-</div>
-</div>
-</div>
-<div class="md-header__source">
-<a class="md-source" data-md-component="source" href="https://github.com/DotNetAge/govector" title="前往仓库">
-<div class="md-source__icon md-icon">
-<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
-</div>
-<div class="md-source__repository">
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/DotNetAge/govector" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
     GitHub
   </div>
 </a>
-</div>
-</nav>
+      </div>
+    
+  </nav>
+  
 </header>
-<div class="md-container" data-md-component="container">
-<nav aria-label="标签" class="md-tabs" data-md-component="tabs">
-<div class="md-grid">
-<ul class="md-tabs__list">
-<li class="md-tabs__item">
-<a class="md-tabs__link" href="../../">
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link">
         
   
   
@@ -135,90 +238,201 @@
   首页
 
       </a>
-</li>
-<li class="md-tabs__item">
-<a class="md-tabs__link" href="../../quick-start/">
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../quick-start/" class="md-tabs__link">
           
   
   
   GoVector
 
         </a>
-</li>
-<li class="md-tabs__item md-tabs__item--active">
-<a class="md-tabs__link" href="../../arch/architecture-design/">
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../arch/architecture-design/" class="md-tabs__link">
           
   
   
   开发指南
 
         </a>
-</li>
-<li class="md-tabs__item">
-<a class="md-tabs__link" href="../../api-references/api-reference/">
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../api-references/api-reference/" class="md-tabs__link">
           
   
   
   API 参考
 
         </a>
-</li>
-<li class="md-tabs__item">
-<a class="md-tabs__link" href="../../deployment/deployment-operations/">
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../deployment/" class="md-tabs__link">
           
   
   
   部署运维
 
         </a>
-</li>
-<li class="md-tabs__item">
-<a class="md-tabs__link" href="../../trouble-removal/troubleshooting/">
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../troubleshooting/" class="md-tabs__link">
           
   
   
   故障排除
 
         </a>
-</li>
-<li class="md-tabs__item">
-<a class="md-tabs__link" href="../../vectordb/01-introduction/">
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../vectordb/01-introduction/" class="md-tabs__link">
           
   
   
   理论学习
 
         </a>
-</li>
-</ul>
-</div>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
 </nav>
-<main class="md-main" data-md-component="main">
-<div class="md-main__inner md-grid">
-<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
-<div class="md-sidebar__scrollwrap">
-<div class="md-sidebar__inner">
-<nav aria-label="导航栏" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
-<label class="md-nav__title" for="__drawer">
-<a aria-label="GoVector 开发文档" class="md-nav__button md-logo" data-md-component="logo" href="../../" title="GoVector 开发文档">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
-</a>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../" title="GoVector 开发文档" class="md-nav__button md-logo" aria-label="GoVector 开发文档" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
     GoVector 开发文档
   </label>
-<div class="md-nav__source">
-<a class="md-source" data-md-component="source" href="https://github.com/DotNetAge/govector" title="前往仓库">
-<div class="md-source__icon md-icon">
-<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
-</div>
-<div class="md-source__repository">
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/DotNetAge/govector" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
     GitHub
   </div>
 </a>
-</div>
-<ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../">
-<span class="md-ellipsis">
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     首页
@@ -226,12 +440,42 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" id="__nav_2" type="checkbox"/>
-<label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
     
   
     GoVector
@@ -239,21 +483,35 @@
 
     
   </span>
-<span class="md-nav__icon md-icon"></span>
-</label>
-<nav aria-expanded="false" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
-<label class="md-nav__title" for="__nav_2">
-<span class="md-nav__icon md-icon"></span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
             
   
     GoVector
   
 
           </label>
-<ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../quick-start/">
-<span class="md-ellipsis">
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick-start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     快速开始
@@ -261,11 +519,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../usage/cli-guide/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/cli-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     CLI使用指南
@@ -273,11 +547,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../development-guide/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     开发指南
@@ -285,23 +575,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../project-overview/">
-<span class="md-ellipsis">
-    
   
-    项目概述
   
 
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../data-model/">
-<span class="md-ellipsis">
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data-model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     数据模型
@@ -309,15 +603,111 @@
 
     
   </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" id="__nav_3" type="checkbox"/>
-<label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage-modes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    使用模式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vector-database-fundamentals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    向量数据库基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
     
   
     开发指南
@@ -325,22 +715,54 @@
 
     
   </span>
-<span class="md-nav__icon md-icon"></span>
-</label>
-<nav aria-expanded="true" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
-<label class="md-nav__title" for="__nav_3">
-<span class="md-nav__icon md-icon"></span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
             
   
     开发指南
   
 
           </label>
-<ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item md-nav__item--section md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" id="__nav_3_1" type="checkbox"/>
-<label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="">
-<span class="md-ellipsis">
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
     
   
     架构设计
@@ -348,21 +770,35 @@
 
     
   </span>
-<span class="md-nav__icon md-icon"></span>
-</label>
-<nav aria-expanded="false" aria-labelledby="__nav_3_1_label" class="md-nav" data-md-level="2">
-<label class="md-nav__title" for="__nav_3_1">
-<span class="md-nav__icon md-icon"></span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
             
   
     架构设计
   
 
           </label>
-<ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../arch/architecture-design/">
-<span class="md-ellipsis">
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../arch/architecture-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     架构设计
@@ -370,11 +806,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../arch/architecture-overview/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../arch/architecture-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     整体架构概览
@@ -382,11 +834,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../arch/component-interactions/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../arch/component-interactions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     组件交互关系
@@ -394,11 +862,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../arch/data-flow-analysis/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../arch/data-flow-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     数据流分析
@@ -406,11 +890,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../arch/design-patterns/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../arch/design-patterns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     设计模式应用
@@ -418,15 +918,56 @@
 
     
   </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" id="__nav_3_2" type="checkbox"/>
-<label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
     
   
     核心模块
@@ -434,21 +975,35 @@
 
     
   </span>
-<span class="md-nav__icon md-icon"></span>
-</label>
-<nav aria-expanded="true" aria-labelledby="__nav_3_2_label" class="md-nav" data-md-level="2">
-<label class="md-nav__title" for="__nav_3_2">
-<span class="md-nav__icon md-icon"></span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
             
   
     核心模块
   
 
           </label>
-<ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="../core-modules/">
-<span class="md-ellipsis">
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../core-modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     核心模块
@@ -456,182 +1011,480 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item md-nav__item--active">
-<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
-<label class="md-nav__link md-nav__link--active" for="__toc">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
-    Collection 集合管理
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    集合管理
   
 
     
   </span>
-<span class="md-nav__icon md-icon"></span>
-</label>
-<a class="md-nav__link md-nav__link--active" href="./">
-<span class="md-ellipsis">
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
-    Collection 集合管理
+    集合管理
   
 
     
   </span>
-</a>
-<nav aria-label="目录" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
-<span class="md-nav__icon md-icon"></span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
       目录
     </label>
-<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_1">
-<span class="md-ellipsis">
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
-        项目结构
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📋 集合概述
       
     </span>
-</a>
+  </a>
+  
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_2">
-<span class="md-ellipsis">
       
-        核心组件
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🚀 创建集合
       
     </span>
-</a>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 创建集合">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        嵌入式模式
+      
+    </span>
+  </a>
+  
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_3">
-<span class="md-ellipsis">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
       
-        架构总览
+        微服务模式
       
     </span>
-</a>
+  </a>
+  
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_4">
-<span class="md-ellipsis">
-      
-        详细组件分析
-      
-    </span>
-</a>
-<nav aria-label="详细组件分析" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#collection_1">
-<span class="md-ellipsis">
-      
-        Collection 设计与生命周期
-      
-    </span>
-</a>
+        
+      </ul>
+    </nav>
+  
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#upsert">
-<span class="md-ellipsis">
       
-        Upsert 插入/更新
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
       
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#search">
-<span class="md-ellipsis">
-      
-        Search 搜索查询
+        🔧 集合配置
       
     </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#delete">
-<span class="md-ellipsis">
+  </a>
+  
+    <nav class="md-nav" aria-label="🔧 集合配置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
       
-        Delete 删除
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#hnsw">
-<span class="md-ellipsis">
-      
-        元数据管理与 HNSW 参数
+        核心参数
       
     </span>
-</a>
+  </a>
+  
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#payload">
-<span class="md-ellipsis">
+        
+          <li class="md-nav__item">
+  <a href="#hnsw" class="md-nav__link">
+    <span class="md-ellipsis">
       
-        过滤器与 Payload 匹配
+        HNSW 索引参数
       
     </span>
-</a>
+  </a>
+  
 </li>
-</ul>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📁 持久化
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📁 持久化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        保存集合
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        加载集合
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📊 集合操作
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 集合操作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        写入点
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        搜索点
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        删除点
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        获取点
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📈 集合统计信息
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📈 集合统计信息">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        获取集合信息
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        微服务模式
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🗑️ 删除集合
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🗑️ 删除集合">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        嵌入式模式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        微服务模式
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        💡 最佳实践
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="💡 最佳实践">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        集合设计
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        性能优化
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        存储管理
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🚩 常见问题
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚩 常见问题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        维度不匹配
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        内存不足
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        搜索性能缓慢
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔗 相关文档
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_5">
-<span class="md-ellipsis">
       
-        依赖关系分析
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_6">
-<span class="md-ellipsis">
-      
-        性能与内存特征
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_7">
-<span class="md-ellipsis">
-      
-        故障排查指南
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_8">
-<span class="md-ellipsis">
-      
-        结论
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_9">
-<span class="md-ellipsis">
-      
-        附录：使用示例与最佳实践
-      
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../flat-index/">
-<span class="md-ellipsis">
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../flat-index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     FlatIndex 扁平索引
@@ -639,23 +1492,55 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../hnsw-index/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hnsw-index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
-    HNSWIndex 图索引
+    HNSW 索引
   
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../quantization/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quantization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     Quantization 量化系统
@@ -663,23 +1548,55 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../storage-engine/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../storage-engine/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
-    Storage 存储引擎
+    存储引擎
   
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../data-model-system/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-model-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     数据模型系统
@@ -687,15 +1604,54 @@
 
     
   </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item md-nav__item--section md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" id="__nav_3_3" type="checkbox"/>
-<label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
     
   
     使用模式
@@ -703,21 +1659,35 @@
 
     
   </span>
-<span class="md-nav__icon md-icon"></span>
-</label>
-<nav aria-expanded="false" aria-labelledby="__nav_3_3_label" class="md-nav" data-md-level="2">
-<label class="md-nav__title" for="__nav_3_3">
-<span class="md-nav__icon md-icon"></span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
             
   
     使用模式
   
 
           </label>
-<ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../usage/usage-patterns/">
-<span class="md-ellipsis">
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/usage-patterns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     使用模式
@@ -725,11 +1695,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../usage/embedded-mode/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/embedded-mode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     嵌入式模式
@@ -737,11 +1723,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../usage/microservice-mode/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/microservice-mode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     微服务模式
@@ -749,11 +1751,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../usage/performance-optimization/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/performance-optimization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     性能优化
@@ -761,18 +1779,58 @@
 
     
   </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" id="__nav_4" type="checkbox"/>
-<label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
     
   
     API 参考
@@ -780,21 +1838,35 @@
 
     
   </span>
-<span class="md-nav__icon md-icon"></span>
-</label>
-<nav aria-expanded="false" aria-labelledby="__nav_4_label" class="md-nav" data-md-level="1">
-<label class="md-nav__title" for="__nav_4">
-<span class="md-nav__icon md-icon"></span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
             
   
     API 参考
   
 
           </label>
-<ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../api-references/api-reference/">
-<span class="md-ellipsis">
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api-references/api-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     API 参考
@@ -802,11 +1874,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../api-references/data-models/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api-references/data-models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     数据模型
@@ -814,11 +1902,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../api-references/point-operations-api/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api-references/point-operations-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     点操作 API
@@ -826,11 +1930,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../api-references/collection-management-api/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api-references/collection-management-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     集合管理 API
@@ -838,11 +1958,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../api-references/error-handling/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api-references/error-handling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     错误处理
@@ -850,15 +1986,50 @@
 
     
   </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" id="__nav_5" type="checkbox"/>
-<label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
     
   
     部署运维
@@ -866,21 +2037,63 @@
 
     
   </span>
-<span class="md-nav__icon md-icon"></span>
-</label>
-<nav aria-expanded="false" aria-labelledby="__nav_5_label" class="md-nav" data-md-level="1">
-<label class="md-nav__title" for="__nav_5">
-<span class="md-nav__icon md-icon"></span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
             
   
     部署运维
   
 
           </label>
-<ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../deployment/deployment-operations/">
-<span class="md-ellipsis">
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    部署与运维
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/deployment-operations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     部署运维
@@ -888,11 +2101,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../deployment/production-deployment/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/production-deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     生产环境部署
@@ -900,11 +2129,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../deployment/monitoring-alerts/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/monitoring-alerts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     监控告警
@@ -912,11 +2157,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../deployment/backup-recovery/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/backup-recovery/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     备份恢复
@@ -924,11 +2185,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../deployment/upgrades-migration/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deployment/upgrades-migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     升级迁移
@@ -936,15 +2213,50 @@
 
     
   </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" id="__nav_6" type="checkbox"/>
-<label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
     
   
     故障排除
@@ -952,21 +2264,35 @@
 
     
   </span>
-<span class="md-nav__icon md-icon"></span>
-</label>
-<nav aria-expanded="false" aria-labelledby="__nav_6_label" class="md-nav" data-md-level="1">
-<label class="md-nav__title" for="__nav_6">
-<span class="md-nav__icon md-icon"></span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
             
   
     故障排除
   
 
           </label>
-<ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../trouble-removal/troubleshooting/">
-<span class="md-ellipsis">
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     故障排除
@@ -974,11 +2300,55 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../trouble-removal/installation-issues/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trouble-removal/troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    故障排除
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trouble-removal/installation-issues/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     安装问题
@@ -986,11 +2356,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../trouble-removal/performance-issues/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trouble-removal/performance-issues/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     性能问题
@@ -998,11 +2384,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../trouble-removal/data-consistency-issues/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trouble-removal/data-consistency-issues/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     数据一致性问题
@@ -1010,11 +2412,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../trouble-removal/debugging-tools/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trouble-removal/debugging-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     调试工具和技巧
@@ -1022,11 +2440,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../trouble-removal/configuration-issues/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trouble-removal/configuration-issues/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     配置问题
@@ -1034,15 +2468,50 @@
 
     
   </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" id="__nav_7" type="checkbox"/>
-<label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
     
   
     理论学习
@@ -1050,21 +2519,35 @@
 
     
   </span>
-<span class="md-nav__icon md-icon"></span>
-</label>
-<nav aria-expanded="false" aria-labelledby="__nav_7_label" class="md-nav" data-md-level="1">
-<label class="md-nav__title" for="__nav_7">
-<span class="md-nav__icon md-icon"></span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
             
   
     理论学习
   
 
           </label>
-<ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../vectordb/01-introduction/">
-<span class="md-ellipsis">
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vectordb/01-introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     第1章：引言 - 向量数据库定义与价值
@@ -1072,11 +2555,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../vectordb/02-history/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vectordb/02-history/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     第2章：发展历程 - 关键技术节点与演进
@@ -1084,11 +2583,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../vectordb/03-core-principles/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vectordb/03-core-principles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     第3章：核心原理 - 向量表示、距离计算与索引结构
@@ -1096,11 +2611,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../vectordb/04-basic-concepts/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vectordb/04-basic-concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     第4章：基础概念解析 - 嵌入、维度、相似度度量
@@ -1108,11 +2639,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../vectordb/05-applications/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vectordb/05-applications/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     第5章：典型应用场景 - AI检索、推荐系统、语义搜索
@@ -1120,11 +2667,27 @@
 
     
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../vectordb/06-learning-path/">
-<span class="md-ellipsis">
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vectordb/06-learning-path/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
     第6章：学习路径与资源推荐
@@ -1132,551 +2695,789 @@
 
     
   </span>
-</a>
-</li>
-</ul>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
 </nav>
-</li>
-</ul>
-</nav>
-</div>
-</div>
-</div>
-<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
-<div class="md-sidebar__scrollwrap">
-<div class="md-sidebar__inner">
-<nav aria-label="目录" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
-<span class="md-nav__icon md-icon"></span>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
       目录
     </label>
-<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_1">
-<span class="md-ellipsis">
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
-        项目结构
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📋 集合概述
       
     </span>
-</a>
+  </a>
+  
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_2">
-<span class="md-ellipsis">
       
-        核心组件
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🚀 创建集合
       
     </span>
-</a>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 创建集合">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        嵌入式模式
+      
+    </span>
+  </a>
+  
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_3">
-<span class="md-ellipsis">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
       
-        架构总览
+        微服务模式
       
     </span>
-</a>
+  </a>
+  
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_4">
-<span class="md-ellipsis">
-      
-        详细组件分析
-      
-    </span>
-</a>
-<nav aria-label="详细组件分析" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#collection_1">
-<span class="md-ellipsis">
-      
-        Collection 设计与生命周期
-      
-    </span>
-</a>
+        
+      </ul>
+    </nav>
+  
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#upsert">
-<span class="md-ellipsis">
       
-        Upsert 插入/更新
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
       
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#search">
-<span class="md-ellipsis">
-      
-        Search 搜索查询
+        🔧 集合配置
       
     </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#delete">
-<span class="md-ellipsis">
+  </a>
+  
+    <nav class="md-nav" aria-label="🔧 集合配置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
       
-        Delete 删除
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#hnsw">
-<span class="md-ellipsis">
-      
-        元数据管理与 HNSW 参数
+        核心参数
       
     </span>
-</a>
+  </a>
+  
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#payload">
-<span class="md-ellipsis">
+        
+          <li class="md-nav__item">
+  <a href="#hnsw" class="md-nav__link">
+    <span class="md-ellipsis">
       
-        过滤器与 Payload 匹配
+        HNSW 索引参数
       
     </span>
-</a>
+  </a>
+  
 </li>
-</ul>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📁 持久化
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📁 持久化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        保存集合
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        加载集合
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📊 集合操作
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 集合操作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        写入点
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        搜索点
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        删除点
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        获取点
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📈 集合统计信息
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📈 集合统计信息">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        获取集合信息
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        微服务模式
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🗑️ 删除集合
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🗑️ 删除集合">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        嵌入式模式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        微服务模式
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        💡 最佳实践
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="💡 最佳实践">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        集合设计
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        性能优化
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        存储管理
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🚩 常见问题
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚩 常见问题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        维度不匹配
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        内存不足
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        搜索性能缓慢
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔗 相关文档
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_5">
-<span class="md-ellipsis">
-      
-        依赖关系分析
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_6">
-<span class="md-ellipsis">
-      
-        性能与内存特征
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_7">
-<span class="md-ellipsis">
-      
-        故障排查指南
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_8">
-<span class="md-ellipsis">
-      
-        结论
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_9">
-<span class="md-ellipsis">
-      
-        附录：使用示例与最佳实践
-      
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</div>
-</div>
-</div>
-<div class="md-content" data-md-component="content">
-<article class="md-content__inner md-typeset">
-<h1 id="collection">Collection 集合管理<a class="headerlink" href="#collection" title="Permanent link">¶</a></h1>
-<p>本文件系统性阐述 Collection 集合管理模块的设计理念与实现细节，覆盖向量集合的创建、配置与生命周期管理；Upsert 插入更新、Search 搜索查询、Delete 删除操作的实现机制与线程安全保证；集合元数据管理、HNSW/HNSW 参数配置、向量维度验证等关键特性。文档同时提供面向初学者的概念解释与面向专家的实现细节与扩展指南，并通过图示与路径引用帮助读者快速定位源码位置。</p>
-<h2 id="_1">项目结构<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
-<p>本项目采用“核心库 + 可选服务端 + 示例”的分层组织方式：</p>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="_1">集合管理<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>集合是 GoVector 中的主要组织单位，类似于传统数据库中的表。本文档解释如何有效地创建、配置和管理集合。</p>
+<h2 id="_2">📋 集合概述<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>集合是具有特定配置参数的向量容器。每个集合都有自己的：</p>
 <ul>
-<li>核心库（core）：包含 Collection、索引接口与实现（HNSW/Flat）、存储（BoltDB+Protobuf）、距离度量、过滤器模型等。</li>
-<li>API 层（api）：提供 Qdrant 兼容的 HTTP 接口，负责路由、请求解析与调用核心 Collection。</li>
-<li>命令行服务（cmd/govector）：以微服务形式启动本地 API 服务。</li>
-<li>示例（example/embedded）：嵌入式库使用示例，直接调用 core 包进行集合管理与检索。</li>
-<li>测试（core/collection_test.go）：覆盖 Collection 的基本行为、错误处理与参数加载。</li>
+<li><strong>向量配置</strong>（维度、距离度量）</li>
+<li><strong>索引策略</strong>（HNSW 或 Flat）</li>
+<li><strong>量化设置</strong>（SQ8 压缩）</li>
+<li><strong>存储位置</strong>（本地目录）</li>
 </ul>
-<pre class="mermaid"><code>graph TB
-subgraph "应用层"
-EMB["嵌入式示例<br/>example/embedded/main.go"]
-SRV["服务端入口<br/>cmd/govector/main.go"]
-end
-subgraph "API 层"
-API["HTTP 服务器<br/>api/server.go"]
-end
-subgraph "核心库"
-COL["Collection<br/>core/collection.go"]
-IDXI["VectorIndex 接口<br/>core/index.go"]
-HNSW["HNSW 实现<br/>core/hnsw_index.go"]
-FLAT["Flat 实现<br/>core/flat_index.go"]
-STOR["持久化存储<br/>core/storage.go"]
-MATH["距离度量<br/>core/math.go"]
-MODELS["数据模型/过滤器<br/>core/models.go"]
-end
-EMB --&gt; COL
-SRV --&gt; API
-API --&gt; COL
-COL --&gt; IDXI
-IDXI --&gt; HNSW
-IDXI --&gt; FLAT
-COL --&gt; STOR
-COL --&gt; MATH
-COL --&gt; MODELS
-</code></pre>
-<h2 id="_2">核心组件<a class="headerlink" href="#_2" title="Permanent link">¶</a></h2>
+<h2 id="_3">🚀 创建集合<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h3 id="_4">嵌入式模式<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<div class="language-go highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="s">&quot;github.com/yourusername/govector/core&quot;</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">)</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1">// 使用自定义配置创建新集合</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="nx">collection</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">core</span><span class="p">.</span><span class="nx">NewCollection</span><span class="p">(</span><span class="nx">core</span><span class="p">.</span><span class="nx">CollectionConfig</span><span class="p">{</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="nx">Name</span><span class="p">:</span><span class="w">       </span><span class="s">&quot;my-collection&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="nx">VectorLen</span><span class="p">:</span><span class="w">  </span><span class="mi">768</span><span class="p">,</span><span class="w">             </span><span class="c1">// 向量维度</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="nx">Metric</span><span class="p">:</span><span class="w">     </span><span class="nx">core</span><span class="p">.</span><span class="nx">Cosine</span><span class="p">,</span><span class="w">      </span><span class="c1">// 距离度量（Cosine, Euclidean, Dot）</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="nx">IndexType</span><span class="p">:</span><span class="w">  </span><span class="nx">core</span><span class="p">.</span><span class="nx">HNSW</span><span class="p">,</span><span class="w">        </span><span class="c1">// 索引类型（HNSW 或 Flat）</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="nx">Quantize</span><span class="p">:</span><span class="w">   </span><span class="kc">false</span><span class="p">,</span><span class="w">            </span><span class="c1">// 启用/禁 SQ8 量化</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span><span class="nx">M</span><span class="p">:</span><span class="w">          </span><span class="mi">16</span><span class="p">,</span><span class="w">               </span><span class="c1">// HNSW M 参数（每个节点的连接数）</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">    </span><span class="nx">EfConstruction</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">          </span><span class="c1">// HNSW 构建参数</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">    </span><span class="nx">EfSearch</span><span class="p">:</span><span class="w">   </span><span class="mi">10</span><span class="p">,</span><span class="w">               </span><span class="c1">// HNSW 搜索参数</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="p">})</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">    </span><span class="nx">log</span><span class="p">.</span><span class="nx">Fatalf</span><span class="p">(</span><span class="s">&quot;创建集合失败: %v&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="p">}</span>
+</code></pre></div>
+<h3 id="_5">微服务模式<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:6333/collections<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="s1">    &quot;name&quot;: &quot;my-collection&quot;,</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="s1">    &quot;vectors&quot;: {</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="s1">      &quot;size&quot;: 768,</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="s1">      &quot;distance&quot;: &quot;Cosine&quot;</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="s1">    },</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="s1">    &quot;hnsw_config&quot;: {</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="s1">      &quot;m&quot;: 16,</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="s1">      &quot;ef_construction&quot;: 200,</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="s1">      &quot;ef&quot;: 10</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="s1">    },</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="s1">    &quot;quantization_config&quot;: {</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="s1">      &quot;enabled&quot;: false</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="s1">    }</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="s1">  }&#39;</span>
+</code></pre></div>
+<h2 id="_6">🔧 集合配置<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<h3 id="_7">核心参数<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">参数</th>
+<th style="text-align: left;">描述</th>
+<th style="text-align: left;">默认值</th>
+<th style="text-align: left;">范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>VectorLen</code></td>
+<td style="text-align: left;">向量维度</td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;">1-∞</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Metric</code></td>
+<td style="text-align: left;">距离度量</td>
+<td style="text-align: left;"><code>Cosine</code></td>
+<td style="text-align: left;"><code>Cosine</code>, <code>Euclidean</code>, <code>Dot</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>IndexType</code></td>
+<td style="text-align: left;">索引类型</td>
+<td style="text-align: left;"><code>HNSW</code></td>
+<td style="text-align: left;"><code>HNSW</code>, <code>Flat</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Quantize</code></td>
+<td style="text-align: left;">启用 SQ8 量化</td>
+<td style="text-align: left;"><code>false</code></td>
+<td style="text-align: left;"><code>true</code>, <code>false</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="hnsw">HNSW 索引参数<a class="headerlink" href="#hnsw" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">参数</th>
+<th style="text-align: left;">描述</th>
+<th style="text-align: left;">默认值</th>
+<th style="text-align: left;">范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>M</code></td>
+<td style="text-align: left;">每个节点的连接数</td>
+<td style="text-align: left;">16</td>
+<td style="text-align: left;">4-64</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>EfConstruction</code></td>
+<td style="text-align: left;">构建过程中动态候选列表的大小</td>
+<td style="text-align: left;">200</td>
+<td style="text-align: left;">10-∞</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>EfSearch</code></td>
+<td style="text-align: left;">搜索过程中动态候选列表的大小</td>
+<td style="text-align: left;">10</td>
+<td style="text-align: left;">10-∞</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_8">📁 持久化<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<h3 id="_9">保存集合<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<div class="language-go highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1">// 保存集合到磁盘</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">collection</span><span class="p">.</span><span class="nx">Save</span><span class="p">(</span><span class="s">&quot;/path/to/collection&quot;</span><span class="p">);</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="nx">log</span><span class="p">.</span><span class="nx">Fatalf</span><span class="p">(</span><span class="s">&quot;保存集合失败: %v&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="p">}</span>
+</code></pre></div>
+<h3 id="_10">加载集合<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<div class="language-go highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">// 从磁盘加载集合</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nx">loadedCollection</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">core</span><span class="p">.</span><span class="nx">LoadCollection</span><span class="p">(</span><span class="s">&quot;/path/to/collection&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="nx">log</span><span class="p">.</span><span class="nx">Fatalf</span><span class="p">(</span><span class="s">&quot;加载集合失败: %v&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="p">}</span>
+</code></pre></div>
+<h2 id="_11">📊 集合操作<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<h3 id="_12">写入点<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<div class="language-go highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1">// 写入单个点</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nx">point</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">core</span><span class="p">.</span><span class="nx">PointStruct</span><span class="p">{</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="nx">ID</span><span class="p">:</span><span class="w">     </span><span class="s">&quot;doc_1&quot;</span><span class="p">,</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="nx">Vector</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="kt">float32</span><span class="p">{</span><span class="mf">0.1</span><span class="p">,</span><span class="w"> </span><span class="mf">0.2</span><span class="p">,</span><span class="w"> </span><span class="mf">0.3</span><span class="p">,</span><span class="w"> </span><span class="cm">/* ... */</span><span class="p">},</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="nx">Payload</span><span class="p">:</span><span class="w"> </span><span class="nx">core</span><span class="p">.</span><span class="nx">Payload</span><span class="p">{</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">        </span><span class="s">&quot;category&quot;</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;tech&quot;</span><span class="p">,</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">    </span><span class="p">},</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="p">}</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">collection</span><span class="p">.</span><span class="nx">Upsert</span><span class="p">([]</span><span class="nx">core</span><span class="p">.</span><span class="nx">PointStruct</span><span class="p">{</span><span class="nx">point</span><span class="p">});</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">    </span><span class="nx">log</span><span class="p">.</span><span class="nx">Fatalf</span><span class="p">(</span><span class="s">&quot;写入点失败: %v&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="p">}</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="c1">// 写入多个点</span>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="nx">points</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="p">[]</span><span class="nx">core</span><span class="p">.</span><span class="nx">PointStruct</span><span class="p">{</span>
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="w">    </span><span class="c1">// ... 多个点 ...</span>
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="p">}</span>
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">collection</span><span class="p">.</span><span class="nx">Upsert</span><span class="p">(</span><span class="nx">points</span><span class="p">);</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a><span class="w">    </span><span class="nx">log</span><span class="p">.</span><span class="nx">Fatalf</span><span class="p">(</span><span class="s">&quot;写入点失败: %v&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
+<a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a><span class="p">}</span>
+</code></pre></div>
+<h3 id="_13">搜索点<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<div class="language-go highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1">// 使用查询向量搜索</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nx">queryVector</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="p">[]</span><span class="kt">float32</span><span class="p">{</span><span class="mf">0.1</span><span class="p">,</span><span class="w"> </span><span class="mf">0.2</span><span class="p">,</span><span class="w"> </span><span class="mf">0.3</span><span class="p">,</span><span class="w"> </span><span class="cm">/* ... */</span><span class="p">}</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nx">results</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">collection</span><span class="p">.</span><span class="nx">Search</span><span class="p">(</span><span class="nx">queryVector</span><span class="p">,</span><span class="w"> </span><span class="kc">nil</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span><span class="nx">log</span><span class="p">.</span><span class="nx">Fatalf</span><span class="p">(</span><span class="s">&quot;搜索失败: %v&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="p">}</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="c1">// 使用过滤器搜索</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="nx">filter</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">core</span><span class="p">.</span><span class="nx">Filter</span><span class="p">{</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">    </span><span class="nx">Must</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="nx">core</span><span class="p">.</span><span class="nx">Condition</span><span class="p">{</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">            </span><span class="nx">Key</span><span class="p">:</span><span class="w">   </span><span class="s">&quot;category&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="w">            </span><span class="nx">Type</span><span class="p">:</span><span class="w">  </span><span class="nx">core</span><span class="p">.</span><span class="nx">MatchTypeExact</span><span class="p">,</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="w">            </span><span class="nx">Match</span><span class="p">:</span><span class="w"> </span><span class="nx">core</span><span class="p">.</span><span class="nx">MatchValue</span><span class="p">{</span><span class="nx">Value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;tech&quot;</span><span class="p">},</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="w">        </span><span class="p">},</span>
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="w">    </span><span class="p">},</span>
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="p">}</span>
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>
+<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="nx">results</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">collection</span><span class="p">.</span><span class="nx">Search</span><span class="p">(</span><span class="nx">queryVector</span><span class="p">,</span><span class="w"> </span><span class="nx">filter</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span>
+<a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a><span class="w">    </span><span class="nx">log</span><span class="p">.</span><span class="nx">Fatalf</span><span class="p">(</span><span class="s">&quot;使用过滤器搜索失败: %v&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
+<a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a><span class="p">}</span>
+</code></pre></div>
+<h3 id="_14">删除点<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<div class="language-go highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1">// 通过 ID 删除</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="nx">ids</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;doc_1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;doc_2&quot;</span><span class="p">}</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="nx">deleted</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">collection</span><span class="p">.</span><span class="nx">Delete</span><span class="p">(</span><span class="nx">ids</span><span class="p">,</span><span class="w"> </span><span class="kc">nil</span><span class="p">)</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">    </span><span class="nx">log</span><span class="p">.</span><span class="nx">Fatalf</span><span class="p">(</span><span class="s">&quot;删除点失败: %v&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="p">}</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;删除了 %d 个点\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">deleted</span><span class="p">)</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="c1">// 通过过滤器删除</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="nx">deleted</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">collection</span><span class="p">.</span><span class="nx">Delete</span><span class="p">(</span><span class="kc">nil</span><span class="p">,</span><span class="w"> </span><span class="nx">filter</span><span class="p">)</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="w">    </span><span class="nx">log</span><span class="p">.</span><span class="nx">Fatalf</span><span class="p">(</span><span class="s">&quot;通过过滤器删除点失败: %v&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="p">}</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;通过过滤器删除了 %d 个点\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">deleted</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="_15">获取点<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
+<div class="language-go highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1">// 通过 ID 获取点</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="nx">ids</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;doc_1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;doc_2&quot;</span><span class="p">}</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="nx">points</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">collection</span><span class="p">.</span><span class="nx">Get</span><span class="p">(</span><span class="nx">ids</span><span class="p">)</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">    </span><span class="nx">log</span><span class="p">.</span><span class="nx">Fatalf</span><span class="p">(</span><span class="s">&quot;获取点失败: %v&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="p">}</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="k">for</span><span class="w"> </span><span class="nx">_</span><span class="p">,</span><span class="w"> </span><span class="nx">point</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">range</span><span class="w"> </span><span class="nx">points</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;ID: %s, Vector: %v\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">point</span><span class="p">.</span><span class="nx">ID</span><span class="p">,</span><span class="w"> </span><span class="nx">point</span><span class="p">.</span><span class="nx">Vector</span><span class="p">)</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="p">}</span>
+</code></pre></div>
+<h2 id="_16">📈 集合统计信息<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h2>
+<h3 id="_17">获取集合信息<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h3>
+<div class="language-go highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1">// 获取集合信息</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nx">info</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">collection</span><span class="p">.</span><span class="nx">Info</span><span class="p">()</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span><span class="nx">log</span><span class="p">.</span><span class="nx">Fatalf</span><span class="p">(</span><span class="s">&quot;获取集合信息失败: %v&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="p">}</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;集合: %s\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">info</span><span class="p">.</span><span class="nx">Name</span><span class="p">)</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;向量长度: %d\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">info</span><span class="p">.</span><span class="nx">VectorLen</span><span class="p">)</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;度量: %s\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">info</span><span class="p">.</span><span class="nx">Metric</span><span class="p">)</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;索引类型: %s\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">info</span><span class="p">.</span><span class="nx">IndexType</span><span class="p">)</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;点数量: %d\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">info</span><span class="p">.</span><span class="nx">PointCount</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="_18">微服务模式<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># 获取集合信息</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>curl<span class="w"> </span>http://localhost:6333/collections/my-collection
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="c1"># 列出所有集合</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>curl<span class="w"> </span>http://localhost:6333/collections
+</code></pre></div>
+<h2 id="_19">🗑️ 删除集合<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h2>
+<h3 id="_20">嵌入式模式<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h3>
+<div class="language-go highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1">// 删除集合（从内存中移除，但不从磁盘中删除）</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="c1">// 要完全移除，在关闭后删除目录</span>
+</code></pre></div>
+<h3 id="_21">微服务模式<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># 删除集合</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>curl<span class="w"> </span>-X<span class="w"> </span>DELETE<span class="w"> </span>http://localhost:6333/collections/my-collection
+</code></pre></div>
+<h2 id="_22">💡 最佳实践<a class="headerlink" href="#_22" title="Permanent link">&para;</a></h2>
+<h3 id="_23">集合设计<a class="headerlink" href="#_23" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Collection：逻辑上的向量集合，封装了名称、维度、距离度量、索引引擎与持久化存储；提供 Upsert/Search/Delete 三类核心操作，并在内部维护读写锁保障并发安全。</li>
-<li>VectorIndex 接口：抽象出统一的索引能力（Upsert/Search/Delete/Count/按过滤器取ID/按过滤器删除），支持透明切换 Flat 与 HNSW。</li>
-<li>HNSWIndex：基于 coder/hnsw 图的近似最近邻索引，支持自定义 M/EfConstruction/EfSearch/K 等参数，适合大规模高维向量检索。</li>
-<li>FlatIndex：内存中的暴力检索实现，适合小中规模数据或需要精确结果的场景。</li>
-<li>Storage：基于 bbolt+BoltDB 的本地持久化，使用 Protobuf 序列化点数据，支持可选的向量量化压缩。</li>
-<li>距离度量与过滤器：支持 Cosine/Euclid/Dot 三种度量；Filter/Condition 支持 Must/MustNot 条件组合，涵盖 exact/range/prefix/contains/regex 等匹配类型。</li>
+<li><strong>向量维度</strong>：根据您的嵌入模型选择适当的维度（例如，BERT 基于模型使用 768）</li>
+<li><strong>距离度量</strong>：对归一化向量使用 Cosine，对非归一化向量使用 Euclidean</li>
+<li><strong>索引选择</strong>：对大型数据集使用 HNSW，对小型数据集使用 Flat（&lt; 10,000 点）</li>
+<li><strong>量化</strong>：对大型数据集启 SQ8 以减少内存和存储使用</li>
 </ul>
-<h2 id="_3">架构总览<a class="headerlink" href="#_3" title="Permanent link">¶</a></h2>
-<p>Collection 作为门面，协调存储与索引两部分。初始化时根据 useHNSW 决定使用 HNSW 或 Flat；当提供 Storage 时，会自动保存/加载集合元数据与点集，确保重启后一致性。</p>
-<pre class="mermaid"><code>classDiagram
-class Collection {
-
-    +string Name
-    +int VectorLen
-    +Distance Metric
-    -RWMutex mu
-    -VectorIndex index
-    -Storage storage
-    +NewCollection(...)
-    +NewCollectionWithParams(...)
-    +Upsert(points)
-    +Search(query, filter, topK)
-    +Count()
-    +Delete(points, filter)
-
-}
-class VectorIndex {
-
-    &lt;<interface>&gt;
-    +Upsert(points)
-    +Search(query, filter, topK)
-    +Delete(id)
-    +Count()
-    +GetIDsByFilter(filter)
-    +DeleteByFilter(filter)
-
-}
-class HNSWIndex {
-
-    -Graph graph
-    -map~string,*PointStruct~ points
-    -Distance metric
-    -HNSWParams params
-    -RWMutex mu
-    +Upsert(points)
-    +Search(query, filter, topK)
-    +Delete(id)
-    +Count()
-    +GetIDsByFilter(filter)
-    +DeleteByFilter(filter)
-
-}
-class FlatIndex {
-
-    -map~string,*PointStruct~ points
-    -Distance metric
-    -RWMutex mu
-    +Upsert(points)
-    +Search(query, filter, topK)
-    +Delete(id)
-    +Count()
-    +GetIDsByFilter(filter)
-    +DeleteByFilter(filter)
-
-}
-class Storage {
-
-    -bbolt.DB db
-    -Quantizer quantizer
-    -bool useQuant
-    +EnsureCollection(name)
-    +UpsertPoints(colName, points)
-    +LoadCollection(colName)
-    +SaveCollectionMeta(name, meta)
-    +LoadCollectionMeta(name)
-    +ListCollections()
-    +DeletePoints(colName, ids)
-
-}
-class Distance {
-
-    &lt;<enumeration>&gt;
-    +Cosine
-    +Euclid
-    +Dot
-
-}
-class HNSWParams {
-
-    +int M
-    +int EfConstruction
-    +int EfSearch
-    +int K
-
-}
-Collection --&gt; VectorIndex : "聚合"
-Collection --&gt; Storage : "聚合"
-VectorIndex &lt;|.. HNSWIndex
-VectorIndex &lt;|.. FlatIndex
-HNSWIndex --&gt; Distance
-HNSWIndex --&gt; HNSWParams
-FlatIndex --&gt; Distance
-</enumeration></interface></code></pre>
-<h2 id="_4">详细组件分析<a class="headerlink" href="#_4" title="Permanent link">¶</a></h2>
-<h3 id="collection_1">Collection 设计与生命周期<a class="headerlink" href="#collection_1" title="Permanent link">¶</a></h3>
+<h3 id="_24">性能优化<a class="headerlink" href="#_24" title="Permanent link">&para;</a></h3>
 <ul>
-<li>角色定位：Collection 是逻辑上的“表”，承载固定维度与距离度量，内部持有 VectorIndex 与 Storage，负责对外暴露 Upsert/Search/Delete。</li>
-<li>初始化流程：</li>
-<li>NewCollection/NewCollectionWithParams：根据 useHNSW 选择 HNSWIndex 或 FlatIndex；若提供 Storage，则先 EnsureCollection，再 SaveCollectionMeta，最后 LoadCollection 并批量 Upsert 到内存索引。</li>
-<li>维度校验：加载时对每个点的向量长度进行校验，不一致则报错，避免脏数据进入索引。</li>
-<li>生命周期：</li>
-<li>创建：设置元数据并持久化。</li>
-<li>运行：并发读写通过 RWMutex 保护。</li>
-<li>关闭：由上层调用者负责关闭 Storage，确保数据落盘。</li>
+<li><strong>批处理操作</strong>：对多个点使用批量写入以提高性能</li>
+<li><strong>索引参数</strong>：根据数据集大小调整 HNSW 参数：</li>
+<li>小型数据集（10,000-100,000 点）：M=12, EfConstruction=100</li>
+<li>中型数据集（100,000-1,000,000 点）：M=16, EfConstruction=200</li>
+<li>大型数据集（1,000,000+ 点）：M=24, EfConstruction=400</li>
 </ul>
-<pre class="mermaid"><code>sequenceDiagram
-participant U as "调用方"
-participant C as "Collection"
-participant S as "Storage"
-participant I as "VectorIndex"
-U-&gt;&gt;C : "NewCollection(name, dim, metric, store, useHNSW)"
-alt 存储存在
-C-&gt;&gt;S : "EnsureCollection(name)"
-C-&gt;&gt;S : "SaveCollectionMeta(name, meta)"
-C-&gt;&gt;S : "LoadCollection(name)"
-S--&gt;&gt;C : "points"
-C-&gt;&gt;I : "Upsert(points)"
-else 仅内存
-C-&gt;&gt;I : "构造索引实例"
-end
-C--&gt;&gt;U : "返回 Collection"
-</code></pre>
-<h3 id="upsert">Upsert 插入/更新<a class="headerlink" href="#upsert" title="Permanent link">¶</a></h3>
+<h3 id="_25">存储管理<a class="headerlink" href="#_25" title="Permanent link">&para;</a></h3>
 <ul>
-<li>并发与一致性：</li>
-<li>使用写锁保护；先校验每个点的向量维度与版本号，再持久化到 Storage（如配置），最后更新内存索引。</li>
-<li>若内存索引更新失败，尝试回滚 Storage 中已写入的点，尽力保持一致性。</li>
-<li>版本号策略：以纳秒级时间戳生成版本号，便于后续一致性控制与变更追踪。</li>
+<li><strong>备份</strong>：定期备份集合目录</li>
+<li><strong>磁盘空间</strong>：监控磁盘使用情况，尤其是大型集合</li>
+<li><strong>加载时间</strong>：大型集合可能需要时间加载，因为需要重建索引</li>
 </ul>
-<pre class="mermaid"><code>flowchart TD
-Start(["开始 Upsert"]) --&gt; Lock["加写锁"]
-Lock --&gt; Validate["校验维度/设置版本"]
-Validate --&gt; Persist{"是否配置 Storage?"}
-Persist --&gt; |是| WriteDisk["写入 Storage"]
-Persist --&gt; |否| SkipDisk["跳过持久化"]
-WriteDisk --&gt; UpdateMem["更新内存索引"]
-SkipDisk --&gt; UpdateMem
-UpdateMem --&gt; MemOK{"内存更新成功?"}
-MemOK --&gt; |是| Unlock["释放锁并返回"]
-MemOK --&gt; |否| Rollback["尝试回滚 Storage"]
-Rollback --&gt; Unlock
-Unlock --&gt; End(["结束"])
-</code></pre>
-<h3 id="search">Search 搜索查询<a class="headerlink" href="#search" title="Permanent link">¶</a></h3>
+<h2 id="_26">🚩 常见问题<a class="headerlink" href="#_26" title="Permanent link">&para;</a></h2>
+<h3 id="_27">维度不匹配<a class="headerlink" href="#_27" title="Permanent link">&para;</a></h3>
 <ul>
-<li>查询前校验：查询向量维度必须与集合维度一致。</li>
-<li>并发访问：读锁保护，直接委托给 VectorIndex.Search。</li>
-<li>过滤策略（HNSW 实现）：</li>
-<li>若存在过滤条件，采用“超取 + 后过滤”策略：先按 topK*10 获取候选，再从候选集中应用过滤与评分，最终取前 topK。</li>
-<li>这种策略在 MVP 阶段简化实现，未来可考虑将过滤下推至图遍历以提升性能。</li>
-<li>Flat 实现：对所有点计算距离，应用过滤后排序，返回前 topK。</li>
+<li><strong>错误</strong>："dimension mismatch"</li>
+<li><strong>解决方案</strong>：确保所有向量的维度与集合配置相同</li>
 </ul>
-<pre class="mermaid"><code>sequenceDiagram
-participant Q as "查询方"
-participant C as "Collection"
-participant I as "VectorIndex(HNSW/Flat)"
-Q-&gt;&gt;C : "Search(query, filter, topK)"
-C-&gt;&gt;C : "校验 query 维度"
-C-&gt;&gt;I : "Search(query, filter, topK)"
-alt HNSW
-I-&gt;&gt;I : "超取 fetchK = topK*10"
-I-&gt;&gt;I : "图遍历获取邻居"
-I-&gt;&gt;I : "后过滤 + 计算精确分数"
-else Flat
-I-&gt;&gt;I : "遍历所有点"
-I-&gt;&gt;I : "过滤 + 计算距离"
-end
-I--&gt;&gt;C : "TopK 结果"
-C--&gt;&gt;Q : "返回结果"
-</code></pre>
-<h3 id="delete">Delete 删除<a class="headerlink" href="#delete" title="Permanent link">¶</a></h3>
+<h3 id="_28">内存不足<a class="headerlink" href="#_28" title="Permanent link">&para;</a></h3>
 <ul>
-<li>删除策略：</li>
-<li>若传入具体 ID 数组：直接删除对应 ID。</li>
-<li>若传入过滤器：先通过索引获取匹配 ID，再逐个删除。</li>
-<li>两种路径均优先删除 Storage（如配置），再删除内存索引。</li>
-<li>错误处理：未提供 ID 或过滤器时返回错误；空 ID 列表直接返回 0 删除数。</li>
+<li><strong>错误</strong>："out of memory"</li>
+<li><strong>解决方案</strong>：启 SQ8 量化，对小型数据集使用 Flat 索引，或减小集合大小</li>
 </ul>
-<pre class="mermaid"><code>flowchart TD
-DStart(["开始 Delete"]) --&gt; Lock["加写锁"]
-Lock --&gt; Decide{"提供 ID 数组?"}
-Decide --&gt; |是| UseIDs["使用 ID 数组"]
-Decide --&gt; |否| NeedFilter{"提供过滤器?"}
-NeedFilter --&gt; |是| GetIDs["索引获取匹配 ID"]
-NeedFilter --&gt; |否| Err["返回错误: 必须提供 ID 或过滤器"]
-UseIDs --&gt; DelDisk{"配置 Storage?"}
-GetIDs --&gt; DelDisk
-DelDisk --&gt; |是| DiskDel["删除 Storage 中的点"]
-DelDisk --&gt; |否| SkipDisk["跳过持久化删除"]
-DiskDel --&gt; MemDel["删除内存索引"]
-SkipDisk --&gt; MemDel
-MemDel --&gt; Done["统计成功删除数量并返回"]
-Done --&gt; DEnd(["结束"])
-Err --&gt; DEnd
-</code></pre>
-<h3 id="hnsw">元数据管理与 HNSW 参数<a class="headerlink" href="#hnsw" title="Permanent link">¶</a></h3>
+<h3 id="_29">搜索性能缓慢<a class="headerlink" href="#_29" title="Permanent link">&para;</a></h3>
 <ul>
-<li>元数据结构：CollectionMeta 包含集合名、向量维度、距离度量、是否使用 HNSW 以及 HNSWParams。</li>
-<li>元数据持久化：通过 Storage 的特殊桶保存/加载集合元数据，服务启动时自动发现并重建集合。</li>
-<li>HNSW 参数：HNSWParams 提供 M、EfConstruction、EfSearch、K 等参数，默认值来自 DefaultHNSWParams；可在 NewCollectionWithParams 中传入自定义参数。</li>
+<li><strong>原因</strong>：HNSW 参数不当或结果集过大</li>
+<li><strong>解决方案</strong>：增加 EfSearch 参数，减少 topK，或使用更具选择性的过滤器</li>
 </ul>
-<pre class="mermaid"><code>sequenceDiagram
-participant S as "Storage"
-participant M as "CollectionMeta"
-S-&gt;&gt;S : "SaveCollectionMeta(name, meta)"
-S--&gt;&gt;S : "写入 __collections_meta__ 桶"
-S-&gt;&gt;S : "LoadCollectionMeta(name)"
-S--&gt;&gt;M : "反序列化为 CollectionMeta"
-</code></pre>
-<h3 id="payload">过滤器与 Payload 匹配<a class="headerlink" href="#payload" title="Permanent link">¶</a></h3>
+<h2 id="_30">🔗 相关文档<a class="headerlink" href="#_30" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Filter/Condition 支持 Must/MustNot 条件组合，ConditionType 包括 exact/range/prefix/contains/regex。</li>
-<li>MatchFilter 对 Must 全部满足且 MustNot 全不满足时返回 true。</li>
-<li>具体匹配函数：</li>
-<li>matchRange：支持 int/float64 的 GT/GTE/LT/LTE。</li>
-<li>matchPrefix：字符串前缀匹配。</li>
-<li>matchContains：数组/字符串包含匹配。</li>
-<li>matchRegex：正则表达式匹配。</li>
+<li><a href="../../data-model/">数据模型</a> - 核心数据结构</li>
+<li><a href="../hnsw-index/">HNSW 索引</a> - HNSW 索引实现</li>
+<li><a href="../storage-engine/">存储引擎</a> - 持久化和序列化</li>
+<li><a href="../../usage-modes/">使用模式</a> - 使用 GoVector 的不同方式</li>
 </ul>
-<pre class="mermaid"><code>flowchart TD
-FStart(["开始 MatchFilter"]) --&gt; Nil{"Filter 是否为空?"}
-Nil --&gt; |是| True["返回 true"]
-Nil --&gt; |否| Must["遍历 Must 条件"]
-Must --&gt; MustOK{"全部满足?"}
-MustOK --&gt; |否| False["返回 false"]
-MustOK --&gt; |是| MustNot["遍历 MustNot 条件"]
-MustNot --&gt; NotOK{"有满足的?"}
-NotOK --&gt; |是| False
-NotOK --&gt; |否| True
-</code></pre>
-<h2 id="_5">依赖关系分析<a class="headerlink" href="#_5" title="Permanent link">¶</a></h2>
-<ul>
-<li>Collection 依赖 VectorIndex 接口，从而与 HNSWIndex/FlatIndex 解耦。</li>
-<li>Storage 与 Collection 通过集合名关联，Collection 在初始化时读取/写入 CollectionMeta。</li>
-<li>Distance 与 VectorIndex/HNSWIndex/FlatIndex 共同决定相似度计算方式。</li>
-<li>API 层通过 Server 将 HTTP 请求映射到 Collection 的 Upsert/Search/Delete。</li>
-</ul>
-<pre class="mermaid"><code>graph LR
-COL["Collection"] --&gt; IDXI["VectorIndex"]
-IDXI --&gt; HNSW["HNSWIndex"]
-IDXI --&gt; FLAT["FlatIndex"]
-COL --&gt; STOR["Storage"]
-COL --&gt; DIST["Distance"]
-HNSW --&gt; DIST
-FLAT --&gt; DIST
-API["Server"] --&gt; COL
-</code></pre>
-<h2 id="_6">性能与内存特征<a class="headerlink" href="#_6" title="Permanent link">¶</a></h2>
-<ul>
-<li>索引复杂度：</li>
-<li>Flat：O(n) 暴力检索，适合小规模或需要精确结果的场景。</li>
-<li>HNSW：图遍历近似检索，查询复杂度近似 O(log N)，适合大规模高维向量。</li>
-<li>性能基准（参考 README）：</li>
-<li>100K 规模：Flat 平均延迟 ~54ms，HNSW 平均延迟 ~0.08ms，吞吐可达 ~11,812 QPS。</li>
-<li>1M 规模：HNSW 仍维持亚毫秒级延迟，吞吐 ~8,709 QPS。</li>
-<li>内存使用：</li>
-<li>HNSWIndex 维护图结构与本地点映射，内存占用随点数增长；FlatIndex 仅维护点映射。</li>
-<li>Storage 支持可选向量量化（SQ8），显著降低磁盘占用与加载成本。</li>
-<li>线程安全：</li>
-<li>Collection 与各索引实现均使用 RWMutex 保护读写，避免竞态；Upsert/Delete 采用写锁，Search 使用读锁。</li>
-</ul>
-<h2 id="_7">故障排查指南<a class="headerlink" href="#_7" title="Permanent link">¶</a></h2>
-<ul>
-<li>维度不匹配：</li>
-<li>Upsert/Search/Delete 均会对向量维度进行校验，不一致会报错。请确认集合创建时的维度与实际向量一致。</li>
-<li>存储加载异常：</li>
-<li>若历史数据中存在维度不一致的点，重新创建集合会失败。需清理或修复存储中的点后再创建。</li>
-<li>内存索引更新失败：</li>
-<li>Upsert 失败时会尝试回滚 Storage 中已写入的点，若回滚失败不影响一致性但可能残留部分数据。</li>
-<li>过滤器无效：</li>
-<li>确认 Filter 的 Must/MustNot 条件键名与 Payload 一致；范围/正则等条件需满足类型要求。</li>
-<li>HNSW 参数不当：</li>
-<li>EfConstruction/EfSearch 过小可能导致召回下降；M 过大增加内存与构建时间。建议结合数据规模与查询需求调整。</li>
-</ul>
-<h2 id="_8">结论<a class="headerlink" href="#_8" title="Permanent link">¶</a></h2>
-<p>Collection 集合管理模块以清晰的职责划分与强一致的存储优先策略，实现了从创建、运行到持久化的完整闭环。通过 VectorIndex 抽象，用户可在 Flat 与 HNSW 之间无缝切换；借助完善的过滤器与元数据管理，系统既满足入门易用也兼顾专业扩展。结合 README 的性能报告与本节的分析，HNSW 在大规模场景下具备显著优势，而 Flat 则适用于小规模或精确检索需求。</p>
-<h2 id="_9">附录：使用示例与最佳实践<a class="headerlink" href="#_9" title="Permanent link">¶</a></h2>
-<ul>
-<li>嵌入式库使用（零网络开销）</li>
-<li>初始化 Storage，创建 Collection，直接调用 Upsert/Search/Delete。</li>
-<li>示例路径：<a href="file://example/embedded/main.go#L10-L62">embedded 示例:10-62</a></li>
-<li>服务端模式（Qdrant 兼容 API）</li>
-<li>启动服务端，注册集合，通过 HTTP 接口进行 Upsert/Search/Delete。</li>
-<li>示例路径：<a href="file://cmd/govector/main.go#L18-L91">服务端入口:18-91</a></li>
-<li>API 层对接</li>
-<li>Server 自动从 Storage 加载集合元数据并重建 Collection；提供 /collections、/points 等端点。</li>
-<li>示例路径：<a href="file://api/server.go#L54-L95">API 服务器:54-95</a></li>
-<li>最佳实践</li>
-<li>选择索引：大规模高维向量优先 HNSW；小规模或精确检索可用 Flat。</li>
-<li>参数调优：根据数据规模与查询延迟目标调整 HNSWParams。</li>
-<li>数据治理：严格校验向量维度与 Payload 键名；合理使用过滤器减少检索空间。</li>
-<li>
-<p>持久化：定期备份 Storage 文件；启用量化以节省磁盘空间。</p>
-</li>
-<li>
-<p><a href="file://README.md#L30-L42">README.md:30-42</a></p>
-</li>
-</ul>
-</article>
-</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
-</div>
-</main>
-<footer class="md-footer">
-<div class="md-footer-meta md-typeset">
-<div class="md-footer-meta__inner md-grid">
-<div class="md-copyright">
-<div class="md-copyright__highlight">
-      Copyright © 2026 Guangzhou Raya Info Co., Ltd
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Guangzhou Raya Info Co., Ltd
     </div>
   
   
     Made with
-    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
       Material for MkDocs
     </a>
+  
 </div>
-</div>
-</div>
+      
+    </div>
+  </div>
 </footer>
-</div>
-<div class="md-dialog" data-md-component="dialog">
-<div class="md-dialog__inner md-typeset"></div>
-</div>
-<script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.sections", "search.suggest", "search.highlight", "content.code.highlight", "content.code.copy", "content.code.annotate", "i18n.languages"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
-<script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
-<script src="../../../javascripts/mathjax.js"></script>
-<script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
-<script type="module">import mermaid from "https://unpkg.com/mermaid@10.4.0/dist/mermaid.esm.min.mjs";
-window.mermaidConfig = {default: {
-    startOnLoad: false
-}};</script></body>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.sections", "search.suggest", "search.highlight", "content.code.highlight", "content.code.copy", "content.code.annotate", "i18n.languages"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
 </html>
