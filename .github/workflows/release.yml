@@ -1,0 +1,143 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            goos: linux
+            goarch: amd64
+            ext: ''
+          - os: ubuntu-latest
+            goos: linux
+            goarch: arm64
+            ext: ''
+          - os: macos-latest
+            goos: darwin
+            goarch: amd64
+            ext: ''
+          - os: macos-latest
+            goos: darwin
+            goarch: arm64
+            ext: ''
+          - os: windows-latest
+            goos: windows
+            goarch: amd64
+            ext: '.exe'
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Set up Go
+        uses: actions/setup-go@v6.3.0
+        with:
+          go-version: '1.25.1'
+          cache: true
+
+      - name: Build
+        env:
+          GOOS: ${{ matrix.goos }}
+          GOARCH: ${{ matrix.goarch }}
+          CGO_ENABLED: 0
+        run: |
+          VERSION=${GITHUB_REF#refs/tags/v}
+          OUTPUT_NAME="govector_v${VERSION}_${GOOS}_${GOARCH}${matrix.ext}"
+          
+          go build -ldflags="-s -w" -o "${OUTPUT_NAME}" ./cmd/govector
+          
+          echo "Built: ${OUTPUT_NAME}"
+          ls -la "${OUTPUT_NAME}"
+
+      - name: Create tarball
+        run: |
+          VERSION=${GITHUB_REF#refs/tags/v}
+          if [ "${{ matrix.goos }}" = "windows" ]; then
+            zip -j "govector_v${VERSION}_${{ matrix.goos }}_${{ matrix.goarch }}.zip" "govector_v${VERSION}_${{ matrix.goos }}_${{ matrix.goarch }}.exe"
+          else
+            tar -czf "govector_v${VERSION}_${{ matrix.goos }}_${{ matrix.goarch }}.tar.gz" "govector_v${VERSION}_${{ matrix.goos }}_${{ matrix.goarch }}"
+          fi
+
+      - name: Upload Release Asset
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: govector ${{ github.ref_name }}
+          draft: false
+          prerelease: false
+          files: |
+            govector_v*.tar.gz
+            govector_v*.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  build-capi:
+    needs: build
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Set up Go
+        uses: actions/setup-go@v6.3.0
+        with:
+          go-version: '1.25.1'
+          cache: true
+
+      - name: Build Go static library
+        run: |
+          cd capi
+          go build -buildmode=c-archive -o libgovector_c.a ./main_func.go
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install SWIG
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y swig
+
+      - name: Generate SWIG wrapper
+        working-directory: capi
+        run: |
+          swig -python -o govector_wrap.cxx govector.i
+
+      - name: Build Python extension
+        working-directory: capi
+        run: |
+          g++ -fPIC -shared \
+            govector_wrap.cxx \
+            -o _govector.so \
+            $(python3 -m py_compile --print path)/../include/python3.12 \
+            -L. -lgovector_c \
+            $(python3-config --ldflags --embed) \
+            -lpthread
+
+      - name: Upload Python binding
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: govector ${{ github.ref_name }}
+          draft: false
+          prerelease: false
+          files: |
+            capi/_govector.so
+            capi/govector.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
