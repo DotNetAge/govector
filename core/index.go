@@ -23,6 +23,9 @@ type VectorIndex interface {
 	// GetIDsByFilter returns all point IDs that match the given filter.
 	GetIDsByFilter(filter *Filter) []string
 
+	// GetPointsByFilter returns all points (with full payload) that match the given filter.
+	GetPointsByFilter(filter *Filter) []PointStruct
+
 	// DeleteByFilter removes all points that match the given filter and returns their IDs.
 	DeleteByFilter(filter *Filter) ([]string, error)
 }

@@ -107,6 +107,20 @@ func (f *FlatIndex) GetIDsByFilter(filter *Filter) []string {
 	return ids
 }
 
+// GetPointsByFilter returns all points with full payload matching the given filter.
+func (f *FlatIndex) GetPointsByFilter(filter *Filter) []PointStruct {
+	f.mu.RLock()
+	defer f.mu.RUnlock()
+
+	var results []PointStruct
+	for _, point := range f.points {
+		if MatchFilter(point.Payload, filter) {
+			results = append(results, *point)
+		}
+	}
+	return results
+}
+
 // DeleteByFilter removes all points that match the given filter and returns their IDs.
 func (f *FlatIndex) DeleteByFilter(filter *Filter) ([]string, error) {
 	f.mu.Lock()

@@ -1,0 +1,9 @@
+- [ ] matchRange() 函数只处理了 float64 和 int 类型， 未处理 float32 类型 （而 PointStruct.Vector 正好是 []float32 ）。此外，末尾没有 default 分支返回 false ——非预期的数字类型会直接 fall through 返回 true
+  - 影响 : 范围过滤可能不正确匹配非预期的值
+  - 建议 : 添加 float32 类型的处理分支；添加 default: return false 
+  - 位置 : govector/core/models.go:L137-L192
+- [ ] 注释写 "For ranking, we often skip the Sqrt for efficiency, but let's keep it standard" 暗示可以优化
+  - 建议 : 如果仅用于排序比较，使用平方距离即可避免 math.Sqrt 的性能开销
+  - 位置 : math.go:L77
+- [ ]问题 : 缺少统一的事务机制——Collection 的 upsert/delete 操作在内存和磁盘间更新不是原子的
+  - 建议 : 实现 Write-Ahead Log (WAL) 或两阶段提交

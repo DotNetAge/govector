@@ -209,6 +209,20 @@ func (h *HNSWIndex) GetIDsByFilter(filter *Filter) []string {
 	return ids
 }
 
+// GetPointsByFilter returns all points with full payload matching the given filter.
+func (h *HNSWIndex) GetPointsByFilter(filter *Filter) []PointStruct {
+	h.mu.RLock()
+	defer h.mu.RUnlock()
+
+	var results []PointStruct
+	for _, point := range h.points {
+		if MatchFilter(point.Payload, filter) {
+			results = append(results, *point)
+		}
+	}
+	return results
+}
+
 // DeleteByFilter removes all points that match the given filter from both
 // the HNSW graph and the local points map. Returns the IDs of deleted points.
 func (h *HNSWIndex) DeleteByFilter(filter *Filter) ([]string, error) {

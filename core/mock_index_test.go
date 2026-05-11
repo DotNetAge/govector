@@ -27,6 +27,10 @@ func (m *MockIndex) GetIDsByFilter(filter *Filter) []string {
 	return nil
 }
 
+func (m *MockIndex) GetPointsByFilter(filter *Filter) []PointStruct {
+	return nil
+}
+
 func (m *MockIndex) DeleteByFilter(filter *Filter) ([]string, error) {
 	return nil, nil
 }

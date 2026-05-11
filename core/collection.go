@@ -153,6 +153,18 @@ func (c *Collection) Count() int {
 	return c.index.Count()
 }
 
+// GetPointsByFilter returns all points with full payload and vectors that match the given filter.
+func (c *Collection) GetPointsByFilter(filter *Filter) ([]PointStruct, error) {
+	c.mu.RLock()
+	defer c.mu.RUnlock()
+
+	if filter == nil {
+		return nil, fmt.Errorf("filter cannot be nil")
+	}
+
+	return c.index.GetPointsByFilter(filter), nil
+}
+
 // Delete removes points either by explicit IDs or by a filter match.
 // If points slice is provided, those specific points are deleted.
 // If filter is provided, all points matching the filter are deleted.
