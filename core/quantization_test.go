@@ -108,7 +108,7 @@ func TestQuantizationWithStorage(t *testing.T) {
 	defer removeTempFile(tempPath)
 
 	// Create storage with quantization
-	storage, err := NewStorageWithQuantization(tempPath, true, nil)
+	storage, err := NewStorageWithQuantization(tempPath, true, nil, false)
 	if err != nil {
 		t.Fatalf("Failed to create storage with quantization: %v", err)
 	}

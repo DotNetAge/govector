@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
+	"os"
+	"time"
 
 	pb "github.com/DotNetAge/govector/core/proto"
 	"go.etcd.io/bbolt"
@@ -89,14 +91,27 @@ func fromProtoPoint(pbPoint *pb.PointStruct) *PointStruct {
 // The database file will be created if it doesn't exist.
 // Returns an error if the database cannot be opened.
 func NewStorage(dbPath string) (*Storage, error) {
-	return NewStorageWithQuantization(dbPath, false, nil)
+	return NewStorageWithQuantization(dbPath, false, nil, false)
 }
 
 // NewStorageWithQuantization initializes a new BoltDB storage engine with optional vector quantization.
 // If useQuant is true, vectors will be compressed using the provided quantizer.
+// When readOnly is true, opens the database in read-only mode (shared lock), allowing
+// coexistence with another process that holds the write lock (e.g. a running Daemon).
 // Returns an error if the database cannot be opened.
-func NewStorageWithQuantization(dbPath string, useQuant bool, quantizer Quantizer) (*Storage, error) {
-	db, err := bbolt.Open(dbPath, 0600, nil)
+func NewStorageWithQuantization(dbPath string, useQuant bool, quantizer Quantizer, readOnly bool) (*Storage, error) {
+	opts := &bbolt.Options{ReadOnly: readOnly}
+	mode := os.FileMode(0600)
+	if readOnly {
+		mode = 0400
+		// When opening as read-only, another process (e.g. a running Daemon)
+		// may hold the exclusive write lock (LOCK_EX) on this file. Without a
+		// timeout the read lock attempt (LOCK_SH) blocks forever. A short
+		// timeout ensures we fail fast with an actionable error instead of
+		// hanging the entire process indefinitely.
+		opts.Timeout = 3 * time.Second
+	}
+	db, err := bbolt.Open(dbPath, mode, opts)
 	if err != nil {
 		return nil, fmt.Errorf("failed to open bbolt database: %w", err)
 	}

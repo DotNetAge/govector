@@ -36,7 +36,7 @@ func NewServer(addr string, store *core.Storage) *Server {
 // NewServerWithQuantization initializes the API server with vector quantization enabled.
 // It creates a storage engine with the specified quantization settings.
 func NewServerWithQuantization(addr string, dbPath string, useQuant bool) (*Server, error) {
-	store, err := core.NewStorageWithQuantization(dbPath, useQuant, nil)
+	store, err := core.NewStorageWithQuantization(dbPath, useQuant, nil, false)
 	if err != nil {
 		return nil, err
 	}

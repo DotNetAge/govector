@@ -167,7 +167,7 @@ func TestStorageWithQuantization(t *testing.T) {
 	tempFile.Close()
 	defer os.Remove(tempPath)
 
-	storage, _ := NewStorageWithQuantization(tempPath, true, nil)
+	storage, _ := NewStorageWithQuantization(tempPath, true, nil, false)
 	defer storage.Close()
 
 	colName := "quantized-col"
