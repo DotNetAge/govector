@@ -110,6 +110,12 @@ func NewStorageWithQuantization(dbPath string, useQuant bool, quantizer Quantize
 		// timeout ensures we fail fast with an actionable error instead of
 		// hanging the entire process indefinitely.
 		opts.Timeout = 3 * time.Second
+	} else {
+		// Write mode also needs a timeout: if another process (e.g. a stale daemon,
+		// or a leftover test process) already holds the exclusive lock, bbolt.Open()
+		// will block forever waiting for it. A reasonable timeout prevents the
+		// entire daemon from hanging at startup.
+		opts.Timeout = 5 * time.Second
 	}
 	db, err := bbolt.Open(dbPath, mode, opts)
 	if err != nil {
