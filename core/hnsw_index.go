@@ -111,6 +111,10 @@ func (h *HNSWIndex) Upsert(points []PointStruct) error {
 	h.mu.Lock()
 	defer h.mu.Unlock()
 
+	if h.graph == nil {
+		return fmt.Errorf("HNSW graph is nil, cannot upsert points")
+	}
+
 	var nodes []hnsw.Node[string]
 	for i := range points {
 		p := &points[i]
@@ -129,6 +133,10 @@ func (h *HNSWIndex) Upsert(points []PointStruct) error {
 func (h *HNSWIndex) Search(query []float32, filter *Filter, topK int) ([]ScoredPoint, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
+
+	if h.graph == nil {
+		return nil, fmt.Errorf("HNSW graph is nil, cannot search")
+	}
 
 	// If filtering is needed, we must over-fetch from HNSW (Post-Filtering Strategy for MVP)
 	// In a heavily filtered scenario, this would ideally be pushed into the graph traversal.
@@ -181,6 +189,10 @@ func (h *HNSWIndex) Delete(id string) error {
 	h.mu.Lock()
 	defer h.mu.Unlock()
 
+	if h.graph == nil {
+		return fmt.Errorf("HNSW graph is nil, cannot delete")
+	}
+
 	if h.graph.Delete(id) {
 		delete(h.points, id)
 		return nil
@@ -228,6 +240,10 @@ func (h *HNSWIndex) GetPointsByFilter(filter *Filter) []PointStruct {
 func (h *HNSWIndex) DeleteByFilter(filter *Filter) ([]string, error) {
 	h.mu.Lock()
 	defer h.mu.Unlock()
+
+	if h.graph == nil {
+		return nil, fmt.Errorf("HNSW graph is nil, cannot delete by filter")
+	}
 
 	var deleted []string
 	for id, point := range h.points {

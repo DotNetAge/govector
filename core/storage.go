@@ -1,11 +1,13 @@
 package core
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"log"
 	"os"
 	"time"
+	"unicode/utf8"
 
 	pb "github.com/DotNetAge/govector/core/proto"
 	"go.etcd.io/bbolt"
@@ -33,6 +35,9 @@ func toProtoPoint(p *PointStruct) *pb.PointStruct {
 			pbVal := &pb.Value{}
 			switch val := v.(type) {
 			case string:
+				if !utf8.ValidString(val) {
+					val = string(bytes.ToValidUTF8([]byte(val), nil)) // sanitize: replace invalid UTF-8 sequences
+				}
 				pbVal.Value = &pb.Value_StringValue{StringValue: val}
 			case int:
 				pbVal.Value = &pb.Value_IntValue{IntValue: int64(val)}

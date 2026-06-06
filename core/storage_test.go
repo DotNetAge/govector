@@ -4,6 +4,10 @@ import (
 	"os"
 	"reflect"
 	"testing"
+	"unicode/utf8"
+
+	gvpb "github.com/DotNetAge/govector/core/proto"
+	"google.golang.org/protobuf/proto"
 )
 
 func TestStorage(t *testing.T) {
@@ -287,4 +291,89 @@ func TestStorageErrorCases(t *testing.T) {
 	}
 
 	storage.Close()
+}
+
+// TestToProtoPointInvalidUTF8 verifies that invalid UTF-8 strings in payload
+// are sanitized (replaced with U+FFFD) instead of causing proto.Marshal to fail.
+// This covers the P1 fix: UTF-8 validation in toProtoPoint.
+func TestToProtoPointInvalidUTF8(t *testing.T) {
+	t.Run("InvalidUTF8String_Sanitized", func(t *testing.T) {
+		// Create a string with embedded invalid UTF-8 bytes (e.g., from binary file content)
+		invalidStr := "hello" + string([]byte{0x80, 0xfe, 0xff}) + "world"
+
+		p := &PointStruct{
+			ID:     "utf8-test",
+			Vector: []float32{1.0, 2.0},
+			Payload: map[string]interface{}{
+				"content":  invalidStr,
+				"title":    "正常标题",
+				"binary":   string([]byte{0xc0, 0xaf}), // overlong encoding
+			},
+		}
+
+		pb := toProtoPoint(p)
+		if pb == nil {
+			t.Fatal("toProtoPoint returned nil")
+		}
+
+		// Verify all string values are valid UTF-8
+		for k, v := range pb.Payload {
+			if sv := v.GetStringValue(); sv != "" {
+				if !utf8.ValidString(sv) {
+					t.Errorf("payload key %q still contains invalid UTF-8 after sanitization", k)
+				}
+			}
+		}
+	})
+
+	t.Run("ValidUTF8_PassThrough", func(t *testing.T) {
+		p := &PointStruct{
+			ID:     "valid-test",
+			Vector: []float32{1.0},
+			Payload: map[string]interface{}{
+				"text": "hello 世界 🌍",
+				"num":  int(42),
+			},
+		}
+
+		pb := toProtoPoint(p)
+		if pb == nil {
+			t.Fatal("toProtoPoint returned nil")
+		}
+
+		if got := pb.Payload["text"].GetStringValue(); got != "hello 世界 🌍" {
+			t.Errorf("valid UTF-8 should pass through unchanged, got %q", got)
+		}
+	})
+
+	t.Run("RoundTrip_InvalidUTF8_MarshalSucceeds", func(t *testing.T) {
+		// The real bug: proto.Marshal would fail on invalid UTF-8
+		invalidStr := "data\x80corrupted"
+		p := &PointStruct{
+			ID:     "marshal-test",
+			Vector: []float32{1.0},
+			Payload: map[string]interface{}{
+				"raw": invalidStr,
+			},
+		}
+
+		pb := toProtoPoint(p)
+		data, err := proto.Marshal(pb)
+		if err != nil {
+			t.Fatalf("proto.Marshal failed even after sanitization: %v", err)
+		}
+		if len(data) == 0 {
+			t.Fatal("marshaled data is empty")
+		}
+
+		// Round-trip: unmarshal and verify content is valid UTF-8
+		decoded := &gvpb.PointStruct{}
+		if err := proto.Unmarshal(data, decoded); err != nil {
+			t.Fatalf("proto.Unmarshal failed: %v", err)
+		}
+		content := decoded.Payload["raw"].GetStringValue()
+		if !utf8.ValidString(content) {
+			t.Errorf("round-trip payload still has invalid UTF-8: %q (hex: %x)", content, []byte(content))
+		}
+	})
 }

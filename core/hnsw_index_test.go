@@ -1,6 +1,7 @@
 package core
 
 import (
+	"strings"
 	"testing"
 )
 
@@ -154,6 +155,56 @@ func TestHNSWIndex(t *testing.T) {
 		}
 		if !found {
 			t.Errorf("Expected ID 1 to be in results, got %v", results)
+		}
+	})
+}
+
+// TestHNSWIndexNilGraph verifies that all public methods return an error
+// instead of panicking when the underlying HNSW graph is nil.
+// This covers the P0 fix: defensive nil checks in Upsert/Search/Delete/DeleteByFilter.
+func TestHNSWIndexNilGraph(t *testing.T) {
+	t.Run("NilGraph_UpsertReturnsError", func(t *testing.T) {
+		idx := &HNSWIndex{points: make(map[string]*PointStruct)}
+		err := idx.Upsert([]PointStruct{{ID: "1", Vector: []float32{1.0}}})
+		if err == nil {
+			t.Fatal("expected error when upserting with nil graph")
+		}
+		if !strings.Contains(err.Error(), "nil") {
+			t.Errorf("error should mention nil graph, got: %v", err)
+		}
+	})
+
+	t.Run("NilGraph_SearchReturnsError", func(t *testing.T) {
+		idx := &HNSWIndex{points: make(map[string]*PointStruct)}
+		_, err := idx.Search([]float32{1.0}, nil, 1)
+		if err == nil {
+			t.Fatal("expected error when searching with nil graph")
+		}
+	})
+
+	t.Run("NilGraph_DeleteReturnsError", func(t *testing.T) {
+		idx := &HNSWIndex{points: make(map[string]*PointStruct)}
+		err := idx.Delete("1")
+		if err == nil {
+			t.Fatal("expected error when deleting with nil graph")
+		}
+	})
+
+	t.Run("NilGraph_DeleteByFilterReturnsError", func(t *testing.T) {
+		idx := &HNSWIndex{points: make(map[string]*PointStruct)}
+		filter := &Filter{
+			Must: []Condition{{Key: "x", Match: MatchValue{Value: "y"}}},
+		}
+		_, err := idx.DeleteByFilter(filter)
+		if err == nil {
+			t.Fatal("expected error when DeleteByFilter with nil graph")
+		}
+	})
+
+	t.Run("NilGraph_CountIsZero", func(t *testing.T) {
+		idx := &HNSWIndex{points: make(map[string]*PointStruct)}
+		if idx.Count() != 0 {
+			t.Errorf("expected count 0 for nil graph, got %d", idx.Count())
 		}
 	})
 }
