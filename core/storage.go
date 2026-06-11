@@ -52,8 +52,11 @@ func toProtoPoint(p *PointStruct) *pb.PointStruct {
 			case []byte:
 				pbVal.Value = &pb.Value_BytesValue{BytesValue: val}
 			default:
-				// Skip unsupported types for now or handle them
-				continue
+				// For complex types (map, slice, etc.), JSON-serialize and store as bytes
+				if jsonBytes, err := json.Marshal(val); err == nil {
+					pbVal.Value = &pb.Value_BytesValue{BytesValue: jsonBytes}
+				}
+				// If JSON marshal fails, skip the value
 			}
 			pbPoint.Payload[k] = pbVal
 		}
@@ -84,7 +87,14 @@ func fromProtoPoint(pbPoint *pb.PointStruct) *PointStruct {
 			case *pb.Value_BoolValue:
 				p.Payload[k] = val.BoolValue
 			case *pb.Value_BytesValue:
-				p.Payload[k] = val.BytesValue
+				// Try to deserialize as JSON for complex nested objects (map, slice, etc.)
+				// If it's not valid JSON, return raw bytes
+				var obj any
+				if err := json.Unmarshal(val.BytesValue, &obj); err == nil {
+					p.Payload[k] = obj
+				} else {
+					p.Payload[k] = val.BytesValue
+				}
 			}
 		}
 	}
