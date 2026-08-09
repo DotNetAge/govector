@@ -1,3 +1,23 @@
+# =============================================================================
+# GoVector Release Pipeline — Multi-platform builds + Docker + C API
+# =============================================================================
+#
+# Triggers:
+#   - Push of v* tags (stable releases)
+#   - Manual dispatch
+#
+# Jobs:
+#   1. build       — Cross-compile binaries (linux/darwin/windows × amd64/arm64)
+#   2. build-capi  — Python C API bindings (SWIG)
+#   3. docker      — Multi-arch Docker image → Docker Hub
+#   4. homebrew    — Generate & push formula → homebrew-govector tap
+#
+# Secrets required:
+#   - DOCKERHUB_USERNAME  — Docker Hub username
+#   - DOCKERHUB_TOKEN    — Docker Hub access token
+#   - HOMEBREW_TAP_TOKEN — PAT with write access to DotNetAge/homebrew-govector
+# =============================================================================
+
 name: Release
 
 on:
@@ -40,10 +60,10 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v4
 
       - name: Set up Go
-        uses: actions/setup-go@v6.3.0
+        uses: actions/setup-go@v6
         with:
           go-version: '1.25.1'
           cache: true
@@ -90,10 +110,10 @@ jobs:
     
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v4
 
       - name: Set up Go
-        uses: actions/setup-go@v6.3.0
+        uses: actions/setup-go@v6
         with:
           go-version: '1.25.1'
           cache: true
@@ -141,3 +161,81 @@ jobs:
             capi/govector.py
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # ==========================================================================
+  # Docker — Multi-arch image build & push to Docker Hub
+  # ==========================================================================
+  docker:
+    name: Docker Image
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up QEMU (multi-arch support)
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Extract version metadata
+        id: meta
+        run: |
+          VERSION=${GITHUB_REF#refs/tags/v}
+          echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
+          echo "tags=${{ secrets.DOCKERHUB_USERNAME }}/govector:${VERSION},${{ secrets.DOCKERHUB_USERNAME }}/govector:latest" >> "$GITHUB_OUTPUT"
+
+      - name: Build and push (linux/amd64 + linux/arm64)
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./Dockerfile
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: |
+            org.opencontainers.image.source=https://github.com/DotNetAge/govector
+            org.opencontainers.image.description=GoVector - High-performance embedded vector database
+            org.opencontainers.image.version=${{ steps.meta.outputs.version }}
+          build-args: |
+            VERSION=${{ steps.meta.outputs.version }}
+
+  # ==========================================================================
+  # Homebrew — Generate formula & push to homebrew-govector tap
+  # ==========================================================================
+  homebrew:
+    name: Homebrew Formula
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v6
+        with:
+          go-version: '1.25.1'
+          cache: true
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y curl
+
+      - name: Generate and push Homebrew formula
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          HOMEBREW_TAP_TOKEN: ${{ secrets.HOMEBREW_TAP_TOKEN }}
+        run: |
+          VERSION=${GITHUB_REF#refs/tags/v}
+          chmod +x scripts/homebrew-release.sh
+          bash scripts/homebrew-release.sh "${VERSION}"

@@ -216,6 +216,11 @@ func TestCollectionHNSWParams(t *testing.T) {
 	}
 	col.Upsert(points)
 
+	// 刷盘确保持久化完成
+	if err := col.Flush(); err != nil {
+		t.Fatalf("Failed to flush: %v", err)
+	}
+
 	// Reload collection from storage
 	col2, err := NewCollectionWithParams("hnsw-col", 3, Cosine, storage, true, params)
 	if err != nil {

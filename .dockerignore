@@ -1,0 +1,38 @@
+# =============================================================================
+# GoVector .dockerignore — Keep Docker context small
+# =============================================================================
+
+# Git
+.git
+.gitignore
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Build artifacts
+dist/
+releases/
+*.exe
+
+# Documentation
+docs/
+
+# C API (not needed in server image)
+capi/
+
+# Test files
+*_test.go
+coverage.out
+coverage/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+tmp/
+.tmp/
+*.log

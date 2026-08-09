@@ -9,6 +9,10 @@ import (
 // Collection represents a single logical group of vectors, similar to a table in SQL databases.
 // It provides thread-safe operations for inserting, searching, and deleting vectors.
 // Each collection has a fixed vector dimension and uses a specific distance metric.
+//
+// 写入缓冲：Upsert 将数据先写入内存 HNSW 索引（查询即时可见），
+// 然后缓冲到 writeBuf 中，攒够 flushThreshold 个点再批量写入 bbolt，
+// 从而将 N 次 fsync 降为 1 次，显著提升索引吞吐。
 type Collection struct {
 	Name      string   // Unique name of the collection
 	VectorLen int      // Dimension of vectors in this collection
@@ -17,7 +21,14 @@ type Collection struct {
 	mu      sync.RWMutex
 	index   VectorIndex // Transparent index engine (Flat or HNSW)
 	storage *Storage    // Embedded Persistence
+
+	writeBuf       []PointStruct // 缓冲写入的点，攒批后批量刷盘减少 fsync
+	flushThreshold int           // writeBuf 达到此大小时触发刷盘
 }
+
+// DefaultFlushThreshold 默认写入缓冲阈值（点数量）。
+// 攒够此数量的点后统一写入 bbolt，将多次 fsync 合并为一次。
+const DefaultFlushThreshold = 64
 
 // NewCollection initializes a new vector collection, optionally loading from storage.
 // If useHNSW is true, it uses the optimized HNSW graph search; otherwise uses flat memory search.
@@ -46,6 +57,9 @@ func NewCollectionWithParams(name string, vectorLen int, metric Distance, store 
 		Metric:    metric,
 		index:     index,
 		storage:   store,
+
+		writeBuf:       make([]PointStruct, 0),
+		flushThreshold: DefaultFlushThreshold,
 	}
 
 	if store != nil {
@@ -91,14 +105,19 @@ func NewCollectionWithParams(name string, vectorLen int, metric Distance, store 
 }
 
 // Upsert adds or updates points in the collection.
-// Points are first persisted to disk (if storage is configured), then updated in the memory index.
+//
+// 写入流程：
+//  1. 更新内存 HNSW 索引（查询即时可见）
+//  2. 将点追加到 writeBuf 缓冲
+//  3. 当缓冲区达到 flushThreshold 时批量写入 bbolt（将 N 次 fsync 降为 1 次）
+//
+// Points are first written to the memory index, then buffered for bbolt persistence.
 // Returns an error if any point has an invalid vector length or if persistence fails.
-// Ensures data consistency between storage and memory index.
 func (c *Collection) Upsert(points []PointStruct) error {
 	c.mu.Lock()
 	defer c.mu.Unlock()
 
-	// 1. Validate and Version
+	// 1. Validate
 	version := uint64(time.Now().UnixNano())
 	for i := range points {
 		p := &points[i]
@@ -108,27 +127,52 @@ func (c *Collection) Upsert(points []PointStruct) error {
 		p.Version = version
 	}
 
-	// 2. Persist to Disk First
-	if c.storage != nil {
-		if err := c.storage.UpsertPoints(c.Name, points); err != nil {
-			return fmt.Errorf("failed to persist points: %w", err)
-		}
-	}
-
-	// 3. Update Memory Index Engine
+	// 2. Update Memory Index Immediately（查询需要最新数据）
 	if err := c.index.Upsert(points); err != nil {
-		// If memory index update fails, try to remove the points from storage
-		// This is a best-effort recovery to maintain consistency
-		if c.storage != nil {
-			ids := make([]string, len(points))
-			for i, p := range points {
-				ids[i] = p.ID
-			}
-			_ = c.storage.DeletePoints(c.Name, ids) // Ignore error, best effort
-		}
 		return fmt.Errorf("failed to update memory index: %w", err)
 	}
 
+	// 3. Buffer for bbolt persistence（攒批减少 fsync）
+	c.writeBuf = append(c.writeBuf, points...)
+	if len(c.writeBuf) >= c.flushThreshold {
+		return c.flushUnsafe()
+	}
+
+	return nil
+}
+
+// Flush 强制将 writeBuf 中所有缓冲点写入 bbolt。
+func (c *Collection) Flush() error {
+	c.mu.Lock()
+	defer c.mu.Unlock()
+	return c.flushUnsafe()
+}
+
+// flushUnsafe 要求调用方已持有 c.mu（写锁）。
+func (c *Collection) flushUnsafe() error {
+	if c.storage == nil || len(c.writeBuf) == 0 {
+		c.writeBuf = nil // 确保 nil 而非空切片，方便 GC
+		return nil
+	}
+	if err := c.storage.UpsertPoints(c.Name, c.writeBuf); err != nil {
+		return fmt.Errorf("failed to flush buffer to bbolt: %w", err)
+	}
+	c.writeBuf = nil
+	return nil
+}
+
+// Close 刷完缓冲区并关闭底层存储引擎。
+// 调用后 Collection 不可再用。
+func (c *Collection) Close() error {
+	c.mu.Lock()
+	defer c.mu.Unlock()
+
+	if err := c.flushUnsafe(); err != nil {
+		return err
+	}
+	if c.storage != nil {
+		return c.storage.Close()
+	}
 	return nil
 }
 
@@ -188,6 +232,23 @@ func (c *Collection) Delete(points []string, filter *Filter) (int, error) {
 
 	if len(targetIDs) == 0 {
 		return 0, nil
+	}
+
+	// Build a set for O(1) lookup
+	targetSet := make(map[string]struct{}, len(targetIDs))
+	for _, id := range targetIDs {
+		targetSet[id] = struct{}{}
+	}
+
+	// 0. Remove deleted IDs from write buffer（防止刷盘时重写已删数据）
+	if len(c.writeBuf) > 0 {
+		filtered := make([]PointStruct, 0, len(c.writeBuf))
+		for _, p := range c.writeBuf {
+			if _, ok := targetSet[p.ID]; !ok {
+				filtered = append(filtered, p)
+			}
+		}
+		c.writeBuf = filtered
 	}
 
 	// 1. Delete from storage first (if configured)

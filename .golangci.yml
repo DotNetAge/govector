@@ -1,0 +1,148 @@
+# =============================================================================
+# GoVector golangci-lint Configuration
+# =============================================================================
+# Run: golangci-lint run ./...
+# Docs: https://golangci-lint.run/usage/configuration/
+# =============================================================================
+
+run:
+  timeout: 5m
+  modules-download-mode: readonly
+
+linters:
+  enable:
+    # Default linters
+    - errcheck       # Check for unchecked errors
+    - gosimple       # Linter for Go source code simplification
+    - govet          # Vet examines Go source code
+    - ineffassign    # Detect ineffectual assignments
+    - staticcheck    # Static analysis (includes many sub-linters)
+    - unused         # Check for unused code
+
+    # Additional linters
+    - bodyclose      # Checks HTTP response body is closed
+    - contextcheck   # Detects missing context checks in loops
+    - erroras        # Check for errors compared with raw nil
+    - goconst        # Find repeated string constants
+    - gocritic       # Most opinionated Go linter
+    - godot          # Check if comments end with period
+    - gofmt          # Check if code is gofmt'd
+    - goimports      # Manage imports (format + sort)
+    - misspell       # Fix commonly misspelled English words
+    - nakedret       # Detect naked returns
+    - noctx          # Detect http.Request without context
+    - prealloc       # Preallocate slices for performance
+    - revive         # Drop-in replacement for golint
+    - unconvert      # Remove unnecessary type conversions
+    - unparam        # Report unused function parameters
+
+  disable:
+    - exhaustive     # Too strict for test tables
+    - exhaustivestruct # Too strict
+    - funlen         # Allow longer functions for clarity
+    - gochecknoglobals # We use globals in some places
+    - gochecknoinits # We use init() for setup
+    - gocognit       # Cognitive complexity is subjective
+    - gocyclo        # Cyclomatic complexity is subjective
+    - godox          # TODO/FIXME comments are fine
+    - lll            # Long lines are acceptable
+    - nlreturn       # Newline before return is style preference
+    - varnamelen     # Short variable names are idiomatic in Go
+    - wsl            # Whitespace linter too opinionated
+
+linters-settings:
+  errcheck:
+    check-type-assertions: true
+    check-blank: true
+
+  govet:
+    enable-all: false
+    enable:
+      - copylocks
+      - nilfunc
+      - printf
+      - shadow
+      - unusedwrite
+
+  staticcheck:
+    checks: ["all"]
+
+  gocritic:
+    enabled-tags:
+      - diagnostic
+      - style
+      - performance
+    disabled-checks:
+      - hugeParam
+      - rangeValCopy
+      - unnamedResult
+
+  revive:
+    rules:
+      - name: exported
+        severity: warning
+      - name: unused-receiver
+        severity: warning
+      - name: package-comments
+        severity: warning
+      - name: indent-error-flow
+        severity: error
+      - name: error-return
+        severity: error
+      - name: error-strings
+        severity: warning
+      - name: error-naming
+        severity: warning
+      - name: defer
+        severity: warning
+      - name: range
+        severity: warning
+      - name: receiver-naming
+        severity: warning
+      - name: time-naming
+        severity: warning
+      - name: var-declaration
+        severity: warning
+      - name: context-as-argument
+        severity: warning
+      - name: context-keys-type
+        severity: warning
+      - name: empty-block
+        severity: warning
+      - name: superfluous-else
+        severity: warning
+      - name: unreachable-code
+        severity: error
+      - name: confusing-results
+        severity: warning
+
+  misspell:
+    locale: US
+
+  goimports:
+    local-prefixes: github.com/DotNetAge/govector
+
+issues:
+  max-issues-per-linter: 50
+  max-same-issues: 5
+  exclude-rules:
+    # Exclude test files from certain linters
+    - path: _test\.go
+      linters:
+        - errcheck
+        - dupl
+        - gosec
+        - bodyclose
+        - unparam
+        - prealloc
+    # Exclude generated files
+    - path: \.pb\.go$
+      linters:
+        - all
+    # Exclude capi (SWIG generated)
+    - path: capi/
+      linters:
+        - all
+
+severity:
+  default-severity: error

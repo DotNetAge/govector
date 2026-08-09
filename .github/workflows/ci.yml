@@ -1,0 +1,234 @@
+# =============================================================================
+# GoVector CI Pipeline — Production-grade GitHub Actions
+# =============================================================================
+# Stages: lint → vet → security → test (race + coverage) → build (matrix)
+#
+# Triggers:
+#   - push to main, all PRs
+#   - manual dispatch for debugging
+# =============================================================================
+
+name: CI
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - 'LICENSE'
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+# Cancel in-progress runs on the same branch/PR
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+# ==========================================================================
+# Environment defaults
+# ==========================================================================
+env:
+  GO_VERSION: '1.25.1'
+  CGO_ENABLED: 0
+
+jobs:
+  # ==========================================================================
+  # Stage 1: Lint — golangci-lint with project config
+  # ==========================================================================
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v6
+        with:
+          go-version: ${{ env.GO_VERSION }}
+          cache: true
+
+      - name: golangci-lint
+        uses: golangci/golangci-lint-action@v9
+        with:
+          version: v2.9
+          args: --timeout=5m
+
+  # ==========================================================================
+  # Stage 2: Vet — static analysis
+  # ==========================================================================
+  vet:
+    name: Vet
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v6
+        with:
+          go-version: ${{ env.GO_VERSION }}
+          cache: true
+
+      - name: Run go vet
+        run: go vet ./...
+
+  # ==========================================================================
+  # Stage 3: Security — vulnerability check
+  # ==========================================================================
+  security:
+    name: Security
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v6
+        with:
+          go-version: ${{ env.GO_VERSION }}
+          cache: true
+
+      - name: Install govulncheck
+        run: go install golang.org/x/vuln/cmd/govulncheck@latest
+
+      - name: Run govulncheck
+        run: |
+          PKGS=$(go list ./... | grep -v capi || true)
+          if [ -z "$PKGS" ]; then
+            echo "No packages to scan"
+          else
+            govulncheck $PKGS | tee govulncheck-output.txt
+          fi
+
+  # ==========================================================================
+  # Stage 4: Test — race detector + coverage (matrix: OS)
+  # ==========================================================================
+  test:
+    name: Test (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    needs: [lint, vet]
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    env:
+      CGO_ENABLED: 0
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v6
+        with:
+          go-version: ${{ env.GO_VERSION }}
+          cache: true
+
+      - name: Run tests with race detector & coverage
+        shell: bash
+        run: |
+          go test \
+            -race \
+            -coverprofile=coverage.out \
+            -covermode=atomic \
+            -timeout=10m \
+            -v ./... 2>&1 | tee test-output.txt
+
+      - name: Display coverage summary
+        if: runner.os != 'Windows'
+        run: go tool cover -func=coverage.out | tail -1
+
+      - name: Upload coverage artifact
+        if: matrix.os == 'ubuntu-latest'
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage.out
+          retention-days: 7
+
+      - name: Upload test output
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-output-${{ matrix.os }}
+          path: test-output.txt
+          retention-days: 7
+
+  # ==========================================================================
+  # Stage 5: Build verification (matrix: OS + Arch)
+  # ==========================================================================
+  build:
+    name: Build (${{ matrix.goos }}/${{ matrix.goarch }})
+    runs-on: ${{ matrix.runner }}
+    needs: [test]
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - goos: linux
+            goarch: amd64
+            runner: ubuntu-latest
+          - goos: linux
+            goarch: arm64
+            runner: ubuntu-latest
+          - goos: darwin
+            goarch: amd64
+            runner: macos-latest
+          - goos: darwin
+            goarch: arm64
+            runner: macos-latest
+          - goos: windows
+            goarch: amd64
+            runner: windows-latest
+    env:
+      CGO_ENABLED: 0
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v6
+        with:
+          go-version: ${{ env.GO_VERSION }}
+          cache: true
+
+      - name: Get version info
+        id: version
+        shell: bash
+        run: |
+          echo "version=$(git describe --tags --abbrev=0 2>/dev/null || echo 'dev')" >> "$GITHUB_OUTPUT"
+          echo "commit=$(git rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
+          echo "build_time=$(date -u '+%Y-%m-%dT%H:%M:%SZ')" >> "$GITHUB_OUTPUT"
+
+      - name: Build
+        shell: bash
+        env:
+          GOOS: ${{ matrix.goos }}
+          GOARCH: ${{ matrix.goarch }}
+        run: |
+          BINARY_NAME=govector
+          VERSION=${{ steps.version.outputs.version }}
+          COMMIT=${{ steps.version.outputs.commit }}
+          BUILD_TIME=${{ steps.version.outputs.build_time }}
+          SUFFIX=""
+          [ "${{ matrix.goos }}" = "windows" ] && SUFFIX=".exe"
+
+          go build \
+            -trimpath \
+            -ldflags="-s -w \
+              -X github.com/DotNetAge/govector/cmd.Version=${VERSION#v} \
+              -X github.com/DotNetAge/govector/cmd.Commit=${COMMIT} \
+              -X github.com/DotNetAge/govector/cmd.BuildTime=${BUILD_TIME}" \
+            -o dist/${BINARY_NAME}-${{ matrix.goos }}-${{ matrix.goarch }}${SUFFIX} \
+            ./cmd/govector
+
+          ls -lh dist/
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: govector-${{ matrix.goos }}-${{ matrix.goarch }}
+          path: dist/
+          retention-days: 7
