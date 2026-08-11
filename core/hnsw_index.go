@@ -5,7 +5,7 @@ import (
 	"math"
 	"sync"
 
-	"github.com/coder/hnsw"
+	"github.com/DotNetAge/govector/third_party/hnsw"
 )
 
 // HNSWParams contains configurable parameters for HNSW index

@@ -208,3 +208,75 @@ func TestHNSWIndexNilGraph(t *testing.T) {
 		}
 	})
 }
+
+// TestHNSWIndexOverwriteUpdate 验证对已存在 ID 做覆盖更新（单点）不会 panic。
+// 这是内嵌补丁 fork 的回归用例：上游 coder/hnsw v0.6.1 的 Add 在替换场景会
+// panic("node not added")，此前由 workspace 外部 replace 兜底修复。
+func TestHNSWIndexOverwriteUpdate(t *testing.T) {
+	idx := NewHNSWIndex(Cosine)
+
+	if err := idx.Upsert([]PointStruct{
+		{ID: "a", Vector: []float32{1.0, 0.0}, Payload: map[string]interface{}{"v": 1}},
+	}); err != nil {
+		t.Fatalf("failed to upsert initial point: %v", err)
+	}
+
+	// 覆盖更新同一个 ID：旧向量 (1,0) 替换为新向量 (0,1)
+	if err := idx.Upsert([]PointStruct{
+		{ID: "a", Vector: []float32{0.0, 1.0}, Payload: map[string]interface{}{"v": 2}},
+	}); err != nil {
+		t.Fatalf("failed to upsert overwrite: %v", err)
+	}
+
+	if idx.Count() != 1 {
+		t.Fatalf("expected count 1 after overwrite, got %d", idx.Count())
+	}
+
+	// 覆盖后，与新向量一致的查询应命中该点，且新 payload 生效
+	results, err := idx.Search([]float32{0.0, 1.0}, nil, 1)
+	if err != nil {
+		t.Fatalf("failed to search: %v", err)
+	}
+	if len(results) != 1 || results[0].ID != "a" {
+		t.Fatalf("expected point a as nearest neighbor, got %v", results)
+	}
+	if results[0].Payload["v"] != 2 {
+		t.Errorf("expected payload v=2 after overwrite, got %v", results[0].Payload)
+	}
+}
+
+// TestHNSWIndexReinsertAfterEmpty 验证图被删空后重新 Upsert 不会 panic。
+// 内嵌补丁 fork 修复了 assertDims 在「layers 残留但无节点」的空图上的维度检查，
+// 上游 v0.6.1 在此场景会对 nil entry 解引用 panic。
+func TestHNSWIndexReinsertAfterEmpty(t *testing.T) {
+	idx := NewHNSWIndex(Cosine)
+
+	if err := idx.Upsert([]PointStruct{
+		{ID: "1", Vector: []float32{1.0, 0.0}, Payload: map[string]interface{}{"cat": "A"}},
+		{ID: "2", Vector: []float32{0.0, 1.0}, Payload: map[string]interface{}{"cat": "B"}},
+	}); err != nil {
+		t.Fatalf("failed to upsert points: %v", err)
+	}
+
+	// 逐类删光所有点，使图进入空态
+	for _, cat := range []string{"A", "B"} {
+		if _, err := idx.DeleteByFilter(&Filter{
+			Must: []Condition{{Key: "cat", Match: MatchValue{Value: cat}}},
+		}); err != nil {
+			t.Fatalf("failed to delete by filter %s: %v", cat, err)
+		}
+	}
+	if idx.Count() != 0 {
+		t.Fatalf("expected count 0 after deletion, got %d", idx.Count())
+	}
+
+	// 删空后重新插入新点，不应 panic
+	if err := idx.Upsert([]PointStruct{
+		{ID: "3", Vector: []float32{0.0, 0.0, 1.0}},
+	}); err != nil {
+		t.Fatalf("failed to re-upsert after empty: %v", err)
+	}
+	if idx.Count() != 1 {
+		t.Fatalf("expected count 1 after re-upsert, got %d", idx.Count())
+	}
+}
